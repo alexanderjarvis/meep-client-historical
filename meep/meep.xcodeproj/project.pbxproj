@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D3623260D0F684500981E51 /* meepAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* meepAppDelegate.m */; };
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
+		2899E5220DE3E06400AC0155 /* CLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E5210DE3E06400AC0155 /* CLViewController.xib */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		28D7ACF80DDB3853001CB0EB /* CLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* CLViewController.m */; };
+		FA0B25341269DB67008EA266 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA0B25321269DB67008EA266 /* MenuViewController.m */; };
+		FA0B25351269DB67008EA266 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0B25331269DB67008EA266 /* MenuViewController.xib */; };
+		FA0B254F1269E5E3008EA266 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = FA0B254E1269E5E3008EA266 /* person.png */; };
+		FA0B25511269E6B6008EA266 /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0B25501269E6B6008EA266 /* FeedTableViewCell.xib */; };
+		FA43695A12441CCA008C8984 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA43695912441CCA008C8984 /* CoreLocation.framework */; };
+		FA4369B612442468008C8984 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4369B512442468008C8984 /* MapKit.framework */; };
+		FA75309D128E088300DD955D /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = FA75308B128E088300DD955D /* ASIAuthenticationDialog.m */; };
+		FA75309E128E088300DD955D /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FA75308E128E088300DD955D /* ASIDownloadCache.m */; };
+		FA75309F128E088300DD955D /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA753090128E088300DD955D /* ASIFormDataRequest.m */; };
+		FA7530A0128E088300DD955D /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA753092128E088300DD955D /* ASIHTTPRequest.m */; };
+		FA7530A1128E088300DD955D /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = FA753096128E088300DD955D /* ASIInputStream.m */; };
+		FA7530A2128E088300DD955D /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = FA753098128E088300DD955D /* ASINetworkQueue.m */; };
+		FA7530A3128E088300DD955D /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = FA75309C128E088300DD955D /* Reachability.m */; };
+		FA7530B0128E08F000DD955D /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7530AF128E08F000DD955D /* libz.1.2.3.dylib */; };
+		FA7530B2128E090500DD955D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7530B1128E090500DD955D /* CFNetwork.framework */; };
+		FA7530B4128E090500DD955D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7530B3128E090500DD955D /* SystemConfiguration.framework */; };
+		FA7530BC128E097B00DD955D /* HTTPDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7530BA128E097B00DD955D /* HTTPDemoViewController.m */; };
+		FA7530BD128E097B00DD955D /* HTTPDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7530BB128E097B00DD955D /* HTTPDemoViewController.xib */; };
+		FA753100128E0DDF00DD955D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7530FF128E0DDF00DD955D /* MobileCoreServices.framework */; };
+		FA886ED7127346EE00BAE667 /* MeepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA886ED5127346EE00BAE667 /* MeepViewController.m */; };
+		FA886ED8127346EE00BAE667 /* MeepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA886ED6127346EE00BAE667 /* MeepViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D3623240D0F684500981E51 /* meepAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = meepAppDelegate.h; sourceTree = "<group>"; };
+		1D3623250D0F684500981E51 /* meepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = meepAppDelegate.m; sourceTree = "<group>"; };
+		1D6058910D05DD3D006BFB54 /* meep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meep.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		2899E5210DE3E06400AC0155 /* CLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CLViewController.xib; sourceTree = "<group>"; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		28D7ACF60DDB3853001CB0EB /* CLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLViewController.h; sourceTree = "<group>"; };
+		28D7ACF70DDB3853001CB0EB /* CLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLViewController.m; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* meep_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = meep_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* meep-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "meep-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		FA0B25311269DB67008EA266 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		FA0B25321269DB67008EA266 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		FA0B25331269DB67008EA266 /* MenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MenuViewController.xib; path = Classes/MenuViewController.xib; sourceTree = "<group>"; };
+		FA0B254E1269E5E3008EA266 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
+		FA0B25501269E6B6008EA266 /* FeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
+		FA43695912441CCA008C8984 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		FA4369B512442468008C8984 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FA75308A128E088300DD955D /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
+		FA75308B128E088300DD955D /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
+		FA75308C128E088300DD955D /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
+		FA75308D128E088300DD955D /* ASIDownloadCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDownloadCache.h; sourceTree = "<group>"; };
+		FA75308E128E088300DD955D /* ASIDownloadCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDownloadCache.m; sourceTree = "<group>"; };
+		FA75308F128E088300DD955D /* ASIFormDataRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIFormDataRequest.h; sourceTree = "<group>"; };
+		FA753090128E088300DD955D /* ASIFormDataRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIFormDataRequest.m; sourceTree = "<group>"; };
+		FA753091128E088300DD955D /* ASIHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequest.h; sourceTree = "<group>"; };
+		FA753092128E088300DD955D /* ASIHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIHTTPRequest.m; sourceTree = "<group>"; };
+		FA753093128E088300DD955D /* ASIHTTPRequestConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestConfig.h; sourceTree = "<group>"; };
+		FA753094128E088300DD955D /* ASIHTTPRequestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIHTTPRequestDelegate.h; sourceTree = "<group>"; };
+		FA753095128E088300DD955D /* ASIInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIInputStream.h; sourceTree = "<group>"; };
+		FA753096128E088300DD955D /* ASIInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIInputStream.m; sourceTree = "<group>"; };
+		FA753097128E088300DD955D /* ASINetworkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASINetworkQueue.h; sourceTree = "<group>"; };
+		FA753098128E088300DD955D /* ASINetworkQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASINetworkQueue.m; sourceTree = "<group>"; };
+		FA753099128E088300DD955D /* ASIProgressDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIProgressDelegate.h; sourceTree = "<group>"; };
+		FA75309B128E088300DD955D /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		FA75309C128E088300DD955D /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		FA7530AF128E08F000DD955D /* libz.1.2.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.3.dylib; path = usr/lib/libz.1.2.3.dylib; sourceTree = SDKROOT; };
+		FA7530B1128E090500DD955D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		FA7530B3128E090500DD955D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		FA7530B9128E097B00DD955D /* HTTPDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPDemoViewController.h; sourceTree = "<group>"; };
+		FA7530BA128E097B00DD955D /* HTTPDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDemoViewController.m; sourceTree = "<group>"; };
+		FA7530BB128E097B00DD955D /* HTTPDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HTTPDemoViewController.xib; path = Classes/HTTPDemoViewController.xib; sourceTree = "<group>"; };
+		FA7530FF128E0DDF00DD955D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FA886ED4127346EE00BAE667 /* MeepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeepViewController.h; sourceTree = "<group>"; };
+		FA886ED5127346EE00BAE667 /* MeepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeepViewController.m; sourceTree = "<group>"; };
+		FA886ED6127346EE00BAE667 /* MeepViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MeepViewController.xib; path = Classes/MeepViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */,
+				FA43695A12441CCA008C8984 /* CoreLocation.framework in Frameworks */,
+				FA4369B612442468008C8984 /* MapKit.framework in Frameworks */,
+				FA7530B0128E08F000DD955D /* libz.1.2.3.dylib in Frameworks */,
+				FA7530B2128E090500DD955D /* CFNetwork.framework in Frameworks */,
+				FA7530B4128E090500DD955D /* SystemConfiguration.framework in Frameworks */,
+				FA753100128E0DDF00DD955D /* MobileCoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* meepAppDelegate.h */,
+				1D3623250D0F684500981E51 /* meepAppDelegate.m */,
+				FA886ED4127346EE00BAE667 /* MeepViewController.h */,
+				FA886ED5127346EE00BAE667 /* MeepViewController.m */,
+				FA0B25311269DB67008EA266 /* MenuViewController.h */,
+				FA0B25321269DB67008EA266 /* MenuViewController.m */,
+				28D7ACF60DDB3853001CB0EB /* CLViewController.h */,
+				28D7ACF70DDB3853001CB0EB /* CLViewController.m */,
+				FA7530B9128E097B00DD955D /* HTTPDemoViewController.h */,
+				FA7530BA128E097B00DD955D /* HTTPDemoViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* meep.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				FA753088128E088300DD955D /* External */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+				FA0B25501269E6B6008EA266 /* FeedTableViewCell.xib */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* meep_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FA7530BB128E097B00DD955D /* HTTPDemoViewController.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				FA886ED6127346EE00BAE667 /* MeepViewController.xib */,
+				2899E5210DE3E06400AC0155 /* CLViewController.xib */,
+				8D1107310486CEB800E47090 /* meep-Info.plist */,
+				FA0B25331269DB67008EA266 /* MenuViewController.xib */,
+				FA0B254E1269E5E3008EA266 /* person.png */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765A40DF7441C002DB57D /* CoreGraphics.framework */,
+				FA43695912441CCA008C8984 /* CoreLocation.framework */,
+				FA4369B512442468008C8984 /* MapKit.framework */,
+				FA7530AF128E08F000DD955D /* libz.1.2.3.dylib */,
+				FA7530B1128E090500DD955D /* CFNetwork.framework */,
+				FA7530B3128E090500DD955D /* SystemConfiguration.framework */,
+				FA7530FF128E0DDF00DD955D /* MobileCoreServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA753088128E088300DD955D /* External */ = {
+			isa = PBXGroup;
+			children = (
+				FA753089128E088300DD955D /* ASIHTTPRequest */,
+				FA75309A128E088300DD955D /* Reachability */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
+		FA753089128E088300DD955D /* ASIHTTPRequest */ = {
+			isa = PBXGroup;
+			children = (
+				FA75308A128E088300DD955D /* ASIAuthenticationDialog.h */,
+				FA75308B128E088300DD955D /* ASIAuthenticationDialog.m */,
+				FA75308C128E088300DD955D /* ASICacheDelegate.h */,
+				FA75308D128E088300DD955D /* ASIDownloadCache.h */,
+				FA75308E128E088300DD955D /* ASIDownloadCache.m */,
+				FA75308F128E088300DD955D /* ASIFormDataRequest.h */,
+				FA753090128E088300DD955D /* ASIFormDataRequest.m */,
+				FA753091128E088300DD955D /* ASIHTTPRequest.h */,
+				FA753092128E088300DD955D /* ASIHTTPRequest.m */,
+				FA753093128E088300DD955D /* ASIHTTPRequestConfig.h */,
+				FA753094128E088300DD955D /* ASIHTTPRequestDelegate.h */,
+				FA753095128E088300DD955D /* ASIInputStream.h */,
+				FA753096128E088300DD955D /* ASIInputStream.m */,
+				FA753097128E088300DD955D /* ASINetworkQueue.h */,
+				FA753098128E088300DD955D /* ASINetworkQueue.m */,
+				FA753099128E088300DD955D /* ASIProgressDelegate.h */,
+			);
+			path = ASIHTTPRequest;
+			sourceTree = "<group>";
+		};
+		FA75309A128E088300DD955D /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				FA75309B128E088300DD955D /* Reachability.h */,
+				FA75309C128E088300DD955D /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* meep */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "meep" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = meep;
+			productName = meep;
+			productReference = 1D6058910D05DD3D006BFB54 /* meep.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "meep" */;
+			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* meep */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				2899E5220DE3E06400AC0155 /* CLViewController.xib in Resources */,
+				FA0B25351269DB67008EA266 /* MenuViewController.xib in Resources */,
+				FA0B254F1269E5E3008EA266 /* person.png in Resources */,
+				FA0B25511269E6B6008EA266 /* FeedTableViewCell.xib in Resources */,
+				FA886ED8127346EE00BAE667 /* MeepViewController.xib in Resources */,
+				FA7530BD128E097B00DD955D /* HTTPDemoViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				1D3623260D0F684500981E51 /* meepAppDelegate.m in Sources */,
+				28D7ACF80DDB3853001CB0EB /* CLViewController.m in Sources */,
+				FA0B25341269DB67008EA266 /* MenuViewController.m in Sources */,
+				FA886ED7127346EE00BAE667 /* MeepViewController.m in Sources */,
+				FA75309D128E088300DD955D /* ASIAuthenticationDialog.m in Sources */,
+				FA75309E128E088300DD955D /* ASIDownloadCache.m in Sources */,
+				FA75309F128E088300DD955D /* ASIFormDataRequest.m in Sources */,
+				FA7530A0128E088300DD955D /* ASIHTTPRequest.m in Sources */,
+				FA7530A1128E088300DD955D /* ASIInputStream.m in Sources */,
+				FA7530A2128E088300DD955D /* ASINetworkQueue.m in Sources */,
+				FA7530A3128E088300DD955D /* Reachability.m in Sources */,
+				FA7530BC128E097B00DD955D /* HTTPDemoViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = meep_Prefix.pch;
+				INFOPLIST_FILE = "meep-Info.plist";
+				PRODUCT_NAME = meep;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = meep_Prefix.pch;
+				INFOPLIST_FILE = "meep-Info.plist";
+				PRODUCT_NAME = meep;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos4.1;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "meep" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "meep" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}
