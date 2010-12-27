@@ -34,6 +34,15 @@
 		FA7530BC128E097B00DD955D /* HTTPDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7530BA128E097B00DD955D /* HTTPDemoViewController.m */; };
 		FA7530BD128E097B00DD955D /* HTTPDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7530BB128E097B00DD955D /* HTTPDemoViewController.xib */; };
 		FA753100128E0DDF00DD955D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7530FF128E0DDF00DD955D /* MobileCoreServices.framework */; };
+		FA8497A912C89BCE00BB56FF /* WelcomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8497A712C89BCE00BB56FF /* WelcomeViewController.m */; };
+		FA8497AA12C89BCE00BB56FF /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8497A812C89BCE00BB56FF /* WelcomeViewController.xib */; };
+		FA8497CD12C8A21600BB56FF /* WelcomeNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8497CC12C8A21600BB56FF /* WelcomeNavigationController.m */; };
+		FA8497FD12C8A78500BB56FF /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8497FB12C8A78500BB56FF /* RegisterViewController.m */; };
+		FA8497FE12C8A78500BB56FF /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA8497FC12C8A78500BB56FF /* RegisterViewController.xib */; };
+		FA84983112C8ABA100BB56FF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA84982F12C8ABA100BB56FF /* LoginViewController.m */; };
+		FA84983212C8ABA100BB56FF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA84983012C8ABA100BB56FF /* LoginViewController.xib */; };
+		FA84989612C8B11B00BB56FF /* CustomCellTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA84989512C8B11B00BB56FF /* CustomCellTextField.xib */; };
+		FA8498A912C8B3C100BB56FF /* CustomCellTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8498A812C8B3C100BB56FF /* CustomCellTextField.m */; };
 		FA886ED7127346EE00BAE667 /* MeepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA886ED5127346EE00BAE667 /* MeepViewController.m */; };
 		FA886ED8127346EE00BAE667 /* MeepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA886ED6127346EE00BAE667 /* MeepViewController.xib */; };
 /* End PBXBuildFile section */
@@ -84,6 +93,20 @@
 		FA7530BA128E097B00DD955D /* HTTPDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPDemoViewController.m; sourceTree = "<group>"; };
 		FA7530BB128E097B00DD955D /* HTTPDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HTTPDemoViewController.xib; path = Classes/HTTPDemoViewController.xib; sourceTree = "<group>"; };
 		FA7530FF128E0DDF00DD955D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		FA8497A612C89BCE00BB56FF /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeViewController.h; sourceTree = "<group>"; };
+		FA8497A712C89BCE00BB56FF /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeViewController.m; sourceTree = "<group>"; };
+		FA8497A812C89BCE00BB56FF /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = Classes/WelcomeViewController.xib; sourceTree = "<group>"; };
+		FA8497CB12C8A21600BB56FF /* WelcomeNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeNavigationController.h; sourceTree = "<group>"; };
+		FA8497CC12C8A21600BB56FF /* WelcomeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeNavigationController.m; sourceTree = "<group>"; };
+		FA8497FA12C8A78500BB56FF /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		FA8497FB12C8A78500BB56FF /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		FA8497FC12C8A78500BB56FF /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RegisterViewController.xib; path = Classes/RegisterViewController.xib; sourceTree = "<group>"; };
+		FA84982E12C8ABA100BB56FF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		FA84982F12C8ABA100BB56FF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		FA84983012C8ABA100BB56FF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Classes/LoginViewController.xib; sourceTree = "<group>"; };
+		FA84989512C8B11B00BB56FF /* CustomCellTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCellTextField.xib; sourceTree = "<group>"; };
+		FA8498A712C8B3C100BB56FF /* CustomCellTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCellTextField.h; sourceTree = "<group>"; };
+		FA8498A812C8B3C100BB56FF /* CustomCellTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCellTextField.m; sourceTree = "<group>"; };
 		FA886ED4127346EE00BAE667 /* MeepViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeepViewController.h; sourceTree = "<group>"; };
 		FA886ED5127346EE00BAE667 /* MeepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeepViewController.m; sourceTree = "<group>"; };
 		FA886ED6127346EE00BAE667 /* MeepViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MeepViewController.xib; path = Classes/MeepViewController.xib; sourceTree = "<group>"; };
@@ -122,6 +145,7 @@
 				28D7ACF70DDB3853001CB0EB /* CLViewController.m */,
 				FA7530B9128E097B00DD955D /* HTTPDemoViewController.h */,
 				FA7530BA128E097B00DD955D /* HTTPDemoViewController.m */,
+				FA8497CE12C8A22E00BB56FF /* ViewControllers */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -143,7 +167,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				FA0B25501269E6B6008EA266 /* FeedTableViewCell.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -160,12 +183,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FA7530BB128E097B00DD955D /* HTTPDemoViewController.xib */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				FA886ED6127346EE00BAE667 /* MeepViewController.xib */,
-				2899E5210DE3E06400AC0155 /* CLViewController.xib */,
+				FA8497D012C8A34500BB56FF /* Views */,
 				8D1107310486CEB800E47090 /* meep-Info.plist */,
-				FA0B25331269DB67008EA266 /* MenuViewController.xib */,
 				FA0B254E1269E5E3008EA266 /* person.png */,
 			);
 			name = Resources;
@@ -228,6 +247,56 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		FA8497CE12C8A22E00BB56FF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FA84989D12C8B1A500BB56FF /* Welcome */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FA8497D012C8A34500BB56FF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA8497FF12C8A79100BB56FF /* Welcome */,
+				FA0B25501269E6B6008EA266 /* FeedTableViewCell.xib */,
+				FA7530BB128E097B00DD955D /* HTTPDemoViewController.xib */,
+				FA886ED6127346EE00BAE667 /* MeepViewController.xib */,
+				2899E5210DE3E06400AC0155 /* CLViewController.xib */,
+				FA0B25331269DB67008EA266 /* MenuViewController.xib */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FA8497FF12C8A79100BB56FF /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				FA84989512C8B11B00BB56FF /* CustomCellTextField.xib */,
+				FA84983012C8ABA100BB56FF /* LoginViewController.xib */,
+				FA8497FC12C8A78500BB56FF /* RegisterViewController.xib */,
+				FA8497A812C89BCE00BB56FF /* WelcomeViewController.xib */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
+		FA84989D12C8B1A500BB56FF /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				FA8498A712C8B3C100BB56FF /* CustomCellTextField.h */,
+				FA8498A812C8B3C100BB56FF /* CustomCellTextField.m */,
+				FA84982E12C8ABA100BB56FF /* LoginViewController.h */,
+				FA84982F12C8ABA100BB56FF /* LoginViewController.m */,
+				FA8497FA12C8A78500BB56FF /* RegisterViewController.h */,
+				FA8497FB12C8A78500BB56FF /* RegisterViewController.m */,
+				FA8497CB12C8A21600BB56FF /* WelcomeNavigationController.h */,
+				FA8497CC12C8A21600BB56FF /* WelcomeNavigationController.m */,
+				FA8497A612C89BCE00BB56FF /* WelcomeViewController.h */,
+				FA8497A712C89BCE00BB56FF /* WelcomeViewController.m */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -284,6 +353,10 @@
 				FA0B25511269E6B6008EA266 /* FeedTableViewCell.xib in Resources */,
 				FA886ED8127346EE00BAE667 /* MeepViewController.xib in Resources */,
 				FA7530BD128E097B00DD955D /* HTTPDemoViewController.xib in Resources */,
+				FA8497AA12C89BCE00BB56FF /* WelcomeViewController.xib in Resources */,
+				FA8497FE12C8A78500BB56FF /* RegisterViewController.xib in Resources */,
+				FA84983212C8ABA100BB56FF /* LoginViewController.xib in Resources */,
+				FA84989612C8B11B00BB56FF /* CustomCellTextField.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +380,11 @@
 				FA7530A2128E088300DD955D /* ASINetworkQueue.m in Sources */,
 				FA7530A3128E088300DD955D /* Reachability.m in Sources */,
 				FA7530BC128E097B00DD955D /* HTTPDemoViewController.m in Sources */,
+				FA8497A912C89BCE00BB56FF /* WelcomeViewController.m in Sources */,
+				FA8497CD12C8A21600BB56FF /* WelcomeNavigationController.m in Sources */,
+				FA8497FD12C8A78500BB56FF /* RegisterViewController.m in Sources */,
+				FA84983112C8ABA100BB56FF /* LoginViewController.m in Sources */,
+				FA8498A912C8B3C100BB56FF /* CustomCellTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

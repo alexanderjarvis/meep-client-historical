@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "WelcomeNavigationController.h"
+
 @class MeepViewController;
 @class CLViewController;
 @class HTTPDemoViewController;
@@ -17,12 +19,16 @@
     MeepViewController *meepViewController;
 	CLViewController *clViewController;
 	HTTPDemoViewController *httpDemoViewController;
+	
+	WelcomeNavigationController *welcomeNavigationController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) IBOutlet MeepViewController *meepViewController;
 @property (nonatomic, retain) IBOutlet CLViewController *clViewController;
 @property (nonatomic, retain) IBOutlet HTTPDemoViewController *httpDemoViewController;
+
+@property (nonatomic, retain) IBOutlet WelcomeNavigationController *welcomeNavigationController;
 
 @end
 

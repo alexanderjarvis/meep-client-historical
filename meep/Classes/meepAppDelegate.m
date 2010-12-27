@@ -15,9 +15,12 @@
 @implementation meepAppDelegate
 
 @synthesize window;
+
 @synthesize meepViewController;
 @synthesize	clViewController;
 @synthesize httpDemoViewController;
+
+@synthesize welcomeNavigationController;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
@@ -26,8 +29,12 @@
 	
     //[window addSubview:meepViewController.view];
 	//[window addSubview:clViewController.view];
+	//[window addSubview:httpDemoViewController.view];
 	
-	[window addSubview:httpDemoViewController.view];	
+	
+	// if no access token
+	[window addSubview:welcomeNavigationController.view];	
+	
 	
     [window makeKeyAndVisible];
 }
@@ -37,6 +44,8 @@
     [meepViewController release];
 	[clViewController release];
 	[httpDemoViewController release];
+	
+	[welcomeNavigationController release];
     [window release];
     [super dealloc];
 }
