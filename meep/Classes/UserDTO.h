@@ -15,7 +15,6 @@
 	NSString *password;
 	NSString *firstName;
 	NSString *lastName;
-	NSString *userName;
 	NSString *mobileNumber;
 
 }
@@ -24,7 +23,6 @@
 @property (nonatomic, copy) NSString *password;
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
-@property (nonatomic, copy) NSString *userName;
 @property (nonatomic, copy) NSString *mobileNumber;
 
 -(NSString *)paramString;

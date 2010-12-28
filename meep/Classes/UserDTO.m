@@ -15,7 +15,6 @@
 @synthesize password;
 @synthesize firstName;
 @synthesize lastName;
-@synthesize userName;
 @synthesize mobileNumber;
 
 - (void) dealloc {
@@ -23,7 +22,6 @@
 	[password release];
 	[firstName release];
 	[lastName release];
-	[userName release];
 	[mobileNumber release];
 	[super dealloc];
 }
@@ -31,7 +29,7 @@
 
 -(NSString *)paramString {
 	
-	return [NSString stringWithFormat:@"user.email=%@&user.password=%@&user.firstName=%@&user.lastName=%@&user.serviceName=%@&user.telephone=%@", email, password, firstName, lastName, userName, mobileNumber];
+	return [NSString stringWithFormat:@"user.email=%@&user.password=%@&user.firstName=%@&user.lastName=%@&user.telephone=%@", email, password, firstName, lastName, mobileNumber];
 	
 }
 

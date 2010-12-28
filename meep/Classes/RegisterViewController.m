@@ -13,12 +13,11 @@
 
 @implementation RegisterViewController
 
-@synthesize emailTextField;
-@synthesize passwordTextField;
-@synthesize firstNameTextField;
-@synthesize lastNameTextField;
-@synthesize userNameTextField;
-@synthesize mobileNumberTextField;
+@synthesize emailCell;
+@synthesize passwordCell;
+@synthesize firstNameCell;
+@synthesize lastNameCell;
+@synthesize mobileNumberCell;
 
 - (void)viewDidLoad {
 	self.title = @"Register";
@@ -40,13 +39,11 @@
 }
 
 - (void)dealloc {
-	[emailTextField release];
-	[passwordTextField release];
-	[firstNameTextField release];
-	[lastNameTextField release];
-	[userNameTextField release];
-	[mobileNumberTextField release];
-	
+	[emailCell release];
+	[passwordCell release];
+	[firstNameCell release];
+	[lastNameCell release];
+	[mobileNumberCell release];
     [super dealloc];
 }
 
@@ -67,20 +64,23 @@
 }
 
 - (void)myTask {
-	sleep(3);
+	sleep(1);
 }
 
 - (IBAction)registerButtonPressed{
 	NSLog(@"registerButtonPressed");
 	
+	if (emailCell.required && emailCell.customTextField.text.length < 1) {
+		NSLog(@"alert! email is blank");
+	}
+	
 	// move
 	UserDTO *userDTO = [[UserDTO alloc] init];
-	userDTO.email = [emailTextField text];
-	userDTO.password = [passwordTextField text];
-	userDTO.firstName = [firstNameTextField text];
-	userDTO.lastName = [lastNameTextField text];
-	userDTO.userName = [userNameTextField text];
-	userDTO.mobileNumber = [mobileNumberTextField text];
+	userDTO.email = [emailCell.customTextField text];
+	userDTO.password = [passwordCell.customTextField text];
+	userDTO.firstName = [firstNameCell.customTextField text];
+	userDTO.lastName = [lastNameCell.customTextField text];
+	userDTO.mobileNumber = [mobileNumberCell.customTextField text];
 	
 	NSLog([userDTO paramString]);
 	
@@ -112,7 +112,7 @@
 
 // Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 5;
 }
 
 // Customize the appearance of table view cells.
@@ -138,41 +138,35 @@
 			[cell setRequired: YES];
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
 			cell.customTextField.keyboardType = UIKeyboardTypeEmailAddress;
-			emailTextField = [cell.customTextField retain];
+			self.emailCell = cell;
 			break;
 		case 1:
+			cell.customTextLabel.text = @"First name";
+			[cell setRequired: YES];
+			cell.customTextField.returnKeyType = UIReturnKeyNext;
+			cell.customTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+			self.firstNameCell = cell;
+			break;
+		case 2:
+			cell.customTextLabel.text = @"Last name";
+			[cell setRequired: YES];
+			cell.customTextField.returnKeyType = UIReturnKeyNext;
+			cell.customTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+			self.lastNameCell = cell;
+			break;
+		case 3:
 			cell.customTextLabel.text = @"Password";
 			[cell setRequired: YES];
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
 			cell.customTextField.secureTextEntry = YES;
-			passwordTextField = [cell.customTextField retain];
-			break;
-		case 2:
-			cell.customTextLabel.text = @"First name";
-			[cell setRequired: YES];
-			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			cell.customTextField.autocorrectionType = UITextAutocapitalizationTypeWords;
-			firstNameTextField = [cell.customTextField retain];
-			break;
-		case 3:
-			cell.customTextLabel.text = @"Last name";
-			[cell setRequired: YES];
-			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			cell.customTextField.autocorrectionType = UITextAutocapitalizationTypeWords;
-			lastNameTextField = [cell.customTextField retain];
+			self.passwordCell = cell;
 			break;
 		case 4:
-			cell.customTextLabel.text = @"Username";
-			[cell setRequired: NO];
-			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			userNameTextField = [cell.customTextField retain];
-			break;
-		case 5:
 			cell.customTextLabel.text = @"Mobile #";
 			[cell setRequired: NO];
 			cell.customTextField.returnKeyType = UIReturnKeyDone;
 			cell.customTextField.keyboardType = UIKeyboardTypeNumberPad;
-			mobileNumberTextField = [cell.customTextField retain];
+			self.mobileNumberCell = cell;
 			break;
 		default:
 			break;

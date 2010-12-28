@@ -19,20 +19,18 @@
 	
 	MBProgressHUD *HUD;
 	
-	UITextField *emailTextField;
-	UITextField *passwordTextField;
-	UITextField *firstNameTextField;
-	UITextField *lastNameTextField;
-	UITextField *userNameTextField;
-	UITextField *mobileNumberTextField;
+	CustomCellTextField *emailCell;
+	CustomCellTextField *passwordCell;
+	CustomCellTextField *firstNameCell;
+	CustomCellTextField *lastNameCell;
+	CustomCellTextField *mobileNumberCell;
 }
 
-@property (nonatomic, retain) UITextField *emailTextField;
-@property (nonatomic, retain) UITextField *passwordTextField;
-@property (nonatomic, retain) UITextField *firstNameTextField;
-@property (nonatomic, retain) UITextField *lastNameTextField;
-@property (nonatomic, retain) UITextField *userNameTextField;
-@property (nonatomic, retain) UITextField *mobileNumberTextField;
+@property (nonatomic, retain) CustomCellTextField *emailCell;
+@property (nonatomic, retain) CustomCellTextField *passwordCell;
+@property (nonatomic, retain) CustomCellTextField *firstNameCell;
+@property (nonatomic, retain) CustomCellTextField *lastNameCell;
+@property (nonatomic, retain) CustomCellTextField *mobileNumberCell;
 
 - (void)showHUDWithLabel:(id)sender;
 
