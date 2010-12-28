@@ -48,8 +48,9 @@
     [super dealloc];
 }
 
--(IBAction)registerButtonPressed {
+- (IBAction)registerButtonPressed {
 	NSLog(@"registerButtonPressed");
+	[self becomeFirstResponder];
 	
 	// move
 	UserDTO *userDTO = [[UserDTO alloc] init];
@@ -63,7 +64,23 @@
 	NSLog([userDTO paramString]);
 }
 
-#pragma mark Table view methods
+/*
+ * To be called when the 'Next' key is pressed from the keyboard.
+ */
+- (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView {
+	NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+	
+	// If not the last cell, go to next cell
+	if (cell.customTextField.returnKeyType == UIReturnKeyNext) {
+		NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
+		[self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
+	} else if (cell.customTextField.returnKeyType == UIReturnKeyDone) {
+		//[cell.customTextField resignFirstResponder];
+		[self registerButtonPressed];
+	}
+}
+
+#pragma mark UITableViewController methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -87,6 +104,8 @@
 													 owner:self options:nil];
 		
 		cell = (CustomCellTextField *)[nib objectAtIndex:0];
+		cell.tableView = tableView;
+		cell.tableViewController = self;
 	}
 	
 	// TODO switch
@@ -95,35 +114,35 @@
 			cell.customTextLabel.text = @"Email";
 			cell.customTextField.placeholder = @"required";
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			emailTextField = cell.customTextField;
+			emailTextField = [cell.customTextField retain];
 			break;
 		case 1:
 			cell.customTextLabel.text = @"Password";
 			cell.customTextField.placeholder = @"required";
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			passwordTextField = cell.customTextField;
+			passwordTextField = [cell.customTextField retain];
 			break;
 		case 2:
 			cell.customTextLabel.text = @"First name";
 			cell.customTextField.placeholder = @"required";
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			firstNameTextField = cell.customTextField;
+			firstNameTextField = [cell.customTextField retain];
 			break;
 		case 3:
 			cell.customTextLabel.text = @"Last name";
 			cell.customTextField.placeholder = @"required";
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			lastNameTextField = cell.customTextField;
+			lastNameTextField = [cell.customTextField retain];
 			break;
 		case 4:
 			cell.customTextLabel.text = @"Username";
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			userNameTextField = cell.customTextField;
+			userNameTextField = [cell.customTextField retain];
 			break;
 		case 5:
 			cell.customTextLabel.text = @"Mobile #";
 			cell.customTextField.returnKeyType = UIReturnKeyDone;
-			mobileNumberTextField = cell.customTextField;
+			mobileNumberTextField = [cell.customTextField retain];
 			break;
 		default:
 			break;
@@ -133,7 +152,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	NSLog(@"did select row");
 	[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 	CustomCellTextField *cell = [tableView cellForRowAtIndexPath:indexPath];
 	[cell.customTextField becomeFirstResponder];

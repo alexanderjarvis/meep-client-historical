@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "CustomCellTextField.h"
+
 
 @interface RegisterViewController : UITableViewController {
 	UITextField *emailTextField;
@@ -25,6 +27,8 @@
 @property (nonatomic, retain) UITextField *userNameTextField;
 @property (nonatomic, retain) UITextField *mobileNumberTextField;
 
--(IBAction)registerButtonPressed;
+- (IBAction)registerButtonPressed;
+
+- (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
 
 @end

@@ -11,6 +11,9 @@
 
 @implementation CustomCellTextField
 
+@synthesize tableViewController;
+@synthesize tableView;
+
 @synthesize customTextLabel;
 @synthesize customTextField;
 
@@ -31,9 +34,19 @@
 
 
 - (void)dealloc {
-	//[customTextLabel release];
-	//[customTextField release];
+	[tableViewController release];
+	[tableView release];
+	
+	[customTextLabel release];
+	[customTextField release];
     [super dealloc];
+}
+
+#pragma mark UITextField Delegate Methods
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[tableViewController textFieldCell:self returnInTableView:tableView];
+	return NO;
 }
 
 
