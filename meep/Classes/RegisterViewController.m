@@ -51,7 +51,7 @@
 }
 
 - (void)showHUDWithLabel:(id)sender {
-	// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
+	// The hud will disable all input on the view (use the higest view possible in the view hierarchy)
     HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
 	
     // Add HUD to screen
@@ -130,30 +130,33 @@
 		cell.tableViewController = self;
 	}
 	
-	// TODO switch
 	switch (row) {
 		case 0:
 			cell.customTextLabel.text = @"Email";
 			cell.customTextField.placeholder = @"required";
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
+			cell.customTextField.keyboardType = UIKeyboardTypeEmailAddress;
 			emailTextField = [cell.customTextField retain];
 			break;
 		case 1:
 			cell.customTextLabel.text = @"Password";
 			cell.customTextField.placeholder = @"required";
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
+			cell.customTextField.secureTextEntry = YES;
 			passwordTextField = [cell.customTextField retain];
 			break;
 		case 2:
 			cell.customTextLabel.text = @"First name";
 			cell.customTextField.placeholder = @"required";
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
+			cell.customTextField.autocorrectionType = UITextAutocapitalizationTypeWords;
 			firstNameTextField = [cell.customTextField retain];
 			break;
 		case 3:
 			cell.customTextLabel.text = @"Last name";
 			cell.customTextField.placeholder = @"required";
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
+			cell.customTextField.autocorrectionType = UITextAutocapitalizationTypeWords;
 			lastNameTextField = [cell.customTextField retain];
 			break;
 		case 4:
@@ -164,6 +167,7 @@
 		case 5:
 			cell.customTextLabel.text = @"Mobile #";
 			cell.customTextField.returnKeyType = UIReturnKeyDone;
+			cell.customTextField.keyboardType = UIKeyboardTypeNumberPad;
 			mobileNumberTextField = [cell.customTextField retain];
 			break;
 		default:
