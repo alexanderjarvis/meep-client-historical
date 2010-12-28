@@ -43,6 +43,17 @@
 }
 
 
+- (void)showValidationAlert:(NSString *)message {
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"Oops!" 
+						  message:message
+						  delegate:self 
+						  cancelButtonTitle:@"Dismiss" 
+						  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
 - (void)dealloc {
 	[welcomeViewController release];
 	[registerViewController release];

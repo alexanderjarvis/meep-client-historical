@@ -21,6 +21,8 @@
 		FA0B25511269E6B6008EA266 /* FeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA0B25501269E6B6008EA266 /* FeedTableViewCell.xib */; };
 		FA43695A12441CCA008C8984 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA43695912441CCA008C8984 /* CoreLocation.framework */; };
 		FA4369B612442468008C8984 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA4369B512442468008C8984 /* MapKit.framework */; };
+		FA503D0E12CAA341004E152E /* StringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FA503D0D12CAA341004E152E /* StringUtils.m */; };
+		FA503D2012CAA503004E152E /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = FA503D1F12CAA503004E152E /* RegexKitLite.m */; };
 		FA75309D128E088300DD955D /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = FA75308B128E088300DD955D /* ASIAuthenticationDialog.m */; };
 		FA75309E128E088300DD955D /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = FA75308E128E088300DD955D /* ASIDownloadCache.m */; };
 		FA75309F128E088300DD955D /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA753090128E088300DD955D /* ASIFormDataRequest.m */; };
@@ -425,6 +427,10 @@
 		FA0B25501269E6B6008EA266 /* FeedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedTableViewCell.xib; sourceTree = "<group>"; };
 		FA43695912441CCA008C8984 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FA4369B512442468008C8984 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		FA503D0C12CAA341004E152E /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
+		FA503D0D12CAA341004E152E /* StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtils.m; sourceTree = "<group>"; };
+		FA503D1E12CAA503004E152E /* RegexKitLite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegexKitLite.h; path = External/RegexKitLite/RegexKitLite.h; sourceTree = SOURCE_ROOT; };
+		FA503D1F12CAA503004E152E /* RegexKitLite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegexKitLite.m; path = External/RegexKitLite/RegexKitLite.m; sourceTree = SOURCE_ROOT; };
 		FA75308A128E088300DD955D /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		FA75308B128E088300DD955D /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		FA75308C128E088300DD955D /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -524,6 +530,7 @@
 				28D7ACF70DDB3853001CB0EB /* CLViewController.m */,
 				FA7530B9128E097B00DD955D /* HTTPDemoViewController.h */,
 				FA7530BA128E097B00DD955D /* HTTPDemoViewController.m */,
+				FA503D0F12CAA345004E152E /* Utils */,
 				FA8497CE12C8A22E00BB56FF /* ViewControllers */,
 			);
 			path = Classes;
@@ -586,9 +593,28 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		FA503D0F12CAA345004E152E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FA503D0C12CAA341004E152E /* StringUtils.h */,
+				FA503D0D12CAA341004E152E /* StringUtils.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		FA503D1D12CAA503004E152E /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				FA503D1E12CAA503004E152E /* RegexKitLite.h */,
+				FA503D1F12CAA503004E152E /* RegexKitLite.m */,
+			);
+			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
 		FA753088128E088300DD955D /* External */ = {
 			isa = PBXGroup;
 			children = (
+				FA753089128E088300DD955D /* ASIHTTPRequest */,
 				FAEFFFCD12CA3EF300604797 /* MBProgressHUD */,
 				FA849AFD12C904CC00BB56FF /* Three20.bundle */,
 				FA849A6912C9047600BB56FF /* Three20Core.xcodeproj */,
@@ -598,8 +624,8 @@
 				FA849A7512C9047600BB56FF /* Three20UINavigator.xcodeproj */,
 				FA849A7812C9047600BB56FF /* Three20UI.xcodeproj */,
 				FA849A5312C9044100BB56FF /* Three20.xcodeproj */,
-				FA753089128E088300DD955D /* ASIHTTPRequest */,
 				FA75309A128E088300DD955D /* Reachability */,
+				FA503D1D12CAA503004E152E /* RegexKitLite */,
 			);
 			path = External;
 			sourceTree = "<group>";
@@ -1220,6 +1246,8 @@
 				FA8498A912C8B3C100BB56FF /* CustomCellTextField.m in Sources */,
 				FAC812E112C90F70001F20C5 /* UserDTO.m in Sources */,
 				FAEFFFD012CA3EF300604797 /* MBProgressHUD.m in Sources */,
+				FA503D0E12CAA341004E152E /* StringUtils.m in Sources */,
+				FA503D2012CAA503004E152E /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1299,10 +1327,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-all_load",
-				);
+				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
 			};
@@ -1316,6 +1341,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				OTHER_LDFLAGS = "-licucore";
 				PREBINDING = NO;
 				SDKROOT = iphoneos3.1.2;
 			};

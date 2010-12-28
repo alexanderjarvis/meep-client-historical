@@ -72,6 +72,7 @@
 	
 	if (emailCell.required && emailCell.customTextField.text.length < 1) {
 		NSLog(@"alert! email is blank");
+		[self.navigationController showValidationAlert:@"Email is blank"];		
 	}
 	
 	// move
@@ -83,8 +84,6 @@
 	userDTO.mobileNumber = [mobileNumberCell.customTextField text];
 	
 	NSLog([userDTO paramString]);
-	
-	
 	
 }
 
