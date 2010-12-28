@@ -10,15 +10,21 @@
 
 
 @interface RegisterViewController : UITableViewController {
-	NSDictionary *tableData;
-	NSArray *tableKeys;
+	UITextField *emailTextField;
+	UITextField *passwordTextField;
 	UITextField *firstNameTextField;
 	UITextField *lastNameTextField;
-	NSString *uniqueidLabel;
-	NSString *passwordLabel;
+	UITextField *userNameTextField;
+	UITextField *mobileNumberTextField;
 }
 
+@property (nonatomic, retain) UITextField *emailTextField;
+@property (nonatomic, retain) UITextField *passwordTextField;
 @property (nonatomic, retain) UITextField *firstNameTextField;
 @property (nonatomic, retain) UITextField *lastNameTextField;
+@property (nonatomic, retain) UITextField *userNameTextField;
+@property (nonatomic, retain) UITextField *mobileNumberTextField;
+
+-(IBAction)registerButtonPressed;
 
 @end
