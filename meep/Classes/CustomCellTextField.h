@@ -16,6 +16,8 @@
 	
 	IBOutlet UILabel *customTextLabel;
 	IBOutlet UITextField *customTextField;
+	
+	BOOL required;
 
 }
 
@@ -24,6 +26,12 @@
 
 @property (nonatomic, retain) UILabel *customTextLabel;
 @property (nonatomic, retain) UITextField *customTextField;
+
+@property (nonatomic) BOOL required;
+
+- (BOOL)required;
+
+- (void)setRequired:(BOOL)required;
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField;
 

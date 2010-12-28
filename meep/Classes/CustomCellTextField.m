@@ -17,6 +17,8 @@
 @synthesize customTextLabel;
 @synthesize customTextField;
 
+@synthesize required;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         // Initialization code
@@ -30,6 +32,13 @@
     //[super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setRequired:(BOOL)newValue {
+	if (newValue == YES) {
+		customTextField.placeholder = @"required";
+	}
+	required = newValue;
 }
 
 

@@ -13,7 +13,9 @@
 #import "CustomCellTextField.h"
 
 
-@interface RegisterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface RegisterViewController : UITableViewController {
+	
+	IBOutlet UITableView *tableView;
 	
 	MBProgressHUD *HUD;
 	

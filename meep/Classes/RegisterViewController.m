@@ -84,6 +84,8 @@
 	
 	NSLog([userDTO paramString]);
 	
+	
+	
 }
 
 /*
@@ -133,39 +135,41 @@
 	switch (row) {
 		case 0:
 			cell.customTextLabel.text = @"Email";
-			cell.customTextField.placeholder = @"required";
+			[cell setRequired: YES];
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
 			cell.customTextField.keyboardType = UIKeyboardTypeEmailAddress;
 			emailTextField = [cell.customTextField retain];
 			break;
 		case 1:
 			cell.customTextLabel.text = @"Password";
-			cell.customTextField.placeholder = @"required";
+			[cell setRequired: YES];
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
 			cell.customTextField.secureTextEntry = YES;
 			passwordTextField = [cell.customTextField retain];
 			break;
 		case 2:
 			cell.customTextLabel.text = @"First name";
-			cell.customTextField.placeholder = @"required";
+			[cell setRequired: YES];
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
 			cell.customTextField.autocorrectionType = UITextAutocapitalizationTypeWords;
 			firstNameTextField = [cell.customTextField retain];
 			break;
 		case 3:
 			cell.customTextLabel.text = @"Last name";
-			cell.customTextField.placeholder = @"required";
+			[cell setRequired: YES];
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
 			cell.customTextField.autocorrectionType = UITextAutocapitalizationTypeWords;
 			lastNameTextField = [cell.customTextField retain];
 			break;
 		case 4:
 			cell.customTextLabel.text = @"Username";
+			[cell setRequired: NO];
 			cell.customTextField.returnKeyType = UIReturnKeyNext;
 			userNameTextField = [cell.customTextField retain];
 			break;
 		case 5:
 			cell.customTextLabel.text = @"Mobile #";
+			[cell setRequired: NO];
 			cell.customTextField.returnKeyType = UIReturnKeyDone;
 			cell.customTextField.keyboardType = UIKeyboardTypeNumberPad;
 			mobileNumberTextField = [cell.customTextField retain];
