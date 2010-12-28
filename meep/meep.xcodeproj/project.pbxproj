@@ -55,6 +55,7 @@
 		FA886ED7127346EE00BAE667 /* MeepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA886ED5127346EE00BAE667 /* MeepViewController.m */; };
 		FA886ED8127346EE00BAE667 /* MeepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA886ED6127346EE00BAE667 /* MeepViewController.xib */; };
 		FAC812E112C90F70001F20C5 /* UserDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC812E012C90F70001F20C5 /* UserDTO.m */; };
+		FAEFFFD012CA3EF300604797 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEFFFCF12CA3EF300604797 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -477,6 +478,8 @@
 		FA886ED6127346EE00BAE667 /* MeepViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MeepViewController.xib; path = Classes/MeepViewController.xib; sourceTree = "<group>"; };
 		FAC812DF12C90F70001F20C5 /* UserDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDTO.h; sourceTree = "<group>"; };
 		FAC812E012C90F70001F20C5 /* UserDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDTO.m; sourceTree = "<group>"; };
+		FAEFFFCE12CA3EF300604797 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = External/MBProgressHUD/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
+		FAEFFFCF12CA3EF300604797 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = External/MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -586,6 +589,7 @@
 		FA753088128E088300DD955D /* External */ = {
 			isa = PBXGroup;
 			children = (
+				FAEFFFCD12CA3EF300604797 /* MBProgressHUD */,
 				FA849AFD12C904CC00BB56FF /* Three20.bundle */,
 				FA849A6912C9047600BB56FF /* Three20Core.xcodeproj */,
 				FA849A6C12C9047600BB56FF /* Three20Network.xcodeproj */,
@@ -780,6 +784,15 @@
 				FAC812E012C90F70001F20C5 /* UserDTO.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		FAEFFFCD12CA3EF300604797 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				FAEFFFCE12CA3EF300604797 /* MBProgressHUD.h */,
+				FAEFFFCF12CA3EF300604797 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1206,6 +1219,7 @@
 				FA84983112C8ABA100BB56FF /* LoginViewController.m in Sources */,
 				FA8498A912C8B3C100BB56FF /* CustomCellTextField.m in Sources */,
 				FAC812E112C90F70001F20C5 /* UserDTO.m in Sources */,
+				FAEFFFD012CA3EF300604797 /* MBProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MBProgressHUD.h"
+
 #import "CustomCellTextField.h"
 
 
-@interface RegisterViewController : UITableViewController {
+@interface RegisterViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+	
+	MBProgressHUD *HUD;
+	
 	UITextField *emailTextField;
 	UITextField *passwordTextField;
 	UITextField *firstNameTextField;
@@ -27,8 +32,13 @@
 @property (nonatomic, retain) UITextField *userNameTextField;
 @property (nonatomic, retain) UITextField *mobileNumberTextField;
 
+- (void)showHUDWithLabel:(id)sender;
+
+- (void)myTask;
+
 - (IBAction)registerButtonPressed;
 
 - (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
+
 
 @end

@@ -23,6 +23,8 @@
 - (void)viewDidLoad {
 	self.title = @"Register";
 	
+	[self showHUDWithLabel:self];
+	
 	[super viewDidLoad];
 }
 
@@ -48,9 +50,28 @@
     [super dealloc];
 }
 
-- (IBAction)registerButtonPressed {
+- (void)showHUDWithLabel:(id)sender {
+	// The hud will dispable all input on the view (use the higest view possible in the view hierarchy)
+    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+	
+    // Add HUD to screen
+    [self.navigationController.view addSubview:HUD];
+	
+    // Regisete for HUD callbacks so we can remove it from the window at the right time
+    HUD.delegate = self;
+	
+    HUD.labelText = @"Registering...";
+	
+    // Show the HUD while the provided method executes in a new thread
+    [HUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
+}
+
+- (void)myTask {
+	sleep(3);
+}
+
+- (IBAction)registerButtonPressed{
 	NSLog(@"registerButtonPressed");
-	[self becomeFirstResponder];
 	
 	// move
 	UserDTO *userDTO = [[UserDTO alloc] init];
@@ -62,6 +83,7 @@
 	userDTO.mobileNumber = [mobileNumberTextField text];
 	
 	NSLog([userDTO paramString]);
+	
 }
 
 /*
