@@ -12,6 +12,8 @@
 
 #import "CustomCellTextField.h"
 
+#import "UserDTO.h"
+
 
 @interface RegisterViewController : UITableViewController {
 	
@@ -39,6 +41,10 @@
 - (IBAction)registerButtonPressed;
 
 - (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
+
+
+
+- (void)registerUser:(UserDTO *)user;
 
 
 @end
