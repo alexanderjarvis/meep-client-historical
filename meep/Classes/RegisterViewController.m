@@ -137,39 +137,59 @@
 	
 	switch (row) {
 		case 0:
-			cell.customTextLabel.text = @"Email";
-			[cell setRequired: YES];
-			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			cell.customTextField.keyboardType = UIKeyboardTypeEmailAddress;
-			self.emailCell = cell;
+			if (self.emailCell == nil) {
+				cell.customTextLabel.text = @"Email";
+				[cell setRequired: YES];
+				cell.customTextField.returnKeyType = UIReturnKeyNext;
+				cell.customTextField.keyboardType = UIKeyboardTypeEmailAddress;
+				self.emailCell = cell;
+			} else {
+				cell = self.emailCell;
+			}			
 			break;
 		case 1:
-			cell.customTextLabel.text = @"First name";
-			[cell setRequired: YES];
-			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			cell.customTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-			self.firstNameCell = cell;
+			if (self.firstNameCell == nil) {
+				cell.customTextLabel.text = @"First name";
+				[cell setRequired: YES];
+				cell.customTextField.returnKeyType = UIReturnKeyNext;
+				cell.customTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+				self.firstNameCell = cell;
+			} else {
+				cell = self.firstNameCell;
+			}
 			break;
 		case 2:
-			cell.customTextLabel.text = @"Last name";
-			[cell setRequired: YES];
-			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			cell.customTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-			self.lastNameCell = cell;
+			if (self.lastNameCell == nil) {
+				cell.customTextLabel.text = @"Last name";
+				[cell setRequired: YES];
+				cell.customTextField.returnKeyType = UIReturnKeyNext;
+				cell.customTextField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+				self.lastNameCell = cell;
+			} else {
+				cell = self.lastNameCell;
+			}
 			break;
 		case 3:
-			cell.customTextLabel.text = @"Password";
-			[cell setRequired: YES];
-			cell.customTextField.returnKeyType = UIReturnKeyNext;
-			cell.customTextField.secureTextEntry = YES;
-			self.passwordCell = cell;
+			if (self.passwordCell == nil) {
+				cell.customTextLabel.text = @"Password";
+				[cell setRequired: YES];
+				cell.customTextField.returnKeyType = UIReturnKeyNext;
+				cell.customTextField.secureTextEntry = YES;
+				self.passwordCell = cell;
+			} else {
+				cell = self.passwordCell;
+			}
 			break;
 		case 4:
-			cell.customTextLabel.text = @"Mobile #";
-			[cell setRequired: NO];
-			cell.customTextField.returnKeyType = UIReturnKeyDone;
-			cell.customTextField.keyboardType = UIKeyboardTypeNumberPad;
-			self.mobileNumberCell = cell;
+			if (self.mobileNumberCell == nil) {
+				cell.customTextLabel.text = @"Mobile #";
+				[cell setRequired: NO];
+				cell.customTextField.returnKeyType = UIReturnKeyDone;
+				cell.customTextField.keyboardType = UIKeyboardTypeNumberPad;
+				self.mobileNumberCell = cell;
+			} else {
+				cell = self.mobileNumberCell;
+			}
 			break;
 		default:
 			break;
