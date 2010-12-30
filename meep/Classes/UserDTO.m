@@ -8,7 +8,6 @@
 
 #import "UserDTO.h"
 
-
 @implementation UserDTO
 
 @synthesize email;

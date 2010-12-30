@@ -8,7 +8,6 @@
 
 #import "WelcomeViewController.h"
 
-
 @implementation WelcomeViewController
 
 /*
@@ -34,14 +33,14 @@
 }
 */
 
--(IBAction)registerButtonPressed {
+- (IBAction)registerButtonPressed {
 	NSLog(@"registerButtonPressed");
 	[self.navigationController pushViewController:
 	 [self.navigationController registerViewController]
 										 animated:YES];
 }
 
--(IBAction)loginButtonPressed {
+- (IBAction)loginButtonPressed {
 	NSLog(@"loginButtonPressed");
 	[self.navigationController pushViewController:
 		[self.navigationController loginViewController]

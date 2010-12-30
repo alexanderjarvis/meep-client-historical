@@ -8,7 +8,6 @@
 
 #import "CustomCellTextField.h"
 
-
 @implementation CustomCellTextField
 
 @synthesize tableViewController;

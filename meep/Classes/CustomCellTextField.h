@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface CustomCellTextField : UITableViewCell {
 	
 	UITableViewController *tableViewController;

@@ -8,7 +8,6 @@
 
 #import "WelcomeNavigationController.h"
 
-
 @implementation WelcomeNavigationController
 
 @synthesize welcomeViewController;

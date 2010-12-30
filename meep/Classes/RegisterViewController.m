@@ -11,7 +11,6 @@
 #import "CustomCellTextField.h"
 
 #import "ASIFormDataRequest.h"
-
 #import <objc/runtime.h>
 
 @implementation RegisterViewController
@@ -52,7 +51,7 @@
     [super dealloc];
 }
 
-- (IBAction)registerButtonPressed{
+- (IBAction)registerButtonPressed {
 	NSLog(@"registerButtonPressed");
 	
 	if (emailCell.required && emailCell.customTextField.text.length < 1) {

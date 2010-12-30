@@ -8,13 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface WelcomeViewController : UIViewController {
 
 }
 
--(IBAction)loginButtonPressed;
+- (IBAction)loginButtonPressed;
 
--(IBAction)registerButtonPressed;
+- (IBAction)registerButtonPressed;
 
 @end

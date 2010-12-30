@@ -9,11 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import "MBProgressHUD.h"
-
 #import "CustomCellTextField.h"
-
 #import "UserDTO.h"
-
 
 @interface RegisterViewController : UITableViewController {
 	
