@@ -24,6 +24,4 @@
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSString *mobileNumber;
 
--(NSString *)paramString;
-
 @end

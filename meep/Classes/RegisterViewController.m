@@ -25,7 +25,9 @@
 - (void)viewDidLoad {
 	self.title = @"Register";
 	
-	[self showHUDWithLabel:self];
+	HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+	HUD.labelText = @"Registering...";
 	
 	[super viewDidLoad];
 }
@@ -50,26 +52,6 @@
     [super dealloc];
 }
 
-- (void)showHUDWithLabel:(id)sender {
-	// The hud will disable all input on the view (use the higest view possible in the view hierarchy)
-    HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-	
-    // Add HUD to screen
-    [self.navigationController.view addSubview:HUD];
-	
-    // Regisete for HUD callbacks so we can remove it from the window at the right time
-    HUD.delegate = self;
-	
-    HUD.labelText = @"Registering...";
-	
-    // Show the HUD while the provided method executes in a new thread
-    [HUD showWhileExecuting:@selector(myTask) onTarget:self withObject:nil animated:YES];
-}
-
-- (void)myTask {
-	sleep(1);
-}
-
 - (IBAction)registerButtonPressed{
 	NSLog(@"registerButtonPressed");
 	
@@ -86,7 +68,10 @@
 	userDTO.lastName = [lastNameCell.customTextField text];
 	userDTO.mobileNumber = [mobileNumberCell.customTextField text];
 	
-	NSLog([userDTO paramString]);
+	if (selectedCell != nil) {
+		[selectedCell.customTextField resignFirstResponder];
+	}
+	[HUD show:YES];
 	
 	[self registerUser:userDTO];
 }
@@ -102,7 +87,6 @@
 		NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
 		[self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
 	} else if (cell.customTextField.returnKeyType == UIReturnKeyDone) {
-		//[cell.customTextField resignFirstResponder];
 		[self registerButtonPressed];
 	}
 }
@@ -202,6 +186,8 @@
 	[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 	CustomCellTextField *cell = [tableView cellForRowAtIndexPath:indexPath];
 	[cell.customTextField becomeFirstResponder];
+	
+	selectedCell = cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -245,8 +231,11 @@
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	
-	NSLog([NSString stringWithFormat:@"Response status code: %@", [request responseStatusCode]]);
+	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
 	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);;
+	
+	sleep(1);
+	[HUD hide:YES];
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
@@ -254,8 +243,10 @@
 	
 	NSLog([error localizedDescription]);
 	
-	NSLog([NSString stringWithFormat:@"Response status code: %@", [request responseStatusCode]]);
+	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
 	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
+	
+	[HUD hide:YES];
 }
 
 @end

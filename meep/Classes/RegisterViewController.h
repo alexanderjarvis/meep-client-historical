@@ -26,6 +26,8 @@
 	CustomCellTextField *firstNameCell;
 	CustomCellTextField *lastNameCell;
 	CustomCellTextField *mobileNumberCell;
+	
+	CustomCellTextField *selectedCell;
 }
 
 @property (nonatomic, retain) CustomCellTextField *emailCell;
@@ -34,15 +36,9 @@
 @property (nonatomic, retain) CustomCellTextField *lastNameCell;
 @property (nonatomic, retain) CustomCellTextField *mobileNumberCell;
 
-- (void)showHUDWithLabel:(id)sender;
-
-- (void)myTask;
-
 - (IBAction)registerButtonPressed;
 
 - (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
-
-
 
 - (void)registerUser:(UserDTO *)user;
 

@@ -26,11 +26,4 @@
 	[super dealloc];
 }
 
-
--(NSString *)paramString {
-	
-	return [NSString stringWithFormat:@"user.email=%@&user.password=%@&user.firstName=%@&user.lastName=%@&user.telephone=%@", email, password, firstName, lastName, mobileNumber];
-	
-}
-
 @end
