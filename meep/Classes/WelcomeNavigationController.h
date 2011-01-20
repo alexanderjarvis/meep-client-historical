@@ -26,4 +26,6 @@
 
 - (void)showValidationAlert:(NSString *)message;
 
+- (void)showNetworkAlert:(NSError *)error;
+
 @end

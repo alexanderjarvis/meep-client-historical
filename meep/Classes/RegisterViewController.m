@@ -10,9 +10,6 @@
 
 #import "CustomCellTextField.h"
 
-#import "ASIFormDataRequest.h"
-#import <objc/runtime.h>
-
 @implementation RegisterViewController
 
 @synthesize emailCell;
@@ -28,6 +25,9 @@
     [self.navigationController.view addSubview:HUD];
 	HUD.labelText = @"Registering...";
 	
+	registrationManager = [[RegistrationManager alloc] init];
+	[registrationManager setDelegate:self];
+	
 	[super viewDidLoad];
 }
 
@@ -42,24 +42,21 @@
     [super viewDidUnload];
 }
 
-- (void)dealloc {
-	[emailCell release];
-	[passwordCell release];
-	[firstNameCell release];
-	[lastNameCell release];
-	[mobileNumberCell release];
-    [super dealloc];
-}
-
 - (IBAction)registerButtonPressed {
 	NSLog(@"registerButtonPressed");
 	
 	if (emailCell.required && emailCell.customTextField.text.length < 1) {
 		NSLog(@"alert! email is blank");
-		[self.navigationController showValidationAlert:@"Email is blank"];		
+		[self.navigationController showValidationAlert:@"Email is blank"];
+		return;
 	}
 	
-	// move
+	if (selectedCell != nil) {
+		[selectedCell.customTextField resignFirstResponder];
+	}
+	[HUD show:YES];
+	
+	// 
 	UserDTO *userDTO = [[UserDTO alloc] init];
 	userDTO.email = [emailCell.customTextField text];
 	userDTO.password = [passwordCell.customTextField text];
@@ -67,12 +64,7 @@
 	userDTO.lastName = [lastNameCell.customTextField text];
 	userDTO.mobileNumber = [mobileNumberCell.customTextField text];
 	
-	if (selectedCell != nil) {
-		[selectedCell.customTextField resignFirstResponder];
-	}
-	[HUD show:YES];
-	
-	[self registerUser:userDTO];
+	[registrationManager registerUser:userDTO];
 }
 
 /*
@@ -88,6 +80,17 @@
 	} else if (cell.customTextField.returnKeyType == UIReturnKeyDone) {
 		[self registerButtonPressed];
 	}
+}
+
+- (void)dealloc {
+	[registrationManager release];
+	
+	[emailCell release];
+	[passwordCell release];
+	[firstNameCell release];
+	[lastNameCell release];
+	[mobileNumberCell release];
+    [super dealloc];
 }
 
 #pragma mark UITableViewController methods
@@ -196,56 +199,20 @@
 	return nil;
 }
 
-#pragma mark ASI request methods
-
-- (void)registerUser:(UserDTO *)user {
-	NSURL *url = [NSURL URLWithString:@"http://localhost:9000/users"];
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
-	[request setDelegate:self];
-	
-	// TODO move to another class and method
-	// Get properties for class
-	Class clazz = [user class];
-    u_int count;
-	
-    objc_property_t * properties = class_copyPropertyList(clazz, &count);
-    NSMutableArray * propertyArray = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i < count ; i++) {
-        const char* propertyName = property_getName(properties[i]);
-        [propertyArray addObject:[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
-    }
-    free(properties);
-	
-	// Add properties to request
-	for (int i = 0; i < [propertyArray count]; i++) {
-		NSString *key = [NSString stringWithFormat:@"user.%@", [propertyArray objectAtIndex:i]];
-		NSString *value = [user valueForKey:[propertyArray objectAtIndex:i]];
-		[request setPostValue:value forKey:key];
-	}
-	
-	[request startAsynchronous];
-}
-
-- (void)requestFinished:(ASIHTTPRequest *)request {
-	// Use when fetching text data
-	NSString *responseString = [request responseString];
-	
-	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
-	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);;
-	
-	sleep(1);
+#pragma mark -
+#pragma mark RegistrationManagerDelegate methods
+- (void)userRegistrationSuccessful {
 	[HUD hide:YES];
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)request {
-	NSError *error = [request error];
-	
-	NSLog([error localizedDescription]);
-	
-	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
-	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
-	
+- (void)userRegistrationFailedWithError:(NSError *)error {
 	[HUD hide:YES];
+	[self.navigationController showValidationAlert:[error localizedDescription]];
+}
+
+- (void)userRegistrationFailedWithNetworkError:(NSError *)error {
+	[HUD hide:YES];
+	[self.navigationController showNetworkAlert:error];
 }
 
 @end

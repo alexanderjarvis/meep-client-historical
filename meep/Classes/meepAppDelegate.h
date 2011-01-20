@@ -14,7 +14,7 @@
 @class CLViewController;
 @class HTTPDemoViewController;
 
-@interface meepAppDelegate : NSObject <UIApplicationDelegate> {
+@interface MeepAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
     MeepViewController *meepViewController;
 	CLViewController *clViewController;
@@ -29,6 +29,10 @@
 @property (nonatomic, retain) IBOutlet HTTPDemoViewController *httpDemoViewController;
 
 @property (nonatomic, retain) IBOutlet WelcomeNavigationController *welcomeNavigationController;
+
+- (void)showWelcomeView;
+
+- (void)showMenuView;
 
 @end
 

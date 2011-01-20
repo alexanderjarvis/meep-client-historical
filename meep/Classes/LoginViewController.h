@@ -8,8 +8,30 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController {
+#import "MBProgressHUD.h"
 
+#import "LoginManager.h"
+#import "CustomCellTextField.h"
+
+@interface LoginViewController : UIViewController {
+	
+	IBOutlet UITableView *tableView;
+	
+	MBProgressHUD *HUD;
+	
+	LoginManager *loginManager;
+	
+	CustomCellTextField *emailCell;
+	CustomCellTextField *passwordCell;
+	
+	CustomCellTextField *selectedCell;
 }
+
+@property (nonatomic, retain) CustomCellTextField *emailCell;
+@property (nonatomic, retain) CustomCellTextField *passwordCell;
+
+- (IBAction)loginButtonPressed;
+
+- (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
 
 @end

@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #import "MBProgressHUD.h"
+
+#import "RegistrationManager.h"
 #import "CustomCellTextField.h"
 #import "UserDTO.h"
 
@@ -17,6 +19,8 @@
 	IBOutlet UITableView *tableView;
 	
 	MBProgressHUD *HUD;
+	
+	RegistrationManager *registrationManager;
 	
 	CustomCellTextField *emailCell;
 	CustomCellTextField *passwordCell;
@@ -36,8 +40,6 @@
 - (IBAction)registerButtonPressed;
 
 - (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
-
-- (void)registerUser:(UserDTO *)user;
 
 
 @end

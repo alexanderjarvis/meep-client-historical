@@ -1,18 +1,18 @@
 //
-//  meepAppDelegate.m
+//  MeepAppDelegate.m
 //  meep
 //
 //  Created by Alex Jarvis on 17/09/2010.
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "meepAppDelegate.h"
+#import "MeepAppDelegate.h"
 
 #import "MeepViewController.h"
 #import "CLViewController.h"
 #import "HTTPDemoViewController.h"
 
-@implementation meepAppDelegate
+@implementation MeepAppDelegate
 
 @synthesize window;
 
@@ -24,21 +24,20 @@
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {    
-    
-    // Override point for customization after app launch    
-	
-    //[window addSubview:meepViewController.view];
-	//[window addSubview:clViewController.view];
-	//[window addSubview:httpDemoViewController.view];
-	
-	
+    	
 	// if no access token
-	[window addSubview:welcomeNavigationController.view];	
-	
+	[self showWelcomeView];
 	
     [window makeKeyAndVisible];
 }
 
+- (void)showWelcomeView {
+	[window addSubview:welcomeNavigationController.view];
+}
+
+- (void)showMenuView {
+	[window addSubview:meepViewController.view];
+}
 
 - (void)dealloc {
     [meepViewController release];

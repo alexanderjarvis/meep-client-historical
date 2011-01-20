@@ -10,28 +10,21 @@
 
 @implementation LoginViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+@synthesize emailCell;
+@synthesize passwordCell;
 
 - (void)viewDidLoad {
 	self.title = @"Login";
+	
+	HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:HUD];
+	HUD.labelText = @"Logging in...";
+	
+	loginManager = [[LoginManager alloc] init];
+	[loginManager setDelegate:self];
+	
 	[super viewDidLoad];
 }
-
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -46,9 +39,114 @@
     // e.g. self.myOutlet = nil;
 }
 
+- (IBAction)loginButtonPressed {
+	 
+	if (selectedCell != nil) {
+		[selectedCell.customTextField resignFirstResponder];
+	}
+	[HUD show:YES];
+	
+	UserDTO *userDTO = [[UserDTO alloc] init];
+	userDTO.email = [emailCell.customTextField text];
+	userDTO.password = [passwordCell.customTextField text];
+	
+	[loginManager loginUser:userDTO];
+	[userDTO release];
+}
+
+/*
+ * To be called when the 'Next' key is pressed from the keyboard.
+ */
+- (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView {
+	NSIndexPath *indexPath = [tableView indexPathForCell:cell];
+	
+	// If not the last cell, go to next cell
+	if (cell.customTextField.returnKeyType == UIReturnKeyNext) {
+		NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
+		[self tableView:tableView didSelectRowAtIndexPath:newIndexPath];
+	} else if (cell.customTextField.returnKeyType == UIReturnKeyDone) {
+		[self loginButtonPressed];
+	}
+}
 
 - (void)dealloc {
+	[emailCell release];
+	[passwordCell release];
+	
     [super dealloc];
+}
+
+#pragma mark UITableViewController methods
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+// Customize the number of rows in the table view.
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	NSUInteger row = [indexPath row];
+    
+	static NSString *CustomCellIdentifier = @"CustomCellIdentifier";
+	
+	CustomCellTextField *cell = (CustomCellTextField *)[tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
+	if (cell == nil) {
+		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"CustomCellTextField" 
+													 owner:self options:nil];
+		
+		cell = (CustomCellTextField *)[nib objectAtIndex:0];
+		cell.tableView = tableView;
+		cell.tableViewController = self;
+	}
+	
+	switch (row) {
+		case 0:
+			if (self.emailCell == nil) {
+				cell.customTextLabel.text = @"Email";
+				[cell setRequired: YES];
+				cell.customTextField.returnKeyType = UIReturnKeyNext;
+				cell.customTextField.keyboardType = UIKeyboardTypeEmailAddress;
+				self.emailCell = cell;
+			} else {
+				cell = self.emailCell;
+			}			
+			break;
+		case 1:
+			if (self.passwordCell == nil) {
+				cell.customTextLabel.text = @"Password";
+				[cell setRequired: YES];
+				cell.customTextField.returnKeyType = UIReturnKeyNext;
+				cell.customTextField.secureTextEntry = YES;
+				self.passwordCell = cell;
+			} else {
+				cell = self.passwordCell;
+			}
+			break;
+		default:
+			break;
+	}
+	
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+	CustomCellTextField *cell = [tableView cellForRowAtIndexPath:indexPath];
+	[cell.customTextField becomeFirstResponder];
+	
+	selectedCell = cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (section == 0) {
+		return @"Please enter your details"; 
+	}
+	return nil;
 }
 
 

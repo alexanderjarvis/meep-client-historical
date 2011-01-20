@@ -53,6 +53,17 @@
 	[alert release];
 }
 
+- (void)showNetworkAlert:(NSError *)error {
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"Network Error" 
+						  message:[error localizedDescription]
+						  delegate:self
+						  cancelButtonTitle:@"Dismiss" 
+						  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
 - (void)dealloc {
 	[welcomeViewController release];
 	[registerViewController release];
