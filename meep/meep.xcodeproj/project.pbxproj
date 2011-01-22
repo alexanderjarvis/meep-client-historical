@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D3623260D0F684500981E51 /* MeepAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* MeepAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
@@ -410,8 +409,6 @@
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		1D3623240D0F684500981E51 /* MeepAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeepAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* MeepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeepAppDelegate.m; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* meep.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meep.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -529,8 +526,6 @@
 			children = (
 				FAC384E012CD1B9E00F2A1C7 /* Managers */,
 				FAC812DE12C90F5C001F20C5 /* Model */,
-				1D3623240D0F684500981E51 /* MeepAppDelegate.h */,
-				1D3623250D0F684500981E51 /* MeepAppDelegate.m */,
 				FA886ED4127346EE00BAE667 /* MeepViewController.h */,
 				FA886ED5127346EE00BAE667 /* MeepViewController.m */,
 				FA0B25311269DB67008EA266 /* MenuViewController.h */,
@@ -1249,7 +1244,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* MeepAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* CLViewController.m in Sources */,
 				FA0B25341269DB67008EA266 /* MenuViewController.m in Sources */,
 				FA886ED7127346EE00BAE667 /* MeepViewController.m in Sources */,
