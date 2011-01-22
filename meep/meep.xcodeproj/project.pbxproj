@@ -56,6 +56,7 @@
 		FA849B3712C904FC00BB56FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA849B3612C904FC00BB56FF /* QuartzCore.framework */; };
 		FA886ED7127346EE00BAE667 /* MeepViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA886ED5127346EE00BAE667 /* MeepViewController.m */; };
 		FA886ED8127346EE00BAE667 /* MeepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA886ED6127346EE00BAE667 /* MeepViewController.xib */; };
+		FA9C24FB12EB8EB8006DABAB /* MeepAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C24FA12EB8EB8006DABAB /* MeepAppDelegate.m */; };
 		FAC384DF12CD1A8900F2A1C7 /* RegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC384DE12CD1A8900F2A1C7 /* RegistrationManager.m */; };
 		FAC812E112C90F70001F20C5 /* UserDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC812E012C90F70001F20C5 /* UserDTO.m */; };
 		FAEFFFD012CA3EF300604797 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEFFFCF12CA3EF300604797 /* MBProgressHUD.m */; };
@@ -485,6 +486,8 @@
 		FA886ED5127346EE00BAE667 /* MeepViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeepViewController.m; sourceTree = "<group>"; };
 		FA886ED6127346EE00BAE667 /* MeepViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MeepViewController.xib; path = Classes/MeepViewController.xib; sourceTree = "<group>"; };
 		FA8C8EC312E88F5F006DD5D2 /* RegistrationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationManagerDelegate.h; sourceTree = "<group>"; };
+		FA9C24F912EB8EB8006DABAB /* MeepAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeepAppDelegate.h; path = Classes/MeepAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		FA9C24FA12EB8EB8006DABAB /* MeepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeepAppDelegate.m; path = Classes/MeepAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		FAC384DD12CD1A8900F2A1C7 /* RegistrationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationManager.h; sourceTree = "<group>"; };
 		FAC384DE12CD1A8900F2A1C7 /* RegistrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationManager.m; sourceTree = "<group>"; };
 		FAC812DF12C90F70001F20C5 /* UserDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDTO.h; sourceTree = "<group>"; };
@@ -528,6 +531,8 @@
 				FAC812DE12C90F5C001F20C5 /* Model */,
 				FA886ED4127346EE00BAE667 /* MeepViewController.h */,
 				FA886ED5127346EE00BAE667 /* MeepViewController.m */,
+				FA9C24F912EB8EB8006DABAB /* MeepAppDelegate.h */,
+				FA9C24FA12EB8EB8006DABAB /* MeepAppDelegate.m */,
 				FA0B25311269DB67008EA266 /* MenuViewController.h */,
 				FA0B25321269DB67008EA266 /* MenuViewController.m */,
 				28D7ACF60DDB3853001CB0EB /* CLViewController.h */,
@@ -1266,6 +1271,7 @@
 				FA503D2012CAA503004E152E /* RegexKitLite.m in Sources */,
 				FAC384DF12CD1A8900F2A1C7 /* RegistrationManager.m in Sources */,
 				FA32D6C412E8BFA60065927E /* LoginManager.m in Sources */,
+				FA9C24FB12EB8EB8006DABAB /* MeepAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
