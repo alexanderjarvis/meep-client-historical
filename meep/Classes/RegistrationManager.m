@@ -13,6 +13,8 @@
 
 #import "MeepAppDelegate.h"
 
+#import <YAJL/YAJL.h>
+
 @implementation RegistrationManager
 
 @synthesize delegate;
@@ -40,7 +42,9 @@
 	for (int i = 0; i < [propertyArray count]; i++) {
 		NSString *key = [NSString stringWithFormat:@"user.%@", [propertyArray objectAtIndex:i]];
 		NSString *value = [user valueForKey:[propertyArray objectAtIndex:i]];
-		[request setPostValue:value forKey:key];
+		if (value != nil) {
+			[request setPostValue:value forKey:key];
+		}
 	}
 	
 	[request startAsynchronous];
@@ -56,7 +60,15 @@
 	if ([request responseStatusCode] == 201) {
 		[delegate userRegistrationSuccessful];
 		
+		NSDictionary *jsonDictionary = [[request responseString] yajl_JSON];
+		NSLog(@"json dict: %@", jsonDictionary);
+		
+		NSString *accessToken = [jsonDictionary objectForKey:@"accessToken"];
+		
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+		[[meepAppDelegate configManager] setAccess_token: accessToken];
+		[[meepAppDelegate configManager] saveConfig];
+		
 		[meepAppDelegate showMenuView];
 		
 	} else {

@@ -19,11 +19,16 @@
 
 #pragma mark ASI request methods
 - (void)loginUser:(UserDTO *)user {
+	
+	// Store the email
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	[[meepAppDelegate configManager] setEmail: user.email];
+	
+	// Do the request
 	NSURL *url = [NSURL URLWithString:@"http://localhost:9000/oauth2"];
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
 	[request setDelegate:self];
 	
-	// Set query string attributes
 	[request setPostValue:@"password" forKey:@"grant_type"];
 	[request setPostValue:user.email forKey:@"client_id"];
 	[request setPostValue:user.password forKey:@"client_secret"];
@@ -36,12 +41,16 @@
 	NSString *responseString = [request responseString];
 	
 	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
-	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);;
+	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
 	
 	if ([request responseStatusCode] == 200) {
-		//[delegate userRegistrationSuccessful];
 		
+		// Store the access token
+		NSString *accessToken = [request responseString];
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+		[[meepAppDelegate configManager] setAccess_token: accessToken];
+		[[meepAppDelegate configManager] saveConfig];
+		
 		[meepAppDelegate showMenuView];
 		
 	} else {
