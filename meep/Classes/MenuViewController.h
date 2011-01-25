@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import <Three20/Three20.h>
 
-@interface MenuViewController : UITableViewController {
+@interface MenuViewController : TTViewController <TTLauncherViewDelegate> {
+	
+	TTLauncherView *launcherView;
 
 }
 

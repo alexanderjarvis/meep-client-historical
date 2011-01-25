@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #import "ConfigManager.h"
-#import "WelcomeNavigationController.h"
 
-@class MeepViewController;
+#import "WelcomeNavigationController.h"
+#import "MenuViewController.h"
+
 @class CLViewController;
 @class HTTPDemoViewController;
 
@@ -20,23 +21,21 @@
 	
 	ConfigManager *configManager;
 	
+	WelcomeNavigationController *welcomeNavigationController;
+	MenuViewController *menuViewController;
 	
-    MeepViewController *meepViewController;
+	
+	// old
 	CLViewController *clViewController;
 	HTTPDemoViewController *httpDemoViewController;
-	
-	WelcomeNavigationController *welcomeNavigationController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
-
 @property (nonatomic, retain) ConfigManager *configManager;
-
-@property (nonatomic, retain) IBOutlet MeepViewController *meepViewController;
+@property (nonatomic, retain) IBOutlet WelcomeNavigationController *welcomeNavigationController;
+@property (nonatomic, retain) IBOutlet MenuViewController *menuViewController;
 @property (nonatomic, retain) IBOutlet CLViewController *clViewController;
 @property (nonatomic, retain) IBOutlet HTTPDemoViewController *httpDemoViewController;
-
-@property (nonatomic, retain) IBOutlet WelcomeNavigationController *welcomeNavigationController;
 
 - (void)showWelcomeView;
 

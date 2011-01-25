@@ -8,22 +8,17 @@
 
 #import "MeepAppDelegate.h"
 
-#import "MeepViewController.h"
 #import "CLViewController.h"
 #import "HTTPDemoViewController.h"
 
 @implementation MeepAppDelegate
 
 @synthesize window;
-
 @synthesize configManager;
-
-@synthesize meepViewController;
+@synthesize welcomeNavigationController;
+@synthesize menuViewController;
 @synthesize	clViewController;
 @synthesize httpDemoViewController;
-
-@synthesize welcomeNavigationController;
-
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	
@@ -51,18 +46,20 @@
 }
 
 - (void)showMenuView {
-	[window addSubview:meepViewController.view];
+	[window addSubview:menuViewController.view];
 }
 
 - (void)dealloc {
 	[configManager release];
 	
-    [meepViewController release];
+	[welcomeNavigationController release];
+	[menuViewController release];
+	
 	[clViewController release];
 	[httpDemoViewController release];
 	
-	[welcomeNavigationController release];
-    [window release];
+	[window release];
+	
     [super dealloc];
 }
 
