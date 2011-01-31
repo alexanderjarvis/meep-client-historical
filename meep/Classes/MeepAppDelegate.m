@@ -16,7 +16,7 @@
 @synthesize window;
 @synthesize configManager;
 @synthesize welcomeNavigationController;
-@synthesize menuViewController;
+@synthesize menuNavigationController;
 @synthesize	clViewController;
 @synthesize httpDemoViewController;
 
@@ -46,14 +46,14 @@
 }
 
 - (void)showMenuView {
-	[window addSubview:menuViewController.view];
+	[window addSubview:menuNavigationController.view];
 }
 
 - (void)dealloc {
 	[configManager release];
 	
 	[welcomeNavigationController release];
-	[menuViewController release];
+	[menuNavigationController release];
 	
 	[clViewController release];
 	[httpDemoViewController release];

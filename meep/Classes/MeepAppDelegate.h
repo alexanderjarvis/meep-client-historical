@@ -11,7 +11,7 @@
 #import "ConfigManager.h"
 
 #import "WelcomeNavigationController.h"
-#import "MenuViewController.h"
+#import "MenuNavigationController.h"
 
 @class CLViewController;
 @class HTTPDemoViewController;
@@ -22,7 +22,7 @@
 	ConfigManager *configManager;
 	
 	WelcomeNavigationController *welcomeNavigationController;
-	MenuViewController *menuViewController;
+	MenuNavigationController *menuNavigationController;
 	
 	
 	// old
@@ -33,7 +33,7 @@
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) ConfigManager *configManager;
 @property (nonatomic, retain) IBOutlet WelcomeNavigationController *welcomeNavigationController;
-@property (nonatomic, retain) IBOutlet MenuViewController *menuViewController;
+@property (nonatomic, retain) IBOutlet MenuNavigationController *menuNavigationController;
 @property (nonatomic, retain) IBOutlet CLViewController *clViewController;
 @property (nonatomic, retain) IBOutlet HTTPDemoViewController *httpDemoViewController;
 
