@@ -60,7 +60,6 @@
 		FAC0080712EF52DC00E50526 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC0080612EF52DC00E50526 /* Icon.png */; };
 		FAC384DF12CD1A8900F2A1C7 /* RegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC384DE12CD1A8900F2A1C7 /* RegistrationManager.m */; };
 		FAC812E112C90F70001F20C5 /* UserDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC812E012C90F70001F20C5 /* UserDTO.m */; };
-		FACB00A81302E4A500EDA007 /* YAJL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FACB00A71302E4A500EDA007 /* YAJL.framework */; };
 		FAECD13712F6DCBE0027CAC9 /* MenuNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAECD13612F6DCBE0027CAC9 /* MenuNavigationController.m */; };
 		FAECD17E12F6E7C60027CAC9 /* NewMeetingLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAECD17C12F6E7C60027CAC9 /* NewMeetingLocationController.m */; };
 		FAECD17F12F6E7C60027CAC9 /* NewMeetingLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAECD17D12F6E7C60027CAC9 /* NewMeetingLocationController.xib */; };
@@ -503,7 +502,6 @@
 		FAC384DE12CD1A8900F2A1C7 /* RegistrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationManager.m; sourceTree = "<group>"; };
 		FAC812DF12C90F70001F20C5 /* UserDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDTO.h; sourceTree = "<group>"; };
 		FAC812E012C90F70001F20C5 /* UserDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDTO.m; sourceTree = "<group>"; };
-		FACB00A71302E4A500EDA007 /* YAJL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJL.framework; path = External/YAJL.framework; sourceTree = "<group>"; };
 		FAECD13512F6DCBE0027CAC9 /* MenuNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuNavigationController.h; sourceTree = "<group>"; };
 		FAECD13612F6DCBE0027CAC9 /* MenuNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuNavigationController.m; sourceTree = "<group>"; };
 		FAECD17B12F6E7C60027CAC9 /* NewMeetingLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewMeetingLocationController.h; path = ../NewMeetingLocationController.h; sourceTree = "<group>"; };
@@ -544,7 +542,6 @@
 				FA7530B4128E090500DD955D /* SystemConfiguration.framework in Frameworks */,
 				FA753100128E0DDF00DD955D /* MobileCoreServices.framework in Frameworks */,
 				FA849B3712C904FC00BB56FF /* QuartzCore.framework in Frameworks */,
-				FACB00A81302E4A500EDA007 /* YAJL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -632,7 +629,6 @@
 				FA7530B3128E090500DD955D /* SystemConfiguration.framework */,
 				FA7530FF128E0DDF00DD955D /* MobileCoreServices.framework */,
 				FA849B3612C904FC00BB56FF /* QuartzCore.framework */,
-				FACB00A71302E4A500EDA007 /* YAJL.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1461,15 +1457,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = External/;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-Objc",
-				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
 			};
@@ -1480,15 +1471,10 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = External/;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = NO;
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-Objc",
-				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
 			};
