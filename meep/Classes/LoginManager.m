@@ -24,9 +24,14 @@
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	[[meepAppDelegate configManager] setEmail: user.email];
 	
+	// Build up the URL
+	NSString *baseURL = [[meepAppDelegate configManager] url];
+	NSString *loginURL = @"oauth2";
+	NSString *fullURL = [baseURL stringByAppendingString:loginURL];
+	NSLog(@"URL of request: %@", fullURL);
+	
 	// Do the request
-	NSURL *url = [NSURL URLWithString:@"http://localhost:9000/oauth2"];
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:fullURL]];
 	[request setDelegate:self];
 	
 	[request setPostValue:@"password" forKey:@"grant_type"];
@@ -54,7 +59,7 @@
 		[meepAppDelegate showMenuView];
 		
 	} else {
-		[delegate userRegistrationFailedWithError:
+		[delegate loginFailedWithError:
 			[NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
 	}
 
@@ -68,7 +73,7 @@
 	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
 	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
 	
-	[delegate userRegistrationFailedWithNetworkError:error];
+	[delegate loginFailedWithNetworkError:error];
 }
 
 

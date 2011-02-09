@@ -56,15 +56,19 @@
 		FA849B3712C904FC00BB56FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA849B3612C904FC00BB56FF /* QuartzCore.framework */; };
 		FA886ED8127346EE00BAE667 /* MeepViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA886ED6127346EE00BAE667 /* MeepViewController.xib */; };
 		FA9C252012EB9041006DABAB /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C251F12EB9041006DABAB /* ConfigManager.m */; };
-		FA9C254F12EBAD65006DABAB /* YAJL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA9C254E12EBAD65006DABAB /* YAJL.framework */; };
 		FA9C264612EBB8A0006DABAB /* MeepAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA9C264412EBB8A0006DABAB /* MeepAppDelegate.m */; };
 		FAC0080712EF52DC00E50526 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FAC0080612EF52DC00E50526 /* Icon.png */; };
 		FAC384DF12CD1A8900F2A1C7 /* RegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC384DE12CD1A8900F2A1C7 /* RegistrationManager.m */; };
 		FAC812E112C90F70001F20C5 /* UserDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FAC812E012C90F70001F20C5 /* UserDTO.m */; };
+		FACB00A81302E4A500EDA007 /* YAJL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FACB00A71302E4A500EDA007 /* YAJL.framework */; };
 		FAECD13712F6DCBE0027CAC9 /* MenuNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAECD13612F6DCBE0027CAC9 /* MenuNavigationController.m */; };
 		FAECD17E12F6E7C60027CAC9 /* NewMeetingLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAECD17C12F6E7C60027CAC9 /* NewMeetingLocationController.m */; };
 		FAECD17F12F6E7C60027CAC9 /* NewMeetingLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAECD17D12F6E7C60027CAC9 /* NewMeetingLocationController.xib */; };
 		FAECD24F12F6F6E90027CAC9 /* MapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAECD24E12F6F6E90027CAC9 /* MapLocation.m */; };
+		FAECD2DF12F7052E0027CAC9 /* NewMeetingDateAndTimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAECD2DD12F7052E0027CAC9 /* NewMeetingDateAndTimeController.m */; };
+		FAECD2E012F7052E0027CAC9 /* NewMeetingDateAndTimeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAECD2DE12F7052E0027CAC9 /* NewMeetingDateAndTimeController.xib */; };
+		FAECD31E12F721D40027CAC9 /* NewMeetingPeopleController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAECD31C12F721D40027CAC9 /* NewMeetingPeopleController.m */; };
+		FAECD31F12F721D40027CAC9 /* NewMeetingPeopleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAECD31D12F721D40027CAC9 /* NewMeetingPeopleController.xib */; };
 		FAEFFFD012CA3EF300604797 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FAEFFFCF12CA3EF300604797 /* MBProgressHUD.m */; };
 /* End PBXBuildFile section */
 
@@ -492,7 +496,6 @@
 		FA8C8EC312E88F5F006DD5D2 /* RegistrationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationManagerDelegate.h; sourceTree = "<group>"; };
 		FA9C251E12EB9041006DABAB /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigManager.h; sourceTree = "<group>"; };
 		FA9C251F12EB9041006DABAB /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigManager.m; sourceTree = "<group>"; };
-		FA9C254E12EBAD65006DABAB /* YAJL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJL.framework; path = External/YAJL.framework; sourceTree = "<group>"; };
 		FA9C264412EBB8A0006DABAB /* MeepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeepAppDelegate.m; path = Classes/MeepAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		FA9C264512EBB8A0006DABAB /* MeepAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeepAppDelegate.h; sourceTree = "<group>"; };
 		FAC0080612EF52DC00E50526 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
@@ -500,13 +503,20 @@
 		FAC384DE12CD1A8900F2A1C7 /* RegistrationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationManager.m; sourceTree = "<group>"; };
 		FAC812DF12C90F70001F20C5 /* UserDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDTO.h; sourceTree = "<group>"; };
 		FAC812E012C90F70001F20C5 /* UserDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDTO.m; sourceTree = "<group>"; };
+		FACB00A71302E4A500EDA007 /* YAJL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = YAJL.framework; path = External/YAJL.framework; sourceTree = "<group>"; };
 		FAECD13512F6DCBE0027CAC9 /* MenuNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuNavigationController.h; sourceTree = "<group>"; };
 		FAECD13612F6DCBE0027CAC9 /* MenuNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuNavigationController.m; sourceTree = "<group>"; };
 		FAECD17B12F6E7C60027CAC9 /* NewMeetingLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewMeetingLocationController.h; path = ../NewMeetingLocationController.h; sourceTree = "<group>"; };
 		FAECD17C12F6E7C60027CAC9 /* NewMeetingLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewMeetingLocationController.m; path = ../NewMeetingLocationController.m; sourceTree = "<group>"; };
 		FAECD17D12F6E7C60027CAC9 /* NewMeetingLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMeetingLocationController.xib; sourceTree = "<group>"; };
-		FAECD24D12F6F6E90027CAC9 /* MapLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapLocation.h; path = Classes/MapLocation.h; sourceTree = SOURCE_ROOT; };
-		FAECD24E12F6F6E90027CAC9 /* MapLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MapLocation.m; path = Classes/MapLocation.m; sourceTree = SOURCE_ROOT; };
+		FAECD24D12F6F6E90027CAC9 /* MapLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapLocation.h; sourceTree = "<group>"; };
+		FAECD24E12F6F6E90027CAC9 /* MapLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapLocation.m; sourceTree = "<group>"; };
+		FAECD2DC12F7052E0027CAC9 /* NewMeetingDateAndTimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMeetingDateAndTimeController.h; sourceTree = "<group>"; };
+		FAECD2DD12F7052E0027CAC9 /* NewMeetingDateAndTimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMeetingDateAndTimeController.m; sourceTree = "<group>"; };
+		FAECD2DE12F7052E0027CAC9 /* NewMeetingDateAndTimeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingDateAndTimeController.xib; path = Classes/NewMeetingDateAndTimeController.xib; sourceTree = "<group>"; };
+		FAECD31B12F721D40027CAC9 /* NewMeetingPeopleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMeetingPeopleController.h; sourceTree = "<group>"; };
+		FAECD31C12F721D40027CAC9 /* NewMeetingPeopleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMeetingPeopleController.m; sourceTree = "<group>"; };
+		FAECD31D12F721D40027CAC9 /* NewMeetingPeopleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingPeopleController.xib; path = Classes/NewMeetingPeopleController.xib; sourceTree = "<group>"; };
 		FAEFFFCE12CA3EF300604797 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = External/MBProgressHUD/MBProgressHUD.h; sourceTree = SOURCE_ROOT; };
 		FAEFFFCF12CA3EF300604797 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = External/MBProgressHUD/MBProgressHUD.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -534,7 +544,7 @@
 				FA7530B4128E090500DD955D /* SystemConfiguration.framework in Frameworks */,
 				FA753100128E0DDF00DD955D /* MobileCoreServices.framework in Frameworks */,
 				FA849B3712C904FC00BB56FF /* QuartzCore.framework in Frameworks */,
-				FA9C254F12EBAD65006DABAB /* YAJL.framework in Frameworks */,
+				FACB00A81302E4A500EDA007 /* YAJL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,9 +604,9 @@
 			isa = PBXGroup;
 			children = (
 				FAC0080612EF52DC00E50526 /* Icon.png */,
-				FA8497D012C8A34500BB56FF /* Views */,
 				8D1107310486CEB800E47090 /* meep-Info.plist */,
 				FA0B254E1269E5E3008EA266 /* person.png */,
+				FA8497D012C8A34500BB56FF /* Views */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -622,7 +632,7 @@
 				FA7530B3128E090500DD955D /* SystemConfiguration.framework */,
 				FA7530FF128E0DDF00DD955D /* MobileCoreServices.framework */,
 				FA849B3612C904FC00BB56FF /* QuartzCore.framework */,
-				FA9C254E12EBAD65006DABAB /* YAJL.framework */,
+				FACB00A71302E4A500EDA007 /* YAJL.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -783,14 +793,11 @@
 		FA8497CE12C8A22E00BB56FF /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAECD2E212F705500027CAC9 /* New Meeting */,
 				FAECD13512F6DCBE0027CAC9 /* MenuNavigationController.h */,
 				FAECD13612F6DCBE0027CAC9 /* MenuNavigationController.m */,
 				FA0B25311269DB67008EA266 /* MenuViewController.h */,
 				FA0B25321269DB67008EA266 /* MenuViewController.m */,
-				FAECD17B12F6E7C60027CAC9 /* NewMeetingLocationController.h */,
-				FAECD17C12F6E7C60027CAC9 /* NewMeetingLocationController.m */,
-				FAECD24D12F6F6E90027CAC9 /* MapLocation.h */,
-				FAECD24E12F6F6E90027CAC9 /* MapLocation.m */,
 				FA84989D12C8B1A500BB56FF /* Welcome */,
 			);
 			name = ViewControllers;
@@ -799,9 +806,9 @@
 		FA8497D012C8A34500BB56FF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FAECD2E112F7053D0027CAC9 /* New Meeting */,
 				FA8497FF12C8A79100BB56FF /* Welcome */,
 				FA886ED6127346EE00BAE667 /* MeepViewController.xib */,
-				FAECD17D12F6E7C60027CAC9 /* NewMeetingLocationController.xib */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				FA0B25501269E6B6008EA266 /* FeedTableViewCell.xib */,
 				FA7530BB128E097B00DD955D /* HTTPDemoViewController.xib */,
@@ -858,6 +865,31 @@
 				FAC812E012C90F70001F20C5 /* UserDTO.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		FAECD2E112F7053D0027CAC9 /* New Meeting */ = {
+			isa = PBXGroup;
+			children = (
+				FAECD17D12F6E7C60027CAC9 /* NewMeetingLocationController.xib */,
+				FAECD2DE12F7052E0027CAC9 /* NewMeetingDateAndTimeController.xib */,
+				FAECD31D12F721D40027CAC9 /* NewMeetingPeopleController.xib */,
+			);
+			name = "New Meeting";
+			sourceTree = "<group>";
+		};
+		FAECD2E212F705500027CAC9 /* New Meeting */ = {
+			isa = PBXGroup;
+			children = (
+				FAECD24D12F6F6E90027CAC9 /* MapLocation.h */,
+				FAECD24E12F6F6E90027CAC9 /* MapLocation.m */,
+				FAECD17B12F6E7C60027CAC9 /* NewMeetingLocationController.h */,
+				FAECD17C12F6E7C60027CAC9 /* NewMeetingLocationController.m */,
+				FAECD2DC12F7052E0027CAC9 /* NewMeetingDateAndTimeController.h */,
+				FAECD2DD12F7052E0027CAC9 /* NewMeetingDateAndTimeController.m */,
+				FAECD31B12F721D40027CAC9 /* NewMeetingPeopleController.h */,
+				FAECD31C12F721D40027CAC9 /* NewMeetingPeopleController.m */,
+			);
+			name = "New Meeting";
 			sourceTree = "<group>";
 		};
 		FAEFFFCD12CA3EF300604797 /* MBProgressHUD */ = {
@@ -1265,6 +1297,8 @@
 				FA32D6B612E8AD280065927E /* LoginViewController.xib in Resources */,
 				FAC0080712EF52DC00E50526 /* Icon.png in Resources */,
 				FAECD17F12F6E7C60027CAC9 /* NewMeetingLocationController.xib in Resources */,
+				FAECD2E012F7052E0027CAC9 /* NewMeetingDateAndTimeController.xib in Resources */,
+				FAECD31F12F721D40027CAC9 /* NewMeetingPeopleController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1302,6 +1336,8 @@
 				FAECD13712F6DCBE0027CAC9 /* MenuNavigationController.m in Sources */,
 				FAECD17E12F6E7C60027CAC9 /* NewMeetingLocationController.m in Sources */,
 				FAECD24F12F6F6E90027CAC9 /* MapLocation.m in Sources */,
+				FAECD2DF12F7052E0027CAC9 /* NewMeetingDateAndTimeController.m in Sources */,
+				FAECD31E12F721D40027CAC9 /* NewMeetingPeopleController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1355,6 +1391,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Downloads\"",
 					"\"$(SRCROOT)/External\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1392,6 +1429,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/../../Downloads\"",
 					"\"$(SRCROOT)/External\"",
+					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = meep_Prefix.pch;
@@ -1423,14 +1461,14 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = External/;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = ../three20/Build/Products/three20;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
-					"-ObjC",
-					"-licucore",
+					"-Objc",
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.1;
@@ -1442,16 +1480,17 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = External/;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
-					"-ObjC",
-					"-licucore",
+					"-Objc",
 				);
 				PREBINDING = NO;
-				SDKROOT = iphoneos3.1.2;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Release;
 		};

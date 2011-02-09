@@ -13,68 +13,44 @@
 
 @synthesize menuViewController;
 @synthesize newMeetingLocationController;
-
-#pragma mark -
-#pragma mark Initialization
-
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if ((self = [super initWithStyle:style])) {
-    }
-    return self;
-}
-*/
-
+@synthesize newMeetingDateAndTimeController;
+@synthesize newMeetingPeopleController;
 
 #pragma mark -
 #pragma mark View lifecycle
 
-
 - (void)viewDidLoad {
 	
 	// Always load the root view controller
-	menuViewController = [[MenuViewController alloc] init];
+	self.menuViewController = [[MenuViewController alloc] init];
 	[self pushViewController:menuViewController animated:NO];
 	
     [super viewDidLoad];
 }
 
-- (void)showNewMeeting {
+- (void)showNewMeetingLocation {
 	if (newMeetingLocationController == nil) {
-		newMeetingLocationController = [[NewMeetingLocationController alloc] initWithNibName:@"NewMeetingLocationController" bundle:nil];
+		self.newMeetingLocationController = [[NewMeetingLocationController alloc] initWithNibName:@"NewMeetingLocationController" bundle:nil];
 	}
 	
 	[self pushViewController:newMeetingLocationController animated:YES];
 }
 
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void)showNewMeetingDateAndTime {
+	if (newMeetingDateAndTimeController == nil) {
+		self.newMeetingDateAndTimeController = [[NewMeetingDateAndTimeController alloc] initWithNibName:@"NewMeetingDateAndTimeController" bundle:nil];
+	}
+	
+	[self pushViewController:newMeetingDateAndTimeController animated:YES];
 }
-*/
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+
+- (void)showNewMeetingPeople {
+	if (newMeetingPeopleController == nil) {
+		self.newMeetingPeopleController = [[NewMeetingPeopleController alloc] initWithNibName:@"NewMeetingPeopleController" bundle:nil];
+	}
+	
+	[self pushViewController:newMeetingPeopleController animated:YES];
 }
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
 
 #pragma mark -
 #pragma mark Memory management
@@ -95,6 +71,7 @@
 - (void)dealloc {
 	[menuViewController release];
 	[newMeetingLocationController release];
+	[newMeetingDateAndTimeController release];
 	
     [super dealloc];
 }

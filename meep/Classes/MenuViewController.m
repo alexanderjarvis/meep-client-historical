@@ -65,7 +65,7 @@
 	
 	if ([item.URL isEqualToString:NewMeetingURL]) {
 		NSLog(@"New meeting");
-		[meepAppDelegate.menuNavigationController showNewMeeting];
+		[meepAppDelegate.menuNavigationController showNewMeetingLocation];
 	}
 }
 

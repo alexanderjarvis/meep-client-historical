@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "MapLocation.h"
 
-@interface NewMeetingLocationController : UIViewController <MKMapViewDelegate, UIAlertViewDelegate> {
+@interface NewMeetingLocationController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate, UIAlertViewDelegate> {
 	
 	IBOutlet MKMapView *mapView;
-	
-	MapLocation *meetingLocation;
 
 }
 
@@ -24,5 +23,7 @@
 - (IBAction)newPin;
 - (IBAction)currentLocation;
 - (IBAction)chooseDate;
+
+- (void)removeAllAnnotations;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "RegistrationManager.h"
 
+#import "MeepAppDelegate.h"
+
 #import "ASIFormDataRequest.h"
 #import <objc/runtime.h>
 
@@ -21,8 +23,15 @@
 
 #pragma mark ASI request methods
 - (void)registerUser:(UserDTO *)user {
-	NSURL *url = [NSURL URLWithString:@"http://localhost:9000/users"];
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:url];
+	
+	// Build up the URL
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	NSString *baseURL = [[meepAppDelegate configManager] url];
+	NSString *loginURL = @"users";
+	NSString *fullURL = [baseURL stringByAppendingString:loginURL];
+	NSLog(@"URL of request: %@", fullURL);
+	
+	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:fullURL]];
 	[request setDelegate:self];
 	
 	// TODO move to another class and method

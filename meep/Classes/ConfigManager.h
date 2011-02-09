@@ -10,18 +10,24 @@
 
 #define kConfigFileName @"config.plist"
 
+#define kUrlKey @"url"
 #define kEmailKey @"email"
 #define kAccessTokenKey @"access_token"
+
+// The host for the web service
+#define kUrl @"http://localhost:9000/"
 
 @interface ConfigManager : NSObject {
 	
 	NSDictionary *appConfigDictionary;
+	NSString *url;
 	NSString *email;
 	NSString *access_token;
 	
 }
 
 @property (nonatomic, retain) NSDictionary *appConfigDictionary;
+@property (nonatomic, copy) NSString *url;
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *access_token;
 

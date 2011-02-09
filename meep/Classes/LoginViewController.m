@@ -149,5 +149,21 @@
 	return nil;
 }
 
+#pragma mark -
+#pragma mark LoginManagerDelegate methods
+- (void)loginSuccessful {
+	[HUD hide:YES];
+}
+
+- (void)loginFailedWithError:(NSError *)error {
+	[HUD hide:YES];
+	[self.navigationController showValidationAlert:[error localizedDescription]];
+}
+
+- (void)loginFailedWithNetworkError:(NSError *)error {
+	[HUD hide:YES];
+	[self.navigationController showNetworkAlert:error];
+}
+
 
 @end

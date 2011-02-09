@@ -8,10 +8,10 @@
 
 #import "ConfigManager.h"
 
-
 @implementation ConfigManager
 
 @synthesize appConfigDictionary;
+@synthesize url;
 @synthesize email;
 @synthesize access_token;
 
@@ -35,8 +35,8 @@
 - (void)saveConfig {
 	NSLog(@"saveConfig");
 	
-	NSArray *keys = [NSArray arrayWithObjects:kEmailKey, kAccessTokenKey, nil];
-	NSArray *values = [NSArray arrayWithObjects:self.email, self.access_token, nil];
+	NSArray *keys = [NSArray arrayWithObjects:kUrlKey, kEmailKey, kAccessTokenKey, nil];
+	NSArray *values = [NSArray arrayWithObjects:self.url, self.email, self.access_token, nil];
 	self.appConfigDictionary = [NSDictionary dictionaryWithObjects:values forKeys:keys];
 	
 	[appConfigDictionary writeToFile:[self dataFilePath:kConfigFileName] atomically:YES];
@@ -57,6 +57,7 @@
 		
 		if (appConfigDictionary != nil) {
 			NSLog(@"loaded dictionary from file");
+			self.url = [appConfigDictionary valueForKey:kUrlKey];
 			self.email = [appConfigDictionary valueForKey:kEmailKey];
 			self.access_token = [appConfigDictionary valueForKey:kAccessTokenKey];
 			
@@ -65,6 +66,7 @@
 		return appConfigDictionary;
 		
 	} else {
+		self.url = kUrl;
 		self.email = @"";
 		self.access_token = @"";
 		[self saveConfig];
@@ -84,6 +86,7 @@
 
 - (void)dealloc {
 	[appConfigDictionary release];
+	[url release];
 	[email release];
 	[access_token release];
 	

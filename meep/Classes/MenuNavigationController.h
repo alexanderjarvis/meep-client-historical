@@ -10,17 +10,26 @@
 
 #import "MenuViewController.h"
 #import "NewMeetingLocationController.h"
+#import "NewMeetingDateAndTimeController.h"
+#import "NewMeetingPeopleController.h"
 
 @interface MenuNavigationController : UINavigationController {
 	
 	MenuViewController *menuViewController;
+	
 	NewMeetingLocationController *newMeetingLocationController;
+	NewMeetingDateAndTimeController *newMeetingDateAndTimeController;
+	NewMeetingPeopleController *newMeetingPeopleController;
 
 }
 
 @property(nonatomic, retain) MenuViewController *menuViewController;
 @property(nonatomic, retain) NewMeetingLocationController *newMeetingLocationController;
+@property(nonatomic, retain) NewMeetingDateAndTimeController *newMeetingDateAndTimeController;
+@property(nonatomic, retain) NewMeetingPeopleController *newMeetingPeopleController;
 
-- (void)showNewMeeting;
+- (void)showNewMeetingLocation;
+- (void)showNewMeetingDateAndTime;
+- (void)showNewMeetingPeople;
 
 @end
