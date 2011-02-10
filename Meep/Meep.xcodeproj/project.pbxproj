@@ -65,6 +65,7 @@
 		FA5079D41303018600CB96B4 /* NewMeetingPeopleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CD1303018600CB96B4 /* NewMeetingPeopleController.xib */; };
 		FA5079D51303018600CB96B4 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CE1303018600CB96B4 /* RegisterViewController.xib */; };
 		FA5079D61303018600CB96B4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */; };
+		FA507B091303EF4000CB96B4 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B081303EF4000CB96B4 /* UserManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -509,6 +510,8 @@
 		FA5079CD1303018600CB96B4 /* NewMeetingPeopleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingPeopleController.xib; path = Classes/NewMeetingPeopleController.xib; sourceTree = "<group>"; };
 		FA5079CE1303018600CB96B4 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RegisterViewController.xib; path = Classes/RegisterViewController.xib; sourceTree = "<group>"; };
 		FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = Classes/WelcomeViewController.xib; sourceTree = "<group>"; };
+		FA507B071303EF4000CB96B4 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		FA507B081303EF4000CB96B4 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -739,6 +742,8 @@
 				FA50769C1302F3CC00CB96B4 /* RegistrationManager.h */,
 				FA50769D1302F3CC00CB96B4 /* RegistrationManager.m */,
 				FA50769E1302F3CC00CB96B4 /* RegistrationManagerDelegate.h */,
+				FA507B071303EF4000CB96B4 /* UserManager.h */,
+				FA507B081303EF4000CB96B4 /* UserManager.m */,
 			);
 			name = Managers;
 			path = Classes;
@@ -1327,6 +1332,7 @@
 				FA5078611302F9F800CB96B4 /* Reachability.m in Sources */,
 				FA5078621302F9F800CB96B4 /* RegexKitLite.m in Sources */,
 				FA5079761302FF9300CB96B4 /* main.m in Sources */,
+				FA507B091303EF4000CB96B4 /* UserManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
