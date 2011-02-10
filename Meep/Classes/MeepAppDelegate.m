@@ -74,7 +74,7 @@
     [super dealloc];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
+- (void)applicationDidEnterBackground:(UIApplication *)application {
 	[configManager saveConfig];
 }
 
@@ -86,11 +86,12 @@
 }
 
 - (void)getUserFailedWithError:(NSError *)error {
+	[self showWelcomeView];
 
 }
 
 - (void)getUserFailedWithNetworkError:(NSError *)error {
-
+	[self showWelcomeView];
 }
 
 
