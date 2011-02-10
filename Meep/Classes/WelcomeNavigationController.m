@@ -19,11 +19,17 @@
 	NSLog(@"WelcomeNavigationController loaded");
 	
 	// Always load the root view controller
-	welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
+	if (welcomeViewController == nil) {
+		welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
+	}
 	[self pushViewController:welcomeViewController animated:NO];
 	
-	registerViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
-	loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+	if (registerViewController == nil) {
+		registerViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+	}
+	if (loginViewController == nil) {
+		loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+	}
 	
     [super viewDidLoad];
 }
@@ -33,12 +39,6 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 
@@ -62,6 +62,15 @@
 						  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+}
+
+- (void)viewDidUnload {
+	
+    [super viewDidUnload];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[loginViewController release];
 }
 
 - (void)dealloc {

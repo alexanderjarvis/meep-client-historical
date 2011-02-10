@@ -26,4 +26,6 @@
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher;
 - (void)launcherViewDidEndEditing:(TTLauncherView*)launcher;
 
+- (void)logoutUserButton:(id)sender;
+
 @end

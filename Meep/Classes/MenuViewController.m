@@ -10,12 +10,21 @@
 
 #import "MeepAppDelegate.h"
 
+#import "LogoutManager.h"
+
 @implementation MenuViewController
 
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+
+	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
+																	style:UIBarButtonSystemItemDone
+																   target:self
+																   action:@selector(logoutUserButton:)];
+	self.navigationItem.rightBarButtonItem = rightButton;
+	[rightButton release];
 	
 	self.title = @"Menu";
 	
@@ -95,8 +104,35 @@
     // For example: self.myOutlet = nil;
 }
 
+- (void)logoutUserButton:(id)sender {
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	NSString *accessToken = [[meepAppDelegate configManager] access_token];
+	LogoutManager *logoutManager = [[LogoutManager alloc] initWithAccessToken: accessToken];
+	[logoutManager setDelegate:self];
+	[logoutManager logoutUser];
+}
+
+- (void)showWelcomeView {
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	[[meepAppDelegate configManager] setAccess_token:@""];
+	[meepAppDelegate showWelcomeView];
+}
+
 - (void)dealloc {
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark LogoutManagerDelegate
+- (void)logoutUserSuccessful {
+	[self showWelcomeView];
+}
+
+- (void)logoutUserFailedWithError:(NSError *)error {
+	[self showWelcomeView];
+}
+
+- (void)logoutUserFailedWithNetworkError:(NSError *)error {
 }
 
 

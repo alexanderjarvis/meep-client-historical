@@ -8,6 +8,7 @@
 
 #import "RegisterViewController.h"
 
+#import "MeepAppDelegate.h"
 #import "CustomCellTextField.h"
 
 @implementation RegisterViewController
@@ -203,6 +204,8 @@
 #pragma mark RegistrationManagerDelegate methods
 - (void)userRegistrationSuccessful {
 	[HUD hide:YES];
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	[meepAppDelegate showMenuView];
 }
 
 - (void)userRegistrationFailedWithError:(NSError *)error {

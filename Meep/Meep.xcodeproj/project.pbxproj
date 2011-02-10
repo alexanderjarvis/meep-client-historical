@@ -66,6 +66,7 @@
 		FA5079D51303018600CB96B4 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CE1303018600CB96B4 /* RegisterViewController.xib */; };
 		FA5079D61303018600CB96B4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */; };
 		FA507B091303EF4000CB96B4 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B081303EF4000CB96B4 /* UserManager.m */; };
+		FA507B9C1304272500CB96B4 /* LogoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B9B1304272500CB96B4 /* LogoutManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -513,6 +514,9 @@
 		FA507B071303EF4000CB96B4 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		FA507B081303EF4000CB96B4 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		FA507B30130404A900CB96B4 /* UserManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagerDelegate.h; sourceTree = "<group>"; };
+		FA507B9A1304272500CB96B4 /* LogoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutManager.h; sourceTree = "<group>"; };
+		FA507B9B1304272500CB96B4 /* LogoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutManager.m; sourceTree = "<group>"; };
+		FA507B9D13042A1300CB96B4 /* LogoutManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutManagerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -746,6 +750,9 @@
 				FA507B071303EF4000CB96B4 /* UserManager.h */,
 				FA507B081303EF4000CB96B4 /* UserManager.m */,
 				FA507B30130404A900CB96B4 /* UserManagerDelegate.h */,
+				FA507B9A1304272500CB96B4 /* LogoutManager.h */,
+				FA507B9B1304272500CB96B4 /* LogoutManager.m */,
+				FA507B9D13042A1300CB96B4 /* LogoutManagerDelegate.h */,
 			);
 			name = "Request Managers";
 			path = Classes;
@@ -1335,6 +1342,7 @@
 				FA5078621302F9F800CB96B4 /* RegexKitLite.m in Sources */,
 				FA5079761302FF9300CB96B4 /* main.m in Sources */,
 				FA507B091303EF4000CB96B4 /* UserManager.m in Sources */,
+				FA507B9C1304272500CB96B4 /* LogoutManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

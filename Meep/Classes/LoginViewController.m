@@ -35,6 +35,8 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+	
+	[HUD release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

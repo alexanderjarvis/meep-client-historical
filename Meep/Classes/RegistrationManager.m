@@ -67,20 +67,16 @@
 	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
 	
 	if ([request responseStatusCode] == 201) {
-		[delegate userRegistrationSuccessful];
 		
 		NSDictionary *jsonDictionary = [[request responseString] yajl_JSON];
 		NSLog(@"json dict: %@", jsonDictionary);
-		
-		
-		//NSLog(@"email: %@",[jsonDictionary objectForKey:"email"]);
 		
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 		[[meepAppDelegate configManager] setEmail:[jsonDictionary objectForKey:@"email"]];
 		[[meepAppDelegate configManager] setAccess_token: [jsonDictionary objectForKey:@"accessToken"]];
 		[[meepAppDelegate configManager] saveConfig];
 		
-		[meepAppDelegate showMenuView];
+		[delegate userRegistrationSuccessful];
 		
 	} else {
 		[delegate userRegistrationFailedWithError:

@@ -21,6 +21,8 @@
 
 - (void)viewDidLoad {
 	
+	
+	
 	// Always load the root view controller
 	self.menuViewController = [[MenuViewController alloc] init];
 	[self pushViewController:menuViewController animated:NO];
@@ -65,6 +67,7 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+	[menuViewController release];
 }
 
 

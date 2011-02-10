@@ -46,11 +46,15 @@
 }
 
 - (void)showWelcomeView {
+	
 	[window addSubview:welcomeNavigationController.view];
+	[menuNavigationController.view removeFromSuperview];
 }
 
 - (void)showMenuView {
+	
 	[window addSubview:menuNavigationController.view];
+	[welcomeNavigationController.view removeFromSuperview];
 }
 
 - (void)dealloc {
