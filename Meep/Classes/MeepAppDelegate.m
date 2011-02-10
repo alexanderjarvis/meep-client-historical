@@ -8,8 +8,8 @@
 
 #import "MeepAppDelegate.h"
 
+#import "UserManager.h"
 #import "CLViewController.h"
-#import "HTTPDemoViewController.h"
 
 #import <YAJL/YAJL.h>
 
@@ -20,7 +20,6 @@
 @synthesize welcomeNavigationController;
 @synthesize menuNavigationController;
 @synthesize	clViewController;
-@synthesize httpDemoViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	
@@ -31,6 +30,9 @@
 	if (![configManager.access_token isEqualToString:@""]) {
 		
 		// Check access token
+		UserManager *userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
+		[userManager setDelegate: self];
+		[userManager getUser:configManager.email];
 		
 		// If successful, show menu view
 		[self showMenuView];
@@ -58,11 +60,25 @@
 	[menuNavigationController release];
 	
 	[clViewController release];
-	[httpDemoViewController release];
 	
 	[window release];
 	
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark UserManagerDelegate
+
+- (UserDTO *)getUserSuccessful {
+	
+}
+
+- (void)getUserFailedWithError:(NSError *)error {
+
+}
+
+- (void)getUserFailedWithNetworkError:(NSError *)error {
+
 }
 
 

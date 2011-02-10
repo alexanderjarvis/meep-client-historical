@@ -14,7 +14,6 @@
 #import "MenuNavigationController.h"
 
 @class CLViewController;
-@class HTTPDemoViewController;
 
 @interface MeepAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
@@ -27,7 +26,6 @@
 	
 	// old
 	CLViewController *clViewController;
-	HTTPDemoViewController *httpDemoViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -35,7 +33,6 @@
 @property (nonatomic, retain) IBOutlet WelcomeNavigationController *welcomeNavigationController;
 @property (nonatomic, retain) IBOutlet MenuNavigationController *menuNavigationController;
 @property (nonatomic, retain) IBOutlet CLViewController *clViewController;
-@property (nonatomic, retain) IBOutlet HTTPDemoViewController *httpDemoViewController;
 
 - (void)showWelcomeView;
 

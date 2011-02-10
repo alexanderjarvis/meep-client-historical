@@ -512,6 +512,7 @@
 		FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = Classes/WelcomeViewController.xib; sourceTree = "<group>"; };
 		FA507B071303EF4000CB96B4 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		FA507B081303EF4000CB96B4 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		FA507B30130404A900CB96B4 /* UserManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -548,7 +549,7 @@
 			isa = PBXGroup;
 			children = (
 				FA50769F1302F3CC00CB96B4 /* Model */,
-				FA5076981302F3CC00CB96B4 /* Managers */,
+				FA5076981302F3CC00CB96B4 /* Request Managers */,
 				FA5076A81302F3CC00CB96B4 /* Utils */,
 				FA5076AB1302F3CC00CB96B4 /* ViewControllers */,
 				FA5076961302F3CC00CB96B4 /* ConfigManager.h */,
@@ -733,7 +734,7 @@
 			name = External;
 			sourceTree = "<group>";
 		};
-		FA5076981302F3CC00CB96B4 /* Managers */ = {
+		FA5076981302F3CC00CB96B4 /* Request Managers */ = {
 			isa = PBXGroup;
 			children = (
 				FA5076991302F3CC00CB96B4 /* LoginManager.h */,
@@ -744,8 +745,9 @@
 				FA50769E1302F3CC00CB96B4 /* RegistrationManagerDelegate.h */,
 				FA507B071303EF4000CB96B4 /* UserManager.h */,
 				FA507B081303EF4000CB96B4 /* UserManager.m */,
+				FA507B30130404A900CB96B4 /* UserManagerDelegate.h */,
 			);
-			name = Managers;
+			name = "Request Managers";
 			path = Classes;
 			sourceTree = SOURCE_ROOT;
 		};
