@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 
+#import "MeepAppDelegate.h"
+
 @implementation LoginViewController
 
 @synthesize emailCell;
@@ -155,6 +157,11 @@
 #pragma mark LoginManagerDelegate methods
 - (void)loginSuccessful {
 	[HUD hide:YES];
+	self.passwordCell.customTextField.text = @"";
+	[self.navigationController popViewControllerAnimated:NO];
+	
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	[meepAppDelegate showMenuView];
 }
 
 - (void)loginFailedWithError:(NSError *)error {

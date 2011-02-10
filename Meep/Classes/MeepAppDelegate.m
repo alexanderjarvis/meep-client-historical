@@ -46,13 +46,17 @@
 }
 
 - (void)showWelcomeView {
-	
+	if (welcomeNavigationController == nil) {
+		welcomeNavigationController = [[WelcomeNavigationController alloc] init];
+	}
 	[window addSubview:welcomeNavigationController.view];
 	[menuNavigationController.view removeFromSuperview];
 }
 
 - (void)showMenuView {
-	
+	if (menuNavigationController == nil) {
+		menuNavigationController = [[MenuNavigationController alloc] init];
+	}
 	[window addSubview:menuNavigationController.view];
 	[welcomeNavigationController.view removeFromSuperview];
 }
@@ -68,6 +72,10 @@
 	[window release];
 	
     [super dealloc];
+}
+
+- (void)applicationWillTerminate:(UIApplication *)application {
+	[configManager saveConfig];
 }
 
 #pragma mark -

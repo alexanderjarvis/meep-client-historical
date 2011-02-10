@@ -64,13 +64,8 @@
 	[alert release];
 }
 
-- (void)viewDidUnload {
-	
+- (void)viewDidUnload {	
     [super viewDidUnload];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-	[loginViewController release];
 }
 
 - (void)dealloc {

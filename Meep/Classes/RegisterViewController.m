@@ -204,6 +204,13 @@
 #pragma mark RegistrationManagerDelegate methods
 - (void)userRegistrationSuccessful {
 	[HUD hide:YES];
+	emailCell.customTextField.text = @"";
+	passwordCell.customTextField.text = @"";
+	firstNameCell.customTextField.text = @"";
+	lastNameCell.customTextField.text = @"";
+	mobileNumberCell.customTextField.text = @"";
+	[self.navigationController popViewControllerAnimated:NO];
+	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	[meepAppDelegate showMenuView];
 }
