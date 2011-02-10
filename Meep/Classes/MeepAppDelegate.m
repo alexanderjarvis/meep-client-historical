@@ -24,10 +24,6 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	
-	//test json
-	NSString *JSONString = @"[1, 2, 3]";
-	NSArray *arrayFromString = [JSONString yajl_JSON];
-	
 	configManager = [[ConfigManager alloc] init];
 	[configManager loadConfig];
 	

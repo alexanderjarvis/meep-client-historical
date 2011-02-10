@@ -25,7 +25,6 @@
 		FA5076C71302F3CC00CB96B4 /* UserDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076A11302F3CC00CB96B4 /* UserDTO.m */; };
 		FA5076C81302F3CC00CB96B4 /* MeepAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076A31302F3CC00CB96B4 /* MeepAppDelegate.m */; };
 		FA5076C91302F3CC00CB96B4 /* CLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076A51302F3CC00CB96B4 /* CLViewController.m */; };
-		FA5076CA1302F3CC00CB96B4 /* HTTPDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076A71302F3CC00CB96B4 /* HTTPDemoViewController.m */; };
 		FA5076CB1302F3CC00CB96B4 /* StringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076AA1302F3CC00CB96B4 /* StringUtils.m */; };
 		FA5076CC1302F3CC00CB96B4 /* MapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076AE1302F3CC00CB96B4 /* MapLocation.m */; };
 		FA5076CD1302F3CC00CB96B4 /* NewMeetingLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076B01302F3CC00CB96B4 /* NewMeetingLocationController.m */; };
@@ -171,245 +170,245 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A55DE126521740032D0BE /* libThree20-Xcode3.2.5.a */;
+			remoteGlobalIDString = 665A55DE126521740032D0BE;
 			remoteInfo = "Three20-Xcode3.2.5";
 		};
 		FA5077661302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8F171265E968001E0674 /* libThree20-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66FE8F171265E968001E0674;
 			remoteInfo = "Three20-Xcode3.2.2";
 		};
 		FA5077681302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* Three20UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20UnitTests;
 		};
 		FA50776A1302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A55FB126521740032D0BE /* Three20UnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 665A55FB126521740032D0BE;
 			remoteInfo = "Three20UnitTests-Xcode3.2.5";
 		};
 		FA50776C1302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8F371265E968001E0674 /* Three20UnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66FE8F371265E968001E0674;
 			remoteInfo = "Three20UnitTests-Xcode3.2.2";
 		};
 		FA5077731302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 6650CAA21262F6E2003FF804 /* libThree20Core-Xcode3.2.5.a */;
+			remoteGlobalIDString = 6650CAA21262F6E2003FF804;
 			remoteInfo = "Three20Core-Xcode3.2.5";
 		};
 		FA5077751302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66C2E0FC1262F748006DF55A /* libThree20Core-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66C2E0FC1262F748006DF55A;
 			remoteInfo = "Three20Core-Xcode3.2.2";
 		};
 		FA5077771302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* Three20UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20CoreUnitTests;
 		};
 		FA5077791302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 664961641262EE5000C2C80E /* CoreUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 664961641262EE5000C2C80E;
 			remoteInfo = "Three20CoreUnitTests-Xcode3.2.5";
 		};
 		FA50777B1302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A2827FEC940B25BC42C60 /* Three20Core.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66F9A63C1262ED9F0059C2AE /* CoreUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66F9A63C1262ED9F0059C2AE;
 			remoteInfo = "Three20CoreUnitTests-Xcode3.2.2";
 		};
 		FA5077821302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 662D81EF12630516005851C2 /* libThree20Network-Xcode3.2.5.a */;
+			remoteGlobalIDString = 662D81EF12630516005851C2;
 			remoteInfo = "Three20Network-Xcode3.2.5";
 		};
 		FA5077841302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 662D821612630527005851C2 /* libThree20Network-Xcode3.2.2.a */;
+			remoteGlobalIDString = 662D821612630527005851C2;
 			remoteInfo = "Three20Network-Xcode3.2.2";
 		};
 		FA5077861302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* Three20UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20NetworkUnitTests;
 		};
 		FA5077881302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 662D81B2126304EB005851C2 /* NetworkUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 662D81B2126304EB005851C2;
 			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.5";
 		};
 		FA50778A1302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A5A189C235877202780D0 /* Three20Network.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 662D81C7126304F3005851C2 /* NetworkUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 662D81C7126304F3005851C2;
 			remoteInfo = "Three20NetworkUnitTests-Xcode3.2.2";
 		};
 		FA5077911302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66C16BE912639E2700A7825A /* libThree20Style-Xcode3.2.5.a */;
+			remoteGlobalIDString = 66C16BE912639E2700A7825A;
 			remoteInfo = "Three20Style-Xcode3.2.5";
 		};
 		FA5077931302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66846C7812639EE5001D2CF9 /* libThree20Style-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66846C7812639EE5001D2CF9;
 			remoteInfo = "Three20Style-Xcode3.2.2";
 		};
 		FA5077951302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* Three20UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20StyleUnitTests;
 		};
 		FA5077971302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66C16C0112639E4500A7825A /* StyleUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 66C16C0112639E4500A7825A;
 			remoteInfo = "Three20StyleUnitTests-Xcode3.2.5";
 		};
 		FA5077991302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320CC833B8AF0ACFD35E6220 /* Three20Style.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66846C9612639F29001D2CF9 /* StyleUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66846C9612639F29001D2CF9;
 			remoteInfo = "Three20StyleUnitTests-Xcode3.2.2";
 		};
 		FA5077A01302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FC2BC81264E3A400F56B19 /* libThree20UI-Xcode3.2.5.a */;
+			remoteGlobalIDString = 66FC2BC81264E3A400F56B19;
 			remoteInfo = "Three20UI-Xcode3.2.5";
 		};
 		FA5077A21302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8DDE1264E960001E0674 /* libThree20UI-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66FE8DDE1264E960001E0674;
 			remoteInfo = "Three20UI-Xcode3.2.2";
 		};
 		FA5077A41302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* Three20UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20UIUnitTests;
 		};
 		FA5077A61302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FC2BE61264E3A500F56B19 /* UIUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 66FC2BE61264E3A500F56B19;
 			remoteInfo = "Three20UIUnitTests-Xcode3.2.5";
 		};
 		FA5077A81302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8DFB1264E960001E0674 /* UIUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66FE8DFB1264E960001E0674;
 			remoteInfo = "Three20UIUnitTests-Xcode3.2.2";
 		};
 		FA5077AF1302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A53761264D54B0032D0BE /* libThree20UICommon-Xcode3.2.5.a */;
+			remoteGlobalIDString = 665A53761264D54B0032D0BE;
 			remoteInfo = "Three20UICommon-Xcode3.2.5";
 		};
 		FA5077B11302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A53E61264D6550032D0BE /* libThree20UICommon-Xcode3.2.2.a */;
+			remoteGlobalIDString = 665A53E61264D6550032D0BE;
 			remoteInfo = "Three20UICommon-Xcode3.2.2";
 		};
 		FA5077B31302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* Three20UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20UICommonUnitTests;
 		};
 		FA5077B51302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A53891264D54B0032D0BE /* UICommonUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 665A53891264D54B0032D0BE;
 			remoteInfo = "Three20UICommonUnitTests-Xcode3.2.5";
 		};
 		FA5077B71302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3201088596B4756681693700 /* Three20UICommon.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A53F81264D6550032D0BE /* UICommonUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 665A53F81264D6550032D0BE;
 			remoteInfo = "Three20UICommonUnitTests-Xcode3.2.2";
 		};
 		FA5077BE1302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A54521264DAF70032D0BE /* libThree20UINavigator-Xcode3.2.5.a */;
+			remoteGlobalIDString = 665A54521264DAF70032D0BE;
 			remoteInfo = "Three20UINavigator-Xcode3.2.5";
 		};
 		FA5077C01302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8BFA1264DBC3001E0674 /* libThree20UINavigator-Xcode3.2.2.a */;
+			remoteGlobalIDString = 66FE8BFA1264DBC3001E0674;
 			remoteInfo = "Three20UINavigator-Xcode3.2.2";
 		};
 		FA5077C21302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C /* Three20UnitTests.octest */;
+			remoteGlobalIDString = EB9E6C6210B6A8F800DE563C;
 			remoteInfo = Three20UINavigatorUnitTests;
 		};
 		FA5077C41302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 665A54681264DAF70032D0BE /* UINavigatorUnitTests-Xcode3.2.5.octest */;
+			remoteGlobalIDString = 665A54681264DAF70032D0BE;
 			remoteInfo = "Three20UINavigatorUnitTests-Xcode3.2.5";
 		};
 		FA5077C61302F5F200CB96B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 320A737074758E53BA54BE90 /* Three20UINavigator.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 66FE8C0F1264DBC3001E0674 /* UINavigatorUnitTests-Xcode3.2.2.octest */;
+			remoteGlobalIDString = 66FE8C0F1264DBC3001E0674;
 			remoteInfo = "Three20UINavigatorUnitTests-Xcode3.2.2";
 		};
 /* End PBXContainerItemProxy section */
@@ -443,8 +442,6 @@
 		FA5076A31302F3CC00CB96B4 /* MeepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeepAppDelegate.m; path = Classes/MeepAppDelegate.m; sourceTree = SOURCE_ROOT; };
 		FA5076A41302F3CC00CB96B4 /* CLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLViewController.h; path = Classes/CLViewController.h; sourceTree = SOURCE_ROOT; };
 		FA5076A51302F3CC00CB96B4 /* CLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLViewController.m; path = Classes/CLViewController.m; sourceTree = SOURCE_ROOT; };
-		FA5076A61302F3CC00CB96B4 /* HTTPDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HTTPDemoViewController.h; path = Classes/HTTPDemoViewController.h; sourceTree = SOURCE_ROOT; };
-		FA5076A71302F3CC00CB96B4 /* HTTPDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HTTPDemoViewController.m; path = Classes/HTTPDemoViewController.m; sourceTree = SOURCE_ROOT; };
 		FA5076A91302F3CC00CB96B4 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtils.h; path = Classes/StringUtils.h; sourceTree = SOURCE_ROOT; };
 		FA5076AA1302F3CC00CB96B4 /* StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtils.m; path = Classes/StringUtils.m; sourceTree = SOURCE_ROOT; };
 		FA5076AD1302F3CC00CB96B4 /* MapLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapLocation.h; path = Classes/MapLocation.h; sourceTree = SOURCE_ROOT; };
@@ -504,14 +501,14 @@
 		FA5079751302FF9300CB96B4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 		FA5079C01303011600CB96B4 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = SOURCE_ROOT; };
 		FA5079C31303014500CB96B4 /* CLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CLViewController.xib; sourceTree = SOURCE_ROOT; };
-		FA5079C41303014500CB96B4 /* CustomCellTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCellTextField.xib; sourceTree = SOURCE_ROOT; };
-		FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMeetingLocationController.xib; sourceTree = SOURCE_ROOT; };
+		FA5079C41303014500CB96B4 /* CustomCellTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCellTextField.xib; sourceTree = "<group>"; };
+		FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMeetingLocationController.xib; sourceTree = "<group>"; };
 		FA5079C91303018600CB96B4 /* HTTPDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HTTPDemoViewController.xib; path = Classes/HTTPDemoViewController.xib; sourceTree = SOURCE_ROOT; };
-		FA5079CA1303018600CB96B4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Classes/LoginViewController.xib; sourceTree = SOURCE_ROOT; };
-		FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingDateAndTimeController.xib; path = Classes/NewMeetingDateAndTimeController.xib; sourceTree = SOURCE_ROOT; };
-		FA5079CD1303018600CB96B4 /* NewMeetingPeopleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingPeopleController.xib; path = Classes/NewMeetingPeopleController.xib; sourceTree = SOURCE_ROOT; };
-		FA5079CE1303018600CB96B4 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RegisterViewController.xib; path = Classes/RegisterViewController.xib; sourceTree = SOURCE_ROOT; };
-		FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = Classes/WelcomeViewController.xib; sourceTree = SOURCE_ROOT; };
+		FA5079CA1303018600CB96B4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Classes/LoginViewController.xib; sourceTree = "<group>"; };
+		FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingDateAndTimeController.xib; path = Classes/NewMeetingDateAndTimeController.xib; sourceTree = "<group>"; };
+		FA5079CD1303018600CB96B4 /* NewMeetingPeopleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingPeopleController.xib; path = Classes/NewMeetingPeopleController.xib; sourceTree = "<group>"; };
+		FA5079CE1303018600CB96B4 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RegisterViewController.xib; path = Classes/RegisterViewController.xib; sourceTree = "<group>"; };
+		FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = Classes/WelcomeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -547,18 +544,16 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FA5076AB1302F3CC00CB96B4 /* ViewControllers */,
-				FA5076A81302F3CC00CB96B4 /* Utils */,
 				FA50769F1302F3CC00CB96B4 /* Model */,
 				FA5076981302F3CC00CB96B4 /* Managers */,
-				FA5076A21302F3CC00CB96B4 /* MeepAppDelegate.h */,
-				FA5076A31302F3CC00CB96B4 /* MeepAppDelegate.m */,
-				FA5076A41302F3CC00CB96B4 /* CLViewController.h */,
-				FA5076A51302F3CC00CB96B4 /* CLViewController.m */,
-				FA5076A61302F3CC00CB96B4 /* HTTPDemoViewController.h */,
-				FA5076A71302F3CC00CB96B4 /* HTTPDemoViewController.m */,
+				FA5076A81302F3CC00CB96B4 /* Utils */,
+				FA5076AB1302F3CC00CB96B4 /* ViewControllers */,
 				FA5076961302F3CC00CB96B4 /* ConfigManager.h */,
 				FA5076971302F3CC00CB96B4 /* ConfigManager.m */,
+				FA5076A41302F3CC00CB96B4 /* CLViewController.h */,
+				FA5076A51302F3CC00CB96B4 /* CLViewController.m */,
+				FA5076A21302F3CC00CB96B4 /* MeepAppDelegate.h */,
+				FA5076A31302F3CC00CB96B4 /* MeepAppDelegate.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -596,15 +591,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				FA507AE31303EC4F00CB96B4 /* Views */,
 				FA5079C91303018600CB96B4 /* HTTPDemoViewController.xib */,
-				FA5079CA1303018600CB96B4 /* LoginViewController.xib */,
-				FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */,
-				FA5079CD1303018600CB96B4 /* NewMeetingPeopleController.xib */,
-				FA5079CE1303018600CB96B4 /* RegisterViewController.xib */,
-				FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */,
 				FA5079C31303014500CB96B4 /* CLViewController.xib */,
-				FA5079C41303014500CB96B4 /* CustomCellTextField.xib */,
-				FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */,
 				FA5079C01303011600CB96B4 /* MainWindow.xib */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				FA5076D81302F3EA00CB96B4 /* Icon.png */,
@@ -772,18 +761,17 @@
 				FA5076AA1302F3CC00CB96B4 /* StringUtils.m */,
 			);
 			name = Utils;
-			path = Classes;
-			sourceTree = SOURCE_ROOT;
+			sourceTree = "<group>";
 		};
 		FA5076AB1302F3CC00CB96B4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA5076B91302F3CC00CB96B4 /* Welcome */,
 				FA5076B51302F3CC00CB96B4 /* MenuNavigationController.h */,
 				FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */,
 				FA5076B71302F3CC00CB96B4 /* MenuViewController.h */,
 				FA5076B81302F3CC00CB96B4 /* MenuViewController.m */,
 				FA5076AC1302F3CC00CB96B4 /* New Meeting */,
+				FA5076B91302F3CC00CB96B4 /* Welcome */,
 			);
 			name = ViewControllers;
 			path = Classes;
@@ -876,6 +864,36 @@
 			name = RegexKitLite;
 			path = External/RegexKitLite;
 			sourceTree = SOURCE_ROOT;
+		};
+		FA507AE31303EC4F00CB96B4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FA507AEB1303ECD000CB96B4 /* New Meeting */,
+				FA507AEA1303ECC000CB96B4 /* Welcome */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FA507AEA1303ECC000CB96B4 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				FA5079C41303014500CB96B4 /* CustomCellTextField.xib */,
+				FA5079CA1303018600CB96B4 /* LoginViewController.xib */,
+				FA5079CE1303018600CB96B4 /* RegisterViewController.xib */,
+				FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */,
+			);
+			name = Welcome;
+			sourceTree = "<group>";
+		};
+		FA507AEB1303ECD000CB96B4 /* New Meeting */ = {
+			isa = PBXGroup;
+			children = (
+				FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */,
+				FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */,
+				FA5079CD1303018600CB96B4 /* NewMeetingPeopleController.xib */,
+			);
+			name = "New Meeting";
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -1287,7 +1305,6 @@
 				FA5076C71302F3CC00CB96B4 /* UserDTO.m in Sources */,
 				FA5076C81302F3CC00CB96B4 /* MeepAppDelegate.m in Sources */,
 				FA5076C91302F3CC00CB96B4 /* CLViewController.m in Sources */,
-				FA5076CA1302F3CC00CB96B4 /* HTTPDemoViewController.m in Sources */,
 				FA5076CB1302F3CC00CB96B4 /* StringUtils.m in Sources */,
 				FA5076CC1302F3CC00CB96B4 /* MapLocation.m in Sources */,
 				FA5076CD1302F3CC00CB96B4 /* NewMeetingLocationController.m in Sources */,
