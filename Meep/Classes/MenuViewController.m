@@ -133,6 +133,8 @@
 }
 
 - (void)logoutUserFailedWithNetworkError:(NSError *)error {
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	[[meepAppDelegate menuNavigationController] showNetworkAlert: error];
 }
 
 

@@ -20,9 +20,7 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
-	
-	
-	
+
 	// Always load the root view controller
 	self.menuViewController = [[MenuViewController alloc] init];
 	[self pushViewController:menuViewController animated:NO];
@@ -52,6 +50,17 @@
 	}
 	
 	[self pushViewController:newMeetingPeopleController animated:YES];
+}
+
+- (void)showNetworkAlert:(NSError *)error {
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"Network Error" 
+						  message:[error localizedDescription]
+						  delegate:self
+						  cancelButtonTitle:@"Dismiss" 
+						  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
 #pragma mark -

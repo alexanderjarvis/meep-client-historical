@@ -66,6 +66,8 @@
 	
 	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
 	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
+	
+	[delegate logoutUserFailedWithNetworkError:error];
 }
 
 - (void)dealloc {

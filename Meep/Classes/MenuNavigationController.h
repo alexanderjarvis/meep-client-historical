@@ -32,4 +32,6 @@
 - (void)showNewMeetingDateAndTime;
 - (void)showNewMeetingPeople;
 
+- (void)showNetworkAlert:(NSError *)error;
+
 @end
