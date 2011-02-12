@@ -69,8 +69,7 @@
 	}
 	
 	// Create a Dictionary from the existing one and replace the keys
-	NSMutableDictionary *mutableDictionary = [[NSMutableDictionary alloc] init];
-	[mutableDictionary setDictionary: dictionary];
+	NSMutableDictionary *mutableDictionary = [dictionary mutableCopy];
 	
 	[mutableDictionary removeObjectForKey:@"id"];
 	[mutableDictionary setObject:object forKey:@"_id"];
