@@ -12,7 +12,7 @@
 
 @implementation DictionaryModelMapper
 
-+ (void)createObject:(NSObject *)object fromDictionary:(NSDictionary *)dictionary {
++ (id)createObject:(NSObject *)object fromDictionary:(NSDictionary *)dictionary {
 	
 	dictionary = [self manipulateDictionaryKeysForLanguageKeywords:dictionary];
 	
@@ -30,6 +30,20 @@
 			[object setValue:value forKey:key];
 		}
 	}
+	
+	return object;
+}
+
++ (NSArray *)createArrayOfObjects:(NSObject *)object fromArrayOfDictionaries:(NSArray *)dictionaries {
+
+	NSMutableArray *arrayOfObjects = [NSMutableArray arrayWithCapacity:[dictionaries count]];
+	
+	for (NSDictionary *dictionary in dictionaries) {
+		id tmpObject = [self createObject:[object copy] fromDictionary:dictionary];
+		[arrayOfObjects addObject:tmpObject];
+	}
+	
+	return arrayOfObjects;
 }
 
 + (NSArray *)propertiesFromObject:(NSObject *)object {

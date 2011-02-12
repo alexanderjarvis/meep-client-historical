@@ -18,4 +18,13 @@
 	[super dealloc];
 }
 
+#pragma mark NSCopying
+- (id)copyWithZone:(NSZone *)zone {
+	
+	ObjectWithId *copy = [[[self class] allocWithZone:zone] init];
+	copy._id = [self._id copy];
+	
+	return copy;
+}
+
 @end

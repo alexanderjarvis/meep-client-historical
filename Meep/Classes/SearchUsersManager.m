@@ -47,6 +47,7 @@
 	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
 	
 	if ([request responseStatusCode] == 200) {
+		//[delegate searchUsersSuccessful:
 		
 	} else {
 		[delegate searchUsersFailedWithError:

@@ -26,7 +26,7 @@
 								accessToken, accessTokenKey,
 								email, emailKey, nil];
 	
-	[DictionaryModelMapper createObject:user fromDictionary:dictionary];
+	user = [DictionaryModelMapper createObject:user fromDictionary:dictionary];
 	
 	STAssertEquals(user.accessToken, [dictionary valueForKey:accessTokenKey], @"Object string equals dictionary string", nil);
 	STAssertEquals(user.email, [dictionary valueForKey:emailKey], @"Object string equals dictionary string", nil);
@@ -53,6 +53,24 @@
 	[DictionaryModelMapper createObject:objectWithId fromDictionary:dictionary];
 	
 	STAssertEquals(objectWithId._id, [dictionary valueForKey:_idKey], @"'_id' attribute of object equals 'id' of dictionary", nil);
+}
+
+- (void) testCreateArrayOfObjectsFromArrayOfDictionaries {
+	
+	NSString *_idKey = @"id";
+	NSString *_id = @"1";
+	
+	ObjectWithId *object = [[ObjectWithId alloc] init];
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys: _id, _idKey, nil];
+	NSDictionary *dictionary2 = [NSDictionary dictionaryWithObjectsAndKeys: _id, _idKey, nil];
+	
+	NSArray *arrayOfDictionaries = [NSArray arrayWithObjects:dictionary, dictionary2, nil];
+	
+	NSArray *arrayOfObjects = [DictionaryModelMapper createArrayOfObjects:object fromArrayOfDictionaries:arrayOfDictionaries];
+	
+	NSUInteger expectedCount = 2;
+	STAssertEquals(expectedCount, [arrayOfObjects count], @"ArrayOfObjects should be of length 2", nil);
+	
 }
 
 

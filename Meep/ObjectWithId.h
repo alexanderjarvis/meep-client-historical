@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface ObjectWithId : NSObject {
+@interface ObjectWithId : NSObject <NSCopying> {
 	
 	NSString *_id;
 
