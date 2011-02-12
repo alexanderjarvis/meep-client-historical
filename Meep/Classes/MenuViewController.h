@@ -13,6 +13,7 @@
 #import "NewMeetingLocationController.h"
 
 #define NewMeetingURL @"mp://newmeeting"
+#define SearchUsersURL @"mp://searchusers"
 
 @interface MenuViewController : TTViewController <TTLauncherViewDelegate> {
 	

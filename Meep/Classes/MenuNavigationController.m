@@ -15,6 +15,7 @@
 @synthesize newMeetingLocationController;
 @synthesize newMeetingDateAndTimeController;
 @synthesize newMeetingPeopleController;
+@synthesize searchUsersViewController;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -52,6 +53,14 @@
 	[self pushViewController:newMeetingPeopleController animated:YES];
 }
 
+- (void)showSearchUsers {
+	if (searchUsersViewController == nil) {
+		self.searchUsersViewController = [[SearchUsersViewController alloc] initWithNibName:@"SearchUsersViewController" bundle:nil];
+	}
+	
+	[self pushViewController:searchUsersViewController animated:YES];
+}
+
 - (void)showNetworkAlert:(NSError *)error {
 	UIAlertView *alert = [[UIAlertView alloc]
 						  initWithTitle:@"Network Error" 
@@ -84,6 +93,8 @@
 	[menuViewController release];
 	[newMeetingLocationController release];
 	[newMeetingDateAndTimeController release];
+	[newMeetingPeopleController release];
+	[searchUsersViewController release];
 	
     [super dealloc];
 }

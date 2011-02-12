@@ -71,6 +71,9 @@
 		FA7E16091306A66D00CFAAF5 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
 		FA7E16221306A86A00CFAAF5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* User.m */; };
 		FA7E16971306B86C00CFAAF5 /* ObjectWithId.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */; };
+		FA7E179613070FDA00CFAAF5 /* SearchUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E179413070FDA00CFAAF5 /* SearchUsersViewController.m */; };
+		FA7E179713070FDA00CFAAF5 /* SearchUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */; };
+		FA7E17D613073C7300CFAAF5 /* SearchUsersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */; };
 		FA8C74101305C20D00FF1A99 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* User.m */; };
 		FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
 /* End PBXBuildFile section */
@@ -536,6 +539,12 @@
 		FA7E15B41306A27E00CFAAF5 /* TestDictionaryModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDictionaryModelMapper.m; sourceTree = "<group>"; };
 		FA7E16951306B86C00CFAAF5 /* ObjectWithId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithId.h; sourceTree = "<group>"; };
 		FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithId.m; sourceTree = "<group>"; };
+		FA7E179313070FDA00CFAAF5 /* SearchUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersViewController.h; sourceTree = "<group>"; };
+		FA7E179413070FDA00CFAAF5 /* SearchUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUsersViewController.m; sourceTree = "<group>"; };
+		FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchUsersViewController.xib; path = Classes/SearchUsersViewController.xib; sourceTree = "<group>"; };
+		FA7E17D413073C7300CFAAF5 /* SearchUsersManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersManager.h; sourceTree = "<group>"; };
+		FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUsersManager.m; sourceTree = "<group>"; };
+		FA7E17D713073CC200CFAAF5 /* SearchUsersManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersManagerDelegate.h; sourceTree = "<group>"; };
 		FA8C740E1305C20D00FF1A99 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		FA8C740F1305C20D00FF1A99 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		FA8C74381305C7A300FF1A99 /* DictionaryModelMapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = DictionaryModelMapper.h; sourceTree = "<group>"; };
@@ -780,12 +789,15 @@
 				FA50769C1302F3CC00CB96B4 /* RegistrationManager.h */,
 				FA50769D1302F3CC00CB96B4 /* RegistrationManager.m */,
 				FA50769E1302F3CC00CB96B4 /* RegistrationManagerDelegate.h */,
-				FA507B071303EF4000CB96B4 /* UserManager.h */,
-				FA507B081303EF4000CB96B4 /* UserManager.m */,
-				FA507B30130404A900CB96B4 /* UserManagerDelegate.h */,
 				FA507B9A1304272500CB96B4 /* LogoutManager.h */,
 				FA507B9B1304272500CB96B4 /* LogoutManager.m */,
 				FA507B9D13042A1300CB96B4 /* LogoutManagerDelegate.h */,
+				FA7E17D413073C7300CFAAF5 /* SearchUsersManager.h */,
+				FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */,
+				FA7E17D713073CC200CFAAF5 /* SearchUsersManagerDelegate.h */,
+				FA507B071303EF4000CB96B4 /* UserManager.h */,
+				FA507B081303EF4000CB96B4 /* UserManager.m */,
+				FA507B30130404A900CB96B4 /* UserManagerDelegate.h */,
 			);
 			name = "Request Managers";
 			path = Classes;
@@ -817,7 +829,7 @@
 		FA5076AB1302F3CC00CB96B4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E16DD1306E58A00CFAAF5 /* Search People */,
+				FA7E16DD1306E58A00CFAAF5 /* Search Users */,
 				FA5076B51302F3CC00CB96B4 /* MenuNavigationController.h */,
 				FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */,
 				FA5076B71302F3CC00CB96B4 /* MenuViewController.h */,
@@ -920,6 +932,7 @@
 		FA507AE31303EC4F00CB96B4 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				FA7E181B1307416C00CFAAF5 /* Search Users */,
 				FA507AEB1303ECD000CB96B4 /* New Meeting */,
 				FA507AEA1303ECC000CB96B4 /* Welcome */,
 			);
@@ -958,11 +971,21 @@
 			name = Tests;
 			sourceTree = "<group>";
 		};
-		FA7E16DD1306E58A00CFAAF5 /* Search People */ = {
+		FA7E16DD1306E58A00CFAAF5 /* Search Users */ = {
 			isa = PBXGroup;
 			children = (
+				FA7E179313070FDA00CFAAF5 /* SearchUsersViewController.h */,
+				FA7E179413070FDA00CFAAF5 /* SearchUsersViewController.m */,
 			);
-			name = "Search People";
+			name = "Search Users";
+			sourceTree = "<group>";
+		};
+		FA7E181B1307416C00CFAAF5 /* Search Users */ = {
+			isa = PBXGroup;
+			children = (
+				FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */,
+			);
+			name = "Search Users";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1379,6 +1402,7 @@
 				FA5079D41303018600CB96B4 /* NewMeetingPeopleController.xib in Resources */,
 				FA5079D51303018600CB96B4 /* RegisterViewController.xib in Resources */,
 				FA5079D61303018600CB96B4 /* WelcomeViewController.xib in Resources */,
+				FA7E179713070FDA00CFAAF5 /* SearchUsersViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1444,6 +1468,8 @@
 				FA507B9C1304272500CB96B4 /* LogoutManager.m in Sources */,
 				FA8C74101305C20D00FF1A99 /* User.m in Sources */,
 				FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */,
+				FA7E179613070FDA00CFAAF5 /* SearchUsersViewController.m in Sources */,
+				FA7E17D613073C7300CFAAF5 /* SearchUsersManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

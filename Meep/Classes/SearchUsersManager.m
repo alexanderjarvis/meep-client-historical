@@ -1,16 +1,16 @@
 //
-//  UserManager.m
+//  SearchUserManager.m
 //  Meep
 //
-//  Created by Alex Jarvis on 10/02/2011.
+//  Created by Alex Jarvis on 12/02/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "UserManager.h"
+#import "SearchUsersManager.h"
 #import "MeepAppDelegate.h"
 #import "ASIHTTPRequest.h"
 
-@implementation UserManager
+@implementation SearchUsersManager
 
 @synthesize delegate;
 @synthesize accessToken;
@@ -20,18 +20,17 @@
 	return self;
 }
 
-- (void)getUser:(NSString *)userid {
+- (void)searchUsers:(NSString *)searchString {
 	
 	// Build up the URL
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	NSString *baseURL = [[meepAppDelegate configManager] url];
-	NSString *resource = @"users/";
+	NSString *resource = @"search/users/";
 	
 	NSString *queryString = @"?oauth_token=";
 	NSString *fullQueryString = [queryString stringByAppendingString:accessToken];
 	
-	
-	NSString *fullURL = [NSString stringWithFormat:@"%@%@%@%@", baseURL, resource, userid, fullQueryString];
+	NSString *fullURL = [NSString stringWithFormat:@"%@%@%@%@", baseURL, resource, searchString, fullQueryString];
 	
 	NSLog(@"URL of request: %@", fullURL);
 	
@@ -41,7 +40,7 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-	// Use when fetching text data
+	
 	NSString *responseString = [request responseString];
 	
 	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
@@ -50,7 +49,7 @@
 	if ([request responseStatusCode] == 200) {
 		
 	} else {
-		[delegate getUserFailedWithError:
+		[delegate searchUsersFailedWithError:
 		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
 	}
 	

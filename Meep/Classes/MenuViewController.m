@@ -57,6 +57,12 @@
 									  URL: @"mp://mydetails"];
 	[launcherView addItem:item animated:NO];
 	
+	item =
+	[[TTLauncherItem alloc] initWithTitle: @"Search People"
+									image: @"bundle://Icon.png"
+									  URL: SearchUsersURL];
+	[launcherView addItem:item animated:NO];
+	
 	//item.badgeNumber = 7;
 	TT_RELEASE_SAFELY(item);
 	[self.view addSubview:launcherView];
@@ -75,6 +81,9 @@
 	if ([item.URL isEqualToString:NewMeetingURL]) {
 		NSLog(@"New meeting");
 		[meepAppDelegate.menuNavigationController showNewMeetingLocation];
+	} else if ([item.URL isEqualToString:SearchUsersURL]) {
+		NSLog(@"New meeting");
+		[meepAppDelegate.menuNavigationController showSearchUsers];
 	}
 }
 
