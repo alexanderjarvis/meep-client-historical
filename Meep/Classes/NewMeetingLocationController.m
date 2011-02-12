@@ -13,9 +13,16 @@
 @implementation NewMeetingLocationController
 
 @synthesize mapView;
+@synthesize chooseDateButton;
 
 - (void)viewDidLoad {
 	self.title = @"Place";
+	
+	// Choose Date & Time button
+	TTButton *button = [TTButton buttonWithStyle:@"toolbarForwardButton:" title:@"Choose Date & Time"];
+	[button sizeToFit];
+	[button addTarget:self action:@selector(chooseDate) forControlEvents:UIControlEventTouchUpInside];
+	[chooseDateButton addSubview: button];
 	
     [super viewDidLoad];
 }
@@ -88,6 +95,7 @@
 
 - (void)dealloc {
 	[mapView release];
+	[chooseDateButton release];
     [super dealloc];
 }
 

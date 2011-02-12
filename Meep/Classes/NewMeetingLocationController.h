@@ -10,15 +10,20 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 
+#import <Three20/Three20.h>
+
 #import "MapLocation.h"
 
 @interface NewMeetingLocationController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate, MKReverseGeocoderDelegate, UIAlertViewDelegate> {
 	
 	IBOutlet MKMapView *mapView;
+	
+	IBOutlet UIButton *chooseDateButton;
 
 }
 
 @property(nonatomic, retain) MKMapView *mapView;
+@property(nonatomic, retain) UIButton *chooseDateButton;
 
 - (IBAction)newPin;
 - (IBAction)currentLocation;

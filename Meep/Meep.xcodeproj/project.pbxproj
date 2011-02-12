@@ -817,6 +817,7 @@
 		FA5076AB1302F3CC00CB96B4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FA7E16DD1306E58A00CFAAF5 /* Search People */,
 				FA5076B51302F3CC00CB96B4 /* MenuNavigationController.h */,
 				FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */,
 				FA5076B71302F3CC00CB96B4 /* MenuViewController.h */,
@@ -955,6 +956,13 @@
 				FA7E15B41306A27E00CFAAF5 /* TestDictionaryModelMapper.m */,
 			);
 			name = Tests;
+			sourceTree = "<group>";
+		};
+		FA7E16DD1306E58A00CFAAF5 /* Search People */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Search People";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
