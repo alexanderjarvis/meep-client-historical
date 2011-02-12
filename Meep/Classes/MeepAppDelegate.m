@@ -81,7 +81,7 @@
 #pragma mark -
 #pragma mark UserManagerDelegate
 
-- (UserDTO *)getUserSuccessful {
+- (void)getUserSuccessful:(UserDTO *)user {
 	
 }
 

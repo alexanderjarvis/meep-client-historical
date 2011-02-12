@@ -13,8 +13,6 @@
 #import "ASIFormDataRequest.h"
 #import <objc/runtime.h>
 
-#import "MeepAppDelegate.h"
-
 #import <YAJL/YAJL.h>
 
 @implementation RegistrationManager

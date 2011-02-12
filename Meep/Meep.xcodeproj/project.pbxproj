@@ -67,6 +67,12 @@
 		FA5079D61303018600CB96B4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */; };
 		FA507B091303EF4000CB96B4 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B081303EF4000CB96B4 /* UserManager.m */; };
 		FA507B9C1304272500CB96B4 /* LogoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B9B1304272500CB96B4 /* LogoutManager.m */; };
+		FA7E15B51306A27E00CFAAF5 /* TestDictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E15B41306A27E00CFAAF5 /* TestDictionaryModelMapper.m */; };
+		FA7E16091306A66D00CFAAF5 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
+		FA7E16221306A86A00CFAAF5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* User.m */; };
+		FA7E16971306B86C00CFAAF5 /* ObjectWithId.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */; };
+		FA8C74101305C20D00FF1A99 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* User.m */; };
+		FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -413,6 +419,13 @@
 			remoteGlobalIDString = 66FE8C0F1264DBC3001E0674;
 			remoteInfo = "Three20UINavigatorUnitTests-Xcode3.2.2";
 		};
+		FA7E16011306A60100CFAAF5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1D6058900D05DD3D006BFB54 /* Meep */;
+			remoteInfo = Meep;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -517,6 +530,16 @@
 		FA507B9A1304272500CB96B4 /* LogoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutManager.h; sourceTree = "<group>"; };
 		FA507B9B1304272500CB96B4 /* LogoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutManager.m; sourceTree = "<group>"; };
 		FA507B9D13042A1300CB96B4 /* LogoutManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutManagerDelegate.h; sourceTree = "<group>"; };
+		FA7E15A81306A1CE00CFAAF5 /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7E15A91306A1CE00CFAAF5 /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
+		FA7E15B31306A27E00CFAAF5 /* TestDictionaryModelMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDictionaryModelMapper.h; sourceTree = "<group>"; };
+		FA7E15B41306A27E00CFAAF5 /* TestDictionaryModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDictionaryModelMapper.m; sourceTree = "<group>"; };
+		FA7E16951306B86C00CFAAF5 /* ObjectWithId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithId.h; sourceTree = "<group>"; };
+		FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithId.m; sourceTree = "<group>"; };
+		FA8C740E1305C20D00FF1A99 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		FA8C740F1305C20D00FF1A99 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		FA8C74381305C7A300FF1A99 /* DictionaryModelMapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = DictionaryModelMapper.h; sourceTree = "<group>"; };
+		FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryModelMapper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -546,6 +569,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA7E15A51306A1CE00CFAAF5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -570,6 +600,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* Meep.app */,
+				FA7E15A81306A1CE00CFAAF5 /* LogicTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -579,10 +610,12 @@
 			children = (
 				FA50767A1302F32E00CB96B4 /* External */,
 				080E96DDFE201D6D7F000001 /* Classes */,
+				FA7E159F13069F2D00CFAAF5 /* Tests */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				FA7E15A91306A1CE00CFAAF5 /* LogicTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -761,8 +794,12 @@
 		FA50769F1302F3CC00CB96B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				FA8C740E1305C20D00FF1A99 /* User.h */,
+				FA8C740F1305C20D00FF1A99 /* User.m */,
 				FA5076A01302F3CC00CB96B4 /* UserDTO.h */,
 				FA5076A11302F3CC00CB96B4 /* UserDTO.m */,
+				FA8C74381305C7A300FF1A99 /* DictionaryModelMapper.h */,
+				FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */,
 			);
 			name = Model;
 			path = Classes;
@@ -909,6 +946,17 @@
 			name = "New Meeting";
 			sourceTree = "<group>";
 		};
+		FA7E159F13069F2D00CFAAF5 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				FA7E16951306B86C00CFAAF5 /* ObjectWithId.h */,
+				FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */,
+				FA7E15B31306A27E00CFAAF5 /* TestDictionaryModelMapper.h */,
+				FA7E15B41306A27E00CFAAF5 /* TestDictionaryModelMapper.m */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -935,6 +983,25 @@
 			productName = Meep;
 			productReference = 1D6058910D05DD3D006BFB54 /* Meep.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FA7E15A71306A1CE00CFAAF5 /* LogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7E15AC1306A1CE00CFAAF5 /* Build configuration list for PBXNativeTarget "LogicTests" */;
+			buildPhases = (
+				FA7E15A31306A1CE00CFAAF5 /* Resources */,
+				FA7E15A41306A1CE00CFAAF5 /* Sources */,
+				FA7E15A51306A1CE00CFAAF5 /* Frameworks */,
+				FA7E15A61306A1CE00CFAAF5 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA7E16021306A60100CFAAF5 /* PBXTargetDependency */,
+			);
+			name = LogicTests;
+			productName = LogicTests;
+			productReference = FA7E15A81306A1CE00CFAAF5 /* LogicTests.octest */;
+			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
 
@@ -986,6 +1053,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* Meep */,
+				FA7E15A71306A1CE00CFAAF5 /* LogicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1306,7 +1374,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FA7E15A31306A1CE00CFAAF5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		FA7E15A61306A1CE00CFAAF5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\" 1> /tmp/RunUnitTests.out ";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -1343,6 +1434,19 @@
 				FA5079761302FF9300CB96B4 /* main.m in Sources */,
 				FA507B091303EF4000CB96B4 /* UserManager.m in Sources */,
 				FA507B9C1304272500CB96B4 /* LogoutManager.m in Sources */,
+				FA8C74101305C20D00FF1A99 /* User.m in Sources */,
+				FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7E15A41306A1CE00CFAAF5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7E15B51306A27E00CFAAF5 /* TestDictionaryModelMapper.m in Sources */,
+				FA7E16091306A66D00CFAAF5 /* DictionaryModelMapper.m in Sources */,
+				FA7E16221306A86A00CFAAF5 /* User.m in Sources */,
+				FA7E16971306B86C00CFAAF5 /* ObjectWithId.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1383,6 +1487,11 @@
 			isa = PBXTargetDependency;
 			name = Three20UI;
 			targetProxy = 320F2C48872C2E2C4DF86202 /* PBXContainerItemProxy */;
+		};
+		FA7E16021306A60100CFAAF5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1D6058900D05DD3D006BFB54 /* Meep */;
+			targetProxy = FA7E16011306A60100CFAAF5 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1461,6 +1570,66 @@
 			};
 			name = Release;
 		};
+		FA7E15AA1306A1CE00CFAAF5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		FA7E15AB1306A1CE00CFAAF5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1478,6 +1647,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA7E15AC1306A1CE00CFAAF5 /* Build configuration list for PBXNativeTarget "LogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA7E15AA1306A1CE00CFAAF5 /* Debug */,
+				FA7E15AB1306A1CE00CFAAF5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
