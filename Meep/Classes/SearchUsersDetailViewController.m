@@ -1,35 +1,67 @@
 //
-//  SearchUsersViewController.m
+//  SearchUsersDetailViewController.m
 //  Meep
 //
-//  Created by Alex Jarvis on 12/02/2011.
+//  Created by Alex Jarvis on 13/02/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SearchUsersViewController.h"
-#import "MeepAppDelegate.h"
-#import "SearchUsersManager.h"
-#import "User.h"
 #import "SearchUsersDetailViewController.h"
+#import "MeepAppDelegate.h"
 
-@implementation SearchUsersViewController
+@implementation SearchUsersDetailViewController
 
-@synthesize tableView;
-@synthesize searchDisplayController;
-@synthesize users;
+@synthesize user;
+@synthesize addUserRequestManager;
 
 #pragma mark -
 #pragma mark View lifecycle
 
+
 - (void)viewDidLoad {
-	self.title = @"Search People";
-	
-	searchDisplayController.delegate = self;
-	searchDisplayController.searchResultsDataSource = self;
-	searchDisplayController.searchResultsDelegate = self;
+	MeepAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+	NSString *accessToken = [[appDelegate configManager] access_token];
+	addUserRequestManager = [[AddUserRequestManager alloc] initWithAccessToken:accessToken];
+	[addUserRequestManager setDelegate:self];
 	
     [super viewDidLoad];
 }
+
+
+- (void)viewWillAppear:(BOOL)animated {
+	
+	self.title = @"Add Request";
+	
+    [super viewWillAppear:animated];
+}
+
+- (IBAction)requestAddUser {
+	NSLog(@"Request to Add user");
+	[addUserRequestManager addUserRequest:user];
+}
+
+/*
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+*/
+/*
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+*/
+/*
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+}
+*/
+/*
+// Override to allow orientations other than the default portrait orientation.
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+*/
 
 
 #pragma mark -
@@ -43,7 +75,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [users count];
+    return 1;
 }
 
 
@@ -59,15 +91,20 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    // Configure the cell...
-	NSLog(@"reloading data");
-	if ([users count] > 0) {
-		User *user = [users objectAtIndex:row];
-		cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    switch (row) {
+		case 0:
+			cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];		
+			break;
 	}
 	
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (section == 0) {
+		return @"Details";
+	}
+	return nil;
 }
 
 
@@ -123,11 +160,6 @@
 	 [self.navigationController pushViewController:detailViewController animated:YES];
 	 [detailViewController release];
 	 */
-	
-	SearchUsersDetailViewController *searchUsersDetailViewController = [[SearchUsersDetailViewController alloc] initWithNibName:@"SearchUsersDetailViewController" bundle:nil];
-	[searchUsersDetailViewController setUser:[users objectAtIndex:[indexPath row]]];
-	[self.navigationController pushViewController:searchUsersDetailViewController animated:YES];
-	[searchUsersDetailViewController release];
 }
 
 
@@ -148,44 +180,30 @@
 
 
 - (void)dealloc {
-	[searchDisplayController release];
-	[users release];
+	[user release];
+	[addUserRequestManager release];
     [super dealloc];
 }
 
 #pragma mark -
-#pragma mark UISearchBarDelegate methods
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
-	NSLog(@"SearchBar text: %@", [searchBar text]);
-	MeepAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	NSString *accessToken = [[appDelegate configManager] access_token];
-	SearchUsersManager *searchUsersManager = [[SearchUsersManager alloc] initWithAccessToken: accessToken];
-	[searchUsersManager setDelegate: self];
-	[searchUsersManager searchUsers:[searchBar text]];
+#pragma mark AddUserRequestManagerDelegate methods
+
+- (void)addUserRequestSuccessful {
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"Success"
+						  message:@"A request to connect has been sent successfully."
+						  delegate:self
+						  cancelButtonTitle:@"Ok" 
+						  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
-#pragma mark -
-#pragma mark SearchUsersManagerDelegate methods
-- (void)searchUsersSuccessful:(NSArray *)users {
-	NSLog(@"searchUsersSuccessful");
-	self.users = users;
-	[tableView reloadData];
-	[[searchDisplayController searchResultsTableView] reloadData];
+- (void)addUserRequestFailedWithError:(NSError *)error {
 }
 
-- (void)searchUsersNotFound {
-	self.users = [NSArray array];
-	[tableView reloadData];
-	[[searchDisplayController searchResultsTableView] reloadData];
+- (void)addUserRequestFailedWithNetworkError:(NSError *)error {
 }
-
-- (void)searchUsersFailedWithError:(NSError *)error {
-}
-
-- (void)searchUsersFailedWithNetworkError:(NSError *)error {
-}
-
-
 
 @end
 
