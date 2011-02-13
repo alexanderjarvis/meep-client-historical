@@ -11,10 +11,17 @@
 
 @interface SearchUsersViewController : UITableViewController <UISearchBarDelegate> {
 	
+	IBOutlet UITableView *tableView;
 	IBOutlet UISearchDisplayController *searchDisplayController;
+	
+	NSArray *users;
 
 }
 
+@property(nonatomic,retain) UITableView *tableView;
+
 @property (nonatomic, retain) UISearchDisplayController *searchDisplayController;
+
+@property (nonatomic, retain) NSArray *users;
 
 @end

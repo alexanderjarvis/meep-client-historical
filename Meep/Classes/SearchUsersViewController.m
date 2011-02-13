@@ -9,17 +9,23 @@
 #import "SearchUsersViewController.h"
 #import "MeepAppDelegate.h"
 #import "SearchUsersManager.h"
+#import "User.h"
 
 @implementation SearchUsersViewController
 
+@synthesize tableView;
 @synthesize searchDisplayController;
+@synthesize users;
 
 #pragma mark -
 #pragma mark View lifecycle
 
-
 - (void)viewDidLoad {
 	self.title = @"Search People";
+	
+	searchDisplayController.delegate = self;
+	searchDisplayController.searchResultsDataSource = self;
+	searchDisplayController.searchResultsDelegate = self;
 	
     [super viewDidLoad];
 }
@@ -36,12 +42,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return 1;
+    return [users count];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	NSUInteger row = [indexPath row];
     
     static NSString *CellIdentifier = @"Cell";
     
@@ -51,7 +59,12 @@
     }
     
     // Configure the cell...
-    
+	NSLog(@"reloading data");
+	if ([users count] > 0) {
+		User *user = [users objectAtIndex:row];
+		cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
+	}
+	
     return cell;
 }
 
@@ -129,6 +142,7 @@
 
 - (void)dealloc {
 	[searchDisplayController release];
+	[users release];
     [super dealloc];
 }
 
@@ -139,11 +153,22 @@
 	MeepAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
 	NSString *accessToken = [[appDelegate configManager] access_token];
 	SearchUsersManager *searchUsersManager = [[SearchUsersManager alloc] initWithAccessToken: accessToken];
+	[searchUsersManager setDelegate: self];
 	[searchUsersManager searchUsers:[searchBar text]];
 }
 
 
 - (void)searchUsersSuccessful:(NSArray *)users {
+	NSLog(@"searchUsersSuccessful");
+	self.users = users;
+	[tableView reloadData];
+	[[searchDisplayController searchResultsTableView] reloadData];
+}
+
+- (void)searchUsersNotFound {
+	self.users = [NSArray array];
+	[tableView reloadData];
+	[[searchDisplayController searchResultsTableView] reloadData];
 }
 
 - (void)searchUsersFailedWithError:(NSError *)error {

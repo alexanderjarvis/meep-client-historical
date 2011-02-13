@@ -14,9 +14,6 @@
 
 + (id)createObject:(NSObject *)object fromDictionary:(NSDictionary *)dictionary;
 
-/*
- * note - requires object to implement the NSCopying protocol
- */
 + (NSArray *)createArrayOfObjects:(NSObject *)object fromArrayOfDictionaries:(NSArray *)dictionaries;
 
 + (NSArray *)propertiesFromObject:(NSObject *)object;

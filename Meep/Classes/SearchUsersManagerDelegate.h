@@ -14,6 +14,8 @@
 
 - (void)searchUsersSuccessful:(NSArray *)users;
 
+- (void)searchUsersNotFound;
+
 - (void)searchUsersFailedWithError:(NSError *)error;
 
 - (void)searchUsersFailedWithNetworkError:(NSError *)error;

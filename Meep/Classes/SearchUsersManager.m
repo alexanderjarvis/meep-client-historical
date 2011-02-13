@@ -9,6 +9,8 @@
 #import "SearchUsersManager.h"
 #import "MeepAppDelegate.h"
 #import "ASIHTTPRequest.h"
+#import "DictionaryModelMapper.h"
+#import "User.h"
 
 @implementation SearchUsersManager
 
@@ -47,8 +49,15 @@
 	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
 	
 	if ([request responseStatusCode] == 200) {
-		//[delegate searchUsersSuccessful:
 		
+		NSArray *arrayOfUserDictionaries = [responseString yajl_JSON];
+		
+		User *emptyUser = [[User alloc] init];
+		NSArray *arrayOfUsers = [DictionaryModelMapper createArrayOfObjects:emptyUser fromArrayOfDictionaries:arrayOfUserDictionaries];
+		[delegate searchUsersSuccessful:arrayOfUsers];
+		
+	} else if ([request responseStatusCode] == 404) {
+		[delegate searchUsersNotFound];
 	} else {
 		[delegate searchUsersFailedWithError:
 		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];

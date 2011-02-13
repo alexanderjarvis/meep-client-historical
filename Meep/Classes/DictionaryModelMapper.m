@@ -39,7 +39,7 @@
 	NSMutableArray *arrayOfObjects = [NSMutableArray arrayWithCapacity:[dictionaries count]];
 	
 	for (NSDictionary *dictionary in dictionaries) {
-		id tmpObject = [self createObject:[object copy] fromDictionary:dictionary];
+		id tmpObject = [self createObject:[[[object class] allocWithZone:nil] init] fromDictionary:dictionary];
 		[arrayOfObjects addObject:tmpObject];
 	}
 	

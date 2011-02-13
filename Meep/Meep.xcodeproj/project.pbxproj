@@ -829,12 +829,12 @@
 		FA5076AB1302F3CC00CB96B4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E16DD1306E58A00CFAAF5 /* Search Users */,
 				FA5076B51302F3CC00CB96B4 /* MenuNavigationController.h */,
 				FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */,
 				FA5076B71302F3CC00CB96B4 /* MenuViewController.h */,
 				FA5076B81302F3CC00CB96B4 /* MenuViewController.m */,
 				FA5076AC1302F3CC00CB96B4 /* New Meeting */,
+				FA7E16DD1306E58A00CFAAF5 /* Search Users */,
 				FA5076B91302F3CC00CB96B4 /* Welcome */,
 			);
 			name = ViewControllers;
