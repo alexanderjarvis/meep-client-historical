@@ -13,6 +13,7 @@
 
 @implementation RegisterViewController
 
+@synthesize HUD;
 @synthesize emailCell;
 @synthesize passwordCell;
 @synthesize firstNameCell;
@@ -84,6 +85,7 @@
 }
 
 - (void)dealloc {
+	[HUD release];
 	[registrationManager release];
 	
 	[emailCell release];

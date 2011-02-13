@@ -27,6 +27,7 @@
 	CustomCellTextField *selectedCell;
 }
 
+@property (nonatomic, retain) MBProgressHUD *HUD;
 @property (nonatomic, retain) CustomCellTextField *emailCell;
 @property (nonatomic, retain) CustomCellTextField *passwordCell;
 

@@ -46,11 +46,18 @@
 }
 
 - (void)showWelcomeView {
+	
 	if (welcomeNavigationController == nil) {
 		welcomeNavigationController = [[WelcomeNavigationController alloc] init];
 	}
 	[window addSubview:welcomeNavigationController.view];
 	[menuNavigationController.view removeFromSuperview];
+	
+	// When logging out, it's important to clear all resources of the main applicaton view between users
+	if (menuNavigationController != nil) {
+		[menuNavigationController release];
+		menuNavigationController = nil;
+	}
 }
 
 - (void)showMenuView {

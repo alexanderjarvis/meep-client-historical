@@ -12,6 +12,7 @@
 
 @implementation LoginViewController
 
+@synthesize HUD;
 @synthesize emailCell;
 @synthesize passwordCell;
 
@@ -38,7 +39,6 @@
 - (void)viewDidUnload {
     [super viewDidUnload];
 	
-	[HUD release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -74,6 +74,8 @@
 }
 
 - (void)dealloc {
+	[HUD release];
+	[loginManager release];
 	[emailCell release];
 	[passwordCell release];
 	
