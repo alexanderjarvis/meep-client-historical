@@ -8,18 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AccessTokenRequestManager.h"
 #import "SearchUsersManagerDelegate.h"
 
-@interface SearchUsersManager : NSObject {
+@interface SearchUsersManager : AccessTokenRequestManager {
 	id <SearchUsersManagerDelegate> delegate;
-	
-	NSString *accessToken;
 }
 
 @property (assign, nonatomic) id delegate;
-@property (nonatomic, copy) NSString *accessToken;
 
-- (id)initWithAccessToken:(NSString *)accessToken;
 - (void)searchUsers:(NSString *)searchString;
 
 @end

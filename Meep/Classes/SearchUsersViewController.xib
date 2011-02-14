@@ -50,7 +50,7 @@
 						<int key="IBUIContentMode">3</int>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<string key="IBPrompt"/>
-						<string key="IBPlaceholder">search</string>
+						<string key="IBPlaceholder">Search</string>
 						<object class="IBUITextInputTraits" key="IBTextInputTraits">
 							<int key="IBUIAutocapitalizationType">1</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>

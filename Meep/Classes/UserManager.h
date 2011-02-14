@@ -8,20 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AccessTokenRequestManager.h"
 #import "UserManagerDelegate.h"
 
-@interface UserManager : NSObject {
-	
+@interface UserManager : AccessTokenRequestManager {
 	id <UserManagerDelegate> delegate;
-	
-	NSString *accessToken;
-	
 }
 
 @property (assign, nonatomic) id delegate;
-@property (nonatomic, copy) NSString *accessToken;
 
-- (id)initWithAccessToken:(NSString *)accessToken;
 - (void)getUser:(NSString *)userid;
 
 @end

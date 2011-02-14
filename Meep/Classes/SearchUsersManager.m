@@ -15,12 +15,6 @@
 @implementation SearchUsersManager
 
 @synthesize delegate;
-@synthesize accessToken;
-
-- (id)initWithAccessToken:(NSString *)accessToken {
-	self.accessToken = accessToken;
-	return self;
-}
 
 - (void)searchUsers:(NSString *)searchString {
 	
@@ -75,7 +69,6 @@
 }
 
 - (void)dealloc {
-	[accessToken release];
 	[super dealloc];
 }
 

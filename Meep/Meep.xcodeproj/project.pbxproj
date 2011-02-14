@@ -19,6 +19,7 @@
 		FA331E75130997D9000763D4 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
 		FA331E76130997DD000763D4 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		FA331E7A130997F0000763D4 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A5A189C235877202780D4 /* libThree20Network.a */; };
+		FA331EFA1309A5B8000763D4 /* AccessTokenRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */; };
 		FA5076C41302F3CC00CB96B4 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076971302F3CC00CB96B4 /* ConfigManager.m */; };
 		FA5076C51302F3CC00CB96B4 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA50769A1302F3CC00CB96B4 /* LoginManager.m */; };
 		FA5076C61302F3CC00CB96B4 /* RegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA50769D1302F3CC00CB96B4 /* RegistrationManager.m */; };
@@ -449,6 +450,8 @@
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../../three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Meep-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meep-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		FA331EF81309A5B8000763D4 /* AccessTokenRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTokenRequestManager.h; sourceTree = "<group>"; };
+		FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTokenRequestManager.m; sourceTree = "<group>"; };
 		FA5076961302F3CC00CB96B4 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigManager.h; path = Classes/ConfigManager.h; sourceTree = SOURCE_ROOT; };
 		FA5076971302F3CC00CB96B4 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigManager.m; path = Classes/ConfigManager.m; sourceTree = SOURCE_ROOT; };
 		FA5076991302F3CC00CB96B4 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginManager.h; path = Classes/LoginManager.h; sourceTree = SOURCE_ROOT; };
@@ -792,6 +795,8 @@
 		FA5076981302F3CC00CB96B4 /* Request Managers */ = {
 			isa = PBXGroup;
 			children = (
+				FA331EF81309A5B8000763D4 /* AccessTokenRequestManager.h */,
+				FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */,
 				FA7D0BA7130834C200AD7E31 /* AddUserRequestManager.h */,
 				FA7D0BA8130834C200AD7E31 /* AddUserRequestManager.m */,
 				FA7D0BD71308369400AD7E31 /* AddUserRequestManagerDelegate.h */,
@@ -1488,6 +1493,7 @@
 				FA7E17D613073C7300CFAAF5 /* SearchUsersManager.m in Sources */,
 				FA7D0B721307F32100AD7E31 /* SearchUsersDetailViewController.m in Sources */,
 				FA7D0BA9130834C200AD7E31 /* AddUserRequestManager.m in Sources */,
+				FA331EFA1309A5B8000763D4 /* AccessTokenRequestManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

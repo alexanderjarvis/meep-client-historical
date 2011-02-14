@@ -8,19 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#import "AccessTokenRequestManager.h"
 #import "LogoutManagerDelegate.h"
 
-@interface LogoutManager : NSObject {
+@interface LogoutManager : AccessTokenRequestManager {
 	
 	id <LogoutManagerDelegate> delegate;
-	NSString *accessToken;
 
 }
 
 @property (assign, nonatomic) id delegate;
-@property (nonatomic, copy) NSString *accessToken;
 
 - (void)logoutUser;
-- (id)initWithAccessToken:(NSString *)accessToken;
 
 @end

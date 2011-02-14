@@ -10,18 +10,11 @@
 
 #import "MeepAppDelegate.h"
 
-#import <objc/runtime.h>
 #import "ASIHTTPRequest.h"
 
 @implementation LogoutManager
 
 @synthesize delegate;
-@synthesize accessToken;
-
-- (id)initWithAccessToken:(NSString *)accessToken {
-	self.accessToken = accessToken;
-	return self;
-}
 
 - (void)logoutUser {
 	

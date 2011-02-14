@@ -13,12 +13,6 @@
 @implementation UserManager
 
 @synthesize delegate;
-@synthesize accessToken;
-
-- (id)initWithAccessToken:(NSString *)accessToken {
-	self.accessToken = accessToken;
-	return self;
-}
 
 - (void)getUser:(NSString *)userid {
 	
@@ -66,7 +60,6 @@
 }
 
 - (void)dealloc {
-	[accessToken release];
 	[super dealloc];
 }
 

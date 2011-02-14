@@ -13,12 +13,6 @@
 @implementation AddUserRequestManager
 
 @synthesize delegate;
-@synthesize accessToken;
-
-- (id)initWithAccessToken:(NSString *)accessToken {
-	self.accessToken = accessToken;
-	return self;
-}
 
 - (void)addUserRequest:(User *)user {
 	
@@ -68,7 +62,6 @@
 
 
 - (void)dealloc {
-	[accessToken release];
 	[super dealloc];
 }
 
