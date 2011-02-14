@@ -45,13 +45,13 @@
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
 	
-	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
-	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
+	NSLog(@"Response status code: %d", [request responseStatusCode]);
+	NSLog(@"Response: %@", [request responseString]);
 	
 	if ([request responseStatusCode] == 200) {
 		
 		// Store the access token
-		NSString *accessToken = [request responseString];
+		NSString *accessToken = responseString;
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 		[[meepAppDelegate configManager] setAccess_token: accessToken];
 		
@@ -67,10 +67,10 @@
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	NSError *error = [request error];
 	
-	NSLog([error localizedDescription]);
+	NSLog(@"Request failed with Error: %@", [error localizedDescription]);
 	
-	NSLog([NSString stringWithFormat:@"Response status code: %d", [request responseStatusCode]]);
-	NSLog([NSString stringWithFormat:@"Response: %@", [request responseString]]);
+	NSLog(@"Response status code: %d", [request responseStatusCode]);
+	NSLog(@"Response: %@", [request responseString]);
 	
 	[delegate loginFailedWithNetworkError:error];
 }

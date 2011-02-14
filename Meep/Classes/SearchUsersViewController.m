@@ -14,7 +14,6 @@
 
 @implementation SearchUsersViewController
 
-@synthesize tableView;
 @synthesize searchDisplayController;
 @synthesize users;
 
@@ -24,7 +23,6 @@
 - (void)viewDidLoad {
 	self.title = @"Search People";
 	
-	searchDisplayController.delegate = self;
 	searchDisplayController.searchResultsDataSource = self;
 	searchDisplayController.searchResultsDelegate = self;
 	
@@ -169,13 +167,13 @@
 - (void)searchUsersSuccessful:(NSArray *)users {
 	NSLog(@"searchUsersSuccessful");
 	self.users = users;
-	[tableView reloadData];
+	[[super tableView] reloadData];
 	[[searchDisplayController searchResultsTableView] reloadData];
 }
 
 - (void)searchUsersNotFound {
 	self.users = [NSArray array];
-	[tableView reloadData];
+	[[super tableView] reloadData];
 	[[searchDisplayController searchResultsTableView] reloadData];
 }
 

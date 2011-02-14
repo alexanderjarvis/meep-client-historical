@@ -16,8 +16,6 @@
 
 @interface RegisterViewController : UITableViewController {
 	
-	IBOutlet UITableView *tableView;
-	
 	MBProgressHUD *HUD;
 	
 	RegistrationManager *registrationManager;

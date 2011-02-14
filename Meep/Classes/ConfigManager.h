@@ -16,6 +16,8 @@
 
 // The host for the web service
 #define kUrl @"http://localhost:9000/"
+//#define kUrl @"http://95.142.175.1/"
+
 
 @interface ConfigManager : NSObject {
 	

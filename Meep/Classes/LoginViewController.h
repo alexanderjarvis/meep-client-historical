@@ -13,9 +13,7 @@
 #import "LoginManager.h"
 #import "CustomCellTextField.h"
 
-@interface LoginViewController : UIViewController {
-	
-	IBOutlet UITableView *tableView;
+@interface LoginViewController : UITableViewController {
 	
 	MBProgressHUD *HUD;
 	
