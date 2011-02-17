@@ -18,6 +18,11 @@
 @synthesize lastName;
 @synthesize mobileNumber;
 @synthesize connections;
+@synthesize _type_connections;
+@synthesize connectionRequestsTo;
+@synthesize _type_connectionRequestsTo;
+@synthesize connectionRequestsFrom;
+@synthesize _type_connectionRequestsFrom;
 
 - (void) dealloc {
 	[_id release];
@@ -27,6 +32,11 @@
 	[lastName release];
 	[mobileNumber release];
 	[connections release];
+	[_type_connections release];
+	[connectionRequestsTo release];
+	[_type_connectionRequestsTo release];
+	[connectionRequestsFrom release];
+	[_type_connectionRequestsFrom release];
 	[super dealloc];
 }
 

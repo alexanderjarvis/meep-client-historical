@@ -18,7 +18,11 @@
 	NSString *lastName;
 	NSString *mobileNumber;
 	NSArray *connections;
-	
+	User *_type_connections;
+	NSArray *connectionRequestsTo;
+	User *_type_connectionRequestsTo;
+	NSArray *connectionRequestsFrom;
+	User *_type_connectionRequestsFrom;
 }
 
 @property (nonatomic, copy) NSString *_id;
@@ -28,5 +32,10 @@
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSString *mobileNumber;
 @property (nonatomic, retain) NSArray *connections;
+@property (nonatomic, retain) User *_type_connections;
+@property (nonatomic, retain) NSArray *connectionRequestsTo;
+@property (nonatomic, retain) User *_type_connectionRequestsTo;
+@property (nonatomic, retain) NSArray *connectionRequestsFrom;
+@property (nonatomic, retain) User *_type_connectionRequestsFrom;
 
 @end

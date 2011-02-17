@@ -16,8 +16,10 @@
 	
 	dictionary = [self manipulateDictionaryKeysForLanguageKeywords:dictionary];
 	
+	id resultObject = [[[object class] allocWithZone:nil] init];
+	
 	// Get the properties of the object from the Objective C runtime
-	NSArray *properties = [self propertiesFromObject:object];
+	NSArray *properties = [self propertiesFromObject:resultObject];
 	
 	NSLog(@"properties: %@", properties);
 	
@@ -27,11 +29,24 @@
 		NSString *value = [dictionary valueForKey:key];
 		if (value != nil) {
 			NSLog(@"setValue: %@ forKey: %@", value, key);
-			[object setValue:value forKey:key];
+			// Determine if the object is an Array of other objects
+			id objectType = [resultObject performSelector:NSSelectorFromString(key)];
+			if ([objectType isKindOfClass:[NSArray class]]) {
+				NSLog(@"object is NSArray");
+				// get type from matching _type_ property
+				NSString *typeString = [NSString stringWithFormat:@"_type_", key];
+				objectType = [resultObject performSelector:NSSelectorFromString(typeString)];
+				NSArray *arrayOfObjects = [self createArrayOfObjects:objectType fromArrayOfDictionaries:value];
+				[resultObject setValue:arrayOfObjects forKey:key];
+				
+			} else {
+				// If not an array, then set the value of the property
+				[resultObject setValue:value forKey:key];
+			}
 		}
 	}
 	
-	return object;
+	return resultObject;
 }
 
 + (NSArray *)createArrayOfObjects:(NSObject *)object fromArrayOfDictionaries:(NSArray *)dictionaries {

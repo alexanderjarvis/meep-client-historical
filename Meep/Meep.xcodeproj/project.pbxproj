@@ -80,6 +80,7 @@
 		FA7E17D613073C7300CFAAF5 /* SearchUsersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */; };
 		FA8C74101305C20D00FF1A99 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* User.m */; };
 		FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
+		FACFDFEA130D6F7600F6000A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5076D81302F3EA00CB96B4 /* Icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1424,6 +1425,7 @@
 				FA5079D61303018600CB96B4 /* WelcomeViewController.xib in Resources */,
 				FA7E179713070FDA00CFAAF5 /* SearchUsersViewController.xib in Resources */,
 				FA7D0B731307F32100AD7E31 /* SearchUsersDetailViewController.xib in Resources */,
+				FACFDFEA130D6F7600F6000A /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

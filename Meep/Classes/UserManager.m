@@ -9,6 +9,8 @@
 #import "UserManager.h"
 #import "MeepAppDelegate.h"
 #import "ASIHTTPRequest.h"
+#import "DictionaryModelMapper.h"
+#import "User.h"
 
 @implementation UserManager
 
@@ -42,6 +44,12 @@
 	NSLog(@"Response: %@", [request responseString]);
 	
 	if ([request responseStatusCode] == 200) {
+		
+		User *emptyUser = [[User alloc] init];
+		User *user = [DictionaryModelMapper createObject:emptyUser fromDictionary:[responseString yajl_JSON]];
+		[emptyUser release];
+		
+		[delegate getUserSuccessful:user];
 		
 	} else {
 		[delegate getUserFailedWithError:

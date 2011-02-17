@@ -14,10 +14,16 @@
 
 @implementation MenuViewController
 
+@synthesize currentUser;
+
 #pragma mark -
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	ConfigManager *configManager = [meepAppDelegate configManager];
+	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
+	[userManager setDelegate: self];
 
 	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
 																	style:UIBarButtonSystemItemDone
@@ -63,38 +69,22 @@
 									  URL: SearchUsersURL];
 	[launcherView addItem:item animated:NO];
 	
-	//item.badgeNumber = 7;
+	connectionRequestsItem = [[TTLauncherItem alloc] initWithTitle: @"Friend Requests"
+															 image: @"bundle://Icon.png"
+															   URL: ConnectionRequestsURL];
+	[launcherView addItem:connectionRequestsItem animated:NO];
+	
 	TT_RELEASE_SAFELY(item);
 	[self.view addSubview:launcherView];
 	
 	[super viewDidLoad];
 }
 
-#pragma mark -
-#pragma mark TTLauncherViewDelegate
-
-- (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item {
-	NSLog(@"Item selected");
-	
+- (void)viewDidAppear:(BOOL)animated {
+	// Get the current user
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	
-	if ([item.URL isEqualToString:NewMeetingURL]) {
-		NSLog(@"New meeting");
-		[meepAppDelegate.menuNavigationController showNewMeetingLocation];
-	} else if ([item.URL isEqualToString:SearchUsersURL]) {
-		NSLog(@"New meeting");
-		[meepAppDelegate.menuNavigationController showSearchUsers];
-	}
-}
-
-- (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher {
-	//[self.navigationItem setRightBarButtonItem:[[[UIBarButtonItem alloc]
-	//											 initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-	//											 target:_launcherView action:@selector(endEditing)] autorelease] animated:YES];
-}
-
-- (void)launcherViewDidEndEditing:(TTLauncherView*)launcher {
-	//[self.navigationItem setRightBarButtonItem:nil animated:YES];
+	ConfigManager *configManager = [meepAppDelegate configManager];
+	[userManager getUser:configManager.email];
 }
 
 
@@ -128,7 +118,54 @@
 }
 
 - (void)dealloc {
+	[currentUser release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark TTLauncherViewDelegate
+
+- (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item {
+	NSLog(@"Item selected");
+	
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	
+	if ([item.URL isEqualToString:NewMeetingURL]) {
+		NSLog(@"New meeting");
+		[meepAppDelegate.menuNavigationController showNewMeetingLocation];
+	} else if ([item.URL isEqualToString:SearchUsersURL]) {
+		NSLog(@"Search peoplewill");
+		[meepAppDelegate.menuNavigationController showSearchUsers];
+	}
+}
+
+- (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher {
+	//[self.navigationItem setRightBarButtonItem:[[[UIBarButtonItem alloc]
+	//											 initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+	//											 target:_launcherView action:@selector(endEditing)] autorelease] animated:YES];
+}
+
+- (void)launcherViewDidEndEditing:(TTLauncherView*)launcher {
+	//[self.navigationItem setRightBarButtonItem:nil animated:YES];
+}
+
+#pragma mark -
+#pragma mark UserManagerDelegate
+
+- (void)getUserSuccessful:(User *)user {
+	NSLog(@"Get user successful");
+	self.currentUser = user;
+	connectionRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
+	NSLog(@"connectionRequestsFrom count: %u", [[user connectionRequestsFrom] count]);
+}
+
+- (void)getUserFailedWithError:(NSError *)error {
+	[self showWelcomeView];
+	
+}
+
+- (void)getUserFailedWithNetworkError:(NSError *)error {
+	[self showWelcomeView];
 }
 
 #pragma mark -

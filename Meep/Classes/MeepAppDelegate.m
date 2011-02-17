@@ -13,6 +13,8 @@
 
 #import <YAJL/YAJL.h>
 
+#import "User.h"
+
 @implementation MeepAppDelegate
 
 @synthesize window;
@@ -29,12 +31,7 @@
 	// If the application has run before
 	if (![configManager.access_token isEqualToString:@""]) {
 		
-		// Check access token
-		UserManager *userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
-		[userManager setDelegate: self];
-		[userManager getUser:configManager.email];
-		
-		// If successful, show menu view
+		// Show menu view
 		[self showMenuView];
 		
 	} else {
@@ -66,6 +63,8 @@
 	}
 	[window addSubview:menuNavigationController.view];
 	[welcomeNavigationController.view removeFromSuperview];
+	
+	
 }
 
 - (void)dealloc {
@@ -83,22 +82,6 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
 	[configManager saveConfig];
-}
-
-#pragma mark -
-#pragma mark UserManagerDelegate
-
-- (void)getUserSuccessful:(UserDTO *)user {
-	
-}
-
-- (void)getUserFailedWithError:(NSError *)error {
-	[self showWelcomeView];
-
-}
-
-- (void)getUserFailedWithNetworkError:(NSError *)error {
-	[self showWelcomeView];
 }
 
 
