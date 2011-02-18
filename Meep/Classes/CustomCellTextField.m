@@ -1,9 +1,9 @@
 //
 //  CustomCellTextField.m
-//  Minutes
+//  Meep
 //
-//  Created by Alex Jarvis on 10/01/2010.
-//  Copyright 2010 AppSoup. All rights reserved.
+//  Created by Alex Jarvis on 17/02/2011.
+//  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "CustomCellTextField.h"

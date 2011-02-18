@@ -13,6 +13,7 @@
 #import "NewMeetingDateAndTimeController.h"
 #import "NewMeetingPeopleController.h"
 #import "SearchUsersViewController.h"
+#import "UserRequestsViewController.h"
 
 @interface MenuNavigationController : UINavigationController {
 	
@@ -23,7 +24,7 @@
 	NewMeetingPeopleController *newMeetingPeopleController;
 	
 	SearchUsersViewController *searchUsersViewController;
-	
+	UserRequestsViewController *userRequestsViewController;
 
 }
 
@@ -32,12 +33,14 @@
 @property(nonatomic, retain) NewMeetingDateAndTimeController *newMeetingDateAndTimeController;
 @property(nonatomic, retain) NewMeetingPeopleController *newMeetingPeopleController;
 @property(nonatomic, retain) SearchUsersViewController *searchUsersViewController;
+@property(nonatomic, retain) UserRequestsViewController *userRequestsViewController;
 
 - (void)showNewMeetingLocation;
 - (void)showNewMeetingDateAndTime;
 - (void)showNewMeetingPeople;
 
 - (void)showSearchUsers;
+- (void)showUserRequests;
 
 - (void)showNetworkAlert:(NSError *)error;
 

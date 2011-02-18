@@ -7,7 +7,7 @@
 //
 
 #import "User.h"
-
+#import "UserSummary.h"
 
 @implementation User
 
@@ -23,6 +23,18 @@
 @synthesize _type_connectionRequestsTo;
 @synthesize connectionRequestsFrom;
 @synthesize _type_connectionRequestsFrom;
+
+-(id)init {
+	if (self == [super init]) {
+		self.connections = [[NSArray alloc] init];
+		self._type_connections = [[UserSummary alloc] init];
+		self.connectionRequestsTo = [[NSArray alloc] init];
+		self._type_connectionRequestsTo = [[UserSummary alloc] init];
+		self.connectionRequestsFrom = [[NSArray alloc] init];
+		self._type_connectionRequestsFrom = [[UserSummary alloc] init];
+	}
+	return self;
+}
 
 - (void) dealloc {
 	[_id release];

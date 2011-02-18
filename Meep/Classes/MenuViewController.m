@@ -71,7 +71,7 @@
 	
 	connectionRequestsItem = [[TTLauncherItem alloc] initWithTitle: @"Friend Requests"
 															 image: @"bundle://Icon.png"
-															   URL: ConnectionRequestsURL];
+															   URL: UserRequestsURL];
 	[launcherView addItem:connectionRequestsItem animated:NO];
 	
 	TT_RELEASE_SAFELY(item);
@@ -126,16 +126,15 @@
 #pragma mark TTLauncherViewDelegate
 
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item {
-	NSLog(@"Item selected");
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	
 	if ([item.URL isEqualToString:NewMeetingURL]) {
-		NSLog(@"New meeting");
 		[meepAppDelegate.menuNavigationController showNewMeetingLocation];
 	} else if ([item.URL isEqualToString:SearchUsersURL]) {
-		NSLog(@"Search peoplewill");
 		[meepAppDelegate.menuNavigationController showSearchUsers];
+	} else if ([item.URL isEqualToString:UserRequestsURL]) {
+		[meepAppDelegate.menuNavigationController showUserRequests];
 	}
 }
 

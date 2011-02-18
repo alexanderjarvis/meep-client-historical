@@ -15,7 +15,7 @@
 
 #define NewMeetingURL @"mp://newmeeting"
 #define SearchUsersURL @"mp://searchusers"
-#define ConnectionRequestsURL @"mp://connectionrequests"
+#define UserRequestsURL @"mp://userrequests"
 
 @interface MenuViewController : TTViewController <TTLauncherViewDelegate> {
 	

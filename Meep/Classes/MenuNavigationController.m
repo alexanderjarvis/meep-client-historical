@@ -16,6 +16,7 @@
 @synthesize newMeetingDateAndTimeController;
 @synthesize newMeetingPeopleController;
 @synthesize searchUsersViewController;
+@synthesize userRequestsViewController;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -33,7 +34,6 @@
 	if (newMeetingLocationController == nil) {
 		self.newMeetingLocationController = [[NewMeetingLocationController alloc] initWithNibName:@"NewMeetingLocationController" bundle:nil];
 	}
-	
 	[self pushViewController:newMeetingLocationController animated:YES];
 }
 
@@ -41,7 +41,6 @@
 	if (newMeetingDateAndTimeController == nil) {
 		self.newMeetingDateAndTimeController = [[NewMeetingDateAndTimeController alloc] initWithNibName:@"NewMeetingDateAndTimeController" bundle:nil];
 	}
-	
 	[self pushViewController:newMeetingDateAndTimeController animated:YES];
 }
 
@@ -49,7 +48,6 @@
 	if (newMeetingPeopleController == nil) {
 		self.newMeetingPeopleController = [[NewMeetingPeopleController alloc] initWithNibName:@"NewMeetingPeopleController" bundle:nil];
 	}
-	
 	[self pushViewController:newMeetingPeopleController animated:YES];
 }
 
@@ -57,8 +55,14 @@
 	if (searchUsersViewController == nil) {
 		self.searchUsersViewController = [[SearchUsersViewController alloc] initWithNibName:@"SearchUsersViewController" bundle:nil];
 	}
-	
 	[self pushViewController:searchUsersViewController animated:YES];
+}
+
+- (void)showUserRequests {
+	if (userRequestsViewController == nil) {
+		self.userRequestsViewController = [[UserRequestsViewController alloc] initWithNibName:@"UserRequestsViewController" bundle:nil];
+	}
+	[self pushViewController:userRequestsViewController animated:YES];
 }
 
 - (void)showNetworkAlert:(NSError *)error {
@@ -87,17 +91,16 @@
     // For example: self.myOutlet = nil;
 }
 
-
 - (void)dealloc {
 	[menuViewController release];
 	[newMeetingLocationController release];
 	[newMeetingDateAndTimeController release];
 	[newMeetingPeopleController release];
 	[searchUsersViewController release];
+	[userRequestsViewController release];
 	
     [super dealloc];
 }
-
 
 @end
 

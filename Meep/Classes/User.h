@@ -38,4 +38,6 @@
 @property (nonatomic, retain) NSArray *connectionRequestsFrom;
 @property (nonatomic, retain) User *_type_connectionRequestsFrom;
 
+-(id)init;
+
 @end

@@ -26,22 +26,24 @@
 	// For all of the properties that the object holds, set the values from the dictionary
 	for (int i = 0; i < [properties count]; i++) {
 		NSString *key = [properties objectAtIndex:i];
-		NSString *value = [dictionary valueForKey:key];
+		NSObject *value = [dictionary objectForKey:key];
 		if (value != nil) {
 			NSLog(@"setValue: %@ forKey: %@", value, key);
-			// Determine if the object is an Array of other objects
-			id objectType = [resultObject performSelector:NSSelectorFromString(key)];
-			if ([objectType isKindOfClass:[NSArray class]]) {
-				NSLog(@"object is NSArray");
-				// get type from matching _type_ property
-				NSString *typeString = [NSString stringWithFormat:@"_type_", key];
-				objectType = [resultObject performSelector:NSSelectorFromString(typeString)];
-				NSArray *arrayOfObjects = [self createArrayOfObjects:objectType fromArrayOfDictionaries:value];
-				[resultObject setValue:arrayOfObjects forKey:key];
+			if ([resultObject respondsToSelector:NSSelectorFromString(key)]) {
 				
-			} else {
-				// If not an array, then set the value of the property
-				[resultObject setValue:value forKey:key];
+				// Determine if the object is an Array of other objects
+				id objectType = [resultObject valueForKey:key];
+				if ([objectType isKindOfClass:[NSArray class]]) {
+					// get type from matching _type_ property
+					NSString *typeString = [NSString stringWithFormat:@"_type_%@", key];
+					objectType = [resultObject valueForKey:typeString];
+					NSArray *arrayOfObjects = [self createArrayOfObjects:objectType fromArrayOfDictionaries:value];
+					[resultObject setValue:arrayOfObjects forKey:key];
+				} else {
+					// If not an array, then set the value of the property
+					[resultObject setValue:value forKey:key];
+				}
+				
 			}
 		}
 	}
