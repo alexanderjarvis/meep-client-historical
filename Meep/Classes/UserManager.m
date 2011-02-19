@@ -58,7 +58,7 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
-	[delegate getUserFailedWithError:[[request error] localizedDescription]];
+	[delegate getUserFailedWithNetworkError:[request error]];
 }
 
 - (void)dealloc {

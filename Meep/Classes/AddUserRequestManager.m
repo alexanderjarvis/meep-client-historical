@@ -42,14 +42,16 @@
 	if ([request responseStatusCode] == 200) {
 		[delegate addUserRequestSuccessful];
 	} else {
-		[delegate addUserRequestFailedWithError:
-		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
+		[delegate addUserRequestFailedWithError:[NSError errorWithDomain:[request responseString] 
+																	code:[request responseStatusCode] 
+																userInfo:nil]];
 	}
 	
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
+	[delegate addUserRequestFailedWithNetworkError:[request error]];
 }
 
 

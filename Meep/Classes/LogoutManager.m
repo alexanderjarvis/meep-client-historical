@@ -43,8 +43,9 @@
 	if ([request responseStatusCode] == 200) {
 		[delegate logoutUserSuccessful];
 	} else {
-		[delegate logoutUserFailedWithError:
-		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
+		[delegate logoutUserFailedWithError:[NSError errorWithDomain:[request responseString] 
+																code:[request responseStatusCode] 
+															userInfo:nil]];
 	}
 }
 

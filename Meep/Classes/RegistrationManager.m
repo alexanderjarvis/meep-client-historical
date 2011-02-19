@@ -83,9 +83,7 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	
 	[super requestFailed:request];
-	
 	[delegate userRegistrationFailedWithNetworkError:[request error]];
 }
 

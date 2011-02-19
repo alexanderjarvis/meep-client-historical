@@ -45,14 +45,16 @@
 	if ([request responseStatusCode] == 200) {
 		[delegate declineUserSuccessful:[[request userInfo] objectForKey:userKey]];
 	} else {
-		[delegate declineUserFailedWithError:
-		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
+		[delegate declineUserFailedWithError:[NSError errorWithDomain:[request responseString] 
+																 code:[request responseStatusCode] 
+															 userInfo:nil]];
 	}
 	
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
+	[delegate declineUserFailedWithNetworkError:[request error]];
 }
 
 

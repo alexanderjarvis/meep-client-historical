@@ -51,14 +51,16 @@
 	} else if ([request responseStatusCode] == 404) {
 		[delegate searchUsersNotFound];
 	} else {
-		[delegate searchUsersFailedWithError:
-		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
+		[delegate searchUsersFailedWithError:[NSError errorWithDomain:[request responseString] 
+																 code:[request responseStatusCode]
+															 userInfo:nil]];
 	}
 	
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
+	[delegate searchUsersFailedWithNetworkError:[request error]];
 }
 
 - (void)dealloc {
