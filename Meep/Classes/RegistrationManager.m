@@ -6,14 +6,12 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "RegistrationManager.h"
-
-#import "MeepAppDelegate.h"
-
-#import "ASIFormDataRequest.h"
-#import <objc/runtime.h>
-
 #import <YAJL/YAJL.h>
+
+#import "RegistrationManager.h"
+#import "MeepAppDelegate.h"
+#import "ASIFormDataRequest.h"
+#import "DictionaryModelMapper.h"
 
 @implementation RegistrationManager
 
@@ -32,18 +30,8 @@
 	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:fullURL]];
 	[request setDelegate:self];
 	
-	// TODO move to another class and method
-	// Get properties for class
-	Class clazz = [user class];
-    u_int count;
-	
-    objc_property_t * properties = class_copyPropertyList(clazz, &count);
-    NSMutableArray * propertyArray = [NSMutableArray arrayWithCapacity:count];
-    for (int i = 0; i < count ; i++) {
-        const char* propertyName = property_getName(properties[i]);
-        [propertyArray addObject:[NSString  stringWithCString:propertyName encoding:NSUTF8StringEncoding]];
-    }
-    free(properties);
+	// Get properties from user
+	NSArray *propertyArray = [DictionaryModelMapper propertiesFromObject:user];
 	
 	// Add properties to request
 	for (int i = 0; i < [propertyArray count]; i++) {
@@ -60,8 +48,6 @@
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	
 	[super requestFinished:request];
-	
-	NSString *responseString = [request responseString];
 	
 	if ([request responseStatusCode] == 201) {
 		
