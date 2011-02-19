@@ -65,6 +65,8 @@
 	
 	NSLog(@"Response status code: %d", [request responseStatusCode]);
 	NSLog(@"Response: %@", [request responseString]);
+	
+	[delegate getUserFailedWithError:[error localizedDescription]];
 }
 
 - (void)dealloc {

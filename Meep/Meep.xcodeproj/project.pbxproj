@@ -85,7 +85,6 @@
 		FACFE017130D870500F6000A /* UserRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACFE015130D870500F6000A /* UserRequestsViewController.xib */; };
 		FADCEC52130DCC9A00EADF31 /* UserSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummary.m */; };
 		FADCEC6A130DCEEE00EADF31 /* UserRequestsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC69130DCEEE00EADF31 /* UserRequestsCustomCell.m */; };
-		FADCEC71130DD10D00EADF31 /* UserRequestsCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADCEC70130DD10D00EADF31 /* UserRequestsCustomCell.xib */; };
 		FADCECDB130DD9CE00EADF31 /* AcceptUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCECDA130DD9CE00EADF31 /* AcceptUserRequestManager.m */; };
 /* End PBXBuildFile section */
 
@@ -575,7 +574,6 @@
 		FADCEC51130DCC9A00EADF31 /* UserSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSummary.m; sourceTree = "<group>"; };
 		FADCEC68130DCEEE00EADF31 /* UserRequestsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRequestsCustomCell.h; sourceTree = "<group>"; };
 		FADCEC69130DCEEE00EADF31 /* UserRequestsCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRequestsCustomCell.m; sourceTree = "<group>"; };
-		FADCEC70130DD10D00EADF31 /* UserRequestsCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserRequestsCustomCell.xib; sourceTree = "<group>"; };
 		FADCECD9130DD9CE00EADF31 /* AcceptUserRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptUserRequestManager.h; sourceTree = "<group>"; };
 		FADCECDA130DD9CE00EADF31 /* AcceptUserRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptUserRequestManager.m; sourceTree = "<group>"; };
 		FADCECDC130DDA7700EADF31 /* AcceptUserRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptUserRequestManagerDelegate.h; sourceTree = "<group>"; };
@@ -1047,7 +1045,6 @@
 		FADCEC64130DCE1500EADF31 /* User Requests */ = {
 			isa = PBXGroup;
 			children = (
-				FADCEC70130DD10D00EADF31 /* UserRequestsCustomCell.xib */,
 				FACFE015130D870500F6000A /* UserRequestsViewController.xib */,
 			);
 			name = "User Requests";
@@ -1471,7 +1468,6 @@
 				FA7D0B731307F32100AD7E31 /* SearchUsersDetailViewController.xib in Resources */,
 				FACFDFEA130D6F7600F6000A /* Icon.png in Resources */,
 				FACFE017130D870500F6000A /* UserRequestsViewController.xib in Resources */,
-				FADCEC71130DD10D00EADF31 /* UserRequestsCustomCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

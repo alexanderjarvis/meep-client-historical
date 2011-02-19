@@ -43,9 +43,9 @@
 	NSLog(@"Response: %@", [request responseString]);
 	
 	if ([request responseStatusCode] == 200) {
-		[delegate addUserRequestSuccessful];
+		[delegate acceptUserSuccessful];
 	} else {
-		[delegate addUserRequestFailedWithError:
+		[delegate acceptUserFailedWithError:
 		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
 	}
 	

@@ -63,8 +63,6 @@
 	}
 	[window addSubview:menuNavigationController.view];
 	[welcomeNavigationController.view removeFromSuperview];
-	
-	
 }
 
 - (void)dealloc {

@@ -6,8 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "NewMeetingLocationController.h"
+#import <Three20/Three20.h>
 
+#import "NewMeetingLocationController.h"
 #import "MeepAppDelegate.h"
 
 @implementation NewMeetingLocationController

@@ -20,11 +20,16 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+	// Title
+	self.title = @"Menu";
+	
+	// User Manager
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
 	[userManager setDelegate: self];
-
+	
+	// Logout Button
 	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
 																	style:UIBarButtonSystemItemDone
 																   target:self
@@ -32,8 +37,7 @@
 	self.navigationItem.rightBarButtonItem = rightButton;
 	[rightButton release];
 	
-	self.title = @"Menu";
-	
+	// Add Menu Items
 	launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
 	launcherView.backgroundColor = [UIColor blackColor];
 	launcherView.delegate = self;

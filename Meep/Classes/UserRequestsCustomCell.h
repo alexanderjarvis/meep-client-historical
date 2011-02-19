@@ -8,13 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+#import <Three20/Three20.h>
 
-@interface UserRequestsCustomCell : UITableViewCell {
-	
-	IBOutlet UILabel *customLabel;
+@interface UserRequestsCustomCell : UITableViewCell <UIAlertViewDelegate> {
 
 }
 
-@property (nonatomic, retain) UILabel *customLabel;
+-(void)respondButtonPressed;
 
 @end

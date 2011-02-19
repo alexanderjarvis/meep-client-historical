@@ -6,17 +6,35 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <Three20/Three20.h>
+
 #import "UserRequestsCustomCell.h"
 
 @implementation UserRequestsCustomCell
 
-@synthesize customLabel;
-
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        // Initialization code
+        
+		NSLog(@"initwithstyle");
+		// Respond button
+		TTButton *respondButton = [TTButton buttonWithStyle:@"toolbarButton:" title:@"Respond"];
+		[respondButton sizeToFit];
+		[respondButton addTarget:self action:@selector(respondButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+		self.accessoryView = respondButton;
     }
+	NSLog(@"outside init with style");
     return self;
+}
+
+-(void)respondButtonPressed {
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"Respond to Friend Request" 
+						  message:nil
+						  delegate:self 
+						  cancelButtonTitle:@"Cancel" 
+						  otherButtonTitles:@"Accept", @"Decline", nil];
+	[alert show];
+	[alert release];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -25,8 +43,27 @@
 }
 
 - (void)dealloc {
-	[customLabel release];
 	[super dealloc];
 }
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate methods
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	switch (buttonIndex) {
+		case 0:
+			// Cancel
+			break;
+		case 1:
+			// Accept
+			break;
+		case 2:
+			// Decline
+			break;
+		default:
+			break;
+	}
+}
+
 
 @end
