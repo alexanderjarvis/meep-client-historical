@@ -17,6 +17,7 @@
 
 @synthesize userManager;
 @synthesize currentUser;
+@synthesize acceptUserRequestManager;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -30,6 +31,9 @@
 	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
 	[userManager setDelegate:self];
 	
+	acceptUserRequestManager = [[AcceptUserRequestManager alloc] initWithAccessToken:configManager.access_token];
+	[acceptUserRequestManager setDelegate:self];
+	
     [super viewDidLoad];
 }
 
@@ -41,6 +45,16 @@
 	[userManager getUser:configManager.email];
 	
     [super viewWillAppear:animated];
+}
+
+-(void)acceptUserAtIndexPath:(NSIndexPath *)indexPath {
+	NSUInteger row = [indexPath row];
+	
+	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
+	[acceptUserRequestManager acceptUser:user];
+}
+-(void)declineUserAtIndexPath:(NSIndexPath *)indexPath {
+	NSUInteger row = [indexPath row];
 }
 
 
@@ -98,8 +112,10 @@
 		cell = [[UserRequestsCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CustomCellIdentifier];
 	}
     
-	NSLog(@"reloading data");
     // Configure the cell...
+	cell.userRequestsViewController = self;
+	cell.indexPath = indexPath;
+	// Name
 	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
 	
@@ -140,6 +156,7 @@
 - (void)dealloc {
 	[userManager release];
 	[currentUser release];
+	[acceptUserRequestManager release];
     [super dealloc];
 }
 
@@ -161,6 +178,21 @@
 	//[self showWelcomeView];
 }
 
+#pragma mark -
+#pragma mark AcceptUserRequestManagerDelegate
+
+- (void)acceptUserSuccessful {
+	NSLog(@"accept user successful");
+	//TODO: remove that row
+}
+
+- (void)acceptUserFailedWithError:(NSError *)error {
+
+}
+
+- (void)acceptUserFailedWithNetworkError:(NSError *)error {
+
+}
+
 
 @end
-

@@ -10,9 +10,17 @@
 
 #import <Three20/Three20.h>
 
+#import "UserRequestsViewController.h"
+
 @interface UserRequestsCustomCell : UITableViewCell <UIAlertViewDelegate> {
+	
+	UserRequestsViewController *userRequestsViewController;
+	NSIndexPath *indexPath;
 
 }
+
+@property (nonatomic, assign) UserRequestsViewController *userRequestsViewController;
+@property (nonatomic, retain) NSIndexPath *indexPath;
 
 -(void)respondButtonPressed;
 

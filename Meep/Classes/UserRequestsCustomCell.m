@@ -12,6 +12,9 @@
 
 @implementation UserRequestsCustomCell
 
+@synthesize userRequestsViewController;
+@synthesize indexPath;
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
@@ -56,9 +59,11 @@
 			break;
 		case 1:
 			// Accept
+			[userRequestsViewController acceptUserAtIndexPath:indexPath];
 			break;
 		case 2:
 			// Decline
+			[userRequestsViewController declineUserAtIndexPath:indexPath];
 			break;
 		default:
 			break;
