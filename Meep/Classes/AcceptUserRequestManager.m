@@ -32,6 +32,7 @@
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
 	[request setDelegate:self];
 	[request setRequestMethod:@"POST"];
+	[request setUserInfo:[NSDictionary dictionaryWithObject:user forKey:userKey]];
 	[request startAsynchronous];
 }
 
@@ -43,7 +44,8 @@
 	NSLog(@"Response: %@", [request responseString]);
 	
 	if ([request responseStatusCode] == 200) {
-		[delegate acceptUserSuccessful];
+		
+		[delegate acceptUserSuccessful:[[request userInfo] objectForKey:userKey]];
 	} else {
 		[delegate acceptUserFailedWithError:
 		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];

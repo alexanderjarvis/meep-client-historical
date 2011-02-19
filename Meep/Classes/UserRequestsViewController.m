@@ -22,7 +22,6 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-
 - (void)viewDidLoad {
 	self.title = @"Friend Requests";
 	
@@ -53,8 +52,31 @@
 	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
 	[acceptUserRequestManager acceptUser:user];
 }
+
 -(void)declineUserAtIndexPath:(NSIndexPath *)indexPath {
 	NSUInteger row = [indexPath row];
+}
+
+-(void)removeRowThatHasUser:(User *)user {
+
+	NSUInteger row = 0;
+	
+	// Although the IndexPath could be passed to the Request manager, it is not relevant
+	// aside from returning the value back to this table view controller
+	// and so the row is calculated from the user object instead.
+	for (row = 0; row < [[currentUser connectionRequestsFrom] count]; row++) {
+		User *requestFromUser = [[currentUser connectionRequestsFrom] objectAtIndex:row];
+		
+		if ([requestFromUser._id isEqualToNumber:user._id]) {
+			NSMutableArray *arrayOfUsers = [NSMutableArray arrayWithArray:[currentUser connectionRequestsFrom]];
+			[arrayOfUsers removeObjectAtIndex:row];
+			[currentUser setConnectionRequestsFrom:[NSArray arrayWithArray:arrayOfUsers]];
+			[[super tableView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]] 
+									 withRowAnimation:UITableViewRowAnimationFade];
+			return;
+		}
+	}
+	
 }
 
 
@@ -181,9 +203,10 @@
 #pragma mark -
 #pragma mark AcceptUserRequestManagerDelegate
 
-- (void)acceptUserSuccessful {
+- (void)acceptUserSuccessful:(User *)user {
 	NSLog(@"accept user successful");
-	//TODO: remove that row
+	
+	[self removeRowThatHasUser:user];
 }
 
 - (void)acceptUserFailedWithError:(NSError *)error {

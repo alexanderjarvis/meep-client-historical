@@ -6,13 +6,15 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import "User.h"
+
 @class AcceptUserRequestManager;
 
 @protocol AcceptUserRequestManagerDelegate <NSObject>
 
 @required
 
-- (void)acceptUserSuccessful;
+- (void)acceptUserSuccessful:(User *)user;
 
 - (void)acceptUserFailedWithError:(NSError *)error;
 

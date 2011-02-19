@@ -12,6 +12,8 @@
 #import "AcceptUserRequestManagerDelegate.h"
 #import "User.h"
 
+#define userKey @"user"
+
 @interface AcceptUserRequestManager : AccessTokenRequestManager {
 	id <AcceptUserRequestManagerDelegate> delegate;
 }
