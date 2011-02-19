@@ -11,18 +11,21 @@
 #import "UserManager.h"
 #import "User.h"
 #import "AcceptUserRequestManager.h"
+#import "DeclineUserRequestManager.h"
 
 @interface UserRequestsViewController : UITableViewController {
 	
 	UserManager *userManager;	
 	User *currentUser;
 	AcceptUserRequestManager *acceptUserRequestManager;
+	DeclineUserRequestManager *declineUserRequestManager;
 
 }
 
 @property (nonatomic, retain) UserManager *userManager;
 @property (nonatomic, retain) User *currentUser;
 @property (nonatomic, retain) AcceptUserRequestManager *acceptUserRequestManager;
+@property (nonatomic, retain) DeclineUserRequestManager *declineUserRequestManager;
 
 -(void)acceptUserAtIndexPath:(NSIndexPath *)indexPath;
 -(void)declineUserAtIndexPath:(NSIndexPath *)indexPath;

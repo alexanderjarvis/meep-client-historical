@@ -86,6 +86,7 @@
 		FADCEC52130DCC9A00EADF31 /* UserSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummary.m */; };
 		FADCEC6A130DCEEE00EADF31 /* UserRequestsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC69130DCEEE00EADF31 /* UserRequestsCustomCell.m */; };
 		FADCECDB130DD9CE00EADF31 /* AcceptUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCECDA130DD9CE00EADF31 /* AcceptUserRequestManager.m */; };
+		FAF76F0A1310226D00297E90 /* DeclineUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF76F091310226D00297E90 /* DeclineUserRequestManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -577,6 +578,9 @@
 		FADCECD9130DD9CE00EADF31 /* AcceptUserRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptUserRequestManager.h; sourceTree = "<group>"; };
 		FADCECDA130DD9CE00EADF31 /* AcceptUserRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptUserRequestManager.m; sourceTree = "<group>"; };
 		FADCECDC130DDA7700EADF31 /* AcceptUserRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptUserRequestManagerDelegate.h; sourceTree = "<group>"; };
+		FAF76F081310226D00297E90 /* DeclineUserRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclineUserRequestManager.h; sourceTree = "<group>"; };
+		FAF76F091310226D00297E90 /* DeclineUserRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclineUserRequestManager.m; sourceTree = "<group>"; };
+		FAF76F591310234C00297E90 /* DeclineUserRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclineUserRequestManagerDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -819,6 +823,9 @@
 				FA7D0BA7130834C200AD7E31 /* AddUserRequestManager.h */,
 				FA7D0BA8130834C200AD7E31 /* AddUserRequestManager.m */,
 				FA7D0BD71308369400AD7E31 /* AddUserRequestManagerDelegate.h */,
+				FAF76F081310226D00297E90 /* DeclineUserRequestManager.h */,
+				FAF76F091310226D00297E90 /* DeclineUserRequestManager.m */,
+				FAF76F591310234C00297E90 /* DeclineUserRequestManagerDelegate.h */,
 				FA5076991302F3CC00CB96B4 /* LoginManager.h */,
 				FA50769A1302F3CC00CB96B4 /* LoginManager.m */,
 				FA50769B1302F3CC00CB96B4 /* LoginManagerDelegate.h */,
@@ -1542,6 +1549,7 @@
 				FADCEC52130DCC9A00EADF31 /* UserSummary.m in Sources */,
 				FADCEC6A130DCEEE00EADF31 /* UserRequestsCustomCell.m in Sources */,
 				FADCECDB130DD9CE00EADF31 /* AcceptUserRequestManager.m in Sources */,
+				FAF76F0A1310226D00297E90 /* DeclineUserRequestManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

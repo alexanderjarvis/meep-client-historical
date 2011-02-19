@@ -18,6 +18,7 @@
 @synthesize userManager;
 @synthesize currentUser;
 @synthesize acceptUserRequestManager;
+@synthesize declineUserRequestManager;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -32,6 +33,9 @@
 	
 	acceptUserRequestManager = [[AcceptUserRequestManager alloc] initWithAccessToken:configManager.access_token];
 	[acceptUserRequestManager setDelegate:self];
+	
+	declineUserRequestManager = [[DeclineUserRequestManager alloc] initWithAccessToken:configManager.access_token];
+	[declineUserRequestManager setDelegate:self];
 	
     [super viewDidLoad];
 }
@@ -55,6 +59,9 @@
 
 -(void)declineUserAtIndexPath:(NSIndexPath *)indexPath {
 	NSUInteger row = [indexPath row];
+	
+	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
+	[declineUserRequestManager declineUser:user];
 }
 
 -(void)removeRowThatHasUser:(User *)user {
@@ -179,6 +186,7 @@
 	[userManager release];
 	[currentUser release];
 	[acceptUserRequestManager release];
+	[declineUserRequestManager release];
     [super dealloc];
 }
 
@@ -215,6 +223,21 @@
 
 - (void)acceptUserFailedWithNetworkError:(NSError *)error {
 
+}
+
+#pragma mark -
+#pragma mark DeclineUserRequestManagerDelegate
+
+- (void)declineUserSuccessful:(User *)user {
+	NSLog(@"decline user successful");
+	
+	[self removeRowThatHasUser:user];
+}
+
+- (void)declineUserFailedWithError:(NSError *)error {
+}
+
+- (void)declineUserFailedWithNetworkError:(NSError *)error {
 }
 
 

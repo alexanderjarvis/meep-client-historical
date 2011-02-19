@@ -11,7 +11,7 @@
 
 @interface User : NSObject {
 	
-	NSString *_id;
+	NSNumber *_id;
 	NSString *accessToken;
 	NSString *email;
 	NSString *firstName;
@@ -25,7 +25,7 @@
 	User *_type_connectionRequestsFrom;
 }
 
-@property (nonatomic, copy) NSString *_id;
+@property (nonatomic, copy) NSNumber *_id;
 @property (nonatomic, copy) NSString *accessToken;
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *firstName;
