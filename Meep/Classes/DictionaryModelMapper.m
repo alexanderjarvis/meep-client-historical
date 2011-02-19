@@ -21,14 +21,11 @@
 	// Get the properties of the object from the Objective C runtime
 	NSArray *properties = [self propertiesFromObject:resultObject];
 	
-	NSLog(@"properties: %@", properties);
-	
 	// For all of the properties that the object holds, set the values from the dictionary
 	for (int i = 0; i < [properties count]; i++) {
 		NSString *key = [properties objectAtIndex:i];
 		NSObject *value = [dictionary objectForKey:key];
 		if (value != nil) {
-			NSLog(@"setValue: %@ forKey: %@", value, key);
 			if ([resultObject respondsToSelector:NSSelectorFromString(key)]) {
 				
 				// Determine if the object is an Array of other objects

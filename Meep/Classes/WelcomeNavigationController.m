@@ -41,29 +41,6 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-
-- (void)showValidationAlert:(NSString *)message {
-	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:@"Oops!" 
-						  message:message
-						  delegate:self 
-						  cancelButtonTitle:@"Dismiss" 
-						  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
-}
-
-- (void)showNetworkAlert:(NSError *)error {
-	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:@"Network Error" 
-						  message:[error localizedDescription]
-						  delegate:self
-						  cancelButtonTitle:@"Dismiss" 
-						  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
-}
-
 - (void)viewDidUnload {	
     [super viewDidUnload];
 }

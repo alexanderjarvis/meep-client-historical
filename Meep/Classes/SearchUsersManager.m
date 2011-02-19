@@ -36,11 +36,9 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
+	[super requestFinished:request];
 	
 	NSString *responseString = [request responseString];
-	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
 	
 	if ([request responseStatusCode] == 200) {
 		
@@ -60,12 +58,7 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	NSError *error = [request error];
-	
-	NSLog(@"Request failed with Error: %@", [error localizedDescription]);
-	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
+	[super requestFailed:request];
 }
 
 - (void)dealloc {

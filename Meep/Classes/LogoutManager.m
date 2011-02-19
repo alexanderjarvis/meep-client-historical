@@ -38,10 +38,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	
-	NSString *responseString = [request responseString];
-	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
+	[super requestFinished:request];
 	
 	if ([request responseStatusCode] == 200) {
 		[delegate logoutUserSuccessful];
@@ -53,19 +50,14 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	
-	NSError *error = [request error];
-	
-	NSLog(@"Request failed with Error: %@", [error localizedDescription]);
-	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
+	[super requestFailed:request];
 	
 	// If the request to logout was already unauthorized, then logout was successful.
 	if ([request responseStatusCode] == 401) {
 		[delegate logoutUserSuccessful];
 	}
 	
-	[delegate logoutUserFailedWithNetworkError:error];
+	[delegate logoutUserFailedWithNetworkError:[request error]];
 }
 
 - (void)dealloc {

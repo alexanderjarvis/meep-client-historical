@@ -58,11 +58,10 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-	// Use when fetching text data
-	NSString *responseString = [request responseString];
 	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
+	[super requestFinished:request];
+	
+	NSString *responseString = [request responseString];
 	
 	if ([request responseStatusCode] == 201) {
 		
@@ -84,14 +83,10 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	NSError *error = [request error];
 	
-	NSLog(@"Request failed with Error: %@", [error localizedDescription]);
+	[super requestFailed:request];
 	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
-	
-	[delegate userRegistrationFailedWithNetworkError:error];
+	[delegate userRegistrationFailedWithNetworkError:[request error]];
 }
 
 

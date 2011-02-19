@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#import "RequestManager.h"
 #import "RegistrationManagerDelegate.h"
 #import "UserDTO.h"
 
-@interface RegistrationManager : NSObject {
+@interface RegistrationManager : RequestManager {
 	
 	id <RegistrationManagerDelegate> delegate;
 

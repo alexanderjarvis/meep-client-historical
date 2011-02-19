@@ -10,6 +10,7 @@
 
 #import "MeepAppDelegate.h"
 #import "CustomCellTextField.h"
+#import "AlertView.h"
 
 @implementation RegisterViewController
 
@@ -219,12 +220,12 @@
 
 - (void)userRegistrationFailedWithError:(NSError *)error {
 	[HUD hide:YES];
-	[self.navigationController showValidationAlert:[error localizedDescription]];
+	[AlertView showValidationAlert:[error localizedDescription]];
 }
 
 - (void)userRegistrationFailedWithNetworkError:(NSError *)error {
 	[HUD hide:YES];
-	[self.navigationController showNetworkAlert:error];
+	[AlertView showNetworkAlert:error];
 }
 
 @end

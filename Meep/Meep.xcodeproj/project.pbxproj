@@ -87,6 +87,8 @@
 		FADCEC6A130DCEEE00EADF31 /* UserRequestsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC69130DCEEE00EADF31 /* UserRequestsCustomCell.m */; };
 		FADCECDB130DD9CE00EADF31 /* AcceptUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCECDA130DD9CE00EADF31 /* AcceptUserRequestManager.m */; };
 		FAF76F0A1310226D00297E90 /* DeclineUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF76F091310226D00297E90 /* DeclineUserRequestManager.m */; };
+		FAF76F8F1310496B00297E90 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF76F8E1310496B00297E90 /* AlertView.m */; };
+		FAF76FA913104A9F00297E90 /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF76FA813104A9F00297E90 /* RequestManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -581,6 +583,10 @@
 		FAF76F081310226D00297E90 /* DeclineUserRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclineUserRequestManager.h; sourceTree = "<group>"; };
 		FAF76F091310226D00297E90 /* DeclineUserRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclineUserRequestManager.m; sourceTree = "<group>"; };
 		FAF76F591310234C00297E90 /* DeclineUserRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclineUserRequestManagerDelegate.h; sourceTree = "<group>"; };
+		FAF76F8D1310496B00297E90 /* AlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertView.h; sourceTree = "<group>"; };
+		FAF76F8E1310496B00297E90 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
+		FAF76FA713104A9F00297E90 /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
+		FAF76FA813104A9F00297E90 /* RequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -832,6 +838,8 @@
 				FA50769C1302F3CC00CB96B4 /* RegistrationManager.h */,
 				FA50769D1302F3CC00CB96B4 /* RegistrationManager.m */,
 				FA50769E1302F3CC00CB96B4 /* RegistrationManagerDelegate.h */,
+				FAF76FA713104A9F00297E90 /* RequestManager.h */,
+				FAF76FA813104A9F00297E90 /* RequestManager.m */,
 				FA507B9A1304272500CB96B4 /* LogoutManager.h */,
 				FA507B9B1304272500CB96B4 /* LogoutManager.m */,
 				FA507B9D13042A1300CB96B4 /* LogoutManagerDelegate.h */,
@@ -874,6 +882,8 @@
 		FA5076AB1302F3CC00CB96B4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAF76F8D1310496B00297E90 /* AlertView.h */,
+				FAF76F8E1310496B00297E90 /* AlertView.m */,
 				FA5076B51302F3CC00CB96B4 /* MenuNavigationController.h */,
 				FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */,
 				FA5076B71302F3CC00CB96B4 /* MenuViewController.h */,
@@ -1550,6 +1560,8 @@
 				FADCEC6A130DCEEE00EADF31 /* UserRequestsCustomCell.m in Sources */,
 				FADCECDB130DD9CE00EADF31 /* AcceptUserRequestManager.m in Sources */,
 				FAF76F0A1310226D00297E90 /* DeclineUserRequestManager.m in Sources */,
+				FAF76F8F1310496B00297E90 /* AlertView.m in Sources */,
+				FAF76FA913104A9F00297E90 /* RequestManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

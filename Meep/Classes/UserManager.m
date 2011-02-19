@@ -37,11 +37,9 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-	// Use when fetching text data
-	NSString *responseString = [request responseString];
+	[super requestFinished:request];
 	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
+	NSString *responseString = [request responseString];
 	
 	if ([request responseStatusCode] == 200) {
 		
@@ -59,14 +57,8 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	NSError *error = [request error];
-	
-	NSLog(@"Request failed with Error: %@", [error localizedDescription]);
-	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
-	
-	[delegate getUserFailedWithError:[error localizedDescription]];
+	[super requestFailed:request];
+	[delegate getUserFailedWithError:[[request error] localizedDescription]];
 }
 
 - (void)dealloc {

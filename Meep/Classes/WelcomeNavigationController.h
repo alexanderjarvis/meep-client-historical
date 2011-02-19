@@ -12,7 +12,7 @@
 #import "RegisterViewController.h"
 #import "LoginViewController.h"
 
-@interface WelcomeNavigationController : UINavigationController <UIAlertViewDelegate> {
+@interface WelcomeNavigationController : UINavigationController {
 	
 	WelcomeViewController *welcomeViewController;
 	RegisterViewController *registerViewController;
@@ -23,9 +23,5 @@
 @property (nonatomic, retain) WelcomeViewController *welcomeViewController;
 @property (nonatomic, retain) RegisterViewController *registerViewController;
 @property (nonatomic, retain) LoginViewController *loginViewController;
-
-- (void)showValidationAlert:(NSString *)message;
-
-- (void)showNetworkAlert:(NSError *)error;
 
 @end

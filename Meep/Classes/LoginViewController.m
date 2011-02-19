@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 
 #import "MeepAppDelegate.h"
+#import "AlertView.h"
 
 @implementation LoginViewController
 
@@ -142,7 +143,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-	CustomCellTextField *cell = [tableView cellForRowAtIndexPath:indexPath];
+	CustomCellTextField *cell = (CustomCellTextField *)[tableView cellForRowAtIndexPath:indexPath];
 	[cell.customTextField becomeFirstResponder];
 	
 	selectedCell = cell;
@@ -173,7 +174,7 @@
 
 - (void)loginFailedWithNetworkError:(NSError *)error {
 	[HUD hide:YES];
-	[self.navigationController showNetworkAlert:error];
+	[AlertView showNetworkAlert:error];
 }
 
 

@@ -41,11 +41,11 @@
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
+	
+	[super requestFinished:request];
+	
 	// Use when fetching text data
 	NSString *responseString = [request responseString];
-	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
 	
 	if ([request responseStatusCode] == 200) {
 		
@@ -57,21 +57,16 @@
 		[delegate loginSuccessful];
 		
 	} else {
-		[delegate loginFailedWithError:
-			[NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
+		[delegate loginFailedWithError:[NSError errorWithDomain:[request responseString] 
+														   code:[request responseStatusCode] 
+													   userInfo:nil]];
 	}
 
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	NSError *error = [request error];
-	
-	NSLog(@"Request failed with Error: %@", [error localizedDescription]);
-	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
-	
-	[delegate loginFailedWithNetworkError:error];
+	[super requestFailed:request];
+	[delegate loginFailedWithNetworkError:[request error]];
 }
 
 

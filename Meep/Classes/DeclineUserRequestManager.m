@@ -40,13 +40,9 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	
-	NSString *responseString = [request responseString];
-	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
+	[super requestFinished:request];
 	
 	if ([request responseStatusCode] == 200) {
-		
 		[delegate declineUserSuccessful:[[request userInfo] objectForKey:userKey]];
 	} else {
 		[delegate declineUserFailedWithError:
@@ -56,12 +52,7 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	NSError *error = [request error];
-	
-	NSLog(@"Request failed with Error: %@", [error localizedDescription]);
-	
-	NSLog(@"Response status code: %d", [request responseStatusCode]);
-	NSLog(@"Response: %@", [request responseString]);
+	[super requestFailed:request];
 }
 
 
