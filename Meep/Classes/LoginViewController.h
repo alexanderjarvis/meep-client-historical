@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+#import "LoginManager.h"
 #import "MBProgressHUD.h"
 
-#import "LoginManager.h"
 #import "CustomCellTextField.h"
 
-@interface LoginViewController : UITableViewController {
+@interface LoginViewController : UITableViewController <LoginManagerDelegate> {
 	
 	MBProgressHUD *HUD;
 	

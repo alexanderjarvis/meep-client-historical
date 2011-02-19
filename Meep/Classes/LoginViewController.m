@@ -157,7 +157,8 @@
 }
 
 #pragma mark -
-#pragma mark LoginManagerDelegate methods
+#pragma mark LoginManagerDelegate
+
 - (void)loginSuccessful {
 	[HUD hide:YES];
 	self.passwordCell.customTextField.text = @"";
@@ -169,7 +170,7 @@
 
 - (void)loginFailedWithError:(NSError *)error {
 	[HUD hide:YES];
-	[self.navigationController showValidationAlert:[error localizedDescription]];
+	[AlertView showValidationAlert:[error localizedDescription]];
 }
 
 - (void)loginFailedWithNetworkError:(NSError *)error {

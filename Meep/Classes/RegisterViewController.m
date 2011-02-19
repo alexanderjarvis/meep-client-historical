@@ -204,7 +204,8 @@
 }
 
 #pragma mark -
-#pragma mark RegistrationManagerDelegate methods
+#pragma mark RegistrationManagerDelegate
+
 - (void)userRegistrationSuccessful {
 	[HUD hide:YES];
 	emailCell.customTextField.text = @"";

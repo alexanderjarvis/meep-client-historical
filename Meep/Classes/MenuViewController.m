@@ -173,6 +173,7 @@
 
 #pragma mark -
 #pragma mark LogoutManagerDelegate
+
 - (void)logoutUserSuccessful {
 	[self showWelcomeView];
 }

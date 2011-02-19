@@ -14,7 +14,7 @@
 #import "CustomCellTextField.h"
 #import "UserDTO.h"
 
-@interface RegisterViewController : UITableViewController {
+@interface RegisterViewController : UITableViewController <RegistrationManagerDelegate> {
 	
 	MBProgressHUD *HUD;
 	

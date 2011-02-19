@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+#import "SearchUsersManager.h"
 
-@interface SearchUsersViewController : UITableViewController <UISearchBarDelegate> {
+@interface SearchUsersViewController : UITableViewController <SearchUsersManagerDelegate, UISearchBarDelegate> {
 	
+	SearchUsersManager *searchUsersManager;
 	IBOutlet UISearchDisplayController *searchDisplayController;
-	
 	NSArray *users;
 
 }
 
+@property (nonatomic, retain) SearchUsersManager *searchUsersManager;
 @property (nonatomic, retain) UISearchDisplayController *searchDisplayController;
-
 @property (nonatomic, retain) NSArray *users;
 
 @end

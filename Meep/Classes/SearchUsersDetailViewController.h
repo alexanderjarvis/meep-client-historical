@@ -8,18 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-#import "User.h"
 #import "AddUserRequestManager.h"
+#import "User.h"
 
-@interface SearchUsersDetailViewController : UITableViewController {
+@interface SearchUsersDetailViewController : UITableViewController <AddUserRequestManagerDelegate> {
 	
-	User *user;
 	AddUserRequestManager *addUserRequestManager;
+	User *user;
 
 }
 
-@property (nonatomic, retain) User *user;
 @property (nonatomic, retain) AddUserRequestManager *addUserRequestManager;
+@property (nonatomic, retain) User *user;
 
 - (IBAction)requestAddUser;
 

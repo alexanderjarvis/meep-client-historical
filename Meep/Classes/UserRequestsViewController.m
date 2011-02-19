@@ -86,31 +86,6 @@
 	
 }
 
-
-/*
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-*/
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-}
-*/
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-
 #pragma mark -
 #pragma mark Table view data source
 
@@ -155,14 +130,6 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"Nib name" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
 }
 
 
@@ -172,8 +139,6 @@
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
@@ -200,12 +165,9 @@
 }
 
 - (void)getUserFailedWithError:(NSError *)error {
-	//[self showWelcomeView];
-	
 }
 
 - (void)getUserFailedWithNetworkError:(NSError *)error {
-	//[self showWelcomeView];
 }
 
 #pragma mark -
@@ -218,11 +180,9 @@
 }
 
 - (void)acceptUserFailedWithError:(NSError *)error {
-
 }
 
 - (void)acceptUserFailedWithNetworkError:(NSError *)error {
-
 }
 
 #pragma mark -
