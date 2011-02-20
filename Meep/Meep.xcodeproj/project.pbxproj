@@ -89,6 +89,8 @@
 		FAF76F0A1310226D00297E90 /* DeclineUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF76F091310226D00297E90 /* DeclineUserRequestManager.m */; };
 		FAF76F8F1310496B00297E90 /* AlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF76F8E1310496B00297E90 /* AlertView.m */; };
 		FAF76FA913104A9F00297E90 /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF76FA813104A9F00297E90 /* RequestManager.m */; };
+		FAF7707A13108E1B00297E90 /* UsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF7707813108E1B00297E90 /* UsersViewController.m */; };
+		FAF7707B13108E1B00297E90 /* UsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7707913108E1B00297E90 /* UsersViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -587,6 +589,9 @@
 		FAF76F8E1310496B00297E90 /* AlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertView.m; sourceTree = "<group>"; };
 		FAF76FA713104A9F00297E90 /* RequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestManager.h; sourceTree = "<group>"; };
 		FAF76FA813104A9F00297E90 /* RequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManager.m; sourceTree = "<group>"; };
+		FAF7707713108E1B00297E90 /* UsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersViewController.h; sourceTree = "<group>"; };
+		FAF7707813108E1B00297E90 /* UsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersViewController.m; sourceTree = "<group>"; };
+		FAF7707913108E1B00297E90 /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UsersViewController.xib; path = Classes/UsersViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -890,6 +895,7 @@
 				FA5076B81302F3CC00CB96B4 /* MenuViewController.m */,
 				FA5076AC1302F3CC00CB96B4 /* New Meeting */,
 				FA7E16DD1306E58A00CFAAF5 /* Search Users */,
+				FAF7707613108DDB00297E90 /* Users */,
 				FACFE012130D86CB00F6000A /* User Requests */,
 				FA5076B91302F3CC00CB96B4 /* Welcome */,
 			);
@@ -990,6 +996,7 @@
 			children = (
 				FA507AEB1303ECD000CB96B4 /* New Meeting */,
 				FA7E181B1307416C00CFAAF5 /* Search Users */,
+				FAF770BA131095D900297E90 /* Users */,
 				FADCEC64130DCE1500EADF31 /* User Requests */,
 				FA507AEA1303ECC000CB96B4 /* Welcome */,
 			);
@@ -1065,6 +1072,23 @@
 				FACFE015130D870500F6000A /* UserRequestsViewController.xib */,
 			);
 			name = "User Requests";
+			sourceTree = "<group>";
+		};
+		FAF7707613108DDB00297E90 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				FAF7707713108E1B00297E90 /* UsersViewController.h */,
+				FAF7707813108E1B00297E90 /* UsersViewController.m */,
+			);
+			name = Users;
+			sourceTree = "<group>";
+		};
+		FAF770BA131095D900297E90 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				FAF7707913108E1B00297E90 /* UsersViewController.xib */,
+			);
+			name = Users;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1485,6 +1509,7 @@
 				FA7D0B731307F32100AD7E31 /* SearchUsersDetailViewController.xib in Resources */,
 				FACFDFEA130D6F7600F6000A /* Icon.png in Resources */,
 				FACFE017130D870500F6000A /* UserRequestsViewController.xib in Resources */,
+				FAF7707B13108E1B00297E90 /* UsersViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1562,6 +1587,7 @@
 				FAF76F0A1310226D00297E90 /* DeclineUserRequestManager.m in Sources */,
 				FAF76F8F1310496B00297E90 /* AlertView.m in Sources */,
 				FAF76FA913104A9F00297E90 /* RequestManager.m in Sources */,
+				FAF7707A13108E1B00297E90 /* UsersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

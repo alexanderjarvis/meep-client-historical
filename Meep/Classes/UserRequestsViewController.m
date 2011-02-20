@@ -42,12 +42,12 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	
 	// Get the current user
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	[userManager getUser:configManager.email];
-	
-    [super viewWillAppear:animated];
 }
 
 -(void)acceptUserAtIndexPath:(NSIndexPath *)indexPath {
@@ -159,7 +159,6 @@
 #pragma mark UserManagerDelegate
 
 - (void)getUserSuccessful:(User *)user {
-	NSLog(@"Get user successful");
 	self.currentUser = user;
 	[[super tableView] reloadData];
 }

@@ -50,9 +50,9 @@
 	[launcherView addItem:item animated:NO];
 	
 	item =
-	[[TTLauncherItem alloc] initWithTitle: @"People"
+	[[TTLauncherItem alloc] initWithTitle: @"Friends"
 									image: @"bundle://Icon.png"
-									  URL: @"mp://people"];
+									  URL: UsersURL];
 	[launcherView addItem:item animated:NO];
 	
 	item =
@@ -139,6 +139,8 @@
 		[meepAppDelegate.menuNavigationController showSearchUsers];
 	} else if ([item.URL isEqualToString:UserRequestsURL]) {
 		[meepAppDelegate.menuNavigationController showUserRequests];
+	} else if ([item.URL isEqualToString:UsersURL]) {
+		[meepAppDelegate.menuNavigationController showUsers];
 	}
 }
 
