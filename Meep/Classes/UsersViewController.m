@@ -14,6 +14,8 @@
 
 @synthesize userManager;
 @synthesize currentUser;
+@synthesize tableKeys;
+@synthesize tableDictionary;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -45,19 +47,26 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    return [tableKeys count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [currentUser.connections count];
+	
+	NSArray *usersInSection = [tableDictionary objectForKey:[tableKeys objectAtIndex:section]];
+    return [usersInSection count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	return [tableKeys objectAtIndex:section];
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	NSUInteger section = [indexPath section];
 	NSUInteger row = [indexPath row];
     
     static NSString *CellIdentifier = @"Cell";
@@ -68,13 +77,13 @@
     }
     
     // Configure the cell...
-	// Name
-	User *user = [currentUser.connections objectAtIndex:row];
+	NSString *key = [tableKeys objectAtIndex:section];
+	NSArray *arrayOfUsers = [tableDictionary objectForKey:key];
+	User *user = [arrayOfUsers objectAtIndex:row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
     
     return cell;
 }
-
 
 /*
 // Override to support conditional editing of the table view.
@@ -132,6 +141,8 @@
 - (void)dealloc {
 	[userManager release];
 	[currentUser release];
+	[tableKeys release];
+	[tableDictionary release];
     [super dealloc];
 }
 
@@ -140,6 +151,28 @@
 
 - (void)getUserSuccessful:(User *)user {
 	self.currentUser = user;
+	
+	// Compile user dictionary (for index)
+	NSArray *connectedUsers = [currentUser connections];
+	
+	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[connectedUsers count]];
+	for (User *connectedUser in connectedUsers) {
+		if ([connectedUser.firstName length] > 0) {
+			NSString *key = [[connectedUser.firstName substringToIndex:1] uppercaseString];
+			NSArray *usersInSection = [connectedUsersDictionary objectForKey:key];
+			if (usersInSection == nil) {
+				[connectedUsersDictionary setObject:[NSArray arrayWithObject:connectedUser] forKey:key];
+			} else {
+				NSMutableArray *mutableUsersInSection = [NSMutableArray arrayWithArray:usersInSection];
+				[mutableUsersInSection addObject:connectedUser];
+				[connectedUsersDictionary setObject:[NSArray arrayWithArray:mutableUsersInSection] forKey:key];
+			}
+		}
+	}
+	
+	self.tableDictionary = [NSDictionary dictionaryWithDictionary:connectedUsersDictionary];
+	self.tableKeys = [tableDictionary allKeys];
+	
 	[[super tableView] reloadData];
 }
 
