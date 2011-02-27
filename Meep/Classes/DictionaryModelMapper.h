@@ -16,8 +16,15 @@
 
 + (NSArray *)createArrayOfObjects:(NSObject *)object fromArrayOfDictionaries:(NSArray *)dictionaries;
 
++ (NSDictionary *)createDictionaryWithObject:(NSObject *)object;
+
 + (NSArray *)propertiesFromObject:(NSObject *)object;
 
-+ (NSDictionary *)manipulateDictionaryKeysForLanguageKeywords:(NSDictionary *)dictionary;
++ (NSDictionary *)manipulateDictionaryKeys:(NSDictionary *)dictionary withDictionary:(NSDictionary *)language;
+
++ (NSDictionary *)manipulateDictionaryKeysWhenToObject:(NSDictionary *)dictionary;
+
++ (NSDictionary *)manipulateDictionaryKeysWhenFromObject:(NSDictionary *)dictionary;
+
 
 @end

@@ -17,6 +17,8 @@
 	IBOutlet MKMapView *mapView;
 	
 	IBOutlet UIButton *chooseDateButton;
+	
+	CLLocationManager *lm;
 
 }
 

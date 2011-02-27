@@ -11,10 +11,10 @@
 
 @interface ObjectWithId : NSObject {
 	
-	NSString *_id;
+	NSNumber *_id;
 
 }
 
-@property (nonatomic, copy) NSString *_id;
+@property (nonatomic, copy) NSNumber *_id;
 
 @end

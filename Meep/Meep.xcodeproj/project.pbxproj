@@ -16,6 +16,9 @@
 		320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320AF8492C47A4D819F7C450 /* QuartzCore.framework */; };
 		320B6C86F11D9990244A9731 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 320B6C86F11D9990244A9730 /* Three20.bundle */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
+		FA1AE503131AC1F000683B1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		FA1AE50A131AC25500683B1A /* UserSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummary.m */; };
+		FA1AE545131AC78900683B1A /* ObjectWithProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1AE544131AC78900683B1A /* ObjectWithProperties.m */; };
 		FA331E75130997D9000763D4 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
 		FA331E76130997DD000763D4 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		FA331E7A130997F0000763D4 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A5A189C235877202780D4 /* libThree20Network.a */; };
@@ -461,6 +464,8 @@
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../../three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Meep-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meep-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		FA1AE543131AC78900683B1A /* ObjectWithProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithProperties.h; sourceTree = "<group>"; };
+		FA1AE544131AC78900683B1A /* ObjectWithProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithProperties.m; sourceTree = "<group>"; };
 		FA331EF81309A5B8000763D4 /* AccessTokenRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTokenRequestManager.h; sourceTree = "<group>"; };
 		FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTokenRequestManager.m; sourceTree = "<group>"; };
 		FA5076961302F3CC00CB96B4 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigManager.h; path = Classes/ConfigManager.h; sourceTree = SOURCE_ROOT; };
@@ -625,6 +630,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA1AE503131AC1F000683B1A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,6 +1035,8 @@
 			children = (
 				FA7E16951306B86C00CFAAF5 /* ObjectWithId.h */,
 				FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */,
+				FA1AE543131AC78900683B1A /* ObjectWithProperties.h */,
+				FA1AE544131AC78900683B1A /* ObjectWithProperties.m */,
 				FA7E15B31306A27E00CFAAF5 /* TestDictionaryModelMapper.h */,
 				FA7E15B41306A27E00CFAAF5 /* TestDictionaryModelMapper.m */,
 			);
@@ -1534,7 +1542,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\" 1> /tmp/RunUnitTests.out ";
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\" 1> /tmp/RunUnitTests.out";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1599,6 +1607,8 @@
 				FA7E16091306A66D00CFAAF5 /* DictionaryModelMapper.m in Sources */,
 				FA7E16221306A86A00CFAAF5 /* User.m in Sources */,
 				FA7E16971306B86C00CFAAF5 /* ObjectWithId.m in Sources */,
+				FA1AE50A131AC25500683B1A /* UserSummary.m in Sources */,
+				FA1AE545131AC78900683B1A /* ObjectWithProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

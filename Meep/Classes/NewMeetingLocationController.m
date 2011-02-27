@@ -41,9 +41,11 @@
 - (IBAction)currentLocation {
 	NSLog(@"Current Location button pressed");
 	
-	CLLocationManager *lm = [[CLLocationManager alloc] init];
-	lm.delegate = self;
-	lm.desiredAccuracy = kCLLocationAccuracyBest;
+	if (lm == nil) {
+		lm = [[CLLocationManager alloc] init];
+		lm.delegate = self;
+		lm.desiredAccuracy = kCLLocationAccuracyBest;
+	}
 	[lm startUpdatingLocation];
 	
 	NSLog(@"Started Updating location");
@@ -57,6 +59,9 @@
 		
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 		[meepAppDelegate.menuNavigationController showNewMeetingDateAndTime];
+		
+		//TODO
+		CLLocationCoordinate2D coordinate = [[[mapView annotations] objectAtIndex:0] coordinate];
 		
 	} else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
