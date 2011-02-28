@@ -46,9 +46,9 @@
 
 - (IBAction)loginButtonPressed {
 	 
-	if (selectedCell != nil) {
-		[selectedCell.customTextField resignFirstResponder];
-	}
+	[emailCell.customTextField resignFirstResponder];
+	[passwordCell.customTextField resignFirstResponder];
+	
 	[HUD show:YES];
 	
 	UserDTO *userDTO = [[UserDTO alloc] init];
@@ -127,7 +127,7 @@
 			if (self.passwordCell == nil) {
 				cell.customTextLabel.text = @"Password";
 				[cell setRequired: YES];
-				cell.customTextField.returnKeyType = UIReturnKeyNext;
+				cell.customTextField.returnKeyType = UIReturnKeyDone;
 				cell.customTextField.secureTextEntry = YES;
 				self.passwordCell = cell;
 			} else {

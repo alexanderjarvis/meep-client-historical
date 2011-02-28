@@ -7,6 +7,19 @@
 //
 
 #import <Three20/Three20.h>
+#import <Three20UI/UIViewAdditions.h>
+
+@interface ButtonTestStyleSheet : TTDefaultStyleSheet
+@end
+
+@implementation ButtonTestStyleSheet
+
+- (TTStyle*)blackForwardButton:(UIControlState)state {
+	TTShape* shape = [TTRoundedRightArrowShape shapeWithRadius:4.5];
+	UIColor* tintColor = RGBCOLOR(0, 0, 0);
+	return [TTSTYLESHEET toolbarButtonForState:state shape:shape tintColor:tintColor font:nil];
+}
+@end
 
 #import "NewMeetingLocationController.h"
 #import "MeepAppDelegate.h"
@@ -14,21 +27,37 @@
 @implementation NewMeetingLocationController
 
 @synthesize mapView;
+@synthesize newPinButton;
+@synthesize currentLocationButton;
 @synthesize chooseDateButton;
 
 - (void)viewDidLoad {
 	self.title = @"Place";
 	
-	// Choose Date & Time button
-	TTButton *button = [TTButton buttonWithStyle:@"toolbarForwardButton:" title:@"Choose Date & Time"];
+	[TTStyleSheet setGlobalStyleSheet:[[[ButtonTestStyleSheet alloc] init] autorelease]];
+	
+	// New Pin button
+	TTButton *button = [TTButton buttonWithStyle:@"toolbarButton:" title:@"New Pin"];
 	[button sizeToFit];
-	[button addTarget:self action:@selector(chooseDate) forControlEvents:UIControlEventTouchUpInside];
-	[chooseDateButton addSubview: button];
+	[button addTarget:self action:@selector(newPinButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[newPinButton addSubview:button];
+	
+	// Current Location button
+	 button = [TTButton buttonWithStyle:@"toolbarButton:" title:@"Current Location"];
+	[button sizeToFit];
+	[button addTarget:self action:@selector(currentLocationButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[currentLocationButton addSubview:button];
+	
+	// Choose Date & Time button
+	button = [TTButton buttonWithStyle:@"blackForwardButton:" title:@"Choose Date & Time"];
+	[button sizeToFit];
+	[button addTarget:self action:@selector(chooseDateButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[chooseDateButton addSubview:button];
 	
     [super viewDidLoad];
 }
 
-- (IBAction)newPin {
+- (void)newPinButtonPressed {
 	NSLog(@"New Pin button pressed");
 	
 	[self removeAllAnnotations];
@@ -38,7 +67,7 @@
 	[meetingLocation release];
 }
 
-- (IBAction)currentLocation {
+- (void)currentLocationButtonPressed {
 	NSLog(@"Current Location button pressed");
 	
 	if (lm == nil) {
@@ -52,7 +81,7 @@
 	//TODO: activity view
 }
 
-- (IBAction)chooseDate {
+- (void)chooseDateButtonPressed {
 	NSLog(@"Choose Date & Time button pressed");
 	
 	if ([mapView.annotations count] > 0) {
@@ -101,6 +130,8 @@
 
 - (void)dealloc {
 	[mapView release];
+	[newPinButton release];
+	[currentLocationButton release];
 	[chooseDateButton release];
     [super dealloc];
 }

@@ -16,6 +16,8 @@
 	
 	IBOutlet MKMapView *mapView;
 	
+	IBOutlet UIButton *newPinButton;
+	IBOutlet UIButton *currentLocationButton;
 	IBOutlet UIButton *chooseDateButton;
 	
 	CLLocationManager *lm;
@@ -23,11 +25,13 @@
 }
 
 @property(nonatomic, retain) MKMapView *mapView;
+@property(nonatomic, retain) UIButton *newPinButton;
+@property(nonatomic, retain) UIButton *currentLocationButton;
 @property(nonatomic, retain) UIButton *chooseDateButton;
 
-- (IBAction)newPin;
-- (IBAction)currentLocation;
-- (IBAction)chooseDate;
+- (void)newPinButtonPressed;
+- (void)currentLocationButtonPressed;
+- (void)chooseDateButtonPressed;
 
 - (void)removeAllAnnotations;
 
