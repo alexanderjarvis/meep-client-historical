@@ -126,7 +126,6 @@
  * e.g. if the language dictionary contains one item with a key of 'id' and a value of '_id', then the resulting
  * dictionary will have its 'id' key changed to '_id'.
  */
-
 + (NSDictionary *)manipulateDictionaryKeys:(NSDictionary *)dictionary withDictionary:(NSDictionary *)language {
 	
 	NSEnumerator *enumerator = [language keyEnumerator];

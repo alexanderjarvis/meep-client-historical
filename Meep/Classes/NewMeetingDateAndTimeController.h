@@ -7,16 +7,31 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Three20/Three20.h>
 
+#import "CustomCellTextField.h"
 
-@interface NewMeetingDateAndTimeController : UIViewController {
+@interface NewMeetingDateAndTimeController : UITableViewController <UITextFieldDelegate, TTPostControllerDelegate> {
 	
-	IBOutlet UIDatePicker *datePicker;
-
+	NSDateFormatter *dateFormatter;
+	
+	IBOutlet UIButton *choosePeopleButton;
+	UIDatePicker *datePicker;
+	CustomCellTextField *dateCell;
+	CustomCellTextField *titleCell;
+	CustomCellTextField *descriptionCell;
 }
 
+@property(nonatomic, retain) UIButton *choosePeopleButton;
 @property(nonatomic, retain) UIDatePicker *datePicker;
+@property(nonatomic, retain) CustomCellTextField *dateCell;
+@property(nonatomic, retain) CustomCellTextField *titleCell;
+@property(nonatomic, retain) CustomCellTextField *descriptionCell;
 
-- (IBAction)choosePeople;
+- (void)choosePeopleButtonPressed;
+
+- (void)datePickerUpdated;
+
+- (TTPostController *)showPostController;
 
 @end
