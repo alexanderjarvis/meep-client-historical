@@ -27,20 +27,13 @@
 	NSString *fullURL = [baseURL stringByAppendingString:loginURL];
 	NSLog(@"URL of request: %@", fullURL);
 	
-	ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:fullURL]];
+	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
 	[request setDelegate:self];
 	
-	// Get properties from user
-	NSArray *propertyArray = [DictionaryModelMapper propertiesFromObject:user];
-	
-	// Add properties to request
-	for (int i = 0; i < [propertyArray count]; i++) {
-		NSString *key = [NSString stringWithFormat:@"user.%@", [propertyArray objectAtIndex:i]];
-		NSString *value = [user valueForKey:[propertyArray objectAtIndex:i]];
-		if (value != nil) {
-			[request setPostValue:value forKey:key];
-		}
-	}
+	NSString *body = [[DictionaryModelMapper createDictionaryWithObject:user] yajl_JSONString];
+	NSLog(@"Request body: \n%@", body);
+	[request appendPostData:[body dataUsingEncoding:NSUTF8StringEncoding]];
+	[request setRequestMethod:@"POST"];
 	
 	[request startAsynchronous];
 }
