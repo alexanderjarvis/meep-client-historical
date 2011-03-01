@@ -1,55 +1,58 @@
 //
-//  UserManager.m
+//  CreateMeetingRequestManager.m
 //  Meep
 //
-//  Created by Alex Jarvis on 10/02/2011.
+//  Created by Alex Jarvis on 01/03/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "UserManager.h"
+#import "CreateMeetingRequestManager.h"
 #import "MeepAppDelegate.h"
-#import "ASIHTTPRequest.h"
 #import "DictionaryModelMapper.h"
-#import "User.h"
 
-@implementation UserManager
+@implementation CreateMeetingRequestManager
 
 @synthesize delegate;
 
-- (void)getUser:(NSString *)userid {
-	
+- (void)createMeeting:(MeetingDTO *)meeting {
+		
 	// Build up the URL
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	NSString *baseURL = [[meepAppDelegate configManager] url];
-	NSString *resource = @"users/";
+	NSString *resource = @"meetings/";
 	
 	NSString *queryString = @"?oauth_token=";
 	NSString *fullQueryString = [queryString stringByAppendingString:accessToken];
 	
-	NSString *fullURL = [NSString stringWithFormat:@"%@%@%@%@", baseURL, resource, userid, fullQueryString];
+	NSString *fullURL = [NSString stringWithFormat:@"%@%@%@", baseURL, resource, fullQueryString];
 	
 	NSLog(@"URL of request: %@", fullURL);
 	
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
 	[request setDelegate:self];
+	
+	NSString *body = [[DictionaryModelMapper createDictionaryWithObject:meeting] yajl_JSONString];
+	NSLog(@"Request body: \n%@", body);
+	[request appendPostData:[body dataUsingEncoding:NSUTF8StringEncoding]];
+	[request setRequestMethod:@"POST"];
+	
 	[request startAsynchronous];
 }
 
 #pragma mark -
 #pragma mark ASIHTTPRequest
 - (void)requestFinished:(ASIHTTPRequest *)request {
+	
 	[super requestFinished:request];
 	
-	if ([request responseStatusCode] == 200) {
+	if ([request responseStatusCode] == 201) {
 		
-		User *emptyUser = [[User alloc] init];
-		User *user = [DictionaryModelMapper createObject:emptyUser fromDictionary:[[request responseString] yajl_JSON]];
-		[emptyUser release];
+		NSDictionary *jsonDictionary = [[request responseString] yajl_JSON];
 		
-		[delegate getUserSuccessful:user];
+		[delegate createMeetingSuccessful];
 		
 	} else {
-		[delegate getUserFailedWithError:
+		[delegate createMeetingFailedWithError:
 		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
 	}
 	
@@ -57,7 +60,7 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
-	[delegate getUserFailedWithNetworkError:[request error]];
+	[delegate createMeetingFailedWithNetworkError:[request error]];
 }
 
 @end

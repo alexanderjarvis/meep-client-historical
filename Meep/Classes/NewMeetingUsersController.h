@@ -10,25 +10,31 @@
 
 #import "UserManager.h"
 #import "User.h"
+#import "CreateMeetingRequestManager.h"
 
-@interface NewMeetingUsersController : UITableViewController <UserManagerDelegate> {
+
+@interface NewMeetingUsersController : UITableViewController <CreateMeetingRequestManagerDelegate> {
+	
+	IBOutlet UIButton *createMeetingButton;
 	
 	UserManager *userManager;
-	User *currentUser;
+	CreateMeetingRequestManager *createMeetingRequestManager;
 	
 	NSArray *tableKeys;
 	NSDictionary *tableDictionary;
-	
 	NSMutableArray *selectedUsers;
 	
 }
 
+@property(nonatomic, retain) UIButton *createMeetingButton;
+
 @property(nonatomic, retain) UserManager *userManager;
-@property(nonatomic, retain) User *currentUser;
+@property(nonatomic, retain) CreateMeetingRequestManager *createMeetingRequestManager;
 
 @property(nonatomic, retain) NSArray *tableKeys;
 @property(nonatomic, retain) NSDictionary *tableDictionary;
-
 @property(nonatomic, retain) NSMutableArray *selectedUsers;
+
+- (void)createMeetingButtonPressed;
 
 @end

@@ -9,11 +9,14 @@
 #import "NewMeetingUsersController.h"
 #import "MeepAppDelegate.h"
 #import "ConfigManager.h"
+#import "MeepStyleSheet.h"
+#import "NewMeetingBuilder.h"
 
 @implementation NewMeetingUsersController
 
+@synthesize createMeetingButton;
 @synthesize userManager;
-@synthesize currentUser;
+@synthesize createMeetingRequestManager;
 @synthesize tableKeys;
 @synthesize tableDictionary;
 @synthesize selectedUsers;
@@ -30,8 +33,18 @@
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
 	[userManager setDelegate:self];
+	createMeetingRequestManager = [[CreateMeetingRequestManager alloc] initWithAccessToken:configManager.access_token];
+	[createMeetingRequestManager setDelegate:self];
 	
 	selectedUsers = [[NSMutableArray alloc] initWithCapacity:1];
+	
+	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
+	// Create meeting button
+	TTButton *button = [TTButton buttonWithStyle:@"embossedButton:" title:@"Create Meeting"];
+	button.font = [UIFont boldSystemFontOfSize:14];
+	[button sizeToFit];
+	[button addTarget:self action:@selector(createMeetingButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[createMeetingButton addSubview: button];
 }
 
 
@@ -42,6 +55,26 @@
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	[userManager getUser:configManager.email];
+}
+
+- (void)createMeetingButtonPressed {
+	if ([selectedUsers count] > 0) {
+		MeetingDTO *meetingDTO = [[NewMeetingBuilder sharedNewMeetingBuilder] meetingDTO];
+		
+		// Convert array of User to array of UserSummaryDTO
+		NSMutableArray *attendees = [NSMutableArray arrayWithCapacity:[selectedUsers count]];
+		for (User *user in selectedUsers) {
+			UserSummaryDTO *userSummaryDTO = [[UserSummaryDTO alloc] init];
+			userSummaryDTO._id = user._id;
+			[attendees addObject:userSummaryDTO];
+		}
+		meetingDTO.attendees = attendees;
+		
+		[createMeetingRequestManager createMeeting:meetingDTO];
+	} else {
+		NSLog(@"You must select at least one user");
+	}
+
 }
 
 #pragma mark -
@@ -129,8 +162,9 @@
 
 
 - (void)dealloc {
+	[createMeetingButton release];
 	[userManager release];
-	[currentUser release];
+	[createMeetingRequestManager release];
 	[tableKeys release];
 	[tableDictionary release];
 	[selectedUsers release];
@@ -147,12 +181,10 @@
 		return;
 	}
 	
-	self.currentUser = user;
+	NSArray *connectedUsers = [user connections];
 	
-	// TODO: move to utility method
 	// Compile user dictionary (for index)
-	NSArray *connectedUsers = [currentUser connections];
-	
+	// TODO: move to utility method
 	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[connectedUsers count]];
 	for (User *connectedUser in connectedUsers) {
 		if ([connectedUser.firstName length] > 0) {
@@ -180,6 +212,17 @@
 }
 
 - (void)getUserFailedWithNetworkError:(NSError *)error {
+}
+
+#pragma mark -
+#pragma mark CreateMeetingRequestManagerDelegate
+- (void)createMeetingSuccessful {
+}
+
+- (void)createMeetingFailedWithError:(NSError *)error {
+}
+
+- (void)createMeetingFailedWithNetworkError:(NSError *)error {
 }
 
 

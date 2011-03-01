@@ -36,6 +36,8 @@
 	[request startAsynchronous];
 }
 
+#pragma mark -
+#pragma mark ASIHTTPRequest
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	
 	[super requestFinished:request];
@@ -59,11 +61,6 @@
 	}
 	
 	[delegate logoutUserFailedWithNetworkError:[request error]];
-}
-
-- (void)dealloc {
-	[accessToken release];
-	[super dealloc];
 }
 
 @end

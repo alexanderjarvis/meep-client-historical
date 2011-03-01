@@ -1,5 +1,5 @@
 //
-//  UserSummary.h
+//  UserSummaryDTO.h
 //  Meep
 //
 //  Created by Alex Jarvis on 17/02/2011.
@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 
 
-@interface UserSummary : NSObject {
+@interface UserSummaryDTO : NSObject {
 	
-	NSString *_id;
+	NSNumber *_id;
 	NSString *email;
 	NSString *firstName;
 	NSString *lastName;
@@ -19,7 +19,7 @@
 	
 }
 
-@property (nonatomic, copy) NSString *_id;
+@property (nonatomic, copy) NSNumber *_id;
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;

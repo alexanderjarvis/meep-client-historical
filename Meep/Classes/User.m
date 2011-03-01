@@ -7,7 +7,6 @@
 //
 
 #import "User.h"
-#import "UserSummary.h"
 
 @implementation User
 
@@ -27,11 +26,11 @@
 -(id)init {
 	if (self == [super init]) {
 		self.connections = [[NSArray alloc] init];
-		self._type_connections = [[UserSummary alloc] init];
+		self._type_connections = [[UserSummaryDTO alloc] init];
 		self.connectionRequestsTo = [[NSArray alloc] init];
-		self._type_connectionRequestsTo = [[UserSummary alloc] init];
+		self._type_connectionRequestsTo = [[UserSummaryDTO alloc] init];
 		self.connectionRequestsFrom = [[NSArray alloc] init];
-		self._type_connectionRequestsFrom = [[UserSummary alloc] init];
+		self._type_connectionRequestsFrom = [[UserSummaryDTO alloc] init];
 	}
 	return self;
 }

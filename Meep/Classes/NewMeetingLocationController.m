@@ -10,6 +10,7 @@
 #import "MeepAppDelegate.h"
 #import "MeepStyleSheet.h"
 #import "AlertView.h"
+#import "NewMeetingBuilder.h"
 
 @implementation NewMeetingLocationController
 
@@ -59,12 +60,12 @@
 - (void)currentLocationButtonPressed {
 	NSLog(@"Current Location button pressed");
 	
-	if (lm == nil) {
-		lm = [[CLLocationManager alloc] init];
-		lm.delegate = self;
-		lm.desiredAccuracy = kCLLocationAccuracyBest;
+	if (locationManager == nil) {
+		locationManager = [[CLLocationManager alloc] init];
+		locationManager.delegate = self;
+		locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	}
-	[lm startUpdatingLocation];
+	[locationManager startUpdatingLocation];
 	
 	NSLog(@"Started Updating location");
 }
@@ -74,18 +75,17 @@
 	
 	if ([mapView.annotations count] > 0) {
 		
-		//TODO - build up meeting data
+		// Build up meeting information
 		MapLocation *meetingLocation = [[mapView annotations] objectAtIndex:0];
 		CLLocationCoordinate2D coordinate = [meetingLocation coordinate];
-		NSString *title = nil;
-		if ([meetingLocation isKindOfClass:[MapLocation class]]) {
-			title = meetingLocation.streetAddress;
-		}
 		
+		MeetingDTO *meetingDTO = [[NewMeetingBuilder sharedNewMeetingBuilder] meetingDTO];
+		meetingDTO.place.latitude = [NSNumber numberWithDouble:coordinate.latitude];
+		meetingDTO.place.longitude = [NSNumber numberWithDouble:coordinate.longitude];
+		
+		// Show date & time view
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 		[meepAppDelegate.menuNavigationController showNewMeetingDateAndTime];
-		
-		
 		
 	} else {
 		[AlertView showValidationAlert:@"You must choose a meeting location first."];

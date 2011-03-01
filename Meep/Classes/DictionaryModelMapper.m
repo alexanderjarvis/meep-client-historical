@@ -80,11 +80,23 @@
 	for (int i = 0; i < [properties count]; i++) {
 		NSString *key = [properties objectAtIndex:i];
 		if (![key hasPrefix:@"_type_"]) {
-			NSObject *value = [object performSelector:NSSelectorFromString(key)];
-			if ([value isKindOfClass:[NSArray class]]) {
-				// implement
-			} else {
-				[mutableDictionary setValue:value forKey:key];
+			id value = [object performSelector:NSSelectorFromString(key)];
+			if (value != nil) {
+				if ([value isKindOfClass:[NSArray class]]) {
+					// get type from matching _type_ property
+					NSObject *typeOfArray = [@"_type_" stringByAppendingString:key];
+					NSArray *arrayOfDictionaries = [self createArrayOfDictionariesFromArrayOfObjects:value ofType:typeOfArray];
+					[mutableDictionary setValue:arrayOfDictionaries forKey:key];
+				} else if ([value isKindOfClass:[NSString class]]
+							|| [value isKindOfClass:[NSNumber class]]
+							|| [value isKindOfClass:[NSDictionary class]]) {
+					
+					[mutableDictionary setValue:value forKey:key];
+					
+				} else if ([value isKindOfClass:[NSObject class]]) {
+					[mutableDictionary setValue:[self createDictionaryWithObject:value] forKey:key];
+				}
+
 			}
 		}
 		
@@ -93,6 +105,18 @@
 	NSDictionary *dic = [self manipulateDictionaryKeysWhenFromObject:mutableDictionary];
 
 	return dic;
+}
+
+/*
+ *
+ */
++ (NSDictionary *)createArrayOfDictionariesFromArrayOfObjects:(NSArray *)objects ofType:(NSObject *)objectType {
+	NSMutableArray *arrayOfDictionaries = [[NSMutableArray alloc] initWithCapacity:[objects count]];
+	for (NSObject *object in objects) {
+		NSDictionary *dictionary = [self createDictionaryWithObject:object];
+		[arrayOfDictionaries addObject:dictionary];
+	}
+	return arrayOfDictionaries;
 }
 
 /*

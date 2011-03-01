@@ -20,7 +20,7 @@
 	IBOutlet UIButton *currentLocationButton;
 	IBOutlet UIButton *chooseDateButton;
 	
-	CLLocationManager *lm;
+	CLLocationManager *locationManager;
 
 }
 

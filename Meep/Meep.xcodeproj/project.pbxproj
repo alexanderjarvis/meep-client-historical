@@ -16,7 +16,7 @@
 		320B6C86F11D9990244A9731 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 320B6C86F11D9990244A9730 /* Three20.bundle */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		FA1AE503131AC1F000683B1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		FA1AE50A131AC25500683B1A /* UserSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummary.m */; };
+		FA1AE50A131AC25500683B1A /* UserSummaryDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */; };
 		FA1AE545131AC78900683B1A /* ObjectWithProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1AE544131AC78900683B1A /* ObjectWithProperties.m */; };
 		FA331E75130997D9000763D4 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
 		FA331E76130997DD000763D4 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
@@ -82,11 +82,17 @@
 		FA7E17D613073C7300CFAAF5 /* SearchUsersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */; };
 		FA7FA0F5131D22C100130590 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7FA0F4131D22C100130590 /* Icon.png */; };
 		FA7FA15F131D334100130590 /* MeepStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA15E131D334100130590 /* MeepStyleSheet.m */; };
+		FA7FA264131D76DE00130590 /* CreateMeetingRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA263131D76DE00130590 /* CreateMeetingRequestManager.m */; };
+		FA7FA278131D7B2400130590 /* MeetingDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA277131D7B2400130590 /* MeetingDTO.m */; };
+		FA7FA29B131D7C3800130590 /* CoordinateDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA29A131D7C3800130590 /* CoordinateDTO.m */; };
+		FA7FA2B6131D84F900130590 /* AttendeeDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA2B5131D84F900130590 /* AttendeeDTO.m */; };
+		FA7FA3A3131D941B00130590 /* NewMeetingBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA3A2131D941B00130590 /* NewMeetingBuilder.m */; };
+		FA7FA476131DA70800130590 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA475131DA70800130590 /* ISO8601DateFormatter.m */; };
 		FA8C74101305C20D00FF1A99 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* User.m */; };
 		FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
 		FACFE016130D870500F6000A /* UserRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACFE014130D870500F6000A /* UserRequestsViewController.m */; };
 		FACFE017130D870500F6000A /* UserRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACFE015130D870500F6000A /* UserRequestsViewController.xib */; };
-		FADCEC52130DCC9A00EADF31 /* UserSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummary.m */; };
+		FADCEC52130DCC9A00EADF31 /* UserSummaryDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */; };
 		FADCEC6A130DCEEE00EADF31 /* UserRequestsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC69130DCEEE00EADF31 /* UserRequestsCustomCell.m */; };
 		FADCECDB130DD9CE00EADF31 /* AcceptUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCECDA130DD9CE00EADF31 /* AcceptUserRequestManager.m */; };
 		FAF76F0A1310226D00297E90 /* DeclineUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF76F091310226D00297E90 /* DeclineUserRequestManager.m */; };
@@ -574,6 +580,19 @@
 		FA7FA0F4131D22C100130590 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
 		FA7FA15D131D334100130590 /* MeepStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeepStyleSheet.h; sourceTree = "<group>"; };
 		FA7FA15E131D334100130590 /* MeepStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeepStyleSheet.m; sourceTree = "<group>"; };
+		FA7FA262131D76DE00130590 /* CreateMeetingRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMeetingRequestManager.h; sourceTree = "<group>"; };
+		FA7FA263131D76DE00130590 /* CreateMeetingRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateMeetingRequestManager.m; sourceTree = "<group>"; };
+		FA7FA265131D774700130590 /* CreateMeetingRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMeetingRequestManagerDelegate.h; sourceTree = "<group>"; };
+		FA7FA276131D7B2400130590 /* MeetingDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingDTO.h; sourceTree = "<group>"; };
+		FA7FA277131D7B2400130590 /* MeetingDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingDTO.m; sourceTree = "<group>"; };
+		FA7FA299131D7C3800130590 /* CoordinateDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoordinateDTO.h; sourceTree = "<group>"; };
+		FA7FA29A131D7C3800130590 /* CoordinateDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoordinateDTO.m; sourceTree = "<group>"; };
+		FA7FA2B4131D84F900130590 /* AttendeeDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttendeeDTO.h; sourceTree = "<group>"; };
+		FA7FA2B5131D84F900130590 /* AttendeeDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeeDTO.m; sourceTree = "<group>"; };
+		FA7FA3A1131D941B00130590 /* NewMeetingBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMeetingBuilder.h; sourceTree = "<group>"; };
+		FA7FA3A2131D941B00130590 /* NewMeetingBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMeetingBuilder.m; sourceTree = "<group>"; };
+		FA7FA474131DA70800130590 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		FA7FA475131DA70800130590 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		FA8C740E1305C20D00FF1A99 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		FA8C740F1305C20D00FF1A99 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		FA8C74381305C7A300FF1A99 /* DictionaryModelMapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = DictionaryModelMapper.h; sourceTree = "<group>"; };
@@ -581,8 +600,8 @@
 		FACFE013130D870500F6000A /* UserRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRequestsViewController.h; sourceTree = "<group>"; };
 		FACFE014130D870500F6000A /* UserRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRequestsViewController.m; sourceTree = "<group>"; };
 		FACFE015130D870500F6000A /* UserRequestsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserRequestsViewController.xib; path = Classes/UserRequestsViewController.xib; sourceTree = "<group>"; };
-		FADCEC50130DCC9A00EADF31 /* UserSummary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSummary.h; sourceTree = "<group>"; };
-		FADCEC51130DCC9A00EADF31 /* UserSummary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSummary.m; sourceTree = "<group>"; };
+		FADCEC50130DCC9A00EADF31 /* UserSummaryDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSummaryDTO.h; sourceTree = "<group>"; };
+		FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSummaryDTO.m; sourceTree = "<group>"; };
 		FADCEC68130DCEEE00EADF31 /* UserRequestsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRequestsCustomCell.h; sourceTree = "<group>"; };
 		FADCEC69130DCEEE00EADF31 /* UserRequestsCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRequestsCustomCell.m; sourceTree = "<group>"; };
 		FADCECD9130DD9CE00EADF31 /* AcceptUserRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptUserRequestManager.h; sourceTree = "<group>"; };
@@ -841,6 +860,9 @@
 				FA7D0BA7130834C200AD7E31 /* AddUserRequestManager.h */,
 				FA7D0BA8130834C200AD7E31 /* AddUserRequestManager.m */,
 				FA7D0BD71308369400AD7E31 /* AddUserRequestManagerDelegate.h */,
+				FA7FA262131D76DE00130590 /* CreateMeetingRequestManager.h */,
+				FA7FA263131D76DE00130590 /* CreateMeetingRequestManager.m */,
+				FA7FA265131D774700130590 /* CreateMeetingRequestManagerDelegate.h */,
 				FAF76F081310226D00297E90 /* DeclineUserRequestManager.h */,
 				FAF76F091310226D00297E90 /* DeclineUserRequestManager.m */,
 				FAF76F591310234C00297E90 /* DeclineUserRequestManagerDelegate.h */,
@@ -869,14 +891,20 @@
 		FA50769F1302F3CC00CB96B4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FA5076A01302F3CC00CB96B4 /* UserDTO.h */,
-				FA5076A11302F3CC00CB96B4 /* UserDTO.m */,
+				FA7FA2B4131D84F900130590 /* AttendeeDTO.h */,
+				FA7FA2B5131D84F900130590 /* AttendeeDTO.m */,
+				FA7FA299131D7C3800130590 /* CoordinateDTO.h */,
+				FA7FA29A131D7C3800130590 /* CoordinateDTO.m */,
 				FA8C74381305C7A300FF1A99 /* DictionaryModelMapper.h */,
 				FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */,
+				FA7FA276131D7B2400130590 /* MeetingDTO.h */,
+				FA7FA277131D7B2400130590 /* MeetingDTO.m */,
 				FA8C740E1305C20D00FF1A99 /* User.h */,
 				FA8C740F1305C20D00FF1A99 /* User.m */,
-				FADCEC50130DCC9A00EADF31 /* UserSummary.h */,
-				FADCEC51130DCC9A00EADF31 /* UserSummary.m */,
+				FA5076A01302F3CC00CB96B4 /* UserDTO.h */,
+				FA5076A11302F3CC00CB96B4 /* UserDTO.m */,
+				FADCEC50130DCC9A00EADF31 /* UserSummaryDTO.h */,
+				FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */,
 			);
 			name = Model;
 			path = Classes;
@@ -885,6 +913,8 @@
 		FA5076A81302F3CC00CB96B4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FA7FA474131DA70800130590 /* ISO8601DateFormatter.h */,
+				FA7FA475131DA70800130590 /* ISO8601DateFormatter.m */,
 				FA5076A91302F3CC00CB96B4 /* StringUtils.h */,
 				FA5076AA1302F3CC00CB96B4 /* StringUtils.m */,
 			);
@@ -921,6 +951,8 @@
 				FA5076B21302F3CC00CB96B4 /* NewMeetingDateAndTimeController.m */,
 				FA5076B31302F3CC00CB96B4 /* NewMeetingUsersController.h */,
 				FA5076B41302F3CC00CB96B4 /* NewMeetingUsersController.m */,
+				FA7FA3A1131D941B00130590 /* NewMeetingBuilder.h */,
+				FA7FA3A2131D941B00130590 /* NewMeetingBuilder.m */,
 			);
 			name = "New Meeting";
 			path = Classes;
@@ -1590,7 +1622,7 @@
 				FA7D0BA9130834C200AD7E31 /* AddUserRequestManager.m in Sources */,
 				FA331EFA1309A5B8000763D4 /* AccessTokenRequestManager.m in Sources */,
 				FACFE016130D870500F6000A /* UserRequestsViewController.m in Sources */,
-				FADCEC52130DCC9A00EADF31 /* UserSummary.m in Sources */,
+				FADCEC52130DCC9A00EADF31 /* UserSummaryDTO.m in Sources */,
 				FADCEC6A130DCEEE00EADF31 /* UserRequestsCustomCell.m in Sources */,
 				FADCECDB130DD9CE00EADF31 /* AcceptUserRequestManager.m in Sources */,
 				FAF76F0A1310226D00297E90 /* DeclineUserRequestManager.m in Sources */,
@@ -1598,6 +1630,12 @@
 				FAF76FA913104A9F00297E90 /* RequestManager.m in Sources */,
 				FAF7707A13108E1B00297E90 /* UsersViewController.m in Sources */,
 				FA7FA15F131D334100130590 /* MeepStyleSheet.m in Sources */,
+				FA7FA264131D76DE00130590 /* CreateMeetingRequestManager.m in Sources */,
+				FA7FA278131D7B2400130590 /* MeetingDTO.m in Sources */,
+				FA7FA29B131D7C3800130590 /* CoordinateDTO.m in Sources */,
+				FA7FA2B6131D84F900130590 /* AttendeeDTO.m in Sources */,
+				FA7FA3A3131D941B00130590 /* NewMeetingBuilder.m in Sources */,
+				FA7FA476131DA70800130590 /* ISO8601DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1609,7 +1647,7 @@
 				FA7E16091306A66D00CFAAF5 /* DictionaryModelMapper.m in Sources */,
 				FA7E16221306A86A00CFAAF5 /* User.m in Sources */,
 				FA7E16971306B86C00CFAAF5 /* ObjectWithId.m in Sources */,
-				FA1AE50A131AC25500683B1A /* UserSummary.m in Sources */,
+				FA1AE50A131AC25500683B1A /* UserSummaryDTO.m in Sources */,
 				FA1AE545131AC78900683B1A /* ObjectWithProperties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

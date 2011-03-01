@@ -11,6 +11,8 @@
 #import "MeepAppDelegate.h"
 #import "MeepStyleSheet.h"
 #import "AlertView.h"
+#import "NewMeetingBuilder.h"
+#import "ISO8601DateFormatter.h"
 
 @implementation NewMeetingDateAndTimeController
 
@@ -32,6 +34,8 @@
 	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 	
+	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
+	// Choose friends button
 	TTButton *button = [TTButton buttonWithStyle:@"blackForwardButton:" title:@"Choose Friends"];
 	button.font = [UIFont boldSystemFontOfSize:13];
 	[button sizeToFit];
@@ -50,9 +54,14 @@
 	} else if (dateCell.customTextField.text.length == 0) {
 		[AlertView showValidationAlert:@"You must choose a Date & Time."];
 	} else {
-		// do something with date
-		[datePicker date];
 		
+		// Build up meeting information
+		MeetingDTO *meetingDTO = [[NewMeetingBuilder sharedNewMeetingBuilder] meetingDTO];
+		meetingDTO.title = titleCell.customTextField.text;
+		meetingDTO.description = descriptionCell.customTextField.text;
+		meetingDTO.time = [ISO8601DateFormatter stringFromDate:[datePicker date]];
+		
+		// Show users view
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 		[meepAppDelegate.menuNavigationController showNewMeetingUsers];
 	}

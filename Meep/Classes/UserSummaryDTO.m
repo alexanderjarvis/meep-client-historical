@@ -1,15 +1,15 @@
 //
-//  UserSummary.m
+//  UserSummaryDTO.m
 //  Meep
 //
 //  Created by Alex Jarvis on 17/02/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "UserSummary.h"
+#import "UserSummaryDTO.h"
 
 
-@implementation UserSummary
+@implementation UserSummaryDTO
 
 @synthesize _id;
 @synthesize email;

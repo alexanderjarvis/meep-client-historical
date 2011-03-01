@@ -35,14 +35,14 @@
 	[request startAsynchronous];
 }
 
+#pragma mark -
+#pragma mark ASIHTTPRequest
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	[super requestFinished:request];
 	
-	NSString *responseString = [request responseString];
-	
 	if ([request responseStatusCode] == 200) {
 		
-		NSArray *arrayOfUserDictionaries = [responseString yajl_JSON];
+		NSArray *arrayOfUserDictionaries = [[request responseString] yajl_JSON];
 		
 		User *emptyUser = [[User alloc] init];
 		NSArray *arrayOfUsers = [DictionaryModelMapper createArrayOfObjects:emptyUser fromArrayOfDictionaries:arrayOfUserDictionaries];
@@ -61,10 +61,6 @@
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
 	[delegate searchUsersFailedWithNetworkError:[request error]];
-}
-
-- (void)dealloc {
-	[super dealloc];
 }
 
 @end

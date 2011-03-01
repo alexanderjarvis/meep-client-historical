@@ -17,7 +17,6 @@
 
 @synthesize delegate;
 
-#pragma mark ASI request methods
 - (void)registerUser:(UserDTO *)user {
 	
 	// Build up the URL
@@ -38,6 +37,8 @@
 	[request startAsynchronous];
 }
 
+#pragma mark -
+#pragma mark ASIHTTPRequest
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	
 	[super requestFinished:request];

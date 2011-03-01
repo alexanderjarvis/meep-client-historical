@@ -36,6 +36,8 @@
 	[request startAsynchronous];
 }
 
+#pragma mark -
+#pragma mark ASIHTTPRequest
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	
 	[super requestFinished:request];
@@ -53,11 +55,6 @@
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
 	[delegate acceptUserFailedWithNetworkError:[request error]];
-}
-
-
-- (void)dealloc {
-	[super dealloc];
 }
 
 @end

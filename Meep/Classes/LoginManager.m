@@ -16,7 +16,6 @@
 
 @synthesize delegate;
 
-#pragma mark ASI request methods
 - (void)loginUser:(UserDTO *)user {
 	
 	// Store the email
@@ -40,12 +39,11 @@
 	[request startAsynchronous];
 }
 
+#pragma mark -
+#pragma mark ASIHTTPRequest
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	
 	[super requestFinished:request];
-	
-	// Use when fetching text data
-	NSString *responseString = [request responseString];
 	
 	if ([request responseStatusCode] == 200) {
 		

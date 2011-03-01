@@ -30,8 +30,6 @@
 
 - (void)choosePeopleButtonPressed;
 
-- (void)showValidationAlertWithMessage:(NSString *)message;
-
 - (void)datePickerUpdated;
 
 - (TTPostController *)showPostController;
