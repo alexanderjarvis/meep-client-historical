@@ -19,6 +19,8 @@
 	NSArray *tableKeys;
 	NSDictionary *tableDictionary;
 	
+	NSMutableArray *selectedUsers;
+	
 }
 
 @property(nonatomic, retain) UserManager *userManager;
@@ -26,5 +28,7 @@
 
 @property(nonatomic, retain) NSArray *tableKeys;
 @property(nonatomic, retain) NSDictionary *tableDictionary;
+
+@property(nonatomic, retain) NSMutableArray *selectedUsers;
 
 @end

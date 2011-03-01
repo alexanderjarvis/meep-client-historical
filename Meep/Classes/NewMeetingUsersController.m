@@ -16,6 +16,7 @@
 @synthesize currentUser;
 @synthesize tableKeys;
 @synthesize tableDictionary;
+@synthesize selectedUsers;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -29,6 +30,8 @@
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
 	[userManager setDelegate:self];
+	
+	selectedUsers = [[NSMutableArray alloc] initWithCapacity:2];
 }
 
 
@@ -79,46 +82,34 @@
 	NSString *key = [tableKeys objectAtIndex:section];
 	NSArray *arrayOfUsers = [tableDictionary objectForKey:key];
 	User *user = [arrayOfUsers objectAtIndex:row];
+	
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
-    
+	if ([selectedUsers containsObject:user]) {
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	} else {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	}
+
     return cell;
 }
-
-/*
- // Override to support conditional editing of the table view.
- - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
- // Return NO if you do not want the specified item to be editable.
- return YES;
- }
- */
-
-
-/*
- // Override to support editing the table view.
- - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
- 
- if (editingStyle == UITableViewCellEditingStyleDelete) {
- // Delete the row from the data source
- [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
- }   
- else if (editingStyle == UITableViewCellEditingStyleInsert) {
- // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
- }   
- }
- */
 
 #pragma mark -
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"Nib name" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+    
+	NSUInteger section = [indexPath section];
+	NSUInteger row = [indexPath row];
+	NSString *key = [tableKeys objectAtIndex:section];
+	NSArray *arrayOfUsers = [tableDictionary objectForKey:key];
+	User *user = [arrayOfUsers objectAtIndex:row];
+	if ([selectedUsers containsObject:user]) {
+		[selectedUsers removeObject:user];
+	} else {
+		[selectedUsers addObject:user];
+	}
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+	[tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark -
@@ -142,6 +133,7 @@
 	[currentUser release];
 	[tableKeys release];
 	[tableDictionary release];
+	[selectedUsers release];
     [super dealloc];
 }
 
