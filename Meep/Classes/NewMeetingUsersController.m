@@ -142,7 +142,7 @@
 
 - (void)getUserSuccessful:(User *)user {
 	
-	// Only update the table if the respons is new
+	// Only update the table if the response is new
 	if ([userManager isResponseSameAsPreviousRequest]) {
 		return;
 	}
