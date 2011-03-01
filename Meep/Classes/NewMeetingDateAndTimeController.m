@@ -46,7 +46,7 @@
 	[datePicker date];
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	[meepAppDelegate.menuNavigationController showNewMeetingPeople];
+	[meepAppDelegate.menuNavigationController showNewMeetingUsers];
 }
 
 - (TTPostController *)showPostController {
@@ -136,6 +136,8 @@
 				cell.customTextLabel.text = @"Title";
 				[cell setRequired: YES];
 				cell.customTextField.returnKeyType = UIReturnKeyNext;
+				cell.customTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+				cell.customTextField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
 				self.titleCell = cell;
 			} else {
 				cell = self.titleCell;

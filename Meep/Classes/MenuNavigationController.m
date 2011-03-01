@@ -15,7 +15,7 @@
 @synthesize usersViewController;
 @synthesize newMeetingLocationController;
 @synthesize newMeetingDateAndTimeController;
-@synthesize newMeetingPeopleController;
+@synthesize newMeetingUsersController;
 @synthesize searchUsersViewController;
 @synthesize userRequestsViewController;
 
@@ -52,11 +52,11 @@
 	[self pushViewController:newMeetingDateAndTimeController animated:YES];
 }
 
-- (void)showNewMeetingPeople {
-	if (newMeetingPeopleController == nil) {
-		self.newMeetingPeopleController = [[NewMeetingPeopleController alloc] initWithNibName:@"NewMeetingPeopleController" bundle:nil];
+- (void)showNewMeetingUsers {
+	if (newMeetingUsersController == nil) {
+		self.newMeetingUsersController = [[NewMeetingUsersController alloc] initWithNibName:@"NewMeetingUsersController" bundle:nil];
 	}
-	[self pushViewController:newMeetingPeopleController animated:YES];
+	[self pushViewController:newMeetingUsersController animated:YES];
 }
 
 - (void)showSearchUsers {
@@ -104,7 +104,7 @@
 	[usersViewController release];
 	[newMeetingLocationController release];
 	[newMeetingDateAndTimeController release];
-	[newMeetingPeopleController release];
+	[newMeetingUsersController release];
 	[searchUsersViewController release];
 	[userRequestsViewController release];
 	

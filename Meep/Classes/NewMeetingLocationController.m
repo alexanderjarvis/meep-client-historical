@@ -6,23 +6,9 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <Three20/Three20.h>
-#import <Three20UI/UIViewAdditions.h>
-
-@interface ButtonTestStyleSheet : TTDefaultStyleSheet
-@end
-
-@implementation ButtonTestStyleSheet
-
-- (TTStyle*)blackForwardButton:(UIControlState)state {
-	TTShape* shape = [TTRoundedRightArrowShape shapeWithRadius:4.5];
-	UIColor* tintColor = RGBCOLOR(0, 0, 0);
-	return [TTSTYLESHEET toolbarButtonForState:state shape:shape tintColor:tintColor font:nil];
-}
-@end
-
 #import "NewMeetingLocationController.h"
 #import "MeepAppDelegate.h"
+#import "MeepStyleSheet.h"
 
 @implementation NewMeetingLocationController
 
@@ -34,7 +20,7 @@
 - (void)viewDidLoad {
 	self.title = @"Place";
 	
-	[TTStyleSheet setGlobalStyleSheet:[[[ButtonTestStyleSheet alloc] init] autorelease]];
+	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
 	
 	// New Pin button
 	TTButton *button = [TTButton buttonWithStyle:@"toolbarButton:" title:@"New Pin"];
@@ -65,6 +51,7 @@
 	MapLocation *meetingLocation = [[MapLocation alloc] initWithCoordinate:mapView.centerCoordinate];
 	[mapView addAnnotation:meetingLocation];
 	[meetingLocation release];
+	[self reverseGeocodeCoordinate:mapView.centerCoordinate];
 }
 
 - (void)currentLocationButtonPressed {
@@ -78,7 +65,6 @@
 	[lm startUpdatingLocation];
 	
 	NSLog(@"Started Updating location");
-	//TODO: activity view
 }
 
 - (void)chooseDateButtonPressed {
@@ -86,11 +72,18 @@
 	
 	if ([mapView.annotations count] > 0) {
 		
+		//TODO - build up meeting data
+		MapLocation *meetingLocation = [[mapView annotations] objectAtIndex:0];
+		CLLocationCoordinate2D coordinate = [meetingLocation coordinate];
+		NSString *title = nil;
+		if ([meetingLocation isKindOfClass:[MapLocation class]]) {
+			title = meetingLocation.streetAddress;
+		}
+		
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 		[meepAppDelegate.menuNavigationController showNewMeetingDateAndTime];
 		
-		//TODO
-		CLLocationCoordinate2D coordinate = [[[mapView annotations] objectAtIndex:0] coordinate];
+		
 		
 	} else {
 		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
@@ -112,6 +105,13 @@
 	if ([mapView.annotations count] > 0) {
 		[mapView removeAnnotations:mapView.annotations];
 	}
+}
+
+- (void)reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate {
+	NSLog(@"Reverse Geocoding Location");
+	MKReverseGeocoder *geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:coordinate];
+	geocoder.delegate = self;
+	[geocoder start];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,6 +138,17 @@
 
 #pragma mark -
 #pragma mark Map View Delegate Methods
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView 
+							     didChangeDragState:(MKAnnotationViewDragState)newState 
+									   fromOldState:(MKAnnotationViewDragState)oldState {
+	MapLocation *meetingLocation = annotationView.annotation;
+	if ([meetingLocation isKindOfClass:[MapLocation class]]) {
+		if (oldState == MKAnnotationViewDragStateDragging && newState == MKAnnotationViewDragStateEnding) {
+			[meetingLocation resetReverseGeocodeAttributes];
+			[self reverseGeocodeCoordinate:annotationView.annotation.coordinate];
+		}
+	}
+}
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	
 	static NSString *placemarkIdentifier = @"Map Location Identifier";
@@ -186,18 +197,18 @@
 		return;
 	}
 	
-	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 2000, 2000);
+	MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(newLocation.coordinate, 1000, 1000);
 	MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];
 	[mapView setRegion:adjustedRegion animated:YES];
 	
-	manager.delegate = nil;
 	[manager stopUpdatingLocation];
-	[manager autorelease];
 	
-	NSLog(@"Reverse Geocoding Location");
-	MKReverseGeocoder *geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:newLocation.coordinate];
-	geocoder.delegate = self;
-	[geocoder start];
+	// Add current location as annotation.
+	[self removeAllAnnotations];
+	MapLocation *meetingLocation = [[MapLocation alloc] initWithCoordinate:newLocation.coordinate];
+	[mapView addAnnotation:meetingLocation];
+	[meetingLocation release];
+	[self reverseGeocodeCoordinate:newLocation.coordinate];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -217,13 +228,7 @@
 #pragma mark -
 #pragma mark Reverse Geocoder Methods
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error translating coordinates into location"																			  
-													message:@"Geocoder did not recognize coordinates"
-												   delegate:self
-										  cancelButtonTitle:@"Okay"
-										  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+	NSLog(@"Geocoder did not recognize coordinates");
 	
 	geocoder.delegate = nil;
 	[geocoder autorelease];
@@ -232,17 +237,15 @@
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark {
 	NSLog(@"Location Determined");
 	
-	[self removeAllAnnotations];
-	
-	MapLocation *meetingLocation = [[MapLocation alloc] initWithCoordinate:placemark.coordinate];
-	meetingLocation.streetAddress = placemark.thoroughfare;
-	meetingLocation.city = placemark.locality;
-	meetingLocation.state = placemark.administrativeArea;
-	meetingLocation.zip = placemark.postalCode;
-	
-	[mapView addAnnotation:meetingLocation];
-	[meetingLocation release];
-	
+	if ([[mapView annotations] count] == 1) {
+		MapLocation *meetingLocation = [[mapView annotations] objectAtIndex:0];
+		if ([meetingLocation isKindOfClass:[MapLocation class]]) {
+			meetingLocation.streetAddress = placemark.thoroughfare;
+			meetingLocation.city = placemark.locality;
+			meetingLocation.state = placemark.administrativeArea;
+			meetingLocation.zip = placemark.postalCode;
+		}
+	}	
 	geocoder.delegate = nil;
 	[geocoder autorelease];
 }

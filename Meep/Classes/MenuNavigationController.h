@@ -12,7 +12,7 @@
 #import "UsersViewController.h"
 #import "NewMeetingLocationController.h"
 #import "NewMeetingDateAndTimeController.h"
-#import "NewMeetingPeopleController.h"
+#import "NewMeetingUsersController.h"
 #import "SearchUsersViewController.h"
 #import "UserRequestsViewController.h"
 
@@ -24,7 +24,7 @@
 	
 	NewMeetingLocationController *newMeetingLocationController;
 	NewMeetingDateAndTimeController *newMeetingDateAndTimeController;
-	NewMeetingPeopleController *newMeetingPeopleController;
+	NewMeetingUsersController *newMeetingUsersController;
 	
 	SearchUsersViewController *searchUsersViewController;
 	UserRequestsViewController *userRequestsViewController;
@@ -35,7 +35,7 @@
 @property(nonatomic, retain) UsersViewController *usersViewController;
 @property(nonatomic, retain) NewMeetingLocationController *newMeetingLocationController;
 @property(nonatomic, retain) NewMeetingDateAndTimeController *newMeetingDateAndTimeController;
-@property(nonatomic, retain) NewMeetingPeopleController *newMeetingPeopleController;
+@property(nonatomic, retain) NewMeetingUsersController *newMeetingUsersController;
 @property(nonatomic, retain) SearchUsersViewController *searchUsersViewController;
 @property(nonatomic, retain) UserRequestsViewController *userRequestsViewController;
 
@@ -43,7 +43,7 @@
 
 - (void)showNewMeetingLocation;
 - (void)showNewMeetingDateAndTime;
-- (void)showNewMeetingPeople;
+- (void)showNewMeetingUsers;
 
 - (void)showSearchUsers;
 - (void)showUserRequests;

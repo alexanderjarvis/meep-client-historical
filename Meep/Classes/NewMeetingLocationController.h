@@ -34,5 +34,6 @@
 - (void)chooseDateButtonPressed;
 
 - (void)removeAllAnnotations;
+- (void)reverseGeocodeCoordinate:(CLLocationCoordinate2D)coordinate;
 
 @end

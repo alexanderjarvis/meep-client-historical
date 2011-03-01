@@ -1,5 +1,5 @@
 //
-//  NewMeetingPeopleController.h
+//  NewMeetingUsersController.h
 //  meep
 //
 //  Created by Alex Jarvis on 31/01/2011.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface NewMeetingPeopleController : UITableViewController {
+@interface NewMeetingUsersController : UITableViewController {
 
 }
 

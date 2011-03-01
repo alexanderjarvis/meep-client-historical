@@ -32,7 +32,7 @@
 		FA5076CC1302F3CC00CB96B4 /* MapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076AE1302F3CC00CB96B4 /* MapLocation.m */; };
 		FA5076CD1302F3CC00CB96B4 /* NewMeetingLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076B01302F3CC00CB96B4 /* NewMeetingLocationController.m */; };
 		FA5076CE1302F3CC00CB96B4 /* NewMeetingDateAndTimeController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076B21302F3CC00CB96B4 /* NewMeetingDateAndTimeController.m */; };
-		FA5076CF1302F3CC00CB96B4 /* NewMeetingPeopleController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076B41302F3CC00CB96B4 /* NewMeetingPeopleController.m */; };
+		FA5076CF1302F3CC00CB96B4 /* NewMeetingUsersController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076B41302F3CC00CB96B4 /* NewMeetingUsersController.m */; };
 		FA5076D01302F3CC00CB96B4 /* MenuNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */; };
 		FA5076D11302F3CC00CB96B4 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076B81302F3CC00CB96B4 /* MenuViewController.m */; };
 		FA5076D21302F3CC00CB96B4 /* CustomCellTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076BB1302F3CC00CB96B4 /* CustomCellTextField.m */; };
@@ -65,7 +65,7 @@
 		FA5079D01303018600CB96B4 /* HTTPDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079C91303018600CB96B4 /* HTTPDemoViewController.xib */; };
 		FA5079D11303018600CB96B4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CA1303018600CB96B4 /* LoginViewController.xib */; };
 		FA5079D31303018600CB96B4 /* NewMeetingDateAndTimeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */; };
-		FA5079D41303018600CB96B4 /* NewMeetingPeopleController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CD1303018600CB96B4 /* NewMeetingPeopleController.xib */; };
+		FA5079D41303018600CB96B4 /* NewMeetingUsersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CD1303018600CB96B4 /* NewMeetingUsersController.xib */; };
 		FA5079D51303018600CB96B4 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CE1303018600CB96B4 /* RegisterViewController.xib */; };
 		FA5079D61303018600CB96B4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */; };
 		FA507B091303EF4000CB96B4 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B081303EF4000CB96B4 /* UserManager.m */; };
@@ -80,9 +80,10 @@
 		FA7E179613070FDA00CFAAF5 /* SearchUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E179413070FDA00CFAAF5 /* SearchUsersViewController.m */; };
 		FA7E179713070FDA00CFAAF5 /* SearchUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */; };
 		FA7E17D613073C7300CFAAF5 /* SearchUsersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */; };
+		FA7FA0F5131D22C100130590 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7FA0F4131D22C100130590 /* Icon.png */; };
+		FA7FA15F131D334100130590 /* MeepStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA15E131D334100130590 /* MeepStyleSheet.m */; };
 		FA8C74101305C20D00FF1A99 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* User.m */; };
 		FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
-		FACFDFEA130D6F7600F6000A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA5076D81302F3EA00CB96B4 /* Icon.png */; };
 		FACFE016130D870500F6000A /* UserRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACFE014130D870500F6000A /* UserRequestsViewController.m */; };
 		FACFE017130D870500F6000A /* UserRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACFE015130D870500F6000A /* UserRequestsViewController.xib */; };
 		FADCEC52130DCC9A00EADF31 /* UserSummary.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummary.m */; };
@@ -488,8 +489,8 @@
 		FA5076B01302F3CC00CB96B4 /* NewMeetingLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewMeetingLocationController.m; path = Classes/NewMeetingLocationController.m; sourceTree = SOURCE_ROOT; };
 		FA5076B11302F3CC00CB96B4 /* NewMeetingDateAndTimeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewMeetingDateAndTimeController.h; path = Classes/NewMeetingDateAndTimeController.h; sourceTree = SOURCE_ROOT; };
 		FA5076B21302F3CC00CB96B4 /* NewMeetingDateAndTimeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewMeetingDateAndTimeController.m; path = Classes/NewMeetingDateAndTimeController.m; sourceTree = SOURCE_ROOT; };
-		FA5076B31302F3CC00CB96B4 /* NewMeetingPeopleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewMeetingPeopleController.h; path = Classes/NewMeetingPeopleController.h; sourceTree = SOURCE_ROOT; };
-		FA5076B41302F3CC00CB96B4 /* NewMeetingPeopleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewMeetingPeopleController.m; path = Classes/NewMeetingPeopleController.m; sourceTree = SOURCE_ROOT; };
+		FA5076B31302F3CC00CB96B4 /* NewMeetingUsersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMeetingUsersController.h; sourceTree = "<group>"; };
+		FA5076B41302F3CC00CB96B4 /* NewMeetingUsersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMeetingUsersController.m; sourceTree = "<group>"; };
 		FA5076B51302F3CC00CB96B4 /* MenuNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuNavigationController.h; path = Classes/MenuNavigationController.h; sourceTree = SOURCE_ROOT; };
 		FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MenuNavigationController.m; path = Classes/MenuNavigationController.m; sourceTree = SOURCE_ROOT; };
 		FA5076B71302F3CC00CB96B4 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuViewController.h; path = Classes/MenuViewController.h; sourceTree = SOURCE_ROOT; };
@@ -504,7 +505,6 @@
 		FA5076C11302F3CC00CB96B4 /* WelcomeNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeNavigationController.m; path = Classes/WelcomeNavigationController.m; sourceTree = SOURCE_ROOT; };
 		FA5076C21302F3CC00CB96B4 /* WelcomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WelcomeViewController.h; path = Classes/WelcomeViewController.h; sourceTree = SOURCE_ROOT; };
 		FA5076C31302F3CC00CB96B4 /* WelcomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WelcomeViewController.m; path = Classes/WelcomeViewController.m; sourceTree = SOURCE_ROOT; };
-		FA5076D81302F3EA00CB96B4 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		FA5076D91302F46700CB96B4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		FA5076DB1302F46700CB96B4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		FA5076DD1302F46700CB96B4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -544,7 +544,7 @@
 		FA5079C91303018600CB96B4 /* HTTPDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HTTPDemoViewController.xib; path = Classes/HTTPDemoViewController.xib; sourceTree = SOURCE_ROOT; };
 		FA5079CA1303018600CB96B4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Classes/LoginViewController.xib; sourceTree = "<group>"; };
 		FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingDateAndTimeController.xib; path = Classes/NewMeetingDateAndTimeController.xib; sourceTree = "<group>"; };
-		FA5079CD1303018600CB96B4 /* NewMeetingPeopleController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingPeopleController.xib; path = Classes/NewMeetingPeopleController.xib; sourceTree = "<group>"; };
+		FA5079CD1303018600CB96B4 /* NewMeetingUsersController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingUsersController.xib; path = Classes/NewMeetingUsersController.xib; sourceTree = "<group>"; };
 		FA5079CE1303018600CB96B4 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RegisterViewController.xib; path = Classes/RegisterViewController.xib; sourceTree = "<group>"; };
 		FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = Classes/WelcomeViewController.xib; sourceTree = "<group>"; };
 		FA507B071303EF4000CB96B4 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
@@ -571,6 +571,9 @@
 		FA7E17D413073C7300CFAAF5 /* SearchUsersManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersManager.h; sourceTree = "<group>"; };
 		FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUsersManager.m; sourceTree = "<group>"; };
 		FA7E17D713073CC200CFAAF5 /* SearchUsersManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersManagerDelegate.h; sourceTree = "<group>"; };
+		FA7FA0F4131D22C100130590 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
+		FA7FA15D131D334100130590 /* MeepStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeepStyleSheet.h; sourceTree = "<group>"; };
+		FA7FA15E131D334100130590 /* MeepStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeepStyleSheet.m; sourceTree = "<group>"; };
 		FA8C740E1305C20D00FF1A99 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		FA8C740F1305C20D00FF1A99 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		FA8C74381305C7A300FF1A99 /* DictionaryModelMapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = DictionaryModelMapper.h; sourceTree = "<group>"; };
@@ -647,6 +650,8 @@
 				FA5076A51302F3CC00CB96B4 /* CLViewController.m */,
 				FA5076A21302F3CC00CB96B4 /* MeepAppDelegate.h */,
 				FA5076A31302F3CC00CB96B4 /* MeepAppDelegate.m */,
+				FA7FA15D131D334100130590 /* MeepStyleSheet.h */,
+				FA7FA15E131D334100130590 /* MeepStyleSheet.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -692,8 +697,8 @@
 				FA5079C31303014500CB96B4 /* CLViewController.xib */,
 				FA5079C01303011600CB96B4 /* MainWindow.xib */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
-				FA5076D81302F3EA00CB96B4 /* Icon.png */,
 				8D1107310486CEB800E47090 /* Meep-Info.plist */,
+				FA7FA0F4131D22C100130590 /* Icon.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -914,8 +919,8 @@
 				FA5076B01302F3CC00CB96B4 /* NewMeetingLocationController.m */,
 				FA5076B11302F3CC00CB96B4 /* NewMeetingDateAndTimeController.h */,
 				FA5076B21302F3CC00CB96B4 /* NewMeetingDateAndTimeController.m */,
-				FA5076B31302F3CC00CB96B4 /* NewMeetingPeopleController.h */,
-				FA5076B41302F3CC00CB96B4 /* NewMeetingPeopleController.m */,
+				FA5076B31302F3CC00CB96B4 /* NewMeetingUsersController.h */,
+				FA5076B41302F3CC00CB96B4 /* NewMeetingUsersController.m */,
 			);
 			name = "New Meeting";
 			path = Classes;
@@ -1021,7 +1026,7 @@
 			children = (
 				FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */,
 				FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */,
-				FA5079CD1303018600CB96B4 /* NewMeetingPeopleController.xib */,
+				FA5079CD1303018600CB96B4 /* NewMeetingUsersController.xib */,
 			);
 			name = "New Meeting";
 			sourceTree = "<group>";
@@ -1506,14 +1511,14 @@
 				FA5079D01303018600CB96B4 /* HTTPDemoViewController.xib in Resources */,
 				FA5079D11303018600CB96B4 /* LoginViewController.xib in Resources */,
 				FA5079D31303018600CB96B4 /* NewMeetingDateAndTimeController.xib in Resources */,
-				FA5079D41303018600CB96B4 /* NewMeetingPeopleController.xib in Resources */,
+				FA5079D41303018600CB96B4 /* NewMeetingUsersController.xib in Resources */,
 				FA5079D51303018600CB96B4 /* RegisterViewController.xib in Resources */,
 				FA5079D61303018600CB96B4 /* WelcomeViewController.xib in Resources */,
 				FA7E179713070FDA00CFAAF5 /* SearchUsersViewController.xib in Resources */,
 				FA7D0B731307F32100AD7E31 /* SearchUsersDetailViewController.xib in Resources */,
-				FACFDFEA130D6F7600F6000A /* Icon.png in Resources */,
 				FACFE017130D870500F6000A /* UserRequestsViewController.xib in Resources */,
 				FAF7707B13108E1B00297E90 /* UsersViewController.xib in Resources */,
+				FA7FA0F5131D22C100130590 /* Icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1557,7 +1562,7 @@
 				FA5076CC1302F3CC00CB96B4 /* MapLocation.m in Sources */,
 				FA5076CD1302F3CC00CB96B4 /* NewMeetingLocationController.m in Sources */,
 				FA5076CE1302F3CC00CB96B4 /* NewMeetingDateAndTimeController.m in Sources */,
-				FA5076CF1302F3CC00CB96B4 /* NewMeetingPeopleController.m in Sources */,
+				FA5076CF1302F3CC00CB96B4 /* NewMeetingUsersController.m in Sources */,
 				FA5076D01302F3CC00CB96B4 /* MenuNavigationController.m in Sources */,
 				FA5076D11302F3CC00CB96B4 /* MenuViewController.m in Sources */,
 				FA5076D21302F3CC00CB96B4 /* CustomCellTextField.m in Sources */,
@@ -1592,6 +1597,7 @@
 				FAF76F8F1310496B00297E90 /* AlertView.m in Sources */,
 				FAF76FA913104A9F00297E90 /* RequestManager.m in Sources */,
 				FAF7707A13108E1B00297E90 /* UsersViewController.m in Sources */,
+				FA7FA15F131D334100130590 /* MeepStyleSheet.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,15 +1,15 @@
 //
-//  NewMeetingPeopleController.m
+//  NewMeetingUsersController.m
 //  meep
 //
 //  Created by Alex Jarvis on 31/01/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "NewMeetingPeopleController.h"
+#import "NewMeetingUsersController.h"
 
 
-@implementation NewMeetingPeopleController
+@implementation NewMeetingUsersController
 
 
 #pragma mark -
@@ -17,11 +17,10 @@
 
 
 - (void)viewDidLoad {
-	self.title = @"People";
+	self.title = @"Friends";
 	
     [super viewDidLoad];
 	
-
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }

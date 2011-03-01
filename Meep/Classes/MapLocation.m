@@ -19,7 +19,7 @@
 #pragma mark -
 
 - (id)initWithCoordinate:(CLLocationCoordinate2D)newCoordinate {
-	coordinate = newCoordinate;
+	self.coordinate = newCoordinate;
 	return self;
 }
 
@@ -53,6 +53,13 @@
 
 - (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
 	coordinate = newCoordinate;
+}
+
+- (void)resetReverseGeocodeAttributes {
+	self.streetAddress = nil;
+	self.city = nil;
+	self.state = nil;
+	self.zip = nil;
 }
 
 #pragma mark -

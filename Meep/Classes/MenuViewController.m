@@ -91,6 +91,20 @@
 	[userManager getUser:configManager.email];
 }
 
+- (void)logoutUserButton:(id)sender {
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	NSString *accessToken = [[meepAppDelegate configManager] access_token];
+	LogoutManager *logoutManager = [[LogoutManager alloc] initWithAccessToken: accessToken];
+	[logoutManager setDelegate:self];
+	[logoutManager logoutUser];
+}
+
+- (void)showWelcomeView {
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	[[meepAppDelegate configManager] setAccess_token:@""];
+	[meepAppDelegate showWelcomeView];
+}
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -105,20 +119,6 @@
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
-}
-
-- (void)logoutUserButton:(id)sender {
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	NSString *accessToken = [[meepAppDelegate configManager] access_token];
-	LogoutManager *logoutManager = [[LogoutManager alloc] initWithAccessToken: accessToken];
-	[logoutManager setDelegate:self];
-	[logoutManager logoutUser];
-}
-
-- (void)showWelcomeView {
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	[[meepAppDelegate configManager] setAccess_token:@""];
-	[meepAppDelegate showWelcomeView];
 }
 
 - (void)dealloc {
