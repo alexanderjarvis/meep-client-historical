@@ -31,7 +31,7 @@
 	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
 	[userManager setDelegate:self];
 	
-	selectedUsers = [[NSMutableArray alloc] initWithCapacity:2];
+	selectedUsers = [[NSMutableArray alloc] initWithCapacity:1];
 }
 
 
@@ -141,6 +141,12 @@
 #pragma mark UserManagerDelegate
 
 - (void)getUserSuccessful:(User *)user {
+	
+	// Only update the table if the respons is new
+	if ([userManager isResponseSameAsPreviousRequest]) {
+		return;
+	}
+	
 	self.currentUser = user;
 	
 	// TODO: move to utility method
@@ -164,6 +170,8 @@
 	
 	self.tableDictionary = [NSDictionary dictionaryWithDictionary:connectedUsersDictionary];
 	self.tableKeys = [tableDictionary allKeys];
+	
+	[selectedUsers removeAllObjects];
 	
 	[[super tableView] reloadData];
 }

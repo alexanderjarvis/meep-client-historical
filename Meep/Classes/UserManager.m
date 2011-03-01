@@ -39,8 +39,6 @@
 - (void)requestFinished:(ASIHTTPRequest *)request {
 	[super requestFinished:request];
 	
-	NSString *responseString = [request responseString];
-	
 	if ([request responseStatusCode] == 200) {
 		
 		User *emptyUser = [[User alloc] init];

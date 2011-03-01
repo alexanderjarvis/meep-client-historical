@@ -11,10 +11,16 @@
 #import "ASIHTTPRequest.h"
 
 @interface RequestManager : NSObject {
-
+	
+	NSString *responseString;
+	NSString *previousResponseString;
 }
+
+@property(nonatomic, copy) NSString *responseString;
+@property(nonatomic, copy) NSString *previousResponseString;
 
 - (void)requestFinished:(ASIHTTPRequest *)request;
 - (void)requestFailed:(ASIHTTPRequest *)request;
+- (BOOL)isResponseSameAsPreviousRequest;
 
 @end

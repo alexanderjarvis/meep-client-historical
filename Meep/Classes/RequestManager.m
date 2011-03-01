@@ -10,7 +10,13 @@
 
 @implementation RequestManager
 
+@synthesize responseString;
+@synthesize previousResponseString;
+
 - (void)requestFinished:(ASIHTTPRequest *)request {
+	self.previousResponseString = responseString;
+	self.responseString = [request responseString];
+	
 	NSLog(@"Response status code: %d", [request responseStatusCode]);
 	NSLog(@"Response: %@", [request responseString]);
 }
@@ -19,6 +25,16 @@
 	NSLog(@"Request failed with Error: %@", [[request error] localizedDescription]);
 	NSLog(@"Response status code: %d", [request responseStatusCode]);
 	NSLog(@"Response: %@", [request responseString]);
+}
+
+- (BOOL)isResponseSameAsPreviousRequest {
+	return [responseString isEqualToString:previousResponseString];
+}
+
+- (void)dealloc {
+	[responseString release];
+	[previousResponseString release];
+	[super dealloc];
 }
 
 @end
