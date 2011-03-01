@@ -24,7 +24,6 @@
     [super viewDidLoad];
 
     self.title = @"Friends";
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
@@ -152,6 +151,7 @@
 - (void)getUserSuccessful:(User *)user {
 	self.currentUser = user;
 	
+	// TODO: move to utility method
 	// Compile user dictionary (for index)
 	NSArray *connectedUsers = [currentUser connections];
 	

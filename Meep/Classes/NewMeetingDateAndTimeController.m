@@ -9,6 +9,8 @@
 #import "NewMeetingDateAndTimeController.h"
 
 #import "MeepAppDelegate.h"
+#import "MeepStyleSheet.h"
+#import "AlertView.h"
 
 @implementation NewMeetingDateAndTimeController
 
@@ -30,8 +32,8 @@
 	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 	
-	TTButton *button = [TTButton buttonWithStyle:@"toolbarForwardButton:" title:@"Choose People"];
-	button.font = [UIFont boldSystemFontOfSize:15];
+	TTButton *button = [TTButton buttonWithStyle:@"blackForwardButton:" title:@"Choose Friends"];
+	button.font = [UIFont boldSystemFontOfSize:13];
 	[button sizeToFit];
 	[button addTarget:self action:@selector(choosePeopleButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[choosePeopleButton addSubview: button];
@@ -42,11 +44,20 @@
 - (void)choosePeopleButtonPressed {
 	NSLog(@"Choose People button pressed");
 	
-	// do something with date
-	[datePicker date];
+	// validation
+	if (titleCell.customTextField.text.length == 0) {
+		[AlertView showValidationAlert:@"You must choose a title for the meeting."];
+	} else if (dateCell.customTextField.text.length == 0) {
+		[AlertView showValidationAlert:@"You must choose a Date & Time."];
+	} else {
+		// do something with date
+		[datePicker date];
+		
+		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+		[meepAppDelegate.menuNavigationController showNewMeetingUsers];
+	}
 	
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	[meepAppDelegate.menuNavigationController showNewMeetingUsers];
+	
 }
 
 - (TTPostController *)showPostController {

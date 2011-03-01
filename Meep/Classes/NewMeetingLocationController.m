@@ -9,6 +9,7 @@
 #import "NewMeetingLocationController.h"
 #import "MeepAppDelegate.h"
 #import "MeepStyleSheet.h"
+#import "AlertView.h"
 
 @implementation NewMeetingLocationController
 
@@ -36,6 +37,7 @@
 	
 	// Choose Date & Time button
 	button = [TTButton buttonWithStyle:@"blackForwardButton:" title:@"Choose Date & Time"];
+	button.font = [UIFont boldSystemFontOfSize:13];
 	[button sizeToFit];
 	[button addTarget:self action:@selector(chooseDateButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[chooseDateButton addSubview:button];
@@ -86,13 +88,7 @@
 		
 		
 	} else {
-		UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Oops!"
-														message:@"You must choose a meeting location first."
-													   delegate:nil
-											  cancelButtonTitle:@"Okay"
-											  otherButtonTitles:nil];
-		[alert show];
-		[alert release];
+		[AlertView showValidationAlert:@"You must choose a meeting location first."];
 	}
 
 }

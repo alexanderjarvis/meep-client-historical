@@ -15,7 +15,7 @@
 						  initWithTitle:@"Oops!" 
 						  message:message
 						  delegate:self 
-						  cancelButtonTitle:@"Dismiss" 
+						  cancelButtonTitle:@"Okay" 
 						  otherButtonTitles:nil];
 	[alert show];
 	[alert release];

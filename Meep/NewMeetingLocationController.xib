@@ -102,7 +102,7 @@
 					<object class="IBUIButton" id="227724798">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">265</int>
-						<string key="NSFrame">{{170, 370}, {140, 25}}</string>
+						<string key="NSFrame">{{160, 370}, {140, 25}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -261,7 +261,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>NewMeetingLocationController</string>
 					<string>UIResponder</string>
-					<string>{{359, 280}, {320, 480}}</string>
+					<string>{{607, 284}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
