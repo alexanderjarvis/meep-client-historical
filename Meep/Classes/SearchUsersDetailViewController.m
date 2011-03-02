@@ -9,6 +9,7 @@
 #import "SearchUsersDetailViewController.h"
 #import "MeepAppDelegate.h"
 #import "MeepStyleSheet.h"
+#import "AlertView.h"
 
 @implementation SearchUsersDetailViewController
 
@@ -40,12 +41,39 @@
 }
 		 
 - (void)viewDidAppear:(BOOL)animated {
-	// If the User is the current User, then disable the request to add user button.
-	if ([[[MeepAppDelegate sharedAppDelegate] currentUser]._id isEqual:user._id]) {
+	
+	// If the User is the current User, or already a connection, then disable the request to add user button.
+	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+	
+	// If the User is the current User
+	if ([currentUser._id isEqual:user._id]) {
 		[tt_requestAddUserButton setEnabled:NO];
-	} else {
-		[tt_requestAddUserButton setEnabled:YES];
+		return;
 	}
+	
+	// If the user is already connected
+	for (UserSummaryDTO *userSummaryDTO in currentUser.connections) {
+		if ([userSummaryDTO._id isEqual:user._id]) {
+			[tt_requestAddUserButton setEnabled:NO];
+			return;
+		}
+	}
+	
+	// If the user has sent a request to or has a request from.
+	for (UserSummaryDTO *userSummaryDTO in currentUser.connectionRequestsTo) {
+		if ([userSummaryDTO._id isEqual:user._id]) {
+			[tt_requestAddUserButton setEnabled:NO];
+			return;
+		}
+	}
+	for (UserSummaryDTO *userSummaryDTO in currentUser.connectionRequestsFrom) {
+		if ([userSummaryDTO._id isEqual:user._id]) {
+			[tt_requestAddUserButton setEnabled:NO];
+			return;
+		}
+	}
+
+	[tt_requestAddUserButton setEnabled:YES];
 
 }
 
@@ -137,12 +165,14 @@
 						  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+	[tt_requestAddUserButton setEnabled:NO];
 }
 
 - (void)addUserRequestFailedWithError:(NSError *)error {
 }
 
 - (void)addUserRequestFailedWithNetworkError:(NSError *)error {
+	[AlertView showNetworkAlert:error];
 }
 
 @end

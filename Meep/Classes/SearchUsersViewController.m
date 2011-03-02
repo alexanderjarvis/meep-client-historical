@@ -111,6 +111,11 @@
 
 #pragma mark -
 #pragma mark UISearchBarDelegate methods
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	if ([searchText length] > 2) {
+		[searchUsersManager searchUsers:searchText];
+	}
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {	
 	[searchUsersManager searchUsers:[searchBar text]];
