@@ -61,4 +61,20 @@
 
 }
 
+- (TTStyle*)launcherButton:(UIControlState)state {
+	return
+    [TTPartStyle styleWithName:@"image" style:TTSTYLESTATE(launcherButtonImage:, state) next:
+	 [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:11] color:RGBCOLOR(25, 25, 25)
+				minimumFontSize:11 shadowColor:nil
+				   shadowOffset:CGSizeZero next:nil]];
+}
+
+- (TTStyle*)pageDot:(UIControlState)state {
+	if (state == UIControlStateSelected) {
+		return [self pageDotWithColor:RGBCOLOR(77, 77, 77)];
+	} else {
+		return [self pageDotWithColor:RGBCOLOR(175, 175, 175)];
+	}
+}
+
 @end

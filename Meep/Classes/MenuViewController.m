@@ -11,6 +11,7 @@
 #import "MeepAppDelegate.h"
 #import "LogoutManager.h"
 #import "AlertView.h"
+#import "MeepStyleSheet.h"
 
 @implementation MenuViewController
 
@@ -35,8 +36,9 @@
 	self.navigationItem.rightBarButtonItem = logoutButton;
 	
 	// Add Menu Items
+	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
 	launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
-	launcherView.backgroundColor = [UIColor blackColor];
+	launcherView.backgroundColor = RGBCOLOR(224,233,245);
 	launcherView.delegate = self;
 	launcherView.columnCount = 3;
 	
@@ -66,7 +68,7 @@
 	[launcherView addItem:searchPeopleItem animated:NO];
 	
 	friendRequestsItem = [[TTLauncherItem alloc] initWithTitle: @"Friend Requests"
-														 image: @"bundle://Icon.png"
+														 image: @"bundle://friendrequests.png"
 														   URL: UserRequestsURL];
 	[launcherView addItem:friendRequestsItem animated:NO];
 	
