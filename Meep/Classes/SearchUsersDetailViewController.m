@@ -8,9 +8,11 @@
 
 #import "SearchUsersDetailViewController.h"
 #import "MeepAppDelegate.h"
+#import "MeepStyleSheet.h"
 
 @implementation SearchUsersDetailViewController
 
+@synthesize requestAddUserButton;
 @synthesize addUserRequestManager;
 @synthesize user;
 
@@ -20,15 +22,34 @@
 - (void)viewDidLoad {
 	self.title = @"Add Request";
 	
-	MeepAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-	NSString *accessToken = [[appDelegate configManager] access_token];
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	NSString *accessToken = [[meepAppDelegate configManager] access_token];
 	addUserRequestManager = [[AddUserRequestManager alloc] initWithAccessToken:accessToken];
 	[addUserRequestManager setDelegate:self];
 	
+	// Request Add User button
+	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
+	TTButton *button = [TTButton buttonWithStyle:@"embossedButton:" title:@"Request to Add as a Friend"];
+	button.font = [UIFont boldSystemFontOfSize:14];
+	[button sizeToFit];
+	[button addTarget:self action:@selector(requestAddUserButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[requestAddUserButton addSubview: button];
+	tt_requestAddUserButton = button;
+	
     [super viewDidLoad];
 }
+		 
+- (void)viewDidAppear:(BOOL)animated {
+	// If the User is the current User, then disable the request to add user button.
+	if ([[[MeepAppDelegate sharedAppDelegate] currentUser]._id isEqual:user._id]) {
+		[tt_requestAddUserButton setEnabled:NO];
+	} else {
+		[tt_requestAddUserButton setEnabled:YES];
+	}
 
-- (IBAction)requestAddUser {
+}
+
+- (void)requestAddUserButtonPressed {
 	NSLog(@"Request to Add user");
 	[addUserRequestManager addUserRequest:user];
 }
@@ -98,6 +119,7 @@
 
 
 - (void)dealloc {
+	[requestAddUserButton release];
 	[addUserRequestManager release];
 	[user release];
     [super dealloc];

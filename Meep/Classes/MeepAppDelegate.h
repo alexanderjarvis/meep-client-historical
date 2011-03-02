@@ -21,12 +21,17 @@
 	WelcomeNavigationController *welcomeNavigationController;
 	MenuNavigationController *menuNavigationController;	
 	
+	User *currentUser;
+	
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) ConfigManager *configManager;
 @property (nonatomic, retain) IBOutlet WelcomeNavigationController *welcomeNavigationController;
 @property (nonatomic, retain) IBOutlet MenuNavigationController *menuNavigationController;
+@property (nonatomic, retain) User *currentUser;
+
++ (MeepAppDelegate *)sharedAppDelegate;
 
 - (void)showWelcomeView;
 

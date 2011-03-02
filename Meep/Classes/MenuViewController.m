@@ -14,8 +14,6 @@
 
 @implementation MenuViewController
 
-@synthesize currentUser;
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -132,7 +130,6 @@
 }
 
 - (void)dealloc {
-	[currentUser release];
     [super dealloc];
 }
 
@@ -141,15 +138,16 @@
 
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item {
 	
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
+	User *currentUser = [meepAppDelegate currentUser];
 	
 	if ([item.URL isEqualToString:NewMeetingURL]) {
+		// Check that the current user has connections to make a meeting with.
 		if ([currentUser.connections count] > 0) {
 			[meepAppDelegate.menuNavigationController showNewMeetingLocation];
 		} else {
 			[AlertView showNoUsersAlert];
 		}
-
 	} else if ([item.URL isEqualToString:SearchUsersURL]) {
 		[meepAppDelegate.menuNavigationController showSearchUsers];
 	} else if ([item.URL isEqualToString:UserRequestsURL]) {
@@ -192,7 +190,7 @@
 
 - (void)getUserSuccessful:(User *)user {
 	NSLog(@"Get user successful");
-	self.currentUser = user;
+	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
 	connectionRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
 	NSLog(@"connectionRequestsFrom count: %u", [[user connectionRequestsFrom] count]);
 }

@@ -11,6 +11,7 @@
 
 #import "UserManager.h"
 
+#define MeetingsURL @"mp://meetings"
 #define NewMeetingURL @"mp://newmeeting"
 #define SearchUsersURL @"mp://searchusers"
 #define UserRequestsURL @"mp://userrequests"
@@ -24,11 +25,8 @@
 	UIAlertView *logoutAlertView;
 	
 	UserManager *userManager;
-	User *currentUser;
 
 }
-
-@property (nonatomic, retain) User *currentUser;
 
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item;
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher;

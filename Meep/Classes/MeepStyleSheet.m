@@ -5,7 +5,7 @@
 //  Created by Alex Jarvis on 01/03/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
-//  These style sheets are attributed to the Three20 library and the TTCatalog example.
+//  These style sheets are partially attributed to the Three20 library and the TTCatalog example.
 //
 
 #import "MeepStyleSheet.h"
@@ -43,9 +43,22 @@
 			  [TTTextStyle styleWithFont:nil color:[UIColor whiteColor]
 							 shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
 							shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
+	} else if (state == UIControlStateDisabled) {
+		return
+		[TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
+		 [TTInsetStyle styleWithInset:UIEdgeInsetsMake(0, 0, 1, 0) next:
+		  [TTShadowStyle styleWithColor:RGBACOLOR(255,255,255,0) blur:1 offset:CGSizeMake(0, 1) next:
+		   [TTLinearGradientFillStyle styleWithColor1:RGBCOLOR(255, 255, 255)
+											   color2:RGBCOLOR(200, 200, 200) next:
+			[TTSolidBorderStyle styleWithColor:RGBCOLOR(160, 160, 160) width:1 next:
+			 [TTBoxStyle styleWithPadding:UIEdgeInsetsMake(10, 12, 9, 12) next:
+			  [TTTextStyle styleWithFont:nil color:RGBCOLOR(150, 150, 150)
+							 shadowColor:[UIColor colorWithWhite:255 alpha:0.4]
+							shadowOffset:CGSizeMake(0, -1) next:nil]]]]]]];
 	} else {
 		return nil;
 	}
+
 }
 
 @end

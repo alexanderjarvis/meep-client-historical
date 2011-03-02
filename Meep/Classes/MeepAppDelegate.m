@@ -18,8 +18,13 @@
 
 @synthesize window;
 @synthesize configManager;
+@synthesize currentUser;
 @synthesize welcomeNavigationController;
 @synthesize menuNavigationController;
+
++ (MeepAppDelegate *)sharedAppDelegate {
+	return [[UIApplication sharedApplication] delegate];
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	
@@ -65,6 +70,7 @@
 
 - (void)dealloc {
 	[configManager release];
+	[currentUser release];
 	[welcomeNavigationController release];
 	[menuNavigationController release];
 	[window release];
