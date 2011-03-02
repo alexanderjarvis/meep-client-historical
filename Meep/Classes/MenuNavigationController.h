@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MenuViewController.h"
 #import "UsersViewController.h"
 #import "NewMeetingLocationController.h"
 #import "NewMeetingDateAndTimeController.h"
@@ -17,8 +16,6 @@
 #import "UserRequestsViewController.h"
 
 @interface MenuNavigationController : UINavigationController {
-	
-	MenuViewController *menuViewController;
 	
 	UsersViewController *usersViewController;
 	
@@ -31,7 +28,6 @@
 
 }
 
-@property(nonatomic, retain) MenuViewController *menuViewController;
 @property(nonatomic, retain) UsersViewController *usersViewController;
 @property(nonatomic, retain) NewMeetingLocationController *newMeetingLocationController;
 @property(nonatomic, retain) NewMeetingDateAndTimeController *newMeetingDateAndTimeController;
@@ -49,5 +45,7 @@
 - (void)showUserRequests;
 
 - (void)showNetworkAlert:(NSError *)error;
+
+- (void)newMeetingCreated;
 
 @end

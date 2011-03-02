@@ -11,7 +11,6 @@
 
 @implementation MenuNavigationController
 
-@synthesize menuViewController;
 @synthesize usersViewController;
 @synthesize newMeetingLocationController;
 @synthesize newMeetingDateAndTimeController;
@@ -23,11 +22,6 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
-
-	// Always load the root view controller
-	self.menuViewController = [[MenuViewController alloc] init];
-	[self pushViewController:menuViewController animated:NO];
-	
     [super viewDidLoad];
 }
 
@@ -84,6 +78,16 @@
 	[alert release];
 }
 
+- (void)newMeetingCreated {
+	[self popToRootViewControllerAnimated:YES];
+	[newMeetingUsersController release];
+	newMeetingUsersController = nil;
+	[newMeetingDateAndTimeController release];
+	newMeetingDateAndTimeController = nil;
+	[newMeetingLocationController release];
+	newMeetingLocationController = nil;
+}
+
 #pragma mark -
 #pragma mark Memory management
 
@@ -100,7 +104,6 @@
 }
 
 - (void)dealloc {
-	[menuViewController release];
 	[usersViewController release];
 	[newMeetingLocationController release];
 	[newMeetingDateAndTimeController release];

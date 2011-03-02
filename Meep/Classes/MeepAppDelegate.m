@@ -21,6 +21,7 @@
 @synthesize currentUser;
 @synthesize welcomeNavigationController;
 @synthesize menuNavigationController;
+@synthesize menuViewController;
 
 + (MeepAppDelegate *)sharedAppDelegate {
 	return [[UIApplication sharedApplication] delegate];
@@ -54,15 +55,18 @@
 	[menuNavigationController.view removeFromSuperview];
 	
 	// When logging out, it's important to clear all resources of the main applicaton view between users
-	if (menuNavigationController != nil) {
+	if (menuNavigationController != nil && menuViewController != nil) {
 		[menuNavigationController release];
 		menuNavigationController = nil;
+		[menuViewController release];
+		menuViewController = nil;
 	}
 }
 
 - (void)showMenuView {
-	if (menuNavigationController == nil) {
-		menuNavigationController = [[MenuNavigationController alloc] init];
+	if (menuNavigationController == nil && menuViewController == nil) {
+		menuViewController = [[MenuViewController alloc] init];
+		menuNavigationController = [[MenuNavigationController alloc] initWithRootViewController:menuViewController];
 	}
 	[window addSubview:menuNavigationController.view];
 	[welcomeNavigationController.view removeFromSuperview];
@@ -73,6 +77,7 @@
 	[currentUser release];
 	[welcomeNavigationController release];
 	[menuNavigationController release];
+	[menuViewController release];
 	[window release];
     [super dealloc];
 }

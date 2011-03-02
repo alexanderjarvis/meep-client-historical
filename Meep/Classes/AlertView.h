@@ -13,6 +13,8 @@
 
 }
 
++ (void)showSimpleAlertMessage:(NSString *)message withTitle:(NSString *)title andDelegate:(id)delegate;
++ (void)showSimpleAlertMessage:(NSString *)message withTitle:(NSString *)title;
 + (void)showValidationAlert:(NSString *)message;
 + (void)showNetworkAlert:(NSError *)error; 
 + (void)showNoUsersAlert;

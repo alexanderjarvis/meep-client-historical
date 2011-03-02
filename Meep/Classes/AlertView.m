@@ -10,15 +10,23 @@
 
 @implementation AlertView
 
-+ (void)showValidationAlert:(NSString *)message {
++ (void)showSimpleAlertMessage:(NSString *)message withTitle:(NSString *)title andDelegate:(id)delegate {
 	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:@"Oops!" 
+						  initWithTitle:title 
 						  message:message
-						  delegate:self 
+						  delegate:delegate 
 						  cancelButtonTitle:@"Okay" 
 						  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+}
+
++ (void)showSimpleAlertMessage:(NSString *)message withTitle:(NSString *)title {
+	[self showSimpleAlertMessage:message withTitle:title andDelegate:nil];
+}
+
++ (void)showValidationAlert:(NSString *)message {
+	[self showSimpleAlertMessage:message withTitle:@"Oops!"];
 }
 
 + (void)showNetworkAlert:(NSError *)error {
@@ -33,14 +41,7 @@
 }
 
 + (void)showNoUsersAlert {
-	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:@"No Friends!" 
-						  message:@"You must add some friends before you can create a meeting."
-						  delegate:self 
-						  cancelButtonTitle:@"Okay" 
-						  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
+	[self showSimpleAlertMessage:@"You must add some friends before you can create a meeting." withTitle:@"No Friends!"];
 }
 
 @end

@@ -13,7 +13,7 @@
 #import "CreateMeetingRequestManager.h"
 
 
-@interface NewMeetingUsersController : UITableViewController <CreateMeetingRequestManagerDelegate> {
+@interface NewMeetingUsersController : UITableViewController <CreateMeetingRequestManagerDelegate, UIAlertViewDelegate> {
 	
 	IBOutlet UIButton *createMeetingButton;
 	

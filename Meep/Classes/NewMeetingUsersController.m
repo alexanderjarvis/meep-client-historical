@@ -11,6 +11,8 @@
 #import "ConfigManager.h"
 #import "MeepStyleSheet.h"
 #import "NewMeetingBuilder.h"
+#import "AlertView.h"
+
 
 @implementation NewMeetingUsersController
 
@@ -72,7 +74,7 @@
 		
 		[createMeetingRequestManager createMeeting:meetingDTO];
 	} else {
-		NSLog(@"You must select at least one user");
+		[AlertView showSimpleAlertMessage:@"You must select at least one friend to create a meeting." withTitle:@""];
 	}
 
 }
@@ -217,12 +219,21 @@
 #pragma mark -
 #pragma mark CreateMeetingRequestManagerDelegate
 - (void)createMeetingSuccessful {
+	[AlertView showSimpleAlertMessage:@"Meeting created successfully!" 
+							withTitle:@"" 
+						  andDelegate:self];
 }
 
 - (void)createMeetingFailedWithError:(NSError *)error {
 }
 
 - (void)createMeetingFailedWithNetworkError:(NSError *)error {
+}
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	[[[MeepAppDelegate sharedAppDelegate] menuNavigationController] newMeetingCreated];
 }
 
 
