@@ -35,18 +35,22 @@
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
 	[userManager setDelegate:self];
+	
 	createMeetingRequestManager = [[CreateMeetingRequestManager alloc] initWithAccessToken:configManager.access_token];
 	[createMeetingRequestManager setDelegate:self];
 	
 	selectedUsers = [[NSMutableArray alloc] initWithCapacity:1];
 	
-	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
 	// Create meeting button
+	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
 	TTButton *button = [TTButton buttonWithStyle:@"embossedButton:" title:@"Create Meeting"];
 	button.font = [UIFont boldSystemFontOfSize:14];
 	[button sizeToFit];
 	[button addTarget:self action:@selector(createMeetingButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[createMeetingButton addSubview: button];
+	
+	// Update table with users that have already been fetched.
+	[self updateTableWithUser:[meepAppDelegate currentUser]];
 }
 
 
@@ -76,8 +80,34 @@
 	} else {
 		[AlertView showSimpleAlertMessage:@"You must select at least one friend to create a meeting." withTitle:@""];
 	}
-
 }
+
+- (void)updateTableWithUser:(User *)user {
+	NSArray *connectedUsers = [user connections];
+	
+	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[connectedUsers count]];
+	for (UserSummaryDTO *connectedUser in connectedUsers) {
+		if ([connectedUser.firstName length] > 0) {
+			NSString *key = [[connectedUser.firstName substringToIndex:1] uppercaseString];
+			NSArray *usersInSection = [connectedUsersDictionary objectForKey:key];
+			if (usersInSection == nil) {
+				[connectedUsersDictionary setObject:[NSArray arrayWithObject:connectedUser] forKey:key];
+			} else {
+				NSMutableArray *mutableUsersInSection = [NSMutableArray arrayWithArray:usersInSection];
+				[mutableUsersInSection addObject:connectedUser];
+				[connectedUsersDictionary setObject:[NSArray arrayWithArray:mutableUsersInSection] forKey:key];
+			}
+		}
+	}
+	
+	self.tableDictionary = [NSDictionary dictionaryWithDictionary:connectedUsersDictionary];
+	self.tableKeys = [tableDictionary allKeys];
+	
+	[selectedUsers removeAllObjects];
+	
+	[[super tableView] reloadData];
+}
+
 
 #pragma mark -
 #pragma mark Table view data source
@@ -181,33 +211,9 @@
 	// Only update the table if the response is new
 	if ([userManager isResponseSameAsPreviousRequest]) {
 		return;
+	} else {
+		[self updateTableWithUser:user];
 	}
-	
-	NSArray *connectedUsers = [user connections];
-	
-	// Compile user dictionary (for index)
-	// TODO: move to utility method
-	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[connectedUsers count]];
-	for (User *connectedUser in connectedUsers) {
-		if ([connectedUser.firstName length] > 0) {
-			NSString *key = [[connectedUser.firstName substringToIndex:1] uppercaseString];
-			NSArray *usersInSection = [connectedUsersDictionary objectForKey:key];
-			if (usersInSection == nil) {
-				[connectedUsersDictionary setObject:[NSArray arrayWithObject:connectedUser] forKey:key];
-			} else {
-				NSMutableArray *mutableUsersInSection = [NSMutableArray arrayWithArray:usersInSection];
-				[mutableUsersInSection addObject:connectedUser];
-				[connectedUsersDictionary setObject:[NSArray arrayWithArray:mutableUsersInSection] forKey:key];
-			}
-		}
-	}
-	
-	self.tableDictionary = [NSDictionary dictionaryWithDictionary:connectedUsersDictionary];
-	self.tableKeys = [tableDictionary allKeys];
-	
-	[selectedUsers removeAllObjects];
-	
-	[[super tableView] reloadData];
 }
 
 - (void)getUserFailedWithError:(NSError *)error {

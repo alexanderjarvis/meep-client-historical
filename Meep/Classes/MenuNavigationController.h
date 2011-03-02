@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MenuViewController.h"
 #import "UsersViewController.h"
 #import "NewMeetingLocationController.h"
 #import "NewMeetingDateAndTimeController.h"
@@ -16,6 +17,8 @@
 #import "UserRequestsViewController.h"
 
 @interface MenuNavigationController : UINavigationController {
+	
+	MenuViewController *menuViewController;
 	
 	UsersViewController *usersViewController;
 	
@@ -28,12 +31,13 @@
 
 }
 
-@property(nonatomic, retain) UsersViewController *usersViewController;
-@property(nonatomic, retain) NewMeetingLocationController *newMeetingLocationController;
-@property(nonatomic, retain) NewMeetingDateAndTimeController *newMeetingDateAndTimeController;
-@property(nonatomic, retain) NewMeetingUsersController *newMeetingUsersController;
-@property(nonatomic, retain) SearchUsersViewController *searchUsersViewController;
-@property(nonatomic, retain) UserRequestsViewController *userRequestsViewController;
+@property (nonatomic, retain) MenuViewController *menuViewController;
+@property (nonatomic, retain) UsersViewController *usersViewController;
+@property (nonatomic, retain) NewMeetingLocationController *newMeetingLocationController;
+@property (nonatomic, retain) NewMeetingDateAndTimeController *newMeetingDateAndTimeController;
+@property (nonatomic, retain) NewMeetingUsersController *newMeetingUsersController;
+@property (nonatomic, retain) SearchUsersViewController *searchUsersViewController;
+@property (nonatomic, retain) UserRequestsViewController *userRequestsViewController;
 
 - (void)showUsers;
 

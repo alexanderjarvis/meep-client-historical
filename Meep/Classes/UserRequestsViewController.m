@@ -16,7 +16,6 @@
 @implementation UserRequestsViewController
 
 @synthesize userManager;
-@synthesize currentUser;
 @synthesize acceptUserRequestManager;
 @synthesize declineUserRequestManager;
 
@@ -52,14 +51,14 @@
 
 -(void)acceptUserAtIndexPath:(NSIndexPath *)indexPath {
 	NSUInteger row = [indexPath row];
-	
+	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
 	[acceptUserRequestManager acceptUser:user];
 }
 
 -(void)declineUserAtIndexPath:(NSIndexPath *)indexPath {
 	NSUInteger row = [indexPath row];
-	
+	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
 	[declineUserRequestManager declineUser:user];
 }
@@ -67,7 +66,7 @@
 -(void)removeRowThatHasUser:(User *)user {
 
 	NSUInteger row = 0;
-	
+	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	// Although the IndexPath could be passed to the Request manager, it is not relevant
 	// aside from returning the value back to this table view controller
 	// and so the row is calculated from the user object instead.
@@ -97,6 +96,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	if (currentUser.connectionRequestsFrom != nil) {
 		return [currentUser.connectionRequestsFrom count];
 	}
@@ -120,6 +120,7 @@
 	cell.userRequestsViewController = self;
 	cell.indexPath = indexPath;
 	// Name
+	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
 	
@@ -149,7 +150,6 @@
 
 - (void)dealloc {
 	[userManager release];
-	[currentUser release];
 	[acceptUserRequestManager release];
 	[declineUserRequestManager release];
     [super dealloc];
@@ -163,7 +163,7 @@
 	if ([userManager isResponseSameAsPreviousRequest]) {
 		return;
 	}
-	self.currentUser = user;
+	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
 	[[super tableView] reloadData];
 }
 

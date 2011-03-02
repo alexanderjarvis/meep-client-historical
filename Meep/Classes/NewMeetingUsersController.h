@@ -36,5 +36,6 @@
 @property(nonatomic, retain) NSMutableArray *selectedUsers;
 
 - (void)createMeetingButtonPressed;
+- (void)updateTableWithUser:(User *)user;
 
 @end

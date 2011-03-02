@@ -13,14 +13,24 @@
 
 #define MeetingsURL @"mp://meetings"
 #define NewMeetingURL @"mp://newmeeting"
+#define MeetingRequestsURL @"mp://meetingrequests"
 #define SearchUsersURL @"mp://searchusers"
 #define UserRequestsURL @"mp://userrequests"
 #define UsersURL @"mp://users"
+#define MyDetailsURL @"mp://mydetails"
 
 @interface MenuViewController : TTViewController <TTLauncherViewDelegate, UIAlertViewDelegate> {
 	
 	TTLauncherView *launcherView;
-	TTLauncherItem *connectionRequestsItem;
+	
+	TTLauncherItem *meetingsItem;
+	TTLauncherItem *friendsItem;
+	TTLauncherItem *newMeetingItem;
+	TTLauncherItem *myDetailsItem;
+	TTLauncherItem *searchPeopleItem;
+	TTLauncherItem *friendRequestsItem;
+	TTLauncherItem *meetingRequestsItem;
+	
 	UIBarButtonItem *logoutButton;
 	UIAlertView *logoutAlertView;
 	
@@ -34,5 +44,8 @@
 
 - (void)logoutUserButtonPressed:(id)sender;
 - (void)logout;
+- (void)showWelcomeView;
+
+- (void)newMeetingCreated;
 
 @end

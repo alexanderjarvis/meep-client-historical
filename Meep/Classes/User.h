@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "UserSummaryDTO.h"
+#import "MeetingDTO.h"
 
 @interface User : NSObject {
 	
@@ -24,6 +25,8 @@
 	UserSummaryDTO *_type_connectionRequestsTo;
 	NSArray *connectionRequestsFrom;
 	UserSummaryDTO *_type_connectionRequestsFrom;
+	NSArray *meetingsRelated;
+	MeetingDTO *_type_meetingsRelated;
 }
 
 @property (nonatomic, copy) NSNumber *_id;
@@ -38,6 +41,8 @@
 @property (nonatomic, retain) UserSummaryDTO *_type_connectionRequestsTo;
 @property (nonatomic, retain) NSArray *connectionRequestsFrom;
 @property (nonatomic, retain) UserSummaryDTO *_type_connectionRequestsFrom;
+@property (nonatomic, retain) NSArray *meetingsRelated;
+@property (nonatomic, retain) MeetingDTO *_type_meetingsRelated;
 
 -(id)init;
 

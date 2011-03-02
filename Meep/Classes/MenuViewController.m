@@ -40,42 +40,41 @@
 	launcherView.delegate = self;
 	launcherView.columnCount = 3;
 	
-	TTLauncherItem* item =
-	[[TTLauncherItem alloc] initWithTitle: @"Meetings"
-									image: @"bundle://Icon.png"
-									  URL: @"mp://meetings"];
-	[launcherView addItem:item animated:NO];
+	meetingsItem = [[TTLauncherItem alloc] initWithTitle: @"Meetings"
+												   image: @"bundle://Icon.png"
+									                 URL: MeetingsURL];
+	[launcherView addItem:meetingsItem animated:NO];
 	
-	item =
-	[[TTLauncherItem alloc] initWithTitle: @"Friends"
-									image: @"bundle://Icon.png"
-									  URL: UsersURL];
-	[launcherView addItem:item animated:NO];
+	friendsItem = [[TTLauncherItem alloc] initWithTitle: @"Friends"
+												  image: @"bundle://Icon.png"
+													URL: UsersURL];
+	[launcherView addItem:friendsItem animated:NO];
 	
-	item =
-	[[TTLauncherItem alloc] initWithTitle: @"New Meeting"
-									image: @"bundle://Icon.png"
-									  URL: NewMeetingURL];
-	[launcherView addItem:item animated:NO];
+	newMeetingItem = [[TTLauncherItem alloc] initWithTitle: @"New Meeting"
+													 image: @"bundle://Icon.png"
+													   URL: NewMeetingURL];
+	[launcherView addItem:newMeetingItem animated:NO];
 	
-	item =
-	[[TTLauncherItem alloc] initWithTitle: @"My Details"
-									image: @"bundle://Icon.png"
-									  URL: @"mp://mydetails"];
-	[launcherView addItem:item animated:NO];
+	myDetailsItem = [[TTLauncherItem alloc] initWithTitle: @"My Details"
+													image: @"bundle://Icon.png"
+													  URL: MyDetailsURL];
+	[launcherView addItem:myDetailsItem animated:NO];
 	
-	item =
-	[[TTLauncherItem alloc] initWithTitle: @"Search People"
-									image: @"bundle://Icon.png"
-									  URL: SearchUsersURL];
-	[launcherView addItem:item animated:NO];
+	searchPeopleItem = [[TTLauncherItem alloc] initWithTitle: @"Search People"
+													   image: @"bundle://Icon.png"
+														 URL: SearchUsersURL];
+	[launcherView addItem:searchPeopleItem animated:NO];
 	
-	connectionRequestsItem = [[TTLauncherItem alloc] initWithTitle: @"Friend Requests"
-															 image: @"bundle://Icon.png"
-															   URL: UserRequestsURL];
-	[launcherView addItem:connectionRequestsItem animated:NO];
+	friendRequestsItem = [[TTLauncherItem alloc] initWithTitle: @"Friend Requests"
+														 image: @"bundle://Icon.png"
+														   URL: UserRequestsURL];
+	[launcherView addItem:friendRequestsItem animated:NO];
 	
-	TT_RELEASE_SAFELY(item);
+	meetingRequestsItem = [[TTLauncherItem alloc] initWithTitle: @"Meeting Requests"
+														 image: @"bundle://Icon.png"
+														   URL: MeetingRequestsURL];
+	[launcherView addItem:meetingRequestsItem animated:NO];
+	
 	[self.view addSubview:launcherView];
 	
 	[super viewDidLoad];
@@ -113,6 +112,10 @@
 	[meepAppDelegate showWelcomeView];
 }
 
+- (void)newMeetingCreated {
+	meetingsItem.badgeNumber = meetingsItem.badgeNumber + 1;
+}
+
 
 #pragma mark -
 #pragma mark Memory management
@@ -130,6 +133,16 @@
 }
 
 - (void)dealloc {
+	[launcherView release];
+	[meetingsItem release];
+	[friendsItem release];
+	[newMeetingItem release];
+	[myDetailsItem release];
+	[searchPeopleItem release];
+	[friendRequestsItem release];
+	[meetingRequestsItem release];
+	[logoutButton release];
+	[userManager release];
     [super dealloc];
 }
 
@@ -141,7 +154,10 @@
 	MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
 	User *currentUser = [meepAppDelegate currentUser];
 	
-	if ([item.URL isEqualToString:NewMeetingURL]) {
+	if ([item.URL isEqualToString:MeetingsURL]) {
+		meetingsItem.badgeNumber = 0;
+		
+	} else if ([item.URL isEqualToString:NewMeetingURL]) {
 		// Check that the current user has connections to make a meeting with.
 		if ([currentUser.connections count] > 0) {
 			[meepAppDelegate.menuNavigationController showNewMeetingLocation];
@@ -191,7 +207,7 @@
 - (void)getUserSuccessful:(User *)user {
 	NSLog(@"Get user successful");
 	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
-	connectionRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
+	friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
 	NSLog(@"connectionRequestsFrom count: %u", [[user connectionRequestsFrom] count]);
 }
 

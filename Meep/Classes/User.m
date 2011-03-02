@@ -22,6 +22,8 @@
 @synthesize _type_connectionRequestsTo;
 @synthesize connectionRequestsFrom;
 @synthesize _type_connectionRequestsFrom;
+@synthesize meetingsRelated;
+@synthesize _type_meetingsRelated;
 
 -(id)init {
 	if (self == [super init]) {
@@ -31,6 +33,8 @@
 		self._type_connectionRequestsTo = [[UserSummaryDTO alloc] init];
 		self.connectionRequestsFrom = [[NSArray alloc] init];
 		self._type_connectionRequestsFrom = [[UserSummaryDTO alloc] init];
+		self.meetingsRelated = [[NSArray alloc] init];
+		self._type_meetingsRelated = [[MeetingDTO alloc] init];
 	}
 	return self;
 }
@@ -48,6 +52,8 @@
 	[_type_connectionRequestsTo release];
 	[connectionRequestsFrom release];
 	[_type_connectionRequestsFrom release];
+	[meetingsRelated release];
+	[_type_meetingsRelated release];
 	[super dealloc];
 }
 

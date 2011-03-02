@@ -24,6 +24,8 @@
 		FA331EFA1309A5B8000763D4 /* AccessTokenRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */; };
 		FA504E24131EAC14000B94CD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA504E22131EAC14000B94CD /* Icon.png */; };
 		FA504E69131EAE19000B94CD /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA504E21131EAC14000B94CD /* Icon@2x.png */; };
+		FA504EBA131EBB86000B94CD /* MeetingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA504EB8131EBB86000B94CD /* MeetingsViewController.m */; };
+		FA504EBB131EBB86000B94CD /* MeetingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA504EB9131EBB86000B94CD /* MeetingsViewController.xib */; };
 		FA5076C41302F3CC00CB96B4 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076971302F3CC00CB96B4 /* ConfigManager.m */; };
 		FA5076C51302F3CC00CB96B4 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA50769A1302F3CC00CB96B4 /* LoginManager.m */; };
 		FA5076C61302F3CC00CB96B4 /* RegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA50769D1302F3CC00CB96B4 /* RegistrationManager.m */; };
@@ -474,6 +476,9 @@
 		FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTokenRequestManager.m; sourceTree = "<group>"; };
 		FA504E21131EAC14000B94CD /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		FA504E22131EAC14000B94CD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
+		FA504EB7131EBB86000B94CD /* MeetingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingsViewController.h; sourceTree = "<group>"; };
+		FA504EB8131EBB86000B94CD /* MeetingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingsViewController.m; sourceTree = "<group>"; };
+		FA504EB9131EBB86000B94CD /* MeetingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingsViewController.xib; sourceTree = "<group>"; };
 		FA5076961302F3CC00CB96B4 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigManager.h; path = Classes/ConfigManager.h; sourceTree = SOURCE_ROOT; };
 		FA5076971302F3CC00CB96B4 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigManager.m; path = Classes/ConfigManager.m; sourceTree = SOURCE_ROOT; };
 		FA5076991302F3CC00CB96B4 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginManager.h; path = Classes/LoginManager.h; sourceTree = SOURCE_ROOT; };
@@ -545,13 +550,13 @@
 		FA5079741302FF9300CB96B4 /* Meep_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meep_Prefix.pch; sourceTree = "<group>"; };
 		FA5079751302FF9300CB96B4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 		FA5079C01303011600CB96B4 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = SOURCE_ROOT; };
-		FA5079C41303014500CB96B4 /* CustomCellTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCellTextField.xib; sourceTree = "<group>"; };
-		FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMeetingLocationController.xib; sourceTree = "<group>"; };
-		FA5079CA1303018600CB96B4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Classes/LoginViewController.xib; sourceTree = "<group>"; };
-		FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingDateAndTimeController.xib; path = Classes/NewMeetingDateAndTimeController.xib; sourceTree = "<group>"; };
-		FA5079CD1303018600CB96B4 /* NewMeetingUsersController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingUsersController.xib; path = Classes/NewMeetingUsersController.xib; sourceTree = "<group>"; };
-		FA5079CE1303018600CB96B4 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RegisterViewController.xib; path = Classes/RegisterViewController.xib; sourceTree = "<group>"; };
-		FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = WelcomeViewController.xib; path = Classes/WelcomeViewController.xib; sourceTree = "<group>"; };
+		FA5079C41303014500CB96B4 /* CustomCellTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CustomCellTextField.xib; path = ../CustomCellTextField.xib; sourceTree = "<group>"; };
+		FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingLocationController.xib; path = ../NewMeetingLocationController.xib; sourceTree = "<group>"; };
+		FA5079CA1303018600CB96B4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMeetingDateAndTimeController.xib; sourceTree = "<group>"; };
+		FA5079CD1303018600CB96B4 /* NewMeetingUsersController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMeetingUsersController.xib; sourceTree = "<group>"; };
+		FA5079CE1303018600CB96B4 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
+		FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WelcomeViewController.xib; sourceTree = "<group>"; };
 		FA507B071303EF4000CB96B4 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		FA507B081303EF4000CB96B4 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
 		FA507B30130404A900CB96B4 /* UserManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManagerDelegate.h; sourceTree = "<group>"; };
@@ -560,7 +565,7 @@
 		FA507B9D13042A1300CB96B4 /* LogoutManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutManagerDelegate.h; sourceTree = "<group>"; };
 		FA7D0B6F1307F32100AD7E31 /* SearchUsersDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersDetailViewController.h; sourceTree = "<group>"; };
 		FA7D0B701307F32100AD7E31 /* SearchUsersDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUsersDetailViewController.m; sourceTree = "<group>"; };
-		FA7D0B711307F32100AD7E31 /* SearchUsersDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchUsersDetailViewController.xib; path = Classes/SearchUsersDetailViewController.xib; sourceTree = "<group>"; };
+		FA7D0B711307F32100AD7E31 /* SearchUsersDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUsersDetailViewController.xib; sourceTree = "<group>"; };
 		FA7D0BA7130834C200AD7E31 /* AddUserRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUserRequestManager.h; sourceTree = "<group>"; };
 		FA7D0BA8130834C200AD7E31 /* AddUserRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddUserRequestManager.m; sourceTree = "<group>"; };
 		FA7D0BD71308369400AD7E31 /* AddUserRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUserRequestManagerDelegate.h; sourceTree = "<group>"; };
@@ -572,7 +577,7 @@
 		FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithId.m; sourceTree = "<group>"; };
 		FA7E179313070FDA00CFAAF5 /* SearchUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersViewController.h; sourceTree = "<group>"; };
 		FA7E179413070FDA00CFAAF5 /* SearchUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUsersViewController.m; sourceTree = "<group>"; };
-		FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = SearchUsersViewController.xib; path = Classes/SearchUsersViewController.xib; sourceTree = "<group>"; };
+		FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUsersViewController.xib; sourceTree = "<group>"; };
 		FA7E17D413073C7300CFAAF5 /* SearchUsersManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersManager.h; sourceTree = "<group>"; };
 		FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUsersManager.m; sourceTree = "<group>"; };
 		FA7E17D713073CC200CFAAF5 /* SearchUsersManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersManagerDelegate.h; sourceTree = "<group>"; };
@@ -597,7 +602,7 @@
 		FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DictionaryModelMapper.m; sourceTree = "<group>"; };
 		FACFE013130D870500F6000A /* UserRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRequestsViewController.h; sourceTree = "<group>"; };
 		FACFE014130D870500F6000A /* UserRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRequestsViewController.m; sourceTree = "<group>"; };
-		FACFE015130D870500F6000A /* UserRequestsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UserRequestsViewController.xib; path = Classes/UserRequestsViewController.xib; sourceTree = "<group>"; };
+		FACFE015130D870500F6000A /* UserRequestsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserRequestsViewController.xib; sourceTree = "<group>"; };
 		FADCEC50130DCC9A00EADF31 /* UserSummaryDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSummaryDTO.h; sourceTree = "<group>"; };
 		FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSummaryDTO.m; sourceTree = "<group>"; };
 		FADCEC68130DCEEE00EADF31 /* UserRequestsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRequestsCustomCell.h; sourceTree = "<group>"; };
@@ -614,7 +619,7 @@
 		FAF76FA813104A9F00297E90 /* RequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestManager.m; sourceTree = "<group>"; };
 		FAF7707713108E1B00297E90 /* UsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersViewController.h; sourceTree = "<group>"; };
 		FAF7707813108E1B00297E90 /* UsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersViewController.m; sourceTree = "<group>"; };
-		FAF7707913108E1B00297E90 /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = UsersViewController.xib; path = Classes/UsersViewController.xib; sourceTree = "<group>"; };
+		FAF7707913108E1B00297E90 /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -714,7 +719,6 @@
 				FA5079C01303011600CB96B4 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Meep-Info.plist */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
-				FA507AE31303EC4F00CB96B4 /* Views */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -835,6 +839,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		FA504EB6131EBB65000B94CD /* Meetings */ = {
+			isa = PBXGroup;
+			children = (
+				FA504EB7131EBB86000B94CD /* MeetingsViewController.h */,
+				FA504EB8131EBB86000B94CD /* MeetingsViewController.m */,
+				FA504EB9131EBB86000B94CD /* MeetingsViewController.xib */,
+			);
+			name = Meetings;
+			sourceTree = "<group>";
+		};
 		FA50767A1302F32E00CB96B4 /* External */ = {
 			isa = PBXGroup;
 			children = (
@@ -927,6 +941,7 @@
 				FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */,
 				FA5076B71302F3CC00CB96B4 /* MenuViewController.h */,
 				FA5076B81302F3CC00CB96B4 /* MenuViewController.m */,
+				FA504EB6131EBB65000B94CD /* Meetings */,
 				FA5076AC1302F3CC00CB96B4 /* New Meeting */,
 				FA7E16DD1306E58A00CFAAF5 /* Search Users */,
 				FAF7707613108DDB00297E90 /* Users */,
@@ -944,10 +959,13 @@
 				FA5076AE1302F3CC00CB96B4 /* MapLocation.m */,
 				FA5076AF1302F3CC00CB96B4 /* NewMeetingLocationController.h */,
 				FA5076B01302F3CC00CB96B4 /* NewMeetingLocationController.m */,
+				FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */,
 				FA5076B11302F3CC00CB96B4 /* NewMeetingDateAndTimeController.h */,
 				FA5076B21302F3CC00CB96B4 /* NewMeetingDateAndTimeController.m */,
+				FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */,
 				FA5076B31302F3CC00CB96B4 /* NewMeetingUsersController.h */,
 				FA5076B41302F3CC00CB96B4 /* NewMeetingUsersController.m */,
+				FA5079CD1303018600CB96B4 /* NewMeetingUsersController.xib */,
 				FA7FA3A1131D941B00130590 /* NewMeetingBuilder.h */,
 				FA7FA3A2131D941B00130590 /* NewMeetingBuilder.m */,
 			);
@@ -960,14 +978,18 @@
 			children = (
 				FA5076BA1302F3CC00CB96B4 /* CustomCellTextField.h */,
 				FA5076BB1302F3CC00CB96B4 /* CustomCellTextField.m */,
+				FA5079C41303014500CB96B4 /* CustomCellTextField.xib */,
 				FA5076BC1302F3CC00CB96B4 /* LoginViewController.h */,
 				FA5076BD1302F3CC00CB96B4 /* LoginViewController.m */,
+				FA5079CA1303018600CB96B4 /* LoginViewController.xib */,
 				FA5076BE1302F3CC00CB96B4 /* RegisterViewController.h */,
 				FA5076BF1302F3CC00CB96B4 /* RegisterViewController.m */,
+				FA5079CE1303018600CB96B4 /* RegisterViewController.xib */,
 				FA5076C01302F3CC00CB96B4 /* WelcomeNavigationController.h */,
 				FA5076C11302F3CC00CB96B4 /* WelcomeNavigationController.m */,
 				FA5076C21302F3CC00CB96B4 /* WelcomeViewController.h */,
 				FA5076C31302F3CC00CB96B4 /* WelcomeViewController.m */,
+				FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */,
 			);
 			name = Welcome;
 			path = Classes;
@@ -1027,39 +1049,6 @@
 			path = External/RegexKitLite;
 			sourceTree = SOURCE_ROOT;
 		};
-		FA507AE31303EC4F00CB96B4 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				FA507AEB1303ECD000CB96B4 /* New Meeting */,
-				FA7E181B1307416C00CFAAF5 /* Search Users */,
-				FAF770BA131095D900297E90 /* Users */,
-				FADCEC64130DCE1500EADF31 /* User Requests */,
-				FA507AEA1303ECC000CB96B4 /* Welcome */,
-			);
-			name = Views;
-			sourceTree = "<group>";
-		};
-		FA507AEA1303ECC000CB96B4 /* Welcome */ = {
-			isa = PBXGroup;
-			children = (
-				FA5079C41303014500CB96B4 /* CustomCellTextField.xib */,
-				FA5079CA1303018600CB96B4 /* LoginViewController.xib */,
-				FA5079CE1303018600CB96B4 /* RegisterViewController.xib */,
-				FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */,
-			);
-			name = Welcome;
-			sourceTree = "<group>";
-		};
-		FA507AEB1303ECD000CB96B4 /* New Meeting */ = {
-			isa = PBXGroup;
-			children = (
-				FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */,
-				FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */,
-				FA5079CD1303018600CB96B4 /* NewMeetingUsersController.xib */,
-			);
-			name = "New Meeting";
-			sourceTree = "<group>";
-		};
 		FA7E159F13069F2D00CFAAF5 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1078,16 +1067,9 @@
 			children = (
 				FA7E179313070FDA00CFAAF5 /* SearchUsersViewController.h */,
 				FA7E179413070FDA00CFAAF5 /* SearchUsersViewController.m */,
+				FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */,
 				FA7D0B6F1307F32100AD7E31 /* SearchUsersDetailViewController.h */,
 				FA7D0B701307F32100AD7E31 /* SearchUsersDetailViewController.m */,
-			);
-			name = "Search Users";
-			sourceTree = "<group>";
-		};
-		FA7E181B1307416C00CFAAF5 /* Search Users */ = {
-			isa = PBXGroup;
-			children = (
-				FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */,
 				FA7D0B711307F32100AD7E31 /* SearchUsersDetailViewController.xib */,
 			);
 			name = "Search Users";
@@ -1100,13 +1082,6 @@
 				FADCEC69130DCEEE00EADF31 /* UserRequestsCustomCell.m */,
 				FACFE013130D870500F6000A /* UserRequestsViewController.h */,
 				FACFE014130D870500F6000A /* UserRequestsViewController.m */,
-			);
-			name = "User Requests";
-			sourceTree = "<group>";
-		};
-		FADCEC64130DCE1500EADF31 /* User Requests */ = {
-			isa = PBXGroup;
-			children = (
 				FACFE015130D870500F6000A /* UserRequestsViewController.xib */,
 			);
 			name = "User Requests";
@@ -1117,13 +1092,6 @@
 			children = (
 				FAF7707713108E1B00297E90 /* UsersViewController.h */,
 				FAF7707813108E1B00297E90 /* UsersViewController.m */,
-			);
-			name = Users;
-			sourceTree = "<group>";
-		};
-		FAF770BA131095D900297E90 /* Users */ = {
-			isa = PBXGroup;
-			children = (
 				FAF7707913108E1B00297E90 /* UsersViewController.xib */,
 			);
 			name = Users;
@@ -1547,6 +1515,7 @@
 				FAF7707B13108E1B00297E90 /* UsersViewController.xib in Resources */,
 				FA504E24131EAC14000B94CD /* Icon.png in Resources */,
 				FA504E69131EAE19000B94CD /* Icon@2x.png in Resources */,
+				FA504EBB131EBB86000B94CD /* MeetingsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1632,6 +1601,7 @@
 				FA7FA2B6131D84F900130590 /* AttendeeDTO.m in Sources */,
 				FA7FA3A3131D941B00130590 /* NewMeetingBuilder.m in Sources */,
 				FA7FA476131DA70800130590 /* ISO8601DateFormatter.m in Sources */,
+				FA504EBA131EBB86000B94CD /* MeetingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

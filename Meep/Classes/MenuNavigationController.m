@@ -11,6 +11,7 @@
 
 @implementation MenuNavigationController
 
+@synthesize menuViewController;
 @synthesize usersViewController;
 @synthesize newMeetingLocationController;
 @synthesize newMeetingDateAndTimeController;
@@ -20,6 +21,15 @@
 
 #pragma mark -
 #pragma mark View lifecycle
+
+- (id)initWithRootViewController:(UIViewController *)rootViewController {
+	if (self = [super initWithRootViewController:rootViewController]) {
+		if ([rootViewController isKindOfClass:[MenuViewController class]]) {
+			self.menuViewController = rootViewController;
+		}
+	}
+	return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -86,6 +96,7 @@
 	newMeetingDateAndTimeController = nil;
 	[newMeetingLocationController release];
 	newMeetingLocationController = nil;
+	[menuViewController newMeetingCreated];
 }
 
 #pragma mark -
@@ -104,6 +115,7 @@
 }
 
 - (void)dealloc {
+	[menuViewController release];
 	[usersViewController release];
 	[newMeetingLocationController release];
 	[newMeetingDateAndTimeController release];
