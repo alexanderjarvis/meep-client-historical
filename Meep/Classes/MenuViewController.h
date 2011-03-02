@@ -10,23 +10,21 @@
 #import <Three20/Three20.h>
 
 #import "UserManager.h"
-#import "NewMeetingLocationController.h"
 
 #define NewMeetingURL @"mp://newmeeting"
 #define SearchUsersURL @"mp://searchusers"
 #define UserRequestsURL @"mp://userrequests"
 #define UsersURL @"mp://users"
 
-@interface MenuViewController : TTViewController <TTLauncherViewDelegate> {
+@interface MenuViewController : TTViewController <TTLauncherViewDelegate, UIAlertViewDelegate> {
+	
+	TTLauncherView *launcherView;
+	TTLauncherItem *connectionRequestsItem;
+	UIBarButtonItem *logoutButton;
+	UIAlertView *logoutAlertView;
 	
 	UserManager *userManager;
 	User *currentUser;
-	
-	TTLauncherView *launcherView;
-	
-	TTLauncherItem *connectionRequestsItem;
-	
-	NewMeetingLocationController *newMeetingLocationController;
 
 }
 
@@ -36,6 +34,7 @@
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher;
 - (void)launcherViewDidEndEditing:(TTLauncherView*)launcher;
 
-- (void)logoutUserButton:(id)sender;
+- (void)logoutUserButtonPressed:(id)sender;
+- (void)logout;
 
 @end

@@ -13,8 +13,6 @@
 #import "WelcomeNavigationController.h"
 #import "MenuNavigationController.h"
 
-@class CLViewController;
-
 @interface MeepAppDelegate : NSObject <UIApplicationDelegate> {
     UIWindow *window;
 	
@@ -23,16 +21,12 @@
 	WelcomeNavigationController *welcomeNavigationController;
 	MenuNavigationController *menuNavigationController;	
 	
-	// old
-	CLViewController *clViewController;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) ConfigManager *configManager;
 @property (nonatomic, retain) IBOutlet WelcomeNavigationController *welcomeNavigationController;
 @property (nonatomic, retain) IBOutlet MenuNavigationController *menuNavigationController;
-
-@property (nonatomic, retain) IBOutlet CLViewController *clViewController;
 
 - (void)showWelcomeView;
 

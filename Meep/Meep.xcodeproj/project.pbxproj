@@ -59,10 +59,8 @@
 		FA50786A1302FA6A00CB96B4 /* libz.1.2.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5078691302FA6A00CB96B4 /* libz.1.2.3.dylib */; };
 		FA5079761302FF9300CB96B4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5079751302FF9300CB96B4 /* main.m */; };
 		FA5079C11303011600CB96B4 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079C01303011600CB96B4 /* MainWindow.xib */; };
-		FA5079C61303014500CB96B4 /* CLViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079C31303014500CB96B4 /* CLViewController.xib */; };
 		FA5079C71303014500CB96B4 /* CustomCellTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079C41303014500CB96B4 /* CustomCellTextField.xib */; };
 		FA5079C81303014500CB96B4 /* NewMeetingLocationController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */; };
-		FA5079D01303018600CB96B4 /* HTTPDemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079C91303018600CB96B4 /* HTTPDemoViewController.xib */; };
 		FA5079D11303018600CB96B4 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CA1303018600CB96B4 /* LoginViewController.xib */; };
 		FA5079D31303018600CB96B4 /* NewMeetingDateAndTimeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */; };
 		FA5079D41303018600CB96B4 /* NewMeetingUsersController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CD1303018600CB96B4 /* NewMeetingUsersController.xib */; };
@@ -544,10 +542,8 @@
 		FA5079741302FF9300CB96B4 /* Meep_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Meep_Prefix.pch; sourceTree = "<group>"; };
 		FA5079751302FF9300CB96B4 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = SOURCE_ROOT; };
 		FA5079C01303011600CB96B4 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = SOURCE_ROOT; };
-		FA5079C31303014500CB96B4 /* CLViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CLViewController.xib; sourceTree = SOURCE_ROOT; };
 		FA5079C41303014500CB96B4 /* CustomCellTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCellTextField.xib; sourceTree = "<group>"; };
 		FA5079C51303014500CB96B4 /* NewMeetingLocationController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewMeetingLocationController.xib; sourceTree = "<group>"; };
-		FA5079C91303018600CB96B4 /* HTTPDemoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HTTPDemoViewController.xib; path = Classes/HTTPDemoViewController.xib; sourceTree = SOURCE_ROOT; };
 		FA5079CA1303018600CB96B4 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = LoginViewController.xib; path = Classes/LoginViewController.xib; sourceTree = "<group>"; };
 		FA5079CC1303018600CB96B4 /* NewMeetingDateAndTimeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingDateAndTimeController.xib; path = Classes/NewMeetingDateAndTimeController.xib; sourceTree = "<group>"; };
 		FA5079CD1303018600CB96B4 /* NewMeetingUsersController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NewMeetingUsersController.xib; path = Classes/NewMeetingUsersController.xib; sourceTree = "<group>"; };
@@ -712,8 +708,6 @@
 			isa = PBXGroup;
 			children = (
 				FA507AE31303EC4F00CB96B4 /* Views */,
-				FA5079C91303018600CB96B4 /* HTTPDemoViewController.xib */,
-				FA5079C31303014500CB96B4 /* CLViewController.xib */,
 				FA5079C01303011600CB96B4 /* MainWindow.xib */,
 				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				8D1107310486CEB800E47090 /* Meep-Info.plist */,
@@ -1537,10 +1531,8 @@
 			files = (
 				320B6C86F11D9990244A9731 /* Three20.bundle in Resources */,
 				FA5079C11303011600CB96B4 /* MainWindow.xib in Resources */,
-				FA5079C61303014500CB96B4 /* CLViewController.xib in Resources */,
 				FA5079C71303014500CB96B4 /* CustomCellTextField.xib in Resources */,
 				FA5079C81303014500CB96B4 /* NewMeetingLocationController.xib in Resources */,
-				FA5079D01303018600CB96B4 /* HTTPDemoViewController.xib in Resources */,
 				FA5079D11303018600CB96B4 /* LoginViewController.xib in Resources */,
 				FA5079D31303018600CB96B4 /* NewMeetingDateAndTimeController.xib in Resources */,
 				FA5079D41303018600CB96B4 /* NewMeetingUsersController.xib in Resources */,

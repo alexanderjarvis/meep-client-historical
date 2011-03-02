@@ -9,8 +9,8 @@
 #import "MenuViewController.h"
 
 #import "MeepAppDelegate.h"
-
 #import "LogoutManager.h"
+#import "AlertView.h"
 
 @implementation MenuViewController
 
@@ -30,12 +30,11 @@
 	[userManager setDelegate: self];
 	
 	// Logout Button
-	UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
-																	style:UIBarButtonSystemItemDone
-																   target:self
-																   action:@selector(logoutUserButton:)];
-	self.navigationItem.rightBarButtonItem = rightButton;
-	[rightButton release];
+	logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
+													style:UIBarButtonSystemItemDone
+												   target:self
+												   action:@selector(logoutUserButtonPressed:)];
+	self.navigationItem.rightBarButtonItem = logoutButton;
 	
 	// Add Menu Items
 	launcherView = [[TTLauncherView alloc] initWithFrame:self.view.bounds];
@@ -91,7 +90,18 @@
 	[userManager getUser:configManager.email];
 }
 
-- (void)logoutUserButton:(id)sender {
+- (void)logoutUserButtonPressed:(id)sender {
+	logoutAlertView = [[UIAlertView alloc]
+						initWithTitle:@"Logout" 
+						message:@"Are you sure that you wish to logout?"
+						delegate:self 
+						cancelButtonTitle:@"Cancel" 
+						otherButtonTitles:@"Logout", nil];
+	[logoutAlertView show];
+	[logoutAlertView release];
+}
+
+- (void)logout {
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	NSString *accessToken = [[meepAppDelegate configManager] access_token];
 	LogoutManager *logoutManager = [[LogoutManager alloc] initWithAccessToken: accessToken];
@@ -134,7 +144,12 @@
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	
 	if ([item.URL isEqualToString:NewMeetingURL]) {
-		[meepAppDelegate.menuNavigationController showNewMeetingLocation];
+		if ([currentUser.connections count] > 0) {
+			[meepAppDelegate.menuNavigationController showNewMeetingLocation];
+		} else {
+			[AlertView showNoUsersAlert];
+		}
+
 	} else if ([item.URL isEqualToString:SearchUsersURL]) {
 		[meepAppDelegate.menuNavigationController showSearchUsers];
 	} else if ([item.URL isEqualToString:UserRequestsURL]) {
@@ -145,13 +160,31 @@
 }
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher {
-	//[self.navigationItem setRightBarButtonItem:[[[UIBarButtonItem alloc]
-	//											 initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-	//											 target:_launcherView action:@selector(endEditing)] autorelease] animated:YES];
+	[self.navigationItem setRightBarButtonItem:[[[UIBarButtonItem alloc]
+												 initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+												 target:launcher action:@selector(endEditing)] autorelease] animated:YES];
 }
 
 - (void)launcherViewDidEndEditing:(TTLauncherView*)launcher {
-	//[self.navigationItem setRightBarButtonItem:nil animated:YES];
+	[self.navigationItem setRightBarButtonItem:logoutButton animated:YES];
+}
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+	if ([alertView isEqual:logoutAlertView]) {
+		switch (buttonIndex) {
+			case 0:
+				// Cancel
+				break;
+			case 1:
+				// Logout
+				[self logout];
+				break;
+			default:
+				break;
+		}
+	}
 }
 
 #pragma mark -

@@ -32,4 +32,15 @@
 	[alert release];
 }
 
++ (void)showNoUsersAlert {
+	UIAlertView *alert = [[UIAlertView alloc]
+						  initWithTitle:@"No Friends!" 
+						  message:@"You must add some friends before you can create a meeting."
+						  delegate:self 
+						  cancelButtonTitle:@"Okay" 
+						  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
+}
+
 @end

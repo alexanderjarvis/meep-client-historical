@@ -15,5 +15,6 @@
 
 + (void)showValidationAlert:(NSString *)message;
 + (void)showNetworkAlert:(NSError *)error; 
++ (void)showNoUsersAlert;
 
 @end

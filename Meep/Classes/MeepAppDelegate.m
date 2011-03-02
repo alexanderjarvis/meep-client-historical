@@ -9,7 +9,6 @@
 #import "MeepAppDelegate.h"
 
 #import "UserManager.h"
-#import "CLViewController.h"
 
 #import <YAJL/YAJL.h>
 
@@ -21,7 +20,6 @@
 @synthesize configManager;
 @synthesize welcomeNavigationController;
 @synthesize menuNavigationController;
-@synthesize	clViewController;
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	
@@ -67,14 +65,9 @@
 
 - (void)dealloc {
 	[configManager release];
-	
 	[welcomeNavigationController release];
 	[menuNavigationController release];
-	
-	[clViewController release];
-	
 	[window release];
-	
     [super dealloc];
 }
 
