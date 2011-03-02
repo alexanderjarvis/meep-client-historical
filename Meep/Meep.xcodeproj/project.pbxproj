@@ -22,6 +22,8 @@
 		FA331E76130997DD000763D4 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		FA331E7A130997F0000763D4 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A5A189C235877202780D4 /* libThree20Network.a */; };
 		FA331EFA1309A5B8000763D4 /* AccessTokenRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */; };
+		FA504E24131EAC14000B94CD /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA504E22131EAC14000B94CD /* Icon.png */; };
+		FA504E69131EAE19000B94CD /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA504E21131EAC14000B94CD /* Icon@2x.png */; };
 		FA5076C41302F3CC00CB96B4 /* ConfigManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076971302F3CC00CB96B4 /* ConfigManager.m */; };
 		FA5076C51302F3CC00CB96B4 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA50769A1302F3CC00CB96B4 /* LoginManager.m */; };
 		FA5076C61302F3CC00CB96B4 /* RegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA50769D1302F3CC00CB96B4 /* RegistrationManager.m */; };
@@ -78,7 +80,6 @@
 		FA7E179613070FDA00CFAAF5 /* SearchUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E179413070FDA00CFAAF5 /* SearchUsersViewController.m */; };
 		FA7E179713070FDA00CFAAF5 /* SearchUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */; };
 		FA7E17D613073C7300CFAAF5 /* SearchUsersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */; };
-		FA7FA0F5131D22C100130590 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FA7FA0F4131D22C100130590 /* Icon.png */; };
 		FA7FA15F131D334100130590 /* MeepStyleSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA15E131D334100130590 /* MeepStyleSheet.m */; };
 		FA7FA264131D76DE00130590 /* CreateMeetingRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA263131D76DE00130590 /* CreateMeetingRequestManager.m */; };
 		FA7FA278131D7B2400130590 /* MeetingDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA277131D7B2400130590 /* MeetingDTO.m */; };
@@ -471,6 +472,8 @@
 		FA1AE544131AC78900683B1A /* ObjectWithProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithProperties.m; sourceTree = "<group>"; };
 		FA331EF81309A5B8000763D4 /* AccessTokenRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTokenRequestManager.h; sourceTree = "<group>"; };
 		FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTokenRequestManager.m; sourceTree = "<group>"; };
+		FA504E21131EAC14000B94CD /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		FA504E22131EAC14000B94CD /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
 		FA5076961302F3CC00CB96B4 /* ConfigManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfigManager.h; path = Classes/ConfigManager.h; sourceTree = SOURCE_ROOT; };
 		FA5076971302F3CC00CB96B4 /* ConfigManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfigManager.m; path = Classes/ConfigManager.m; sourceTree = SOURCE_ROOT; };
 		FA5076991302F3CC00CB96B4 /* LoginManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginManager.h; path = Classes/LoginManager.h; sourceTree = SOURCE_ROOT; };
@@ -573,7 +576,6 @@
 		FA7E17D413073C7300CFAAF5 /* SearchUsersManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersManager.h; sourceTree = "<group>"; };
 		FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUsersManager.m; sourceTree = "<group>"; };
 		FA7E17D713073CC200CFAAF5 /* SearchUsersManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersManagerDelegate.h; sourceTree = "<group>"; };
-		FA7FA0F4131D22C100130590 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = SOURCE_ROOT; };
 		FA7FA15D131D334100130590 /* MeepStyleSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeepStyleSheet.h; sourceTree = "<group>"; };
 		FA7FA15E131D334100130590 /* MeepStyleSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeepStyleSheet.m; sourceTree = "<group>"; };
 		FA7FA262131D76DE00130590 /* CreateMeetingRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateMeetingRequestManager.h; sourceTree = "<group>"; };
@@ -707,11 +709,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FA507AE31303EC4F00CB96B4 /* Views */,
+				FA504E21131EAC14000B94CD /* Icon@2x.png */,
+				FA504E22131EAC14000B94CD /* Icon.png */,
 				FA5079C01303011600CB96B4 /* MainWindow.xib */,
-				320B6C86F11D9990244A9730 /* Three20.bundle */,
 				8D1107310486CEB800E47090 /* Meep-Info.plist */,
-				FA7FA0F4131D22C100130590 /* Icon.png */,
+				320B6C86F11D9990244A9730 /* Three20.bundle */,
+				FA507AE31303EC4F00CB96B4 /* Views */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1542,7 +1545,8 @@
 				FA7D0B731307F32100AD7E31 /* SearchUsersDetailViewController.xib in Resources */,
 				FACFE017130D870500F6000A /* UserRequestsViewController.xib in Resources */,
 				FAF7707B13108E1B00297E90 /* UsersViewController.xib in Resources */,
-				FA7FA0F5131D22C100130590 /* Icon.png in Resources */,
+				FA504E24131EAC14000B94CD /* Icon.png in Resources */,
+				FA504E69131EAE19000B94CD /* Icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
