@@ -43,39 +43,34 @@
 	launcherView.columnCount = 3;
 	
 	meetingsItem = [[TTLauncherItem alloc] initWithTitle: @"Meetings"
-												   image: @"bundle://Icon.png"
+												   image: @"bundle://Meetings.png"
 									                 URL: MeetingsURL];
 	[launcherView addItem:meetingsItem animated:NO];
 	
 	friendsItem = [[TTLauncherItem alloc] initWithTitle: @"Friends"
-												  image: @"bundle://Icon.png"
+												  image: @"bundle://Friends.png"
 													URL: UsersURL];
 	[launcherView addItem:friendsItem animated:NO];
 	
 	newMeetingItem = [[TTLauncherItem alloc] initWithTitle: @"New Meeting"
-													 image: @"bundle://Icon.png"
+													 image: @"bundle://NewMeeting.png"
 													   URL: NewMeetingURL];
 	[launcherView addItem:newMeetingItem animated:NO];
 	
 	myDetailsItem = [[TTLauncherItem alloc] initWithTitle: @"My Details"
-													image: @"bundle://Icon.png"
+													image: @"bundle://MyDetails.png"
 													  URL: MyDetailsURL];
 	[launcherView addItem:myDetailsItem animated:NO];
 	
 	searchPeopleItem = [[TTLauncherItem alloc] initWithTitle: @"Search People"
-													   image: @"bundle://Icon.png"
+													   image: @"bundle://SearchPeople.png"
 														 URL: SearchUsersURL];
 	[launcherView addItem:searchPeopleItem animated:NO];
 	
 	friendRequestsItem = [[TTLauncherItem alloc] initWithTitle: @"Friend Requests"
-														 image: @"bundle://friendrequests.png"
+														 image: @"bundle://FriendRequests.png"
 														   URL: UserRequestsURL];
 	[launcherView addItem:friendRequestsItem animated:NO];
-	
-	meetingRequestsItem = [[TTLauncherItem alloc] initWithTitle: @"Meeting Requests"
-														 image: @"bundle://Icon.png"
-														   URL: MeetingRequestsURL];
-	[launcherView addItem:meetingRequestsItem animated:NO];
 	
 	[self.view addSubview:launcherView];
 	
@@ -142,7 +137,6 @@
 	[myDetailsItem release];
 	[searchPeopleItem release];
 	[friendRequestsItem release];
-	[meetingRequestsItem release];
 	[logoutButton release];
 	[userManager release];
     [super dealloc];

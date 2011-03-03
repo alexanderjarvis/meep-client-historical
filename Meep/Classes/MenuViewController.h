@@ -13,7 +13,6 @@
 
 #define MeetingsURL @"mp://meetings"
 #define NewMeetingURL @"mp://newmeeting"
-#define MeetingRequestsURL @"mp://meetingrequests"
 #define SearchUsersURL @"mp://searchusers"
 #define UserRequestsURL @"mp://userrequests"
 #define UsersURL @"mp://users"
@@ -29,7 +28,6 @@
 	TTLauncherItem *myDetailsItem;
 	TTLauncherItem *searchPeopleItem;
 	TTLauncherItem *friendRequestsItem;
-	TTLauncherItem *meetingRequestsItem;
 	
 	UIBarButtonItem *logoutButton;
 	UIAlertView *logoutAlertView;
