@@ -117,10 +117,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (section == 0) {
-		return @"Details";
-	}
-	return nil;
+	return @"Details";
 }
 
 #pragma mark -

@@ -23,10 +23,15 @@
 	NSString *baseURL = [[meepAppDelegate configManager] url];
 	NSString *resource = @"search/users/";
 	
-	NSString *queryString = @"?oauth_token=";
-	NSString *fullQueryString = [queryString stringByAppendingString:accessToken];
+	NSString *searchParam = @"query";
+	NSString *oauthParam = @"oauth_token";
+	NSString *fullQueryString = [NSString stringWithFormat:@"?%@=%@&%@=%@", 
+								 searchParam, 
+								 [searchString stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding], 
+								 oauthParam, 
+								 accessToken];
 	
-	NSString *fullURL = [NSString stringWithFormat:@"%@%@%@%@", baseURL, resource, searchString, fullQueryString];
+	NSString *fullURL = [NSString stringWithFormat:@"%@%@%@", baseURL, resource, fullQueryString];
 	
 	NSLog(@"URL of request: %@", fullURL);
 	
