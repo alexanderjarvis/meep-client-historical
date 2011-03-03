@@ -153,7 +153,7 @@
 - (void)getUserSuccessful:(User *)user {
 	
 	// Only update the table if the response is new
-	if (![userManager isResponseSameAsPreviousRequest]) {
+	if ([userManager isResponseNew]) {
 		[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
 		[self updateTableWithUser:user];
 	}

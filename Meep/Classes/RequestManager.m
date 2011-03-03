@@ -13,8 +13,8 @@
 @synthesize responseString;
 @synthesize previousResponseString;
 
-- (BOOL)isResponseSameAsPreviousRequest {
-	return [responseString isEqualToString:previousResponseString];
+- (BOOL)isResponseNew {
+	return ![responseString isEqualToString:previousResponseString];
 }
 
 - (void)dealloc {

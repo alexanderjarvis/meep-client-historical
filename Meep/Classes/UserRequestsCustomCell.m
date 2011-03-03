@@ -18,14 +18,12 @@
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-		NSLog(@"initwithstyle");
 		// Respond button
 		TTButton *respondButton = [TTButton buttonWithStyle:@"toolbarButton:" title:@"Respond"];
 		[respondButton sizeToFit];
 		[respondButton addTarget:self action:@selector(respondButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 		self.accessoryView = respondButton;
     }
-	NSLog(@"outside init with style");
     return self;
 }
 

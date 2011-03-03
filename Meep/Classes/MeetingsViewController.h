@@ -13,6 +13,14 @@
 @interface MeetingsViewController : UITableViewController {
 	
 	MeetingsRequestManager *meetingsRequestManager;
+	
+	NSArray *tableKeys;
+	NSDictionary *tableDictionary;
 }
+
+@property (nonatomic, retain) NSArray *tableKeys;
+@property (nonatomic, retain) NSDictionary *tableDictionary;
+
+- (void)updateTableWithMeetings:(NSArray *)meetings;
 
 @end

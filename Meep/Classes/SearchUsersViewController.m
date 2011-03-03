@@ -8,6 +8,7 @@
 
 #import "SearchUsersViewController.h"
 #import "MeepAppDelegate.h"
+#import "AlertView.h"
 #import "SearchUsersManager.h"
 #import "User.h"
 #import "SearchUsersDetailViewController.h"

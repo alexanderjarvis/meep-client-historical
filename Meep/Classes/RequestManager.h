@@ -21,6 +21,6 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request;
 - (void)requestFailed:(ASIHTTPRequest *)request;
-- (BOOL)isResponseSameAsPreviousRequest;
+- (BOOL)isResponseNew;
 
 @end

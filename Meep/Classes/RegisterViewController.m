@@ -9,6 +9,7 @@
 #import "RegisterViewController.h"
 
 #import "MeepAppDelegate.h"
+#import "AlertView.h"
 #import "CustomCellTextField.h"
 #import "AlertView.h"
 
@@ -46,11 +47,10 @@
 }
 
 - (IBAction)registerButtonPressed {
-	NSLog(@"registerButtonPressed");
 	
 	if (emailCell.required && emailCell.customTextField.text.length < 1) {
-		NSLog(@"alert! email is blank");
-		[self.navigationController showValidationAlert:@"Email is blank"];
+		
+		[AlertView showValidationAlert:@"Email is blank"];
 		return;
 	}
 	
