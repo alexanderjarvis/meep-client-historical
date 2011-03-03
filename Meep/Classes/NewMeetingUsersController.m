@@ -212,6 +212,7 @@
 	if ([userManager isResponseSameAsPreviousRequest]) {
 		return;
 	} else {
+		[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
 		[self updateTableWithUser:user];
 	}
 }

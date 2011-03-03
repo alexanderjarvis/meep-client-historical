@@ -13,7 +13,6 @@
 @implementation UsersViewController
 
 @synthesize userManager;
-@synthesize currentUser;
 @synthesize tableKeys;
 @synthesize tableDictionary;
 
@@ -29,6 +28,9 @@
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
 	[userManager setDelegate:self];
+	
+	// Update table with users that have already been fetched.
+	[self updateTableWithUser:[meepAppDelegate currentUser]];
 }
 
 
@@ -39,6 +41,30 @@
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	[userManager getUser:configManager.email];
+}
+
+- (void)updateTableWithUser:(User *)user {
+	NSArray *connectedUsers = [user connections];
+	
+	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[connectedUsers count]];
+	for (UserSummaryDTO *connectedUser in connectedUsers) {
+		if ([connectedUser.firstName length] > 0) {
+			NSString *key = [[connectedUser.firstName substringToIndex:1] uppercaseString];
+			NSArray *usersInSection = [connectedUsersDictionary objectForKey:key];
+			if (usersInSection == nil) {
+				[connectedUsersDictionary setObject:[NSArray arrayWithObject:connectedUser] forKey:key];
+			} else {
+				NSMutableArray *mutableUsersInSection = [NSMutableArray arrayWithArray:usersInSection];
+				[mutableUsersInSection addObject:connectedUser];
+				[connectedUsersDictionary setObject:[NSArray arrayWithArray:mutableUsersInSection] forKey:key];
+			}
+		}
+	}
+	
+	self.tableDictionary = [NSDictionary dictionaryWithDictionary:connectedUsersDictionary];
+	self.tableKeys = [tableDictionary allKeys];
+	
+	[[super tableView] reloadData];
 }
 
 #pragma mark -
@@ -84,29 +110,6 @@
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
 #pragma mark -
 #pragma mark Table view delegate
 
@@ -139,7 +142,6 @@
 
 - (void)dealloc {
 	[userManager release];
-	[currentUser release];
 	[tableKeys release];
 	[tableDictionary release];
     [super dealloc];
@@ -151,35 +153,10 @@
 - (void)getUserSuccessful:(User *)user {
 	
 	// Only update the table if the response is new
-	if ([userManager isResponseSameAsPreviousRequest]) {
-		return;
+	if (![userManager isResponseSameAsPreviousRequest]) {
+		[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
+		[self updateTableWithUser:user];
 	}
-	
-	self.currentUser = user;
-	
-	// TODO: move to utility method
-	// Compile user dictionary (for index)
-	NSArray *connectedUsers = [currentUser connections];
-	
-	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[connectedUsers count]];
-	for (User *connectedUser in connectedUsers) {
-		if ([connectedUser.firstName length] > 0) {
-			NSString *key = [[connectedUser.firstName substringToIndex:1] uppercaseString];
-			NSArray *usersInSection = [connectedUsersDictionary objectForKey:key];
-			if (usersInSection == nil) {
-				[connectedUsersDictionary setObject:[NSArray arrayWithObject:connectedUser] forKey:key];
-			} else {
-				NSMutableArray *mutableUsersInSection = [NSMutableArray arrayWithArray:usersInSection];
-				[mutableUsersInSection addObject:connectedUser];
-				[connectedUsersDictionary setObject:[NSArray arrayWithArray:mutableUsersInSection] forKey:key];
-			}
-		}
-	}
-	
-	self.tableDictionary = [NSDictionary dictionaryWithDictionary:connectedUsersDictionary];
-	self.tableKeys = [tableDictionary allKeys];
-	
-	[[super tableView] reloadData];
 }
 
 - (void)getUserFailedWithError:(NSError *)error {

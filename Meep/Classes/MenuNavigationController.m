@@ -22,10 +22,13 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+/*
+ * Default behaviour overriden so that a reference to the rootViewController can be stored locally.
+ */
 - (id)initWithRootViewController:(UIViewController *)rootViewController {
 	if (self = [super initWithRootViewController:rootViewController]) {
 		if ([rootViewController isKindOfClass:[MenuViewController class]]) {
-			self.menuViewController = rootViewController;
+			self.menuViewController = (MenuViewController *)rootViewController;
 		}
 	}
 	return self;
@@ -77,17 +80,10 @@
 	[self pushViewController:userRequestsViewController animated:YES];
 }
 
-- (void)showNetworkAlert:(NSError *)error {
-	UIAlertView *alert = [[UIAlertView alloc]
-						  initWithTitle:@"Network Error" 
-						  message:[error localizedDescription]
-						  delegate:self
-						  cancelButtonTitle:@"Dismiss" 
-						  otherButtonTitles:nil];
-	[alert show];
-	[alert release];
-}
-
+/*
+ * To be called just after a meeting is successfully created in order to reset the meeting
+ * creation views by releasing them.
+ */
 - (void)newMeetingCreated {
 	[self popToRootViewControllerAnimated:YES];
 	[newMeetingUsersController release];
@@ -122,7 +118,6 @@
 	[newMeetingUsersController release];
 	[searchUsersViewController release];
 	[userRequestsViewController release];
-	
     [super dealloc];
 }
 

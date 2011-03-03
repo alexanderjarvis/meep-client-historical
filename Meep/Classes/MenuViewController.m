@@ -96,19 +96,19 @@
 }
 
 - (void)logout {
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	NSString *accessToken = [[meepAppDelegate configManager] access_token];
+	NSString *accessToken = [[[MeepAppDelegate sharedAppDelegate] configManager] access_token];
 	LogoutManager *logoutManager = [[LogoutManager alloc] initWithAccessToken: accessToken];
 	[logoutManager setDelegate:self];
 	[logoutManager logoutUser];
 }
 
 - (void)showWelcomeView {
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	[[meepAppDelegate configManager] setAccess_token:@""];
-	[meepAppDelegate showWelcomeView];
+	[[MeepAppDelegate sharedAppDelegate] showWelcomeView];
 }
 
+/*
+ * Called after a new meeting is created to enable further actions.
+ */
 - (void)newMeetingCreated {
 	meetingsItem.badgeNumber = meetingsItem.badgeNumber + 1;
 }
@@ -228,8 +228,7 @@
 }
 
 - (void)logoutUserFailedWithNetworkError:(NSError *)error {
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	[[meepAppDelegate menuNavigationController] showNetworkAlert: error];
+	[AlertView showNetworkAlert:error];
 }
 
 

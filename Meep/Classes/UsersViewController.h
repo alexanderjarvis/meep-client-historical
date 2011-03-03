@@ -14,7 +14,6 @@
 @interface UsersViewController : UITableViewController <UserManagerDelegate> {
 	
 	UserManager *userManager;
-	User *currentUser;
 	
 	NSArray *tableKeys;
 	NSDictionary *tableDictionary;
@@ -22,9 +21,10 @@
 }
 
 @property(nonatomic, retain) UserManager *userManager;
-@property(nonatomic, retain) User *currentUser;
 
 @property(nonatomic, retain) NSArray *tableKeys;
 @property(nonatomic, retain) NSDictionary *tableDictionary;
+
+- (void)updateTableWithUser:(User *)user;
 
 @end

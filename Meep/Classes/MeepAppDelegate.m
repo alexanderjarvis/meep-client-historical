@@ -6,12 +6,10 @@
 //  Copyright 2010 __MyCompanyName__. All rights reserved.
 //
 
-#import "MeepAppDelegate.h"
-
-#import "UserManager.h"
-
 #import <YAJL/YAJL.h>
 
+#import "MeepAppDelegate.h"
+#import "UserManager.h"
 #import "User.h"
 
 @implementation MeepAppDelegate
@@ -56,6 +54,7 @@
 	
 	// When logging out, it's important to clear all resources of the main applicaton view between users
 	if (menuNavigationController != nil && menuViewController != nil) {
+		[configManager setAccess_token:@""];
 		[menuNavigationController release];
 		menuNavigationController = nil;
 		[menuViewController release];

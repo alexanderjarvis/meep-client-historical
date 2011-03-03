@@ -159,12 +159,12 @@
 #pragma mark UserManagerDelegate
 
 - (void)getUserSuccessful:(User *)user {
+	
 	// Only update the table if the response is new
-	if ([userManager isResponseSameAsPreviousRequest]) {
-		return;
+	if (![userManager isResponseSameAsPreviousRequest]) {
+		[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
+		[[super tableView] reloadData];
 	}
-	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
-	[[super tableView] reloadData];
 }
 
 - (void)getUserFailedWithError:(NSError *)error {

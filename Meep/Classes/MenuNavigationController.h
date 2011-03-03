@@ -48,8 +48,6 @@
 - (void)showSearchUsers;
 - (void)showUserRequests;
 
-- (void)showNetworkAlert:(NSError *)error;
-
 - (void)newMeetingCreated;
 
 @end
