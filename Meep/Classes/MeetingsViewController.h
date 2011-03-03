@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MeetingsRequestManager.h"
 
 @interface MeetingsViewController : UITableViewController {
-
+	
+	MeetingsRequestManager *meetingsRequestManager;
 }
 
 @end

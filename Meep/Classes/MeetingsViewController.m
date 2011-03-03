@@ -7,7 +7,8 @@
 //
 
 #import "MeetingsViewController.h"
-
+#import "MeepAppDelegate.h"
+#import "ConfigManager.h"
 
 @implementation MeetingsViewController
 
@@ -15,20 +16,26 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-/*
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+	
+	self.title = @"Meetings";
+	
+	ConfigManager *configManager = [[MeepAppDelegate sharedAppDelegate] configManager];
+    meetingsRequestManager = [[MeetingsRequestManager alloc] initWithAccessToken:configManager.access_token];
+	//[meetingsRequestManager setDelegate:self];
 }
-*/
 
-/*
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+	
+	// Get the meetings
+	[meetingsRequestManager getMeetings];
 }
-*/
+
+
 /*
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
@@ -156,6 +163,7 @@
 
 
 - (void)dealloc {
+	[meetingsRequestManager release];
     [super dealloc];
 }
 

@@ -27,6 +27,7 @@
 		FA182DC4131FA29800E2147F /* NewMeeting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA182DB8131FA29800E2147F /* NewMeeting@2x.png */; };
 		FA182DC5131FA29800E2147F /* SearchPeople.png in Resources */ = {isa = PBXBuildFile; fileRef = FA182DB9131FA29800E2147F /* SearchPeople.png */; };
 		FA182DC6131FA29800E2147F /* SearchPeople@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA182DBA131FA29800E2147F /* SearchPeople@2x.png */; };
+		FA182E49131FACF300E2147F /* MeetingsRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA182E48131FACF300E2147F /* MeetingsRequestManager.m */; };
 		FA1AE503131AC1F000683B1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		FA1AE50A131AC25500683B1A /* UserSummaryDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */; };
 		FA1AE545131AC78900683B1A /* ObjectWithProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1AE544131AC78900683B1A /* ObjectWithProperties.m */; };
@@ -495,6 +496,9 @@
 		FA182DB8131FA29800E2147F /* NewMeeting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "NewMeeting@2x.png"; sourceTree = "<group>"; };
 		FA182DB9131FA29800E2147F /* SearchPeople.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SearchPeople.png; sourceTree = "<group>"; };
 		FA182DBA131FA29800E2147F /* SearchPeople@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SearchPeople@2x.png"; sourceTree = "<group>"; };
+		FA182E47131FACF300E2147F /* MeetingsRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingsRequestManager.h; sourceTree = "<group>"; };
+		FA182E48131FACF300E2147F /* MeetingsRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingsRequestManager.m; sourceTree = "<group>"; };
+		FA182E4A131FAD0A00E2147F /* MeetingsRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingsRequestManagerDelegate.h; sourceTree = "<group>"; };
 		FA1AE543131AC78900683B1A /* ObjectWithProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithProperties.h; sourceTree = "<group>"; };
 		FA1AE544131AC78900683B1A /* ObjectWithProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithProperties.m; sourceTree = "<group>"; };
 		FA331EF81309A5B8000763D4 /* AccessTokenRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTokenRequestManager.h; sourceTree = "<group>"; };
@@ -929,6 +933,9 @@
 				FA5076991302F3CC00CB96B4 /* LoginManager.h */,
 				FA50769A1302F3CC00CB96B4 /* LoginManager.m */,
 				FA50769B1302F3CC00CB96B4 /* LoginManagerDelegate.h */,
+				FA182E47131FACF300E2147F /* MeetingsRequestManager.h */,
+				FA182E48131FACF300E2147F /* MeetingsRequestManager.m */,
+				FA182E4A131FAD0A00E2147F /* MeetingsRequestManagerDelegate.h */,
 				FA50769C1302F3CC00CB96B4 /* RegistrationManager.h */,
 				FA50769D1302F3CC00CB96B4 /* RegistrationManager.m */,
 				FA50769E1302F3CC00CB96B4 /* RegistrationManagerDelegate.h */,
@@ -1664,6 +1671,7 @@
 				FA7FA476131DA70800130590 /* ISO8601DateFormatter.m in Sources */,
 				FA504EBA131EBB86000B94CD /* MeetingsViewController.m in Sources */,
 				FACEDB63131ED1380075DC57 /* DeleteUserRequestManager.m in Sources */,
+				FA182E49131FACF300E2147F /* MeetingsRequestManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

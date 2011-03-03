@@ -152,7 +152,7 @@
 	
 	if ([item.URL isEqualToString:MeetingsURL]) {
 		meetingsItem.badgeNumber = 0;
-		
+		[meepAppDelegate.menuNavigationController showMeetings];
 	} else if ([item.URL isEqualToString:NewMeetingURL]) {
 		// Check that the current user has connections to make a meeting with.
 		if ([currentUser.connections count] > 0) {

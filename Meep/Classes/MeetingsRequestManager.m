@@ -1,32 +1,32 @@
 //
-//  UserManager.m
+//  MeetingsRequestManager.m
 //  Meep
 //
-//  Created by Alex Jarvis on 10/02/2011.
+//  Created by Alex Jarvis on 03/03/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "UserManager.h"
+#import "MeetingsRequestManager.h"
 #import "MeepAppDelegate.h"
 #import "ASIHTTPRequest.h"
 #import "DictionaryModelMapper.h"
-#import "User.h"
+#import "MeetingDTO.h"
 
-@implementation UserManager
+@implementation MeetingsRequestManager
 
 @synthesize delegate;
 
-- (void)getUser:(NSString *)userId {
+- (void)getMeetings {
 	
 	// Build up the URL
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	NSString *baseURL = [[meepAppDelegate configManager] url];
-	NSString *resource = @"users/";
+	NSString *resource = @"meetings/";
 	
 	NSString *queryString = @"?oauth_token=";
 	NSString *fullQueryString = [queryString stringByAppendingString:accessToken];
 	
-	NSString *fullURL = [NSString stringWithFormat:@"%@%@%@%@", baseURL, resource, userId, fullQueryString];
+	NSString *fullURL = [NSString stringWithFormat:@"%@%@%@", baseURL, resource, fullQueryString];
 	
 	NSLog(@"URL of request: %@", fullURL);
 	
@@ -42,14 +42,16 @@
 	
 	if ([request responseStatusCode] == 200) {
 		
-		User *emptyUser = [[User alloc] init];
-		User *user = [DictionaryModelMapper createObject:emptyUser fromDictionary:[[request responseString] yajl_JSON]];
-		[emptyUser release];
+		NSArray *arrayOfMeetingDictionaries = [[request responseString] yajl_JSON];
 		
-		[delegate getUserSuccessful:user];
+		MeetingDTO *emptyMeetingDTO = [[MeetingDTO alloc] init];
+		NSArray *arrayOfMeetingDTOs = [DictionaryModelMapper createArrayOfObjects:emptyMeetingDTO fromArrayOfDictionaries:arrayOfMeetingDictionaries];
+		[emptyMeetingDTO release];
+		
+		[delegate getMeetingsSuccessful:arrayOfMeetingDTOs];
 		
 	} else {
-		[delegate getUserFailedWithError:
+		[delegate getMeetingsFailedWithError:
 		 [NSError errorWithDomain:[request responseString] code:[request responseStatusCode] userInfo:nil]];
 	}
 	
@@ -57,7 +59,7 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
-	[delegate getUserFailedWithNetworkError:[request error]];
+	[delegate getMeetingsFailedWithNetworkError:[request error]];
 }
 
 @end

@@ -125,7 +125,6 @@
 #pragma mark SearchUsersManagerDelegate methods
 
 - (void)searchUsersSuccessful:(NSArray *)users {
-	NSLog(@"searchUsersSuccessful");
 	self.users = users;
 	[[super tableView] reloadData];
 	[[searchDisplayController searchResultsTableView] reloadData];
@@ -141,6 +140,7 @@
 }
 
 - (void)searchUsersFailedWithNetworkError:(NSError *)error {
+	[AlertView showNetworkAlert:error];
 }
 
 @end

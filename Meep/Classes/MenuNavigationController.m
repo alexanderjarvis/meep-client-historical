@@ -12,6 +12,7 @@
 @implementation MenuNavigationController
 
 @synthesize menuViewController;
+@synthesize meetingsViewController;
 @synthesize usersViewController;
 @synthesize newMeetingLocationController;
 @synthesize newMeetingDateAndTimeController;
@@ -36,6 +37,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)showMeetings {
+	if (meetingsViewController == nil) {
+		self.meetingsViewController = [[MeetingsViewController alloc] initWithNibName:@"MeetingsViewController" bundle:nil];
+	}
+	[self pushViewController:meetingsViewController animated:YES];
 }
 
 - (void)showUsers {
@@ -112,6 +120,7 @@
 
 - (void)dealloc {
 	[menuViewController release];
+	[meetingsViewController release];
 	[usersViewController release];
 	[newMeetingLocationController release];
 	[newMeetingDateAndTimeController release];

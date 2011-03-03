@@ -17,6 +17,6 @@
 
 @property (assign, nonatomic) id delegate;
 
-- (void)getUser:(NSString *)userid;
+- (void)getUser:(NSString *)userId;
 
 @end
