@@ -46,6 +46,13 @@
 		User *user = [DictionaryModelMapper createObject:emptyUser fromDictionary:[[request responseString] yajl_JSON]];
 		[emptyUser release];
 		
+		// Declare SortDescriptor to sort the connections by first and last names ascending
+		NSSortDescriptor *firstNameDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"firstName" ascending:YES] autorelease];
+		NSSortDescriptor *lastNameDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES] autorelease];
+		NSArray *sortDescriptors = [NSArray arrayWithObjects:firstNameDescriptor, lastNameDescriptor, nil];
+		// Sort the users connections
+		user.connections = [user.connections sortedArrayUsingDescriptors:sortDescriptors];
+		
 		[delegate getUserSuccessful:user];
 		
 	} else {

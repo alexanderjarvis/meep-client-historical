@@ -47,7 +47,7 @@
 	
 	if ([request responseStatusCode] == 201) {
 		
-		NSDictionary *jsonDictionary = [[request responseString] yajl_JSON];
+		//NSDictionary *jsonDictionary = [[request responseString] yajl_JSON];
 		
 		[delegate createMeetingSuccessful];
 		
