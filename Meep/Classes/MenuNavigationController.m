@@ -27,7 +27,8 @@
  * Default behaviour overriden so that a reference to the rootViewController can be stored locally.
  */
 - (id)initWithRootViewController:(UIViewController *)rootViewController {
-	if (self = [super initWithRootViewController:rootViewController]) {
+    self = [super initWithRootViewController:rootViewController];
+	if (self) {
 		if ([rootViewController isKindOfClass:[MenuViewController class]]) {
 			self.menuViewController = (MenuViewController *)rootViewController;
 		}

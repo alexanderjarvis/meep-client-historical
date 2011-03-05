@@ -43,6 +43,8 @@
 @property (nonatomic, retain) SearchUsersViewController *searchUsersViewController;
 @property (nonatomic, retain) UserRequestsViewController *userRequestsViewController;
 
+- (void)showMeetings;
+
 - (void)showUsers;
 
 - (void)showNewMeetingLocation;

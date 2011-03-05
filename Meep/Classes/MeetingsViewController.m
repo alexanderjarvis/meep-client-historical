@@ -12,6 +12,7 @@
 #import "AlertView.h"
 #import "MeetingCell.h"
 #import "MeetingDTO.h"
+#import "MeetingDetailViewController.h"
 #import "ISO8601DateFormatter.h"
 
 @implementation MeetingsViewController
@@ -31,8 +32,7 @@
 	ConfigManager *configManager = [meepAppDelegate configManager];
     meetingsRequestManager = [[MeetingsRequestManager alloc] initWithAccessToken:configManager.access_token];
 	[meetingsRequestManager setDelegate:self];
-	
-	
+    
 }
 
 
@@ -54,15 +54,15 @@
 	NSMutableArray *arrayOfNotAttending = [NSMutableArray arrayWithCapacity:1];
 	
 	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-	for (MeetingDTO *meetingDTO in meetings) {
-		for (AttendeeDTO *attendeeDTO in meetingDTO.attendees) {
-			if ([attendeeDTO._id isEqualToNumber:currentUser._id]) {
-				if (attendeeDTO.rsvp == nil) {
-					[arrayOfAwaitingReply addObject:meetingDTO];
-				} else if ([attendeeDTO.rsvp isEqualToString:@"YES"]) {
-					[arrayOfAttending addObject:meetingDTO];
-				} else if ([attendeeDTO.rsvp isEqualToString:@"NO"]) {
-					[arrayOfNotAttending addObject:meetingDTO];
+	for (MeetingDTO *meeting in meetings) {
+		for (AttendeeDTO *attendee in meeting.attendees) {
+			if ([attendee._id isEqualToNumber:currentUser._id]) {
+				if (attendee.rsvp == nil) {
+					[arrayOfAwaitingReply addObject:meeting];
+				} else if ([attendee.rsvp isEqualToString:@"YES"]) {
+					[arrayOfAttending addObject:meeting];
+				} else if ([attendee.rsvp isEqualToString:@"NO"]) {
+					[arrayOfNotAttending addObject:meeting];
 				}
 				// Stop iterating attendees when the current user is reached
 				break;
@@ -120,9 +120,6 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	NSUInteger section = [indexPath section];
-	NSUInteger row = [indexPath row];
-    
 	static NSString *CustomCellIdentifier = @"MeetingCell";
 	
 	MeetingCell *cell = (MeetingCell *)[tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
@@ -132,13 +129,13 @@
 	}
     
 	// Configure the cell...
-	NSString *key = [tableKeys objectAtIndex:section];
+	NSString *key = [tableKeys objectAtIndex:[indexPath section]];
 	NSArray *arrayOfMeetings = [tableDictionary objectForKey:key];
-	MeetingDTO *meetingDTO = [arrayOfMeetings objectAtIndex:row];
+	MeetingDTO *meeting = [arrayOfMeetings objectAtIndex:[indexPath row]];
 	// Title
-	cell.titleLabel.text = meetingDTO.title;
+	cell.titleLabel.text = meeting.title;
 	// Date and time
-	NSDate *date = [ISO8601DateFormatter dateFromString:meetingDTO.time];
+	NSDate *date = [ISO8601DateFormatter dateFromString:meeting.time];
 	cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:date 
 														 dateStyle:kCFDateFormatterLongStyle 
 														 timeStyle:kCFDateFormatterNoStyle];
@@ -149,10 +146,10 @@
 	// Accepted and declined counters
 	NSUInteger accepted = 0;
 	NSUInteger declined = 0;
-	for (AttendeeDTO *attendeeDTO in meetingDTO.attendees) {
-		if ([attendeeDTO.rsvp isEqualToString:@"YES"]) {
+	for (AttendeeDTO *attendee in meeting.attendees) {
+		if ([attendee.rsvp isEqualToString:@"YES"]) {
 			accepted++;
-		} else if ([attendeeDTO.rsvp isEqualToString:@"NO"]) {
+		} else if ([attendee.rsvp isEqualToString:@"NO"]) {
 			declined++;
 		}
 	}
@@ -165,18 +162,22 @@
 #pragma mark Table view delegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+	// Value of height from MeetingsViewController.xib
 	return 69;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+	
+	// Get the meeting
+	NSString *key = [tableKeys objectAtIndex:[indexPath section]];
+	NSArray *arrayOfMeetings = [tableDictionary objectForKey:key];
+	MeetingDTO *meeting = [arrayOfMeetings objectAtIndex:[indexPath row]];
+	
+	// Push it to the detail view
+	MeetingDetailViewController *meetingDetailViewController = [[MeetingDetailViewController alloc] initWithNibName:@"MeetingDetailViewController" bundle:nil];
+	[meetingDetailViewController setThisMeeting:meeting];
+	[self.navigationController pushViewController:meetingDetailViewController animated:YES];
+	[meetingDetailViewController release];
 }
 
 
@@ -212,7 +213,7 @@
 	if ([meetingsRequestManager isResponseNew]) {
 		// Update the meetingsRelated stored against the currentUser in the application delegate.
 		[[[MeepAppDelegate sharedAppDelegate] currentUser] setMeetingsRelated:meetings];
-		
+		[self updateTableWithMeetings:meetings];
 	}
 	
 }

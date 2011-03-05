@@ -20,7 +20,7 @@
 
 - (void)viewDidLoad {
 	// Title
-	self.title = @"Menu";
+	self.title = @"Meep";
 	
 	// User Manager
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];

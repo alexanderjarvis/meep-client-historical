@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 
 #import "MeetingsRequestManager.h"
+#import "AcceptMeetingRequestManager.h"
+#import "DeclineMeetingRequestManager.h"
 
 @interface MeetingsViewController : UITableViewController {
 	
 	MeetingsRequestManager *meetingsRequestManager;
-	
+	AcceptMeetingRequestManager *acceptMeetingRequestManager;
+    DeclineMeetingRequestManager *declineMeetingRequestManager;
 	NSArray *tableKeys;
 	NSDictionary *tableDictionary;
 }
