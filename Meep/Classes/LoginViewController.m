@@ -109,6 +109,7 @@
 		cell = (CustomCellTextField *)[nib objectAtIndex:0];
 		cell.tableView = tableView;
 		cell.tableViewController = self;
+        cell.customTextField.delegate = self;
 	}
 	
 	switch (row) {
@@ -142,7 +143,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 	CustomCellTextField *cell = (CustomCellTextField *)[tableView cellForRowAtIndexPath:indexPath];
 	[cell.customTextField becomeFirstResponder];
 	

@@ -190,7 +190,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-	CustomCellTextField *cell = [tableView cellForRowAtIndexPath:indexPath];
+	CustomCellTextField *cell = (CustomCellTextField *)[tableView cellForRowAtIndexPath:indexPath];
 	[cell.customTextField becomeFirstResponder];
 	
 	selectedCell = cell;

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomCellTextField : UITableViewCell {
+@interface CustomCellTextField : UITableViewCell <UITextFieldDelegate> {
 	
 	UITableViewController *tableViewController;
 	UITableView *tableView;
@@ -20,8 +20,8 @@
 
 }
 
-@property (nonatomic, retain) UITableViewController *tableViewController;
-@property (nonatomic, retain) UITableView *tableView;
+@property (nonatomic, assign) UITableViewController *tableViewController;
+@property (nonatomic, assign) UITableView *tableView;
 
 @property (nonatomic, retain) UILabel *customTextLabel;
 @property (nonatomic, retain) UITextField *customTextField;
@@ -31,7 +31,5 @@
 - (BOOL)required;
 
 - (void)setRequired:(BOOL)required;
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField;
 
 @end

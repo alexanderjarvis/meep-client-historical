@@ -19,7 +19,8 @@
 @synthesize required;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
         // Initialization code
     }
     return self;
@@ -41,10 +42,7 @@
 }
 
 
-- (void)dealloc {
-	[tableViewController release];
-	[tableView release];
-	
+- (void)dealloc {	
 	[customTextLabel release];
 	[customTextField release];
     [super dealloc];
@@ -52,10 +50,13 @@
 
 #pragma mark UITextField Delegate Methods
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	[tableViewController textFieldCell:self returnInTableView:tableView];
-	return NO;
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    [tableViewController tableView:tableView didSelectRowAtIndexPath:[tableView indexPathForCell:self]];
 }
 
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	[tableViewController textFieldCell:textField returnInTableView:tableView];
+	return NO;
+}
 
 @end
