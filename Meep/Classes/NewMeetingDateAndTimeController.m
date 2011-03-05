@@ -154,7 +154,7 @@
 		case 0:
 			if (self.titleCell == nil) {
 				cell.customTextLabel.text = @"Title";
-				[cell setRequired: YES];
+				[cell setRequired:YES];
 				cell.customTextField.returnKeyType = UIReturnKeyNext;
 				cell.customTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 				cell.customTextField.autocapitalizationType = UITextAutocapitalizationTypeSentences;
@@ -163,23 +163,25 @@
 				cell = self.titleCell;
 			}			
 			break;
-		case 1:
+        case 1:
+			if (self.descriptionCell == nil) {
+				cell.customTextLabel.text = @"Description";
+                [cell setRequired:NO];
+				self.descriptionCell = cell;
+			} else {
+				cell = self.descriptionCell;
+			}
+			break;
+		case 2:
 			if (self.dateCell == nil) {
 				cell.customTextLabel.text = @"Date";
-				[cell setRequired: YES];
+				[cell setRequired:YES];
+                cell.customTextField.text = [dateFormatter stringFromDate:[datePicker date]];
 				cell.customTextField.inputView = datePicker;
 				self.dateCell = cell;
 			} else {
 				cell = self.dateCell;
 			}			
-			break;
-		case 2:
-			if (self.descriptionCell == nil) {
-				cell.customTextLabel.text = @"Description";
-				self.descriptionCell = cell;
-			} else {
-				cell = self.descriptionCell;
-			}
 			break;
 		default:
 			break;

@@ -37,7 +37,9 @@
 - (void)setRequired:(BOOL)newValue {
 	if (newValue == YES) {
 		customTextField.placeholder = @"required";
-	}
+	} else {
+        customTextField.placeholder = @"optional";
+    }
 	required = newValue;
 }
 
