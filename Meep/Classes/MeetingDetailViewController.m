@@ -14,17 +14,17 @@
 #import "AttendeeDTO.h"
 #import "ISO8601DateFormatter.h"
 #import "AlertView.h"
+#import "MeetingAttendeesViewController.h"
 
 @implementation MeetingDetailViewController
 
-@synthesize thisMeeting;
+@synthesize meeting;
 @synthesize acceptMeetingRequestManager;
 @synthesize declineMeetingRequestManager;
 @synthesize meetingDetailCell;
 
 #pragma mark -
 #pragma mark View lifecycle
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -54,14 +54,14 @@
         [meetingDetailCell setDelegate:self];
     }
 	
-	if (thisMeeting != nil) {
-		[self updateTableWithMeeting:thisMeeting];
+	if (meeting!= nil) {
+		[self updateTableWithMeeting:meeting];
 	}
 }
 
-- (void)updateTableWithMeeting:(MeetingDTO *)meeting {
+- (void)updateTableWithMeeting:(MeetingDTO *)newMeeting {
     
-    self.thisMeeting = meeting;
+    self.meeting = newMeeting;
     
     User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
     
@@ -120,7 +120,7 @@
 
 
 - (void)dealloc {
-	[thisMeeting release];
+	[meeting release];
     [acceptMeetingRequestManager release];
     [declineMeetingRequestManager release];
     [super dealloc];
@@ -131,7 +131,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    if (thisMeeting.description) {
+    if (meeting.description) {
         return 3;
     }
     return 2;
@@ -161,7 +161,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (thisMeeting != nil) {
+    if (meeting != nil) {
         
         NSUInteger section = [indexPath section];
         NSUInteger row = [indexPath row];
@@ -171,9 +171,9 @@
             // MeetingDetailCell
             
             // Title
-            meetingDetailCell.titleLabel.text = thisMeeting.title;
+            meetingDetailCell.titleLabel.text = meeting.title;
             // Date and time
-            NSDate *date = [ISO8601DateFormatter dateFromString:thisMeeting.time];
+            NSDate *date = [ISO8601DateFormatter dateFromString:meeting.time];
             meetingDetailCell.dateLabel.text = [NSDateFormatter localizedStringFromDate:date 
                                                                               dateStyle:kCFDateFormatterLongStyle 
                                                                               timeStyle:kCFDateFormatterNoStyle];
@@ -195,17 +195,17 @@
             if (cell == nil) {
                 cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
                 cell.textLabel.font = [UIFont systemFontOfSize:15.0];
-                cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             }
             
             if (row == 0) {
                 cell.textLabel.text = @"View live meeting map";
             } else if (row == 1) {                
-                cell.textLabel.text = [NSString stringWithFormat:@"View attendees (%u)", [thisMeeting.attendees count]];
+                cell.textLabel.text = [NSString stringWithFormat:@"View attendees (%u)", [meeting.attendees count]];
             }
             return cell;
             
-        } else if (thisMeeting.description != nil && section == 2 && row == 0) {
+        } else if (meeting.description != nil && section == 2 && row == 0) {
                 
             // Meeting Description   
             static NSString *CellIdentifier = @"DescriptionCell";
@@ -226,7 +226,7 @@
             }
             
             // Dynamic height based on description text size
-            NSString *text = thisMeeting.description;
+            NSString *text = meeting.description;
             CGSize constraint = CGSizeMake(DESC_CELL_WIDTH - (DESC_CELL_MARGIN * 2), 20000.0f);
             CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
             
@@ -255,10 +255,10 @@
         // Value of height from MeetingDetailCell.xib
         return 144;
         
-    } else if (thisMeeting.description != nil && section == 2 && row == 0) {
+    } else if (meeting.description != nil && section == 2 && row == 0) {
         // Dynamic height based on description text size
         CGSize constraint = CGSizeMake(DESC_CELL_WIDTH - (DESC_CELL_MARGIN * 2), 20000.0f);
-        CGSize size = [thisMeeting.description sizeWithFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+        CGSize size = [meeting.description sizeWithFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
         CGFloat height = MAX(size.height, 44.0f);
         return height + (DESC_CELL_MARGIN * 2);
     }
@@ -268,7 +268,19 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+    NSUInteger section = [indexPath section];
+    NSUInteger row = [indexPath row];
+    if (section == 1) {
+        if (row == 0) {
+            // View live meeting map
+        } else if (row == 1) {
+            // View attendees
+            MeetingAttendeesViewController *meetingAttendeesViewController = [[MeetingAttendeesViewController alloc] initWithNibName:@"MeetingAttendeesViewController" bundle:nil];
+            [meetingAttendeesViewController setMeeting:meeting];
+            [self.navigationController pushViewController:meetingAttendeesViewController animated:YES];
+            [meetingAttendeesViewController release];
+        }
+    }
 }
 
 #pragma mark -
@@ -276,13 +288,13 @@
 
 - (void)attendingButtonPressed {
     if (listenToSegmentChanges) {
-        [acceptMeetingRequestManager acceptMeeting:thisMeeting];
+        [acceptMeetingRequestManager acceptMeeting:meeting];
     }
 }
 
 - (void)notAttendingButtonPressed {
     if (listenToSegmentChanges) {
-        [declineMeetingRequestManager declineMeeting:thisMeeting];
+        [declineMeetingRequestManager declineMeeting:meeting];
     }
 }
 

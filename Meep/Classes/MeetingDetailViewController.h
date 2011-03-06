@@ -26,7 +26,7 @@
     NSUInteger awaitingReply;
     NSUInteger attending;
     NSUInteger notAttending;
-	MeetingDTO *thisMeeting;                                                                   
+	MeetingDTO *meeting;                                                                   
     AcceptMeetingRequestManager *acceptMeetingRequestManager;
     DeclineMeetingRequestManager *declineMeetingRequestManager;
     MeetingDetailCell *meetingDetailCell;
@@ -34,12 +34,12 @@
     NSInteger oldSegmentValue;
 }
 
-@property (nonatomic, retain) MeetingDTO *thisMeeting;
+@property (nonatomic, retain) MeetingDTO *meeting;
 @property (nonatomic, retain) AcceptMeetingRequestManager *acceptMeetingRequestManager;
 @property (nonatomic, retain) DeclineMeetingRequestManager *declineMeetingRequestManager;
 @property (nonatomic, retain) MeetingDetailCell *meetingDetailCell;
 
-- (void)updateTableWithMeeting:(MeetingDTO *)meeting;
+- (void)updateTableWithMeeting:(MeetingDTO *)newMeeting;
 - (void)rollbackSelectedSegment;
 
 @end

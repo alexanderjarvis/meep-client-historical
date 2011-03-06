@@ -97,17 +97,37 @@
 }
 
 #pragma mark -
+#pragma mark Memory management
+
+- (void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Relinquish ownership any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+    // For example: self.myOutlet = nil;
+}
+
+
+- (void)dealloc {
+	[meetingsRequestManager release];
+	[tableKeys release];
+	[tableDictionary release];
+    [super dealloc];
+}
+
+#pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    // Return the number of sections.
     return [tableKeys count];
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // Return the number of rows in the section.
-	
 	NSArray *meetingsInSection = [tableDictionary objectForKey:[tableKeys objectAtIndex:section]];
     return [meetingsInSection count];
 }
@@ -175,34 +195,11 @@
 	
 	// Push it to the detail view
 	MeetingDetailViewController *meetingDetailViewController = [[MeetingDetailViewController alloc] initWithNibName:@"MeetingDetailViewController" bundle:nil];
-	[meetingDetailViewController setThisMeeting:meeting];
+	[meetingDetailViewController setMeeting:meeting];
 	[self.navigationController pushViewController:meetingDetailViewController animated:YES];
 	[meetingDetailViewController release];
 }
 
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-	[meetingsRequestManager release];
-	[tableKeys release];
-	[tableDictionary release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark MeetingsRequestManager
