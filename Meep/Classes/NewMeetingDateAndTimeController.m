@@ -58,7 +58,9 @@
 		// Build up meeting information
 		MeetingDTO *meetingDTO = [[NewMeetingBuilder sharedNewMeetingBuilder] meetingDTO];
 		meetingDTO.title = titleCell.customTextField.text;
-		meetingDTO.description = descriptionCell.customTextField.text;
+        if ([descriptionCell.customTextField.text length] > 0) {
+            meetingDTO.description = descriptionCell.customTextField.text;
+        }
 		meetingDTO.time = [ISO8601DateFormatter stringFromDate:[datePicker date]];
 		
 		// Show users view

@@ -131,42 +131,115 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    return 1;
+    if (thisMeeting.description) {
+        return 3;
+    }
+    return 2;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
+    if (section == 1) {
+        return 2;
+    }
     return 1;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return @"Meeting details";
+    if (section == 0) {
+        return @"Meeting details";
+    } else if (section == 1) {
+        return @"Actions";
+    } else if (section == 2) {
+        return @"Description";
+    }
+	return nil;
 }
 
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (thisMeeting != nil && [indexPath row] == 0) {
+    if (thisMeeting != nil) {
         
-        // Configure the cell...
-        // Title
-        meetingDetailCell.titleLabel.text = thisMeeting.title;
-        // Date and time
-        NSDate *date = [ISO8601DateFormatter dateFromString:thisMeeting.time];
-        meetingDetailCell.dateLabel.text = [NSDateFormatter localizedStringFromDate:date 
-                                                             dateStyle:kCFDateFormatterLongStyle 
-                                                             timeStyle:kCFDateFormatterNoStyle];
-        NSString *time = [NSDateFormatter localizedStringFromDate:date 
-                                                        dateStyle:kCFDateFormatterNoStyle
-                                                        timeStyle:kCFDateFormatterShortStyle];
-        meetingDetailCell.timeLabel.text = [NSString stringWithFormat:@"at %@", time];
-        // Accepted and declined counters
-        meetingDetailCell.acceptedAmountLabel.text = [NSString stringWithFormat:@"%u", attending];
-        meetingDetailCell.declinedAmountLabel.text = [NSString stringWithFormat:@"%u", notAttending];
-        meetingDetailCell.awaitingReplyAmountLabel.text = [NSString stringWithFormat:@"%u", awaitingReply];
-        return meetingDetailCell;
+        NSUInteger section = [indexPath section];
+        NSUInteger row = [indexPath row];
+        
+        if (section == 0 && row == 0) {
+            
+            // MeetingDetailCell
+            
+            // Title
+            meetingDetailCell.titleLabel.text = thisMeeting.title;
+            // Date and time
+            NSDate *date = [ISO8601DateFormatter dateFromString:thisMeeting.time];
+            meetingDetailCell.dateLabel.text = [NSDateFormatter localizedStringFromDate:date 
+                                                                              dateStyle:kCFDateFormatterLongStyle 
+                                                                              timeStyle:kCFDateFormatterNoStyle];
+            NSString *time = [NSDateFormatter localizedStringFromDate:date 
+                                                            dateStyle:kCFDateFormatterNoStyle
+                                                            timeStyle:kCFDateFormatterShortStyle];
+            meetingDetailCell.timeLabel.text = [NSString stringWithFormat:@"at %@", time];
+            // Accepted and declined counters
+            meetingDetailCell.acceptedAmountLabel.text = [NSString stringWithFormat:@"%u", attending];
+            meetingDetailCell.declinedAmountLabel.text = [NSString stringWithFormat:@"%u", notAttending];
+            meetingDetailCell.awaitingReplyAmountLabel.text = [NSString stringWithFormat:@"%u", awaitingReply];
+            
+            return meetingDetailCell;
+        
+        } else if (section == 1) {
+            
+            static NSString *CellIdentifier = @"AttendeeCell";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+                cell.textLabel.font = [UIFont systemFontOfSize:15.0];
+                cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+            }
+            
+            if (row == 0) {
+                cell.textLabel.text = @"View live meeting map";
+            } else if (row == 1) {                
+                cell.textLabel.text = [NSString stringWithFormat:@"View attendees (%u)", [thisMeeting.attendees count]];
+            }
+            return cell;
+            
+        } else if (thisMeeting.description != nil && section == 2 && row == 0) {
+                
+            // Meeting Description   
+            static NSString *CellIdentifier = @"DescriptionCell";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+            UILabel *label = nil;
+            if (cell == nil) {
+                cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+                label = [[UILabel alloc] initWithFrame:CGRectZero];
+                [label setLineBreakMode:UILineBreakModeWordWrap];
+                [label setMinimumFontSize:DESC_CELL_FONT_SIZE];
+                [label setNumberOfLines:0];
+                [label setFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE]];
+                [label setTag:1];
+                
+                [[cell contentView] addSubview:label];
+            }
+            
+            // Dynamic height based on description text size
+            NSString *text = thisMeeting.description;
+            CGSize constraint = CGSizeMake(DESC_CELL_WIDTH - (DESC_CELL_MARGIN * 2), 20000.0f);
+            CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+            
+            if (label != nil) {
+                label = (UILabel*)[cell viewWithTag:1];
+                [label setText:text];
+                [label setFrame:CGRectMake(DESC_CELL_MARGIN, DESC_CELL_MARGIN, DESC_CELL_WIDTH - (DESC_CELL_MARGIN * 2), MAX(size.height, 44.0f))];
+            }
+            
+            return cell;
+        }
+        
+        
     }
     return nil;
 }
@@ -175,10 +248,22 @@
 #pragma mark UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	// Value of height from MeetingDetailCell.xib
-    if ([indexPath row] == 0) {
+    NSUInteger row = [indexPath row];
+    NSUInteger section = [indexPath section];
+    
+    if (section == 0 && row == 0) {
+        // Value of height from MeetingDetailCell.xib
         return 144;
+        
+    } else if (thisMeeting.description != nil && section == 2 && row == 0) {
+        // Dynamic height based on description text size
+        CGSize constraint = CGSizeMake(DESC_CELL_WIDTH - (DESC_CELL_MARGIN * 2), 20000.0f);
+        CGSize size = [thisMeeting.description sizeWithFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+        CGFloat height = MAX(size.height, 44.0f);
+        return height + (DESC_CELL_MARGIN * 2);
     }
+    
+    // default value
 	return 44;
 }
 
