@@ -39,11 +39,19 @@
 					objectType = [resultObject valueForKey:typeString];
 					NSArray *arrayOfObjects = [self createArrayOfObjects:objectType fromArrayOfDictionaries:(NSArray *)value];
 					[resultObject setValue:arrayOfObjects forKey:key];
+                } else if ([value isKindOfClass:[NSString class]] || [value isKindOfClass:[NSNumber class]]) {
+                    [resultObject setValue:value forKey:key];
+				} else if ([value isKindOfClass:[NSDictionary class]]) {
+                    // Test if the result objects property is an NSObject or NSDictionary
+                    id resultObjectsProperty = [object performSelector:NSSelectorFromString(key)];
+                    if ([resultObjectsProperty isKindOfClass:[NSDictionary class]]) {
+                        [resultObject setValue:object forKey:key];
+                    } else {
+                        [resultObject setValue:[self createObject:resultObjectsProperty fromDictionary:(NSDictionary *)value] forKey:key];
+                    }
 				} else {
-					// If not an array, then set the value of the property
-					[resultObject setValue:value forKey:key];
-				}
-				
+                    [resultObject setValue:object forKey:key];
+                }
 			}
 		}
 	}

@@ -12,13 +12,13 @@
 
 @implementation MeepStyleSheet
 
-- (TTStyle*)blackForwardButton:(UIControlState)state {
-	TTShape* shape = [TTRoundedRightArrowShape shapeWithRadius:4.5];
-	UIColor* tintColor = RGBCOLOR(0, 0, 0);
+- (TTStyle *)blackForwardButton:(UIControlState)state {
+	TTShape *shape = [TTRoundedRightArrowShape shapeWithRadius:4.5];
+	UIColor *tintColor = RGBCOLOR(0, 0, 0);
 	return [TTSTYLESHEET toolbarButtonForState:state shape:shape tintColor:tintColor font:nil];
 }
 
-- (TTStyle*)embossedButton:(UIControlState)state {
+- (TTStyle *)embossedButton:(UIControlState)state {
 	if (state == UIControlStateNormal) {
 		return
 		[TTShapeStyle styleWithShape:[TTRoundedRectangleShape shapeWithRadius:8] next:
@@ -61,15 +61,22 @@
 
 }
 
-- (TTStyle*)launcherButton:(UIControlState)state {
-	return
-    [TTPartStyle styleWithName:@"image" style:TTSTYLESTATE(launcherButtonImage:, state) next:
-	 [TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:12] color:RGBCOLOR(50, 50, 50)
-				minimumFontSize:12 shadowColor:nil
-				   shadowOffset:CGSizeZero next:nil]];
+- (TTStyle *)redButton:(UIControlState)state {
+    TTShape *shape = [TTRoundedRectangleShape shapeWithRadius:8];
+    UIColor *tintColor = RGBCOLOR(255, 30, 30);
+    return [TTSTYLESHEET toolbarButtonForState:state shape:shape tintColor:tintColor font:nil];
 }
 
-- (TTStyle*)pageDot:(UIControlState)state {
+- (TTStyle*)launcherButton:(UIControlState)state {
+	return [TTPartStyle styleWithName:@"image" 
+                                style:TTSTYLESTATE(launcherButtonImage:, state) 
+                                 next:[TTTextStyle styleWithFont:[UIFont boldSystemFontOfSize:12] 
+                                                           color:RGBCOLOR(50, 50, 50)
+                                                 minimumFontSize:12 shadowColor:nil
+                                                    shadowOffset:CGSizeZero next:nil]];
+}
+
+- (TTStyle *)pageDot:(UIControlState)state {
 	if (state == UIControlStateSelected) {
 		return [self pageDotWithColor:RGBCOLOR(77, 77, 77)];
 	} else {

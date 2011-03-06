@@ -89,8 +89,8 @@
 						initWithTitle:@"Logout" 
 						message:@"Are you sure that you wish to logout?"
 						delegate:self 
-						cancelButtonTitle:@"Cancel" 
-						otherButtonTitles:@"Logout", nil];
+						cancelButtonTitle:@"No" 
+						otherButtonTitles:@"Yes", nil];
 	[logoutAlertView show];
 	[logoutAlertView release];
 }

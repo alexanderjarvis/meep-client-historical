@@ -15,13 +15,17 @@
 #import "ISO8601DateFormatter.h"
 #import "AlertView.h"
 #import "MeetingAttendeesViewController.h"
+#import "DeleteMeetingRequestManager.h"
+#import "MeepStyleSheet.h"
 
 @implementation MeetingDetailViewController
 
 @synthesize meeting;
 @synthesize acceptMeetingRequestManager;
 @synthesize declineMeetingRequestManager;
+@synthesize deleteMeetingRequestManager;
 @synthesize meetingDetailCell;
+@synthesize deleteMeetingButton;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -40,11 +44,8 @@
 	[acceptMeetingRequestManager setDelegate:self];
     declineMeetingRequestManager = [[DeclineMeetingRequestManager alloc] initWithAccessToken:configManager.access_token];
 	[declineMeetingRequestManager setDelegate:self];
-}
-
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    deleteMeetingRequestManager = [[DeleteMeetingRequestManager alloc] initWithAccessToken:configManager.access_token];
+    [deleteMeetingRequestManager setDelegate:self];
     
     // Load the cell into memory before the TableViewDelegate cellForRowAtIndex method because we need to set up
     // and calculate its data.
@@ -53,9 +54,20 @@
         self.meetingDetailCell = (MeetingDetailCell *)[nib objectAtIndex:0];
         [meetingDetailCell setDelegate:self];
     }
-	
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
 	if (meeting!= nil) {
 		[self updateTableWithMeeting:meeting];
+        
+        // If the current user is the owner of the meeting then add the delete button to the table view footer;
+        User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+        if ([currentUser._id isEqualToNumber:meeting.owner._id]) {
+            [self addDeleteButton];
+        }
 	}
 }
 
@@ -103,6 +115,31 @@
     listenToSegmentChanges = YES;
 }
 
+- (void)addDeleteButton {
+    // Create meeting button
+	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
+	TTButton *button = [TTButton buttonWithStyle:@"redButton:" title:@"Delete Meeting"];
+	button.font = [UIFont boldSystemFontOfSize:14];
+	[button sizeToFit];
+	[button addTarget:self action:@selector(deleteMeetingButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[deleteMeetingButton addSubview:button];
+}
+
+- (void)deleteMeetingButtonPressed {
+    deleteMeetingAlertView = [[UIAlertView alloc]
+						  initWithTitle:@"Delete Meeting" 
+						  message:@"Are you sure?"
+						  delegate:self 
+						  cancelButtonTitle:@"No" 
+						  otherButtonTitles:@"Yes", nil];
+	[deleteMeetingAlertView show];
+	[deleteMeetingAlertView release];
+}
+
+- (void)deleteMeeting {
+    [deleteMeetingRequestManager deleteMeeting:meeting];
+}
+
 #pragma mark -
 #pragma mark Memory management
 
@@ -123,6 +160,8 @@
 	[meeting release];
     [acceptMeetingRequestManager release];
     [declineMeetingRequestManager release];
+    [deleteMeetingRequestManager release];
+    [deleteMeetingButton release];
     [super dealloc];
 }
 
@@ -342,6 +381,40 @@
     [AlertView showNetworkAlert:error];
 }
 
+#pragma mark -
+#pragma mark DeleteMeetingRequestManagerDelegate
+
+- (void)deleteMeetingSuccessful {
+    NSLog(@"delete meeting successful");
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)deleteMeetingFailedWithError:(NSError *)error {
+    //
+}
+
+- (void)deleteMeetingFailedWithNetworkError:(NSError *)error {
+    [AlertView showNetworkAlert:error];
+}
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:deleteMeetingAlertView]) {
+		switch (buttonIndex) {
+			case 0:
+				// Cancel
+				break;
+			case 1:
+				// Logout
+				[self deleteMeeting];
+				break;
+			default:
+				break;
+		}
+	}
+}
 
 @end
 
