@@ -21,10 +21,10 @@
 
 -(id)init {
 	if (self == [super init]) {
-		self.place = [[CoordinateDTO alloc] init];
-		self.attendees = [[NSArray alloc] init];
-		self._type_attendees = [[AttendeeDTO alloc] init];
-		self.owner = [[UserSummaryDTO alloc] init];
+		place = [[CoordinateDTO alloc] init];
+		attendees = [[NSArray alloc] init];
+		_type_attendees = [[AttendeeDTO alloc] init];
+		owner = [[UserSummaryDTO alloc] init];
 	}
 	return self;
 }

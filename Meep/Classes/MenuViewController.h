@@ -10,6 +10,7 @@
 #import <Three20/Three20.h>
 
 #import "UserManager.h"
+#import "LogoutManager.h"
 
 #define MeetingsURL @"mp://meetings"
 #define NewMeetingURL @"mp://newmeeting"
@@ -18,7 +19,7 @@
 #define UsersURL @"mp://users"
 #define MyDetailsURL @"mp://mydetails"
 
-@interface MenuViewController : TTViewController <TTLauncherViewDelegate, UIAlertViewDelegate> {
+@interface MenuViewController : TTViewController <TTLauncherViewDelegate, UIAlertViewDelegate, UserManagerDelegate, LogoutManagerDelegate> {
 	
 	TTLauncherView *launcherView;
 	
@@ -32,6 +33,7 @@
 	UIBarButtonItem *logoutButton;
 	UIAlertView *logoutAlertView;
 	
+    LogoutManager *logoutManager;
 	UserManager *userManager;
 
 }

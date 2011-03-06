@@ -60,14 +60,15 @@
 	[HUD show:YES];
 	
 	// 
-	UserDTO *userDTO = [[UserDTO alloc] init];
-	userDTO.email = [emailCell.customTextField text];
-	userDTO.password = [passwordCell.customTextField text];
-	userDTO.firstName = [firstNameCell.customTextField text];
-	userDTO.lastName = [lastNameCell.customTextField text];
-	userDTO.mobileNumber = [mobileNumberCell.customTextField text];
+	UserDTO *user = [[UserDTO alloc] init];
+	user.email = [emailCell.customTextField text];
+	user.password = [passwordCell.customTextField text];
+	user.firstName = [firstNameCell.customTextField text];
+	user.lastName = [lastNameCell.customTextField text];
+	user.mobileNumber = [mobileNumberCell.customTextField text];
 	
-	[registrationManager registerUser:userDTO];
+	[registrationManager registerUser:user];
+    [user release];
 }
 
 /*

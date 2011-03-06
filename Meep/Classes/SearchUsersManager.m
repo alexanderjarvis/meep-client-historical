@@ -51,6 +51,7 @@
 		
 		User *emptyUser = [[User alloc] init];
 		NSArray *arrayOfUsers = [DictionaryModelMapper createArrayOfObjects:emptyUser fromArrayOfDictionaries:arrayOfUserDictionaries];
+        [emptyUser release];
 		[delegate searchUsersSuccessful:arrayOfUsers];
 		
 	} else if ([request responseStatusCode] == 404) {

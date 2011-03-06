@@ -19,7 +19,7 @@
 	
 	dictionary = [self manipulateDictionaryKeysWhenToObject:dictionary];
 	
-	id resultObject = [[[object class] allocWithZone:nil] init];
+	id resultObject = [[[[object class] allocWithZone:nil] init] autorelease];
 	
 	// Get the properties of the object from the Objective C runtime
 	NSArray *properties = [self propertiesFromObject:resultObject];
@@ -67,7 +67,9 @@
 	NSMutableArray *arrayOfObjects = [NSMutableArray arrayWithCapacity:[dictionaries count]];
 	
 	for (NSDictionary *dictionary in dictionaries) {
-		id tmpObject = [self createObject:[[[object class] allocWithZone:nil] init] fromDictionary:dictionary];
+        NSObject *tempObjectInstance = [[[object class] allocWithZone:nil] init];
+		id tmpObject = [self createObject:tempObjectInstance fromDictionary:dictionary];
+        [tempObjectInstance release];
 		[arrayOfObjects addObject:tmpObject];
 	}
 	
@@ -119,12 +121,12 @@
  *
  */
 + (NSDictionary *)createArrayOfDictionariesFromArrayOfObjects:(NSArray *)objects ofType:(NSObject *)objectType {
-	NSMutableArray *arrayOfDictionaries = [[NSMutableArray alloc] initWithCapacity:[objects count]];
+	NSMutableArray *mutableArrayOfDictionaries = [NSMutableArray arrayWithCapacity:[objects count]];
 	for (NSObject *object in objects) {
 		NSDictionary *dictionary = [self createDictionaryWithObject:object];
-		[arrayOfDictionaries addObject:dictionary];
+		[mutableArrayOfDictionaries addObject:dictionary];
 	}
-	return arrayOfDictionaries;
+	return [[mutableArrayOfDictionaries copy] autorelease];
 }
 
 /*
@@ -164,7 +166,7 @@
 	id key;
 	
 	// Create a Dictionary from the existing one and replace the keys
-	NSMutableDictionary *mutableDictionary = [dictionary mutableCopy];
+	NSMutableDictionary *mutableDictionary = [[dictionary mutableCopy] autorelease];
 	
 	while ((key = [enumerator nextObject])) {
 		
@@ -177,9 +179,7 @@
 		
 	}
 	
-	NSDictionary *newDictionary = [NSDictionary dictionaryWithDictionary:mutableDictionary];
-	[mutableDictionary release];
-	return newDictionary;
+	return [[mutableDictionary copy] autorelease];
 }
 
 /*

@@ -22,11 +22,14 @@
 	// Title
 	self.title = @"Meep";
 	
-	// User Manager
+	// Request Managers
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
-	[userManager setDelegate: self];
+    [userManager setDelegate: self];
+	logoutManager = [[LogoutManager alloc] initWithAccessToken:configManager.access_token];
+	[logoutManager setDelegate:self];
+	
 	
 	// Logout Button
 	logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
@@ -96,9 +99,6 @@
 }
 
 - (void)logout {
-	NSString *accessToken = [[[MeepAppDelegate sharedAppDelegate] configManager] access_token];
-	LogoutManager *logoutManager = [[LogoutManager alloc] initWithAccessToken: accessToken];
-	[logoutManager setDelegate:self];
 	[logoutManager logoutUser];
 }
 
@@ -139,6 +139,7 @@
 	[friendRequestsItem release];
 	[logoutButton release];
 	[userManager release];
+    [logoutManager release];
     [super dealloc];
 }
 

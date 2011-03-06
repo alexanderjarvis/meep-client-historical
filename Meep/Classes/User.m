@@ -27,14 +27,14 @@
 
 -(id)init {
 	if (self == [super init]) {
-		self.connections = [[NSArray alloc] init];
-		self._type_connections = [[UserSummaryDTO alloc] init];
-		self.connectionRequestsTo = [[NSArray alloc] init];
-		self._type_connectionRequestsTo = [[UserSummaryDTO alloc] init];
-		self.connectionRequestsFrom = [[NSArray alloc] init];
-		self._type_connectionRequestsFrom = [[UserSummaryDTO alloc] init];
-		self.meetingsRelated = [[NSArray alloc] init];
-		self._type_meetingsRelated = [[MeetingDTO alloc] init];
+		connections = [[NSArray alloc] init];
+		_type_connections = [[UserSummaryDTO alloc] init];
+		connectionRequestsTo = [[NSArray alloc] init];
+		_type_connectionRequestsTo = [[UserSummaryDTO alloc] init];
+		connectionRequestsFrom = [[NSArray alloc] init];
+		_type_connectionRequestsFrom = [[UserSummaryDTO alloc] init];
+		meetingsRelated = [[NSArray alloc] init];
+		_type_meetingsRelated = [[MeetingDTO alloc] init];
 	}
 	return self;
 }

@@ -51,7 +51,9 @@
 		NSSortDescriptor *lastNameDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"lastName" ascending:YES] autorelease];
 		NSArray *sortDescriptors = [NSArray arrayWithObjects:firstNameDescriptor, lastNameDescriptor, nil];
 		// Sort the users connections
-		user.connections = [user.connections sortedArrayUsingDescriptors:sortDescriptors];
+        if (user.connections) {
+            user.connections = [user.connections sortedArrayUsingDescriptors:sortDescriptors];
+        }
 		
 		[delegate getUserSuccessful:user];
 		
