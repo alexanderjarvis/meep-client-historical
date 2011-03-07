@@ -9,27 +9,26 @@
 #import <UIKit/UIKit.h>
 
 #import "ConfigManager.h"
-
 #import "WelcomeNavigationController.h"
+#import "WelcomeViewController.h"
 #import "MenuNavigationController.h"
 #import "MenuViewController.h"
 
 @interface MeepAppDelegate : NSObject <UIApplicationDelegate> {
+    
     UIWindow *window;
-	
 	ConfigManager *configManager;
-	
 	WelcomeNavigationController *welcomeNavigationController;
+    WelcomeViewController *welcomeViewController;
 	MenuNavigationController *menuNavigationController;	
 	MenuViewController *menuViewController;
-	
 	User *currentUser;
-	
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) ConfigManager *configManager;
 @property (nonatomic, retain) WelcomeNavigationController *welcomeNavigationController;
+@property (nonatomic, retain) WelcomeViewController *welcomeViewController;
 @property (nonatomic, retain) MenuNavigationController *menuNavigationController;
 @property (nonatomic, retain) MenuViewController *menuViewController;
 @property (nonatomic, retain) User *currentUser;
@@ -37,7 +36,6 @@
 + (MeepAppDelegate *)sharedAppDelegate;
 
 - (void)showWelcomeView;
-
 - (void)showMenuView;
 
 @end

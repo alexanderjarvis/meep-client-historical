@@ -10,14 +10,15 @@
 
 #define kConfigFileName @"config.plist"
 
-#define kUrlKey @"url"
 #define kEmailKey @"email"
 #define kAccessTokenKey @"access_token"
 
 // The host for the web service
-#define kUrl @"http://localhost:9000/"
-//#define kUrl @"https://meep.it/"
-
+#ifdef DEBUG
+#define SERVICE_URL @"http://localhost:9000/"
+#else
+#define SERVICE_URL @"https://meep.it/"
+#endif
 
 @interface ConfigManager : NSObject {
 	

@@ -8,18 +8,26 @@
 
 #import <UIKit/UIKit.h>
 
+#import "RegisterViewController.h"
+#import "LoginViewController.h"
+
 @interface WelcomeViewController : UIViewController {
     
     IBOutlet UIButton *loginButton;
     IBOutlet UIButton *registerButton;
+    
+    RegisterViewController *registerViewController;
+	LoginViewController *loginViewController;
 
 }
 
 @property (nonatomic, retain) UIButton *loginButton;
 @property (nonatomic, retain) UIButton *registerButton;
 
-- (IBAction)loginButtonPressed;
+@property (nonatomic, retain) RegisterViewController *registerViewController;
+@property (nonatomic, retain) LoginViewController *loginViewController;
 
-- (IBAction)registerButtonPressed;
+- (void)loginButtonPressed;
+- (void)registerButtonPressed;
 
 @end

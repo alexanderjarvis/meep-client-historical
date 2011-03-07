@@ -9,19 +9,13 @@
 #import <UIKit/UIKit.h>
 
 #import "WelcomeViewController.h"
-#import "RegisterViewController.h"
-#import "LoginViewController.h"
 
 @interface WelcomeNavigationController : UINavigationController {
 	
 	WelcomeViewController *welcomeViewController;
-	RegisterViewController *registerViewController;
-	LoginViewController *loginViewController;
 
 }
 
 @property (nonatomic, retain) WelcomeViewController *welcomeViewController;
-@property (nonatomic, retain) RegisterViewController *registerViewController;
-@property (nonatomic, retain) LoginViewController *loginViewController;
 
 @end

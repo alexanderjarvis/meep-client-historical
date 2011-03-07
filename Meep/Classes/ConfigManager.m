@@ -19,13 +19,12 @@
  *
  */
 - (BOOL)configFileExists {
-	NSString *filePath = [self dataFilePath: kConfigFileName];
+	NSString *filePath = [self dataFilePath:kConfigFileName];
 	
 	// If file exists
 	if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
 		return YES;
 	}
-	
 	return NO;
 }
 
@@ -33,10 +32,10 @@
  *
  */
 - (void)saveConfig {
-	NSLog(@"saveConfig");
+	NSLog(@"Saving Config");
 	
-	NSArray *keys = [NSArray arrayWithObjects:kUrlKey, kEmailKey, kAccessTokenKey, nil];
-	NSArray *values = [NSArray arrayWithObjects:self.url, self.email, self.access_token, nil];
+	NSArray *keys = [NSArray arrayWithObjects:kEmailKey, kAccessTokenKey, nil];
+	NSArray *values = [NSArray arrayWithObjects:self.email, self.access_token, nil];
 	self.appConfigDictionary = [NSDictionary dictionaryWithObjects:values forKeys:keys];
 	
 	[appConfigDictionary writeToFile:[self dataFilePath:kConfigFileName] atomically:YES];
@@ -48,7 +47,9 @@
  *
  */
 - (NSDictionary *)loadConfig {
-	NSLog(@"loadConfig");
+	NSLog(@"Loading Config");
+    
+    self.url = SERVICE_URL;
 	
 	if ([self configFileExists]) {
 		NSString *filePath = [self dataFilePath: kConfigFileName];
@@ -56,17 +57,13 @@
 		self.appConfigDictionary = [NSDictionary dictionaryWithContentsOfFile:filePath];
 		
 		if (appConfigDictionary != nil) {
-			NSLog(@"loaded dictionary from file");
-			self.url = [appConfigDictionary valueForKey:kUrlKey];
 			self.email = [appConfigDictionary valueForKey:kEmailKey];
 			self.access_token = [appConfigDictionary valueForKey:kAccessTokenKey];
-			
 		}
 		
 		return appConfigDictionary;
 		
 	} else {
-		self.url = kUrl;
 		self.email = @"";
 		self.access_token = @"";
 		[self saveConfig];

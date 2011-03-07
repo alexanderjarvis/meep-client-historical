@@ -18,6 +18,7 @@
 @synthesize configManager;
 @synthesize currentUser;
 @synthesize welcomeNavigationController;
+@synthesize welcomeViewController;
 @synthesize menuNavigationController;
 @synthesize menuViewController;
 
@@ -46,8 +47,9 @@
 
 - (void)showWelcomeView {
 	
-	if (welcomeNavigationController == nil) {
-		welcomeNavigationController = [[WelcomeNavigationController alloc] init];
+	if (welcomeNavigationController == nil && welcomeViewController == nil) {
+        welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
+		welcomeNavigationController = [[WelcomeNavigationController alloc] initWithRootViewController:welcomeViewController];
 	}
 	[window addSubview:welcomeNavigationController.view];
 	[menuNavigationController.view removeFromSuperview];
@@ -63,18 +65,28 @@
 }
 
 - (void)showMenuView {
+    
 	if (menuNavigationController == nil && menuViewController == nil) {
 		menuViewController = [[MenuViewController alloc] init];
 		menuNavigationController = [[MenuNavigationController alloc] initWithRootViewController:menuViewController];
 	}
 	[window addSubview:menuNavigationController.view];
 	[welcomeNavigationController.view removeFromSuperview];
+    
+    // When showing the menu, clear the welcome views to save memory.
+    if (welcomeNavigationController != nil && welcomeViewController != nil) {
+        [welcomeNavigationController release];
+        welcomeNavigationController = nil;
+        [welcomeViewController release];
+        welcomeViewController = nil;
+    }
 }
 
 - (void)dealloc {
 	[configManager release];
 	[currentUser release];
 	[welcomeNavigationController release];
+    [welcomeViewController release];
 	[menuNavigationController release];
 	[menuViewController release];
 	[window release];

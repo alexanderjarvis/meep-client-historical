@@ -7,7 +7,7 @@
 //
 
 #import "WelcomeViewController.h"
-
+#import "MeepAppDelegate.h"
 #import "MeepStyleSheet.h"
 #import "TTFixedWidthButton.h"
 
@@ -15,6 +15,8 @@
 
 @synthesize loginButton;
 @synthesize registerButton;
+@synthesize registerViewController;
+@synthesize loginViewController;
 
 - (void)viewDidLoad {
 	self.title = @"Welcome";
@@ -35,52 +37,34 @@
 	[button addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[registerButton addSubview:button];
     
+    registerViewController = [[RegisterViewController alloc] initWithNibName:@"RegisterViewController" bundle:nil];
+	loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    
 	[super viewDidLoad];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
-- (IBAction)registerButtonPressed {
-	NSLog(@"registerButtonPressed");
-	[self.navigationController pushViewController:
-	 [self.navigationController registerViewController]
-										 animated:YES];
+- (void)registerButtonPressed {
+	[self.navigationController pushViewController:registerViewController animated:YES];
 }
 
-- (IBAction)loginButtonPressed {
-	NSLog(@"loginButtonPressed");
-	[self.navigationController pushViewController:
-		[self.navigationController loginViewController]
-										 animated:YES];
+- (void)loginButtonPressed {
+	[self.navigationController pushViewController:loginViewController animated:YES];
 }
-
-
 
 - (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
-
 
 - (void)dealloc {
     [loginButton release];
     [registerButton release];
+    [registerViewController release];
+	[loginViewController release];
     [super dealloc];
 }
-
 
 @end

@@ -28,10 +28,8 @@
 
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-
+    // Don't perform selections.
     //[super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void)setRequired:(BOOL)newValue {
