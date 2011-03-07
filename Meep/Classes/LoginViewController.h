@@ -23,13 +23,16 @@
 	CustomCellTextField *passwordCell;
 	
 	CustomCellTextField *selectedCell;
+    
+    IBOutlet UIButton *loginButton;
 }
 
 @property (nonatomic, retain) MBProgressHUD *HUD;
 @property (nonatomic, retain) CustomCellTextField *emailCell;
 @property (nonatomic, retain) CustomCellTextField *passwordCell;
+@property (nonatomic, retain) UIButton *loginButton;
 
-- (IBAction)loginButtonPressed;
+- (void)loginButtonPressed;
 
 - (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
 

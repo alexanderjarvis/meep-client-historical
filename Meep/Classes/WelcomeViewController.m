@@ -8,20 +8,33 @@
 
 #import "WelcomeViewController.h"
 
+#import "MeepStyleSheet.h"
+#import "TTFixedWidthButton.h"
+
 @implementation WelcomeViewController
 
-/*
- // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
+@synthesize loginButton;
+@synthesize registerButton;
 
 - (void)viewDidLoad {
 	self.title = @"Welcome";
+    
+    [TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
+	TTFixedWidthButton *button = [TTFixedWidthButton buttonWithStyle:@"embossedButton:" title:@"Login"];
+	button.font = [UIFont boldSystemFontOfSize:14];
+    button.width = 100;
+	[button sizeToFit];
+	[button addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[loginButton addSubview:button];
+    
+    button = [TTFixedWidthButton buttonWithStyle:@"embossedButton:" title:@"Register"];
+	button.font = [UIFont boldSystemFontOfSize:14];
+    button.width = 100;
+	[button sizeToFit];
+	[button sizeThatFits:CGSizeMake(100.0f, button.frame.size.height)];
+	[button addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[registerButton addSubview:button];
+    
 	[super viewDidLoad];
 }
 
@@ -64,6 +77,8 @@
 
 
 - (void)dealloc {
+    [loginButton release];
+    [registerButton release];
     [super dealloc];
 }
 

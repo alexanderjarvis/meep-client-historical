@@ -61,6 +61,12 @@
 
 }
 
+- (TTStyle *)blueButton:(UIControlState)state {
+    TTShape *shape = [TTRoundedRectangleShape shapeWithRadius:8];
+    UIColor* tintColor = RGBCOLOR(80, 140, 215);
+    return [TTSTYLESHEET toolbarButtonForState:state shape:shape tintColor:tintColor font:nil];
+}
+
 - (TTStyle *)redButton:(UIControlState)state {
     TTShape *shape = [TTRoundedRectangleShape shapeWithRadius:8];
     UIColor *tintColor = RGBCOLOR(255, 30, 30);

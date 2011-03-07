@@ -27,6 +27,8 @@
 	CustomCellTextField *mobileNumberCell;
 	
 	CustomCellTextField *selectedCell;
+    
+    IBOutlet UIButton *registerButton;
 }
 
 @property (nonatomic, retain) MBProgressHUD *HUD;
@@ -35,8 +37,9 @@
 @property (nonatomic, retain) CustomCellTextField *firstNameCell;
 @property (nonatomic, retain) CustomCellTextField *lastNameCell;
 @property (nonatomic, retain) CustomCellTextField *mobileNumberCell;
+@property (nonatomic, retain) UIButton *registerButton;
 
-- (IBAction)registerButtonPressed;
+- (void)registerButtonPressed;
 
 - (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
 

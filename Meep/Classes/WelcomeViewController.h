@@ -9,8 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @interface WelcomeViewController : UIViewController {
+    
+    IBOutlet UIButton *loginButton;
+    IBOutlet UIButton *registerButton;
 
 }
+
+@property (nonatomic, retain) UIButton *loginButton;
+@property (nonatomic, retain) UIButton *registerButton;
 
 - (IBAction)loginButtonPressed;
 

@@ -11,7 +11,8 @@
 #import "MeepAppDelegate.h"
 #import "AlertView.h"
 #import "CustomCellTextField.h"
-#import "AlertView.h"
+#import "MeepStyleSheet.h"
+#import "TTFixedWidthButton.h"
 
 @implementation RegisterViewController
 
@@ -21,6 +22,7 @@
 @synthesize firstNameCell;
 @synthesize lastNameCell;
 @synthesize mobileNumberCell;
+@synthesize registerButton;
 
 - (void)viewDidLoad {
 	self.title = @"Register";
@@ -31,6 +33,14 @@
 	
 	registrationManager = [[RegistrationManager alloc] init];
 	[registrationManager setDelegate:self];
+    
+    [TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
+	TTFixedWidthButton *button = [TTFixedWidthButton buttonWithStyle:@"blueButton:" title:@"Register"];
+	button.font = [UIFont boldSystemFontOfSize:17];
+    button.width = 200;
+	[button sizeToFit];
+	[button addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[registerButton addSubview:button];
 	
 	[super viewDidLoad];
 }
@@ -46,7 +56,7 @@
     [super viewDidUnload];
 }
 
-- (IBAction)registerButtonPressed {
+- (void)registerButtonPressed {
 	
 	if (emailCell.required && emailCell.customTextField.text.length < 1) {
 		
@@ -95,6 +105,7 @@
 	[firstNameCell release];
 	[lastNameCell release];
 	[mobileNumberCell release];
+    [registerButton release];
     [super dealloc];
 }
 

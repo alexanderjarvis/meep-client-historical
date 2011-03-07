@@ -10,12 +10,15 @@
 
 #import "MeepAppDelegate.h"
 #import "AlertView.h"
+#import "MeepStyleSheet.h"
+#import "TTFixedWidthButton.h"
 
 @implementation LoginViewController
 
 @synthesize HUD;
 @synthesize emailCell;
 @synthesize passwordCell;
+@synthesize loginButton;
 
 - (void)viewDidLoad {
 	self.title = @"Login";
@@ -26,6 +29,14 @@
 	
 	loginManager = [[LoginManager alloc] init];
 	[loginManager setDelegate:self];
+    
+    [TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
+	TTFixedWidthButton *button = [TTFixedWidthButton buttonWithStyle:@"blueButton:" title:@"Login"];
+	button.font = [UIFont boldSystemFontOfSize:17];
+    button.width = 200;
+	[button sizeToFit];
+	[button addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[loginButton addSubview:button];
 	
 	[super viewDidLoad];
 }
@@ -44,7 +55,7 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (IBAction)loginButtonPressed {
+- (void)loginButtonPressed {
 	 
 	[emailCell.customTextField resignFirstResponder];
 	[passwordCell.customTextField resignFirstResponder];
@@ -79,6 +90,7 @@
 	[loginManager release];
 	[emailCell release];
 	[passwordCell release];
+    [loginButton release];
 	
     [super dealloc];
 }
