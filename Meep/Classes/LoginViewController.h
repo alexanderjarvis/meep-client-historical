@@ -10,10 +10,9 @@
 
 #import "LoginManager.h"
 #import "MBProgressHUD.h"
-
 #import "CustomCellTextField.h"
 
-@interface LoginViewController : UITableViewController <UITextFieldDelegate, LoginManagerDelegate> {
+@interface LoginViewController : UITableViewController <LoginManagerDelegate> {
 	
     IBOutlet UIButton *loginButton;
 	
@@ -23,8 +22,8 @@
 	
 	CustomCellTextField *emailCell;
 	CustomCellTextField *passwordCell;
-	
 	CustomCellTextField *selectedCell;
+    NSMutableArray *cellsToValidate;
     
 }
 
@@ -32,9 +31,11 @@
 @property (nonatomic, retain) MBProgressHUD *HUD;
 @property (nonatomic, retain) CustomCellTextField *emailCell;
 @property (nonatomic, retain) CustomCellTextField *passwordCell;
+@property (nonatomic, assign) CustomCellTextField *selectedCell;
+@property (nonatomic, retain) NSMutableArray *cellsToValidate;
 
 - (void)loginButtonPressed;
 
-- (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
+- (void)textFieldCellReturned:(CustomCellTextField *)cell inTableView:(UITableView *)tableView;
 
 @end

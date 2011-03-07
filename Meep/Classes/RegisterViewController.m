@@ -23,6 +23,8 @@
 @synthesize firstNameCell;
 @synthesize lastNameCell;
 @synthesize mobileNumberCell;
+@synthesize selectedCell;
+@synthesize cellsToValidate;
 
 - (void)viewDidLoad {
     
@@ -42,6 +44,8 @@
 	[button sizeToFit];
 	[button addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[registerButton addSubview:button];
+    
+    self.cellsToValidate = [NSMutableArray arrayWithCapacity:4];
 	
 	[super viewDidLoad];
 }
@@ -55,16 +59,21 @@
 }
 
 - (void)registerButtonPressed {
-	
-	if (emailCell.required && emailCell.customTextField.text.length < 1) {
-		
-		[AlertView showValidationAlert:@"Email is blank"];
-		return;
-	}
-	
+    
+    // Validation
+    for (CustomCellTextField *cell in cellsToValidate) {
+        if (cell.required && cell.customTextField.text.length < 1) {
+            [AlertView showValidationAlert:[cell.customTextLabel.text stringByAppendingString:@" is blank"]];
+            return;
+        }
+    }
+    
+	// Hide the keyboard
 	if (selectedCell != nil) {
 		[selectedCell.customTextField resignFirstResponder];
 	}
+    
+    // Show the HUD
 	[HUD show:YES];
 	
 	// Build up the User data and register the user.
@@ -82,7 +91,7 @@
 /*
  * To be called when the 'Next' key is pressed from the keyboard.
  */
-- (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView {
+- (void)textFieldCellReturned:(CustomCellTextField *)cell inTableView:(UITableView *)tableView; {
     
 	NSIndexPath *indexPath = [tableView indexPathForCell:cell];
 	
@@ -104,6 +113,7 @@
 	[firstNameCell release];
 	[lastNameCell release];
 	[mobileNumberCell release];
+    [cellsToValidate release];
     [super dealloc];
 }
 
@@ -133,6 +143,7 @@
 		cell = (CustomCellTextField *)[nib objectAtIndex:0];
 		cell.tableView = tableView;
 		cell.tableViewController = self;
+        [cellsToValidate addObject:cell];
 	}
 	
 	switch (row) {
@@ -221,12 +232,6 @@
 - (void)userRegistrationSuccessful {
     
 	[HUD hide:YES];
-	emailCell.customTextField.text = @"";
-	passwordCell.customTextField.text = @"";
-	firstNameCell.customTextField.text = @"";
-	lastNameCell.customTextField.text = @"";
-	mobileNumberCell.customTextField.text = @"";
-	[self.navigationController popViewControllerAnimated:NO];
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	[meepAppDelegate showMenuView];

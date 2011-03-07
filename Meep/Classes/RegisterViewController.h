@@ -27,8 +27,8 @@
 	CustomCellTextField *firstNameCell;
 	CustomCellTextField *lastNameCell;
 	CustomCellTextField *mobileNumberCell;
-	
 	CustomCellTextField *selectedCell;
+    NSMutableArray *cellsToValidate;
     
 }
 
@@ -40,9 +40,11 @@
 @property (nonatomic, retain) CustomCellTextField *firstNameCell;
 @property (nonatomic, retain) CustomCellTextField *lastNameCell;
 @property (nonatomic, retain) CustomCellTextField *mobileNumberCell;
+@property (nonatomic, assign) CustomCellTextField *selectedCell;
+@property (nonatomic, retain) NSMutableArray *cellsToValidate;
 
 - (void)registerButtonPressed;
 
-- (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
+- (void)textFieldCellReturned:(CustomCellTextField *)cell inTableView:(UITableView *)tableView;
 
 @end

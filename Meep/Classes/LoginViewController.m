@@ -19,6 +19,8 @@
 @synthesize HUD;
 @synthesize emailCell;
 @synthesize passwordCell;
+@synthesize selectedCell;
+@synthesize cellsToValidate;
 
 - (void)viewDidLoad {
     
@@ -38,6 +40,8 @@
 	[button sizeToFit];
 	[button addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[loginButton addSubview:button];
+    
+    self.cellsToValidate = [NSMutableArray arrayWithCapacity:2];
 	
 	[super viewDidLoad];
 }
@@ -51,24 +55,36 @@
 }
 
 - (void)loginButtonPressed {
-	 
-	[emailCell.customTextField resignFirstResponder];
-	[passwordCell.customTextField resignFirstResponder];
-	
+    
+    // Validation
+    for (CustomCellTextField *cell in cellsToValidate) {
+        if (cell.required && cell.customTextField.text.length < 1) {
+            [AlertView showValidationAlert:[cell.customTextLabel.text stringByAppendingString:@" is blank"]];
+            return;
+        }
+    }
+    
+    // Hide the keyboard
+	if (selectedCell != nil) {
+		[selectedCell.customTextField resignFirstResponder];
+	}
+    
+    // Show the HUD
 	[HUD show:YES];
 	
-	UserDTO *userDTO = [[UserDTO alloc] init];
-	userDTO.email = [emailCell.customTextField text];
-	userDTO.password = [passwordCell.customTextField text];
+    // Build up user data and login
+	UserDTO *user = [[UserDTO alloc] init];
+	user.email = [emailCell.customTextField text];
+	user.password = [passwordCell.customTextField text];
 	
-	[loginManager loginUser:userDTO];
-	[userDTO release];
+	[loginManager loginUser:user];
+	[user release];
 }
 
 /*
  * To be called when the 'Next' key is pressed from the keyboard.
  */
-- (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView {
+- (void)textFieldCellReturned:(CustomCellTextField *)cell inTableView:(UITableView *)tableView {
     
 	NSIndexPath *indexPath = [tableView indexPathForCell:cell];
 	
@@ -87,6 +103,7 @@
 	[loginManager release];
 	[emailCell release];
 	[passwordCell release];
+    [cellsToValidate release];
 	[super dealloc];
 }
 
@@ -116,7 +133,7 @@
 		cell = (CustomCellTextField *)[nib objectAtIndex:0];
 		cell.tableView = tableView;
 		cell.tableViewController = self;
-        cell.customTextField.delegate = self;
+        [cellsToValidate addObject:cell];
 	}
 	
 	switch (row) {
@@ -172,8 +189,6 @@
 - (void)loginSuccessful {
     
 	[HUD hide:YES];
-	self.passwordCell.customTextField.text = @"";
-	[self.navigationController popViewControllerAnimated:NO];
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	[meepAppDelegate showMenuView];

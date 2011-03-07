@@ -55,7 +55,7 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	[tableViewController textFieldCell:textField returnInTableView:tableView];
+	[tableViewController textFieldCellReturned:self inTableView:tableView];
 	return NO;
 }
 
