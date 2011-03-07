@@ -10,7 +10,7 @@
 #import "MeepAppDelegate.h"
 #import "ASIHTTPRequest.h"
 #import "DictionaryModelMapper.h"
-#import "User.h"
+#import "UserDTO.h"
 
 @implementation UserManager
 
@@ -42,8 +42,8 @@
 	
 	if ([request responseStatusCode] == 200) {
 		
-		User *emptyUser = [[User alloc] init];
-		User *user = [DictionaryModelMapper createObject:emptyUser fromDictionary:[[request responseString] yajl_JSON]];
+		UserDTO *emptyUser = [[UserDTO alloc] init];
+		UserDTO *user = [DictionaryModelMapper createObject:emptyUser fromDictionary:[[request responseString] yajl_JSON]];
 		[emptyUser release];
 		
 		// Declare SortDescriptor to sort the connections by first and last names ascending

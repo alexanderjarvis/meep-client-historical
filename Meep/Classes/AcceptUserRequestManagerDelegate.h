@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "User.h"
+#import "UserDTO.h"
 
 @class AcceptUserRequestManager;
 
@@ -14,7 +14,7 @@
 
 @required
 
-- (void)acceptUserSuccessful:(User *)user;
+- (void)acceptUserSuccessful:(UserDTO *)user;
 
 - (void)acceptUserFailedWithError:(NSError *)error;
 

@@ -6,7 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "User.h"
+#import "UserDTO.h"
 
 @class DeclineUserRequestManager;
 
@@ -14,7 +14,7 @@
 
 @required
 
-- (void)declineUserSuccessful:(User *)user;
+- (void)declineUserSuccessful:(UserDTO *)user;
 
 - (void)declineUserFailedWithError:(NSError *)error;
 

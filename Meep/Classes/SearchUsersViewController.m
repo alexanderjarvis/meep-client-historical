@@ -10,7 +10,7 @@
 #import "MeepAppDelegate.h"
 #import "AlertView.h"
 #import "SearchUsersManager.h"
-#import "User.h"
+#import "UserDTO.h"
 #import "SearchUsersDetailViewController.h"
 
 @implementation SearchUsersViewController
@@ -67,7 +67,7 @@
     // Configure the cell...
 	NSLog(@"reloading data");
 	if ([users count] > 0) {
-		User *user = [users objectAtIndex:row];
+		UserDTO *user = [users objectAtIndex:row];
 		cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	}

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #import "UserManager.h"
-#import "User.h"
+#import "UserDTO.h"
 
 @interface UsersViewController : UITableViewController <UserManagerDelegate> {
 	
@@ -25,6 +25,6 @@
 @property(nonatomic, retain) NSArray *tableKeys;
 @property(nonatomic, retain) NSDictionary *tableDictionary;
 
-- (void)updateTableWithUser:(User *)user;
+- (void)updateTableWithUser:(UserDTO *)user;
 
 @end

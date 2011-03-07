@@ -10,7 +10,7 @@
 
 #import "AccessTokenRequestManager.h"
 #import "AddUserRequestManagerDelegate.h"
-#import "User.h"
+#import "UserDTO.h"
 
 @interface AddUserRequestManager : AccessTokenRequestManager {
 	id <AddUserRequestManagerDelegate> delegate;
@@ -18,6 +18,6 @@
 
 @property (assign, nonatomic) id delegate;
 
-- (void)addUserRequest:(User *)user;
+- (void)addUserRequest:(UserDTO *)user;
 
 @end

@@ -15,12 +15,13 @@
 
 @implementation LoginViewController
 
+@synthesize loginButton;
 @synthesize HUD;
 @synthesize emailCell;
 @synthesize passwordCell;
-@synthesize loginButton;
 
 - (void)viewDidLoad {
+    
 	self.title = @"Login";
 	
 	HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -68,6 +69,7 @@
  * To be called when the 'Next' key is pressed from the keyboard.
  */
 - (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView {
+    
 	NSIndexPath *indexPath = [tableView indexPathForCell:cell];
 	
 	// If not the last cell, go to next cell
@@ -80,13 +82,12 @@
 }
 
 - (void)dealloc {
+    [loginButton release];
 	[HUD release];
 	[loginManager release];
 	[emailCell release];
 	[passwordCell release];
-    [loginButton release];
-	
-    [super dealloc];
+	[super dealloc];
 }
 
 #pragma mark UITableViewController methods
@@ -149,6 +150,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 	CustomCellTextField *cell = (CustomCellTextField *)[tableView cellForRowAtIndexPath:indexPath];
 	[cell.customTextField becomeFirstResponder];
@@ -157,6 +159,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
 	if (section == 0) {
 		return @"Please enter your details"; 
 	}
@@ -167,6 +170,7 @@
 #pragma mark LoginManagerDelegate
 
 - (void)loginSuccessful {
+    
 	[HUD hide:YES];
 	self.passwordCell.customTextField.text = @"";
 	[self.navigationController popViewControllerAnimated:NO];

@@ -15,7 +15,9 @@
 
 @interface LoginViewController : UITableViewController <UITextFieldDelegate, LoginManagerDelegate> {
 	
-	MBProgressHUD *HUD;
+    IBOutlet UIButton *loginButton;
+	
+    MBProgressHUD *HUD;
 	
 	LoginManager *loginManager;
 	
@@ -24,13 +26,12 @@
 	
 	CustomCellTextField *selectedCell;
     
-    IBOutlet UIButton *loginButton;
 }
 
+@property (nonatomic, retain) UIButton *loginButton;
 @property (nonatomic, retain) MBProgressHUD *HUD;
 @property (nonatomic, retain) CustomCellTextField *emailCell;
 @property (nonatomic, retain) CustomCellTextField *passwordCell;
-@property (nonatomic, retain) UIButton *loginButton;
 
 - (void)loginButtonPressed;
 

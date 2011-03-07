@@ -10,7 +10,7 @@
 
 #import "MeepAppDelegate.h"
 #import "MeetingDetailCell.h"
-#import "User.h"
+#import "UserDTO.h"
 #import "AttendeeDTO.h"
 #import "ISO8601DateFormatter.h"
 #import "AlertView.h"
@@ -64,7 +64,7 @@
 		[self updateTableWithMeeting:meeting];
         
         // If the current user is the owner of the meeting then add the delete button to the table view footer;
-        User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+        UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
         if ([currentUser._id isEqualToNumber:meeting.owner._id]) {
             [self addDeleteButton];
         }
@@ -75,7 +75,7 @@
     
     self.meeting = newMeeting;
     
-    User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
     
     // Set counters
     awaitingReply = 0;
@@ -341,7 +341,7 @@
 #pragma mark AcceptMeetingRequestManagerDelegate
 
 - (void)acceptMeetingSuccessful:(MeetingDTO *)meeting {
-    User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
     for (AttendeeDTO *attendee in meeting.attendees) {
         if ([attendee._id isEqualToNumber:currentUser._id]) {
             attendee.rsvp = kAttendingKey;
@@ -363,7 +363,7 @@
 #pragma mark DeclineMeetingRequestManagerDelegate
 
 - (void)declineMeetingSuccessful:(MeetingDTO *)meeting {
-    User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
     for (AttendeeDTO *attendee in meeting.attendees) {
         if ([attendee._id isEqualToNumber:currentUser._id]) {
             attendee.rsvp = kNotAttendingKey;

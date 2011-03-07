@@ -39,7 +39,6 @@
 
 - (void)dealloc {
 	[welcomeViewController release];
-	
     [super dealloc];
 }
 

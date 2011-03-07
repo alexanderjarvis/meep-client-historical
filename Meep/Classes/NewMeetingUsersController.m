@@ -69,7 +69,7 @@
 		
 		// Convert array of User to array of UserSummaryDTO
 		NSMutableArray *attendees = [NSMutableArray arrayWithCapacity:[selectedUsers count]];
-		for (User *user in selectedUsers) {
+		for (UserDTO *user in selectedUsers) {
 			UserSummaryDTO *userSummaryDTO = [[UserSummaryDTO alloc] init];
 			userSummaryDTO._id = user._id;
 			[attendees addObject:userSummaryDTO];
@@ -82,7 +82,7 @@
 	}
 }
 
-- (void)updateTableWithUser:(User *)user {
+- (void)updateTableWithUser:(UserDTO *)user {
 	NSArray *connectedUsers = [user connections];
 	
 	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[connectedUsers count]];
@@ -146,7 +146,7 @@
     // Configure the cell...
 	NSString *key = [tableKeys objectAtIndex:section];
 	NSArray *arrayOfUsers = [tableDictionary objectForKey:key];
-	User *user = [arrayOfUsers objectAtIndex:row];
+	UserDTO *user = [arrayOfUsers objectAtIndex:row];
 	
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
 	if ([selectedUsers containsObject:user]) {
@@ -167,7 +167,7 @@
 	NSUInteger row = [indexPath row];
 	NSString *key = [tableKeys objectAtIndex:section];
 	NSArray *arrayOfUsers = [tableDictionary objectForKey:key];
-	User *user = [arrayOfUsers objectAtIndex:row];
+	UserDTO *user = [arrayOfUsers objectAtIndex:row];
 	if ([selectedUsers containsObject:user]) {
 		[selectedUsers removeObject:user];
 	} else {
@@ -206,7 +206,7 @@
 #pragma mark -
 #pragma mark UserManagerDelegate
 
-- (void)getUserSuccessful:(User *)user {
+- (void)getUserSuccessful:(UserDTO *)user {
 	
 	// Only update the table if the response is new
 	if ([userManager isResponseNew]) {

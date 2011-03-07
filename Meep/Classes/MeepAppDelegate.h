@@ -22,7 +22,7 @@
     WelcomeViewController *welcomeViewController;
 	MenuNavigationController *menuNavigationController;	
 	MenuViewController *menuViewController;
-	User *currentUser;
+	UserDTO *currentUser;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
@@ -31,7 +31,7 @@
 @property (nonatomic, retain) WelcomeViewController *welcomeViewController;
 @property (nonatomic, retain) MenuNavigationController *menuNavigationController;
 @property (nonatomic, retain) MenuViewController *menuViewController;
-@property (nonatomic, retain) User *currentUser;
+@property (nonatomic, retain) UserDTO *currentUser;
 
 + (MeepAppDelegate *)sharedAppDelegate;
 

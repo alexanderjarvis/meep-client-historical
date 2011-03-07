@@ -19,6 +19,7 @@
  *
  */
 - (BOOL)configFileExists {
+    
 	NSString *filePath = [self dataFilePath:kConfigFileName];
 	
 	// If file exists
@@ -32,6 +33,7 @@
  *
  */
 - (void)saveConfig {
+    
 	NSLog(@"Saving Config");
 	
 	NSArray *keys = [NSArray arrayWithObjects:kEmailKey, kAccessTokenKey, nil];
@@ -47,6 +49,7 @@
  *
  */
 - (NSDictionary *)loadConfig {
+    
 	NSLog(@"Loading Config");
     
     self.url = SERVICE_URL;
@@ -76,6 +79,7 @@
  * Determines and returns the file path in the documents directory.
  */
 - (NSString *)dataFilePath:(NSString *)fileName {
+    
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	return [documentsDirectory stringByAppendingPathComponent:fileName];
@@ -86,7 +90,6 @@
 	[url release];
 	[email release];
 	[access_token release];
-	
 	[super dealloc];
 }
 

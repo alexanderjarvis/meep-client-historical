@@ -51,27 +51,27 @@
 
 -(void)acceptUserAtIndexPath:(NSIndexPath *)indexPath {
 	NSUInteger row = [indexPath row];
-	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
+	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+	UserDTO *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
 	[acceptUserRequestManager acceptUser:user];
 }
 
 -(void)declineUserAtIndexPath:(NSIndexPath *)indexPath {
 	NSUInteger row = [indexPath row];
-	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
+	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+	UserDTO *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
 	[declineUserRequestManager declineUser:user];
 }
 
--(void)removeRowThatHasUser:(User *)user {
+-(void)removeRowThatHasUser:(UserDTO *)user {
 
 	NSUInteger row = 0;
-	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	// Although the IndexPath could be passed to the Request manager, it is not relevant
 	// aside from returning the value back to this table view controller
 	// and so the row is calculated from the user object instead.
 	for (row = 0; row < [[currentUser connectionRequestsFrom] count]; row++) {
-		User *requestFromUser = [[currentUser connectionRequestsFrom] objectAtIndex:row];
+		UserDTO *requestFromUser = [[currentUser connectionRequestsFrom] objectAtIndex:row];
 		
 		if ([requestFromUser._id isEqualToNumber:user._id]) {
 			NSMutableArray *arrayOfUsers = [NSMutableArray arrayWithArray:[currentUser connectionRequestsFrom]];
@@ -96,7 +96,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	if (currentUser.connectionRequestsFrom != nil) {
 		return [currentUser.connectionRequestsFrom count];
 	}
@@ -120,8 +120,8 @@
 	cell.userRequestsViewController = self;
 	cell.indexPath = indexPath;
 	// Name
-	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-	User *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
+	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+	UserDTO *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
 	
     return cell;
@@ -158,7 +158,7 @@
 #pragma mark -
 #pragma mark UserManagerDelegate
 
-- (void)getUserSuccessful:(User *)user {
+- (void)getUserSuccessful:(UserDTO *)user {
 	
 	// Only update the table if the response is new
 	if ([userManager isResponseNew]) {
@@ -176,7 +176,7 @@
 #pragma mark -
 #pragma mark AcceptUserRequestManagerDelegate
 
-- (void)acceptUserSuccessful:(User *)user {
+- (void)acceptUserSuccessful:(UserDTO *)user {
 	NSLog(@"accept user successful");
 	
 	[self removeRowThatHasUser:user];
@@ -191,7 +191,7 @@
 #pragma mark -
 #pragma mark DeclineUserRequestManagerDelegate
 
-- (void)declineUserSuccessful:(User *)user {
+- (void)declineUserSuccessful:(UserDTO *)user {
 	NSLog(@"decline user successful");
 	
 	[self removeRowThatHasUser:user];

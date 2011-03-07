@@ -13,6 +13,7 @@
 #import "UserSummaryDTO.h"
 
 @interface MeetingDTO : NSObject {
+    
 	NSNumber *_id;
 	NSString *time;
 	CoordinateDTO *place;
@@ -21,6 +22,7 @@
 	UserSummaryDTO *owner;
 	NSString *title;
 	NSString *description;
+    
 }
 
 @property (nonatomic, copy) NSNumber *_id;

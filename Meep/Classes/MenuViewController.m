@@ -149,7 +149,7 @@
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item {
 	
 	MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
-	User *currentUser = [meepAppDelegate currentUser];
+	UserDTO *currentUser = [meepAppDelegate currentUser];
 	
 	if ([item.URL isEqualToString:MeetingsURL]) {
 		meetingsItem.badgeNumber = 0;
@@ -201,7 +201,7 @@
 #pragma mark -
 #pragma mark UserManagerDelegate
 
-- (void)getUserSuccessful:(User *)user {
+- (void)getUserSuccessful:(UserDTO *)user {
 	NSLog(@"Get user successful");
 	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
 	friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];

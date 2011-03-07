@@ -10,10 +10,12 @@
 
 
 @interface AttendeeDTO : NSObject {
+    
 	NSNumber *_id;
 	NSString *firstName;
 	NSString *lastName;
 	NSString *rsvp;
+    
 }
 
 @property (nonatomic, copy) NSNumber *_id;

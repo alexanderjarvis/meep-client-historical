@@ -9,7 +9,7 @@
 #import "TestDictionaryModelMapper.h"
 
 #import "DictionaryModelMapper.h"
-#import "User.h"
+#import "UserDTO.h"
 #import "ObjectWithId.h"
 #import "ObjectWithProperties.h"
 
@@ -22,7 +22,7 @@
 	NSString *emailKey = @"email";
 	NSString *email = @"test@test.com";
 	
-	User *user = [[User alloc] init];
+	UserDTO *user = [[UserDTO alloc] init];
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObjectsAndKeys:
 								accessToken, accessTokenKey,
 								email, emailKey, nil];

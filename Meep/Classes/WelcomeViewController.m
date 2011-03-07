@@ -19,6 +19,7 @@
 @synthesize loginViewController;
 
 - (void)viewDidLoad {
+    
 	self.title = @"Welcome";
     
     [TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];

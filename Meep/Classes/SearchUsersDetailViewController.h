@@ -10,7 +10,7 @@
 #import <Three20/Three20.h>
 
 #import "AddUserRequestManager.h"
-#import "User.h"
+#import "UserDTO.h"
 
 @interface SearchUsersDetailViewController : UITableViewController <AddUserRequestManagerDelegate> {
 	
@@ -18,13 +18,13 @@
 	TTButton *tt_requestAddUserButton;
 	
 	AddUserRequestManager *addUserRequestManager;
-	User *user;
+	UserDTO *user;
 
 }
 
 @property (nonatomic, retain) UIButton *requestAddUserButton;
 @property (nonatomic, retain) AddUserRequestManager *addUserRequestManager;
-@property (nonatomic, retain) User *user;
+@property (nonatomic, retain) UserDTO *user;
 
 - (void)requestAddUserButtonPressed;
 

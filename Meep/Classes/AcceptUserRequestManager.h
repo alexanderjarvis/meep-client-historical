@@ -10,7 +10,7 @@
 
 #import "AccessTokenRequestManager.h"
 #import "AcceptUserRequestManagerDelegate.h"
-#import "User.h"
+#import "UserDTO.h"
 
 #define userKey @"user"
 
@@ -20,6 +20,6 @@
 
 @property (assign, nonatomic) id delegate;
 
-- (void)acceptUser:(User *)user;
+- (void)acceptUser:(UserDTO *)user;
 
 @end

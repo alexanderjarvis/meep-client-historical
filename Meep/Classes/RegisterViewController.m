@@ -16,15 +16,16 @@
 
 @implementation RegisterViewController
 
+@synthesize registerButton;
 @synthesize HUD;
 @synthesize emailCell;
 @synthesize passwordCell;
 @synthesize firstNameCell;
 @synthesize lastNameCell;
 @synthesize mobileNumberCell;
-@synthesize registerButton;
 
 - (void)viewDidLoad {
+    
 	self.title = @"Register";
 	
 	HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
@@ -66,7 +67,7 @@
 	}
 	[HUD show:YES];
 	
-	// 
+	// Build up the User data and register the user.
 	UserDTO *user = [[UserDTO alloc] init];
 	user.email = [emailCell.customTextField text];
 	user.password = [passwordCell.customTextField text];
@@ -82,6 +83,7 @@
  * To be called when the 'Next' key is pressed from the keyboard.
  */
 - (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView {
+    
 	NSIndexPath *indexPath = [tableView indexPathForCell:cell];
 	
 	// If not the last cell, go to next cell
@@ -94,15 +96,14 @@
 }
 
 - (void)dealloc {
+    [registerButton release];
 	[HUD release];
 	[registrationManager release];
-	
 	[emailCell release];
 	[passwordCell release];
 	[firstNameCell release];
 	[lastNameCell release];
 	[mobileNumberCell release];
-    [registerButton release];
     [super dealloc];
 }
 
@@ -198,6 +199,7 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
 	[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 	CustomCellTextField *cell = (CustomCellTextField *)[tableView cellForRowAtIndexPath:indexPath];
 	[cell.customTextField becomeFirstResponder];
@@ -206,6 +208,7 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
 	if (section == 0) {
 		return @"Please enter your details"; 
 	}
@@ -216,6 +219,7 @@
 #pragma mark RegistrationManagerDelegate
 
 - (void)userRegistrationSuccessful {
+    
 	[HUD hide:YES];
 	emailCell.customTextField.text = @"";
 	passwordCell.customTextField.text = @"";

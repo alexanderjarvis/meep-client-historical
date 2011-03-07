@@ -10,7 +10,7 @@
 
 #import "MeepAppDelegate.h"
 #import "UserManager.h"
-#import "User.h"
+#import "UserDTO.h"
 
 @implementation MeepAppDelegate
 
@@ -96,6 +96,5 @@
 - (void)applicationDidEnterBackground:(UIApplication *)application {
 	[configManager saveConfig];
 }
-
 
 @end

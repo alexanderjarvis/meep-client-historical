@@ -43,7 +43,7 @@
 - (void)viewDidAppear:(BOOL)animated {
 	
 	// If the User is the current User, or already a connection, then disable the request to add user button.
-	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	
 	// If the User is the current User
 	if ([currentUser._id isEqual:user._id]) {

@@ -53,7 +53,7 @@
 	NSMutableArray *arrayOfAttending = [NSMutableArray arrayWithCapacity:1];
 	NSMutableArray *arrayOfNotAttending = [NSMutableArray arrayWithCapacity:1];
 	
-	User *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	for (MeetingDTO *meeting in meetings) {
 		for (AttendeeDTO *attendee in meeting.attendees) {
 			if ([attendee._id isEqualToNumber:currentUser._id]) {

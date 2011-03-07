@@ -15,6 +15,8 @@
 #import "UserDTO.h"
 
 @interface RegisterViewController : UITableViewController <RegistrationManagerDelegate> {
+    
+    IBOutlet UIButton *registerButton;
 	
 	MBProgressHUD *HUD;
 	
@@ -28,8 +30,9 @@
 	
 	CustomCellTextField *selectedCell;
     
-    IBOutlet UIButton *registerButton;
 }
+
+@property (nonatomic, retain) UIButton *registerButton;
 
 @property (nonatomic, retain) MBProgressHUD *HUD;
 @property (nonatomic, retain) CustomCellTextField *emailCell;
@@ -37,11 +40,9 @@
 @property (nonatomic, retain) CustomCellTextField *firstNameCell;
 @property (nonatomic, retain) CustomCellTextField *lastNameCell;
 @property (nonatomic, retain) CustomCellTextField *mobileNumberCell;
-@property (nonatomic, retain) UIButton *registerButton;
 
 - (void)registerButtonPressed;
 
 - (void)textFieldCell:(CustomCellTextField *)cell returnInTableView:(UITableView *)tableView;
-
 
 @end

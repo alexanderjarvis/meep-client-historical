@@ -10,7 +10,7 @@
 #import "MeepAppDelegate.h"
 #import "ASIHTTPRequest.h"
 #import "DictionaryModelMapper.h"
-#import "User.h"
+#import "UserDTO.h"
 
 @implementation SearchUsersManager
 
@@ -49,7 +49,7 @@
 		
 		NSArray *arrayOfUserDictionaries = [[request responseString] yajl_JSON];
 		
-		User *emptyUser = [[User alloc] init];
+		UserDTO *emptyUser = [[UserDTO alloc] init];
 		NSArray *arrayOfUsers = [DictionaryModelMapper createArrayOfObjects:emptyUser fromArrayOfDictionaries:arrayOfUserDictionaries];
         [emptyUser release];
 		[delegate searchUsersSuccessful:arrayOfUsers];
