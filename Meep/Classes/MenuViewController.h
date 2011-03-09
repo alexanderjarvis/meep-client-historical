@@ -38,6 +38,9 @@
 
 }
 
+- (void)applicationDidBecomeActive:(id)sender;
+- (void)getUser;
+
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item;
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher;
 - (void)launcherViewDidEndEditing:(TTLauncherView*)launcher;

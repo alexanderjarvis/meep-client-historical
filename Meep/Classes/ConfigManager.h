@@ -14,11 +14,9 @@
 #define kAccessTokenKey @"access_token"
 
 // The host for the web service
-#ifdef DEBUG
-#define SERVICE_URL @"http://localhost:9000/"
-#else
+
+//#define SERVICE_URL @"http://localhost:9000/"
 #define SERVICE_URL @"https://meep.it/"
-#endif
 
 @interface ConfigManager : NSObject {
 	

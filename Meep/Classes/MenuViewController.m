@@ -29,6 +29,11 @@
     [userManager setDelegate: self];
 	logoutManager = [[LogoutManager alloc] initWithAccessToken:configManager.access_token];
 	[logoutManager setDelegate:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(applicationDidBecomeActive:) 
+                                                 name:UIApplicationDidBecomeActiveNotification 
+                                               object:nil];
 	
 	
 	// Logout Button
@@ -81,7 +86,17 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	// Get the current user
+	[self getUser];
+}
+
+- (void)applicationDidBecomeActive:(id)sender {
+    [self getUser];
+}
+
+/*
+ * Gets the current user
+ */
+- (void)getUser {
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	[userManager getUser:configManager.email];
