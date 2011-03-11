@@ -51,6 +51,7 @@
 		NSString *accessToken = responseString;
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 		[[meepAppDelegate configManager] setAccess_token: accessToken];
+        [[meepAppDelegate configManager] saveConfig];
 		
 		[delegate loginSuccessful];
 		

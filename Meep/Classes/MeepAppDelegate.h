@@ -14,6 +14,8 @@
 #import "MenuNavigationController.h"
 #import "MenuViewController.h"
 
+#import "WebSocketManager.h"
+
 @interface MeepAppDelegate : NSObject <UIApplicationDelegate> {
     
     UIWindow *window;
@@ -23,6 +25,9 @@
 	MenuNavigationController *menuNavigationController;	
 	MenuViewController *menuViewController;
 	UserDTO *currentUser;
+    
+    //
+    WebSocketManager *webSocketManager;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

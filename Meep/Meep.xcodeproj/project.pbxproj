@@ -14,7 +14,6 @@
 		320A2827FEC940B25BC42C65 /* libThree20Core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A2827FEC940B25BC42C64 /* libThree20Core.a */; };
 		320A5A189C235877202780D5 /* libThree20Network.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A5A189C235877202780D4 /* libThree20Network.a */; };
 		320A737074758E53BA54BE95 /* libThree20UINavigator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320A737074758E53BA54BE94 /* libThree20UINavigator.a */; };
-		320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 320AF8492C47A4D819F7C450 /* QuartzCore.framework */; };
 		320B6C86F11D9990244A9731 /* Three20.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 320B6C86F11D9990244A9730 /* Three20.bundle */; };
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
@@ -91,6 +90,13 @@
 		FA5079D61303018600CB96B4 /* WelcomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA5079CF1303018600CB96B4 /* WelcomeViewController.xib */; };
 		FA507B091303EF4000CB96B4 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B081303EF4000CB96B4 /* UserManager.m */; };
 		FA507B9C1304272500CB96B4 /* LogoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B9B1304272500CB96B4 /* LogoutManager.m */; };
+		FA613337132AB242003FAD06 /* WebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA613336132AB242003FAD06 /* WebSocketManager.m */; };
+		FA6134E5132AC112003FAD06 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FA6134E4132AC112003FAD06 /* LICENSE.txt */; };
+		FA613500132AC284003FAD06 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6134F9132AC284003FAD06 /* AsyncSocket.m */; };
+		FA613501132AC284003FAD06 /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6134FB132AC284003FAD06 /* WebSocket.m */; };
+		FA613502132AC284003FAD06 /* ZLIB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FA6134FC132AC284003FAD06 /* ZLIB-LICENSE */; };
+		FA613503132AC284003FAD06 /* SocketIoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6134FE132AC284003FAD06 /* SocketIoClient.m */; };
+		FA613504132AC284003FAD06 /* ZLIB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FA6134FF132AC284003FAD06 /* ZLIB-LICENSE */; };
 		FA7D0B721307F32100AD7E31 /* SearchUsersDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D0B701307F32100AD7E31 /* SearchUsersDetailViewController.m */; };
 		FA7D0B731307F32100AD7E31 /* SearchUsersDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7D0B711307F32100AD7E31 /* SearchUsersDetailViewController.xib */; };
 		FA7D0BA9130834C200AD7E31 /* AddUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D0BA8130834C200AD7E31 /* AddUserRequestManager.m */; };
@@ -409,6 +415,17 @@
 		FA507B9A1304272500CB96B4 /* LogoutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutManager.h; sourceTree = "<group>"; };
 		FA507B9B1304272500CB96B4 /* LogoutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogoutManager.m; sourceTree = "<group>"; };
 		FA507B9D13042A1300CB96B4 /* LogoutManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogoutManagerDelegate.h; sourceTree = "<group>"; };
+		FA613335132AB242003FAD06 /* WebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocketManager.h; sourceTree = "<group>"; };
+		FA613336132AB242003FAD06 /* WebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketManager.m; sourceTree = "<group>"; };
+		FA6134E4132AC112003FAD06 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		FA6134F8132AC284003FAD06 /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		FA6134F9132AC284003FAD06 /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		FA6134FA132AC284003FAD06 /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
+		FA6134FB132AC284003FAD06 /* WebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocket.m; sourceTree = "<group>"; };
+		FA6134FC132AC284003FAD06 /* ZLIB-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ZLIB-LICENSE"; sourceTree = "<group>"; };
+		FA6134FD132AC284003FAD06 /* SocketIoClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketIoClient.h; sourceTree = "<group>"; };
+		FA6134FE132AC284003FAD06 /* SocketIoClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocketIoClient.m; sourceTree = "<group>"; };
+		FA6134FF132AC284003FAD06 /* ZLIB-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ZLIB-LICENSE"; sourceTree = "<group>"; };
 		FA7D0B6F1307F32100AD7E31 /* SearchUsersDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersDetailViewController.h; sourceTree = "<group>"; };
 		FA7D0B701307F32100AD7E31 /* SearchUsersDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUsersDetailViewController.m; sourceTree = "<group>"; };
 		FA7D0B711307F32100AD7E31 /* SearchUsersDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUsersDetailViewController.xib; sourceTree = "<group>"; };
@@ -492,7 +509,6 @@
 				320A737074758E53BA54BE95 /* libThree20UINavigator.a in Frameworks */,
 				320A2827FEC940B25BC42C65 /* libThree20Core.a in Frameworks */,
 				320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */,
-				320AF8492C47A4D819F7C451 /* QuartzCore.framework in Frameworks */,
 				320A5A189C235877202780D5 /* libThree20Network.a in Frameworks */,
 				320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */,
 				FA5076E01302F46700CB96B4 /* QuartzCore.framework in Frameworks */,
@@ -536,6 +552,8 @@
 				FA5076A31302F3CC00CB96B4 /* MeepAppDelegate.m */,
 				FA7FA15D131D334100130590 /* MeepStyleSheet.h */,
 				FA7FA15E131D334100130590 /* MeepStyleSheet.m */,
+				FA613335132AB242003FAD06 /* WebSocketManager.h */,
+				FA613336132AB242003FAD06 /* WebSocketManager.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -723,6 +741,7 @@
 				FA5078511302F9F800CB96B4 /* MBProgressHUD */,
 				FA5078541302F9F800CB96B4 /* Reachability */,
 				FA5078571302F9F800CB96B4 /* RegexKitLite */,
+				FA6134F5132AC284003FAD06 /* socketio-cocoa */,
 			);
 			name = External;
 			sourceTree = "<group>";
@@ -893,6 +912,7 @@
 				FA50784E1302F9F800CB96B4 /* ASINetworkQueue.h */,
 				FA50784F1302F9F800CB96B4 /* ASINetworkQueue.m */,
 				FA5078501302F9F800CB96B4 /* ASIProgressDelegate.h */,
+				FA6134E4132AC112003FAD06 /* LICENSE.txt */,
 			);
 			name = ASIHTTPRequest;
 			path = External/ASIHTTPRequest;
@@ -927,6 +947,38 @@
 			name = RegexKitLite;
 			path = External/RegexKitLite;
 			sourceTree = SOURCE_ROOT;
+		};
+		FA6134F5132AC284003FAD06 /* socketio-cocoa */ = {
+			isa = PBXGroup;
+			children = (
+				FA6134F6132AC284003FAD06 /* cocoa-websocket */,
+				FA6134FD132AC284003FAD06 /* SocketIoClient.h */,
+				FA6134FE132AC284003FAD06 /* SocketIoClient.m */,
+				FA6134FF132AC284003FAD06 /* ZLIB-LICENSE */,
+			);
+			name = "socketio-cocoa";
+			path = "External/socketio-cocoa";
+			sourceTree = "<group>";
+		};
+		FA6134F6132AC284003FAD06 /* cocoa-websocket */ = {
+			isa = PBXGroup;
+			children = (
+				FA6134F7132AC284003FAD06 /* AsyncSocket */,
+				FA6134FA132AC284003FAD06 /* WebSocket.h */,
+				FA6134FB132AC284003FAD06 /* WebSocket.m */,
+				FA6134FC132AC284003FAD06 /* ZLIB-LICENSE */,
+			);
+			path = "cocoa-websocket";
+			sourceTree = "<group>";
+		};
+		FA6134F7132AC284003FAD06 /* AsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				FA6134F8132AC284003FAD06 /* AsyncSocket.h */,
+				FA6134F9132AC284003FAD06 /* AsyncSocket.m */,
+			);
+			path = AsyncSocket;
+			sourceTree = "<group>";
 		};
 		FA7E159F13069F2D00CFAAF5 /* Tests */ = {
 			isa = PBXGroup;
@@ -1210,6 +1262,9 @@
 				FA182FBE132034E400E2147F /* MeetingDetailViewController.xib in Resources */,
 				FA18303D1320537100E2147F /* MeetingDetailCell.xib in Resources */,
 				FAFCCA731323E5B40059DDA4 /* MeetingAttendeesViewController.xib in Resources */,
+				FA6134E5132AC112003FAD06 /* LICENSE.txt in Resources */,
+				FA613502132AC284003FAD06 /* ZLIB-LICENSE in Resources */,
+				FA613504132AC284003FAD06 /* ZLIB-LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1305,6 +1360,10 @@
 				FAFCCA721323E5B40059DDA4 /* MeetingAttendeesViewController.m in Sources */,
 				FAFCCA761323FD9E0059DDA4 /* DeleteMeetingRequestManager.m in Sources */,
 				FA8D31091325173D00C653BD /* TTFixedWidthButton.m in Sources */,
+				FA613337132AB242003FAD06 /* WebSocketManager.m in Sources */,
+				FA613500132AC284003FAD06 /* AsyncSocket.m in Sources */,
+				FA613501132AC284003FAD06 /* WebSocket.m in Sources */,
+				FA613503132AC284003FAD06 /* SocketIoClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1386,6 +1445,10 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = ../../three20/Build/Products/three20;
 				INFOPLIST_FILE = "Meep-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1411,6 +1474,10 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = ../../three20/Build/Products/three20;
 				INFOPLIST_FILE = "Meep-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -1542,6 +1609,10 @@
 				GCC_VERSION = "";
 				HEADER_SEARCH_PATHS = ../../three20/Build/Products/three20;
 				INFOPLIST_FILE = "Meep-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

@@ -27,6 +27,10 @@
 }
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+    
+    //
+    webSocketManager = [[WebSocketManager alloc] init];
+    [webSocketManager example];
 	
 	configManager = [[ConfigManager alloc] init];
 	[configManager loadConfig];
@@ -83,6 +87,7 @@
 }
 
 - (void)dealloc {
+    [webSocketManager release];
 	[configManager release];
 	[currentUser release];
 	[welcomeNavigationController release];
