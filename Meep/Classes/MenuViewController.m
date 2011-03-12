@@ -65,6 +65,14 @@
 														 image: @"bundle://FriendRequests.png"
 														   URL: UserRequestsURL];
 	[launcherView addItem:friendRequestsItem animated:NO];
+    
+    // temp item
+    TTLauncherItem *item = [[TTLauncherItem alloc] initWithTitle: @"Live Map"
+                                                           image: @"bundle://Icon.png"
+                                                            URL: LiveMapURL];
+    [launcherView addItem:item animated:NO];
+    [item release];
+    // temp item
 	
 	[self.view addSubview:launcherView];
     
@@ -184,7 +192,9 @@
 		[meepAppDelegate.menuNavigationController showUserRequests];
 	} else if ([item.URL isEqualToString:UsersURL]) {
 		[meepAppDelegate.menuNavigationController showUsers];
-	}
+	} else if ([item.URL isEqualToString:LiveMapURL]) {
+        [meepAppDelegate.menuNavigationController showLiveMap];
+    }
 }
 
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher {
@@ -224,7 +234,7 @@
 	friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
 	NSLog(@"connectionRequestsFrom count: %u", [[user connectionRequestsFrom] count]);
     
-    [webSocketManager connect];
+    //[webSocketManager connect];
 }
 
 - (void)getUserFailedWithError:(NSError *)error {

@@ -19,6 +19,7 @@
 @synthesize newMeetingUsersController;
 @synthesize searchUsersViewController;
 @synthesize userRequestsViewController;
+@synthesize liveMapViewController;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -89,6 +90,13 @@
 	[self pushViewController:userRequestsViewController animated:YES];
 }
 
+- (void)showLiveMap {
+	if (liveMapViewController == nil) {
+		self.liveMapViewController = [[LiveMapViewController alloc] initWithNibName:@"LiveMapViewController" bundle:nil];
+	}
+	[self pushViewController:liveMapViewController animated:YES];
+}
+
 /*
  * To be called just after a meeting is successfully created in order to reset the meeting
  * creation views by releasing them.
@@ -128,6 +136,7 @@
 	[newMeetingUsersController release];
 	[searchUsersViewController release];
 	[userRequestsViewController release];
+    [liveMapViewController release];
     [super dealloc];
 }
 

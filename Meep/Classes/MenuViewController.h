@@ -19,6 +19,7 @@
 #define UserRequestsURL @"mp://userrequests"
 #define UsersURL @"mp://users"
 #define MyDetailsURL @"mp://mydetails"
+#define LiveMapURL @"mp://livemap"
 
 @interface MenuViewController : TTViewController <TTLauncherViewDelegate, UIAlertViewDelegate, UserManagerDelegate, LogoutManagerDelegate> {
 	

@@ -16,6 +16,7 @@
 #import "NewMeetingUsersController.h"
 #import "SearchUsersViewController.h"
 #import "UserRequestsViewController.h"
+#import "LiveMapViewController.h"
 
 @interface MenuNavigationController : UINavigationController {
 	
@@ -31,6 +32,8 @@
 	
 	SearchUsersViewController *searchUsersViewController;
 	UserRequestsViewController *userRequestsViewController;
+    
+    LiveMapViewController *liveMapViewController;
 
 }
 
@@ -42,6 +45,7 @@
 @property (nonatomic, retain) NewMeetingUsersController *newMeetingUsersController;
 @property (nonatomic, retain) SearchUsersViewController *searchUsersViewController;
 @property (nonatomic, retain) UserRequestsViewController *userRequestsViewController;
+@property (nonatomic, retain) LiveMapViewController *liveMapViewController;
 
 - (void)showMeetings;
 
@@ -53,6 +57,8 @@
 
 - (void)showSearchUsers;
 - (void)showUserRequests;
+
+- (void)showLiveMap;
 
 - (void)newMeetingCreated;
 
