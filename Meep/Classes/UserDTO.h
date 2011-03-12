@@ -47,6 +47,6 @@
 @property (nonatomic, retain) NSArray *meetingsRelated;
 @property (nonatomic, retain) MeetingDTO *_type_meetingsRelated;
 
--(id)init;
+- (id)init;
 
 @end

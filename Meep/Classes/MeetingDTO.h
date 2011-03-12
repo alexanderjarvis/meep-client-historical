@@ -34,6 +34,6 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *description;
 
--(id)init;
+- (id)init;
 
 @end

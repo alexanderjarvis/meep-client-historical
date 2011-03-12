@@ -26,7 +26,7 @@
 @synthesize meetingsRelated;
 @synthesize _type_meetingsRelated;
 
--(id)init {
+- (id)init {
 	if (self == [super init]) {
 		connections = [[NSArray alloc] init];
 		_type_connections = [[UserSummaryDTO alloc] init];
@@ -40,7 +40,7 @@
 	return self;
 }
 
-- (void) dealloc {
+- (void)dealloc {
 	[_id release];
 	[accessToken release];
 	[email release];

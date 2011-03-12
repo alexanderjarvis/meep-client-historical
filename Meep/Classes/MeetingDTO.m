@@ -19,7 +19,7 @@
 @synthesize title;
 @synthesize description;
 
--(id)init {
+- (id)init {
 	if (self == [super init]) {
 		place = [[CoordinateDTO alloc] init];
 		attendees = [[NSArray alloc] init];
