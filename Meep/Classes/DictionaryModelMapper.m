@@ -120,7 +120,7 @@
 /*
  *
  */
-+ (NSDictionary *)createArrayOfDictionariesFromArrayOfObjects:(NSArray *)objects ofType:(NSObject *)objectType {
++ (NSArray *)createArrayOfDictionariesFromArrayOfObjects:(NSArray *)objects ofType:(NSObject *)objectType {
 	NSMutableArray *mutableArrayOfDictionaries = [NSMutableArray arrayWithCapacity:[objects count]];
 	for (NSObject *object in objects) {
 		NSDictionary *dictionary = [self createDictionaryWithObject:object];

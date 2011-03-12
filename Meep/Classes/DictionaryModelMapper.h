@@ -18,6 +18,8 @@
 
 + (NSDictionary *)createDictionaryWithObject:(NSObject *)object;
 
++ (NSArray *)createArrayOfDictionariesFromArrayOfObjects:(NSArray *)objects ofType:(NSObject *)objectType;
+
 + (NSArray *)propertiesFromObject:(NSObject *)object;
 
 + (NSDictionary *)manipulateDictionaryKeys:(NSDictionary *)dictionary withDictionary:(NSDictionary *)language;
