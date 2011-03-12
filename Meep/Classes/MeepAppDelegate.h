@@ -26,8 +26,6 @@
 	MenuViewController *menuViewController;
 	UserDTO *currentUser;
     
-    //
-    WebSocketManager *webSocketManager;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;

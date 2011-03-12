@@ -134,7 +134,7 @@ static const CGFloat kVPadding = 7;
     id key = [self keyForState:state];
     TTButtonContent* content = [_content objectForKey:key];
     if (!content) {
-        content = [[[TTButtonContent alloc] initWithButton:self] autorelease];
+        content = [[[TTButtonContent alloc] initWithButton:(TTButton *)self] autorelease];
         [_content setObject:content forKey:key];
     }
     

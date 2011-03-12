@@ -10,19 +10,26 @@
 
 @implementation WebSocketManager
 
-- (void)example {
-    
-    NSLog(@"WebSocketManager");
-    
-    SocketIoClient *client = [[SocketIoClient alloc] initWithHost:@"ws://websocket/locations/socket/" port:9000];
-    client.delegate = self;
-    
+- (id)initWithAccessToken:(NSString *)accessToken {
+    self = [super init];
+    if (self) {
+        client = [[SocketIoClient alloc] initWithHost:@"localhost" port:9000 resource:@"/websocket/locations/socket/" secure:NO accessToken:accessToken];
+        client.delegate = self;
+    }
+    return self;
+}
+
+- (void)connect {
     [client connect];
-    
-    
+}
+
+- (void)disconnect {
+    [client disconnect];
 }
 
 - (void)dealloc {
+    [client disconnect];
+    [client release];
     [super dealloc];
 }
 
@@ -35,9 +42,7 @@
 }
 
 - (void)socketIoClientDidConnect:(SocketIoClient *)client {
-    NSLog(@"didConnect");
-    [client send:@"Hello Socket.IO" isJSON:NO];
-    
+    NSLog(@"didConnect");    
 }
 - (void)socketIoClientDidDisconnect:(SocketIoClient *)client {
      NSLog(@"didDisconnect");

@@ -26,7 +26,7 @@
 	self.title = @"Search People";
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	NSString *accessToken = [[meepAppDelegate configManager] access_token];
+	NSString *accessToken = [[meepAppDelegate configManager] accessToken];
 	searchUsersManager = [[SearchUsersManager alloc] initWithAccessToken: accessToken];
 	[searchUsersManager setDelegate: self];
 	

@@ -91,12 +91,9 @@
 		FA507B091303EF4000CB96B4 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B081303EF4000CB96B4 /* UserManager.m */; };
 		FA507B9C1304272500CB96B4 /* LogoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA507B9B1304272500CB96B4 /* LogoutManager.m */; };
 		FA613337132AB242003FAD06 /* WebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA613336132AB242003FAD06 /* WebSocketManager.m */; };
-		FA6134E5132AC112003FAD06 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FA6134E4132AC112003FAD06 /* LICENSE.txt */; };
 		FA613500132AC284003FAD06 /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6134F9132AC284003FAD06 /* AsyncSocket.m */; };
 		FA613501132AC284003FAD06 /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6134FB132AC284003FAD06 /* WebSocket.m */; };
-		FA613502132AC284003FAD06 /* ZLIB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FA6134FC132AC284003FAD06 /* ZLIB-LICENSE */; };
 		FA613503132AC284003FAD06 /* SocketIoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FA6134FE132AC284003FAD06 /* SocketIoClient.m */; };
-		FA613504132AC284003FAD06 /* ZLIB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FA6134FF132AC284003FAD06 /* ZLIB-LICENSE */; };
 		FA7D0B721307F32100AD7E31 /* SearchUsersDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D0B701307F32100AD7E31 /* SearchUsersDetailViewController.m */; };
 		FA7D0B731307F32100AD7E31 /* SearchUsersDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7D0B711307F32100AD7E31 /* SearchUsersDetailViewController.xib */; };
 		FA7D0BA9130834C200AD7E31 /* AddUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D0BA8130834C200AD7E31 /* AddUserRequestManager.m */; };
@@ -1262,9 +1259,6 @@
 				FA182FBE132034E400E2147F /* MeetingDetailViewController.xib in Resources */,
 				FA18303D1320537100E2147F /* MeetingDetailCell.xib in Resources */,
 				FAFCCA731323E5B40059DDA4 /* MeetingAttendeesViewController.xib in Resources */,
-				FA6134E5132AC112003FAD06 /* LICENSE.txt in Resources */,
-				FA613502132AC284003FAD06 /* ZLIB-LICENSE in Resources */,
-				FA613504132AC284003FAD06 /* ZLIB-LICENSE in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

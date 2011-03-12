@@ -30,7 +30,7 @@
 	
 	MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
-    meetingsRequestManager = [[MeetingsRequestManager alloc] initWithAccessToken:configManager.access_token];
+    meetingsRequestManager = [[MeetingsRequestManager alloc] initWithAccessToken:configManager.accessToken];
 	[meetingsRequestManager setDelegate:self];
     
 }

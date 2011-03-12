@@ -28,15 +28,11 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
-    //
-    webSocketManager = [[WebSocketManager alloc] init];
-    [webSocketManager example];
-	
 	configManager = [[ConfigManager alloc] init];
 	[configManager loadConfig];
 	
 	// If the application has run before
-	if (![configManager.access_token isEqualToString:@""]) {
+	if (![configManager.accessToken isEqualToString:@""]) {
 		
 		// Show menu view
 		[self showMenuView];
@@ -50,7 +46,7 @@
 }
 
 - (void)showWelcomeView {
-	
+    
 	if (welcomeNavigationController == nil && welcomeViewController == nil) {
         welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
 		welcomeNavigationController = [[WelcomeNavigationController alloc] initWithRootViewController:welcomeViewController];
@@ -60,7 +56,7 @@
 	
 	// When logging out, it's important to clear all resources of the main applicaton view between users
 	if (menuNavigationController != nil && menuViewController != nil) {
-		[configManager setAccess_token:@""];
+		[configManager setAccessToken:@""];
 		[menuNavigationController release];
 		menuNavigationController = nil;
 		[menuViewController release];
@@ -84,10 +80,10 @@
         [welcomeViewController release];
         welcomeViewController = nil;
     }
+    
 }
 
 - (void)dealloc {
-    [webSocketManager release];
 	[configManager release];
 	[currentUser release];
 	[welcomeNavigationController release];

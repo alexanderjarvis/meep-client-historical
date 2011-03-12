@@ -23,14 +23,14 @@
 	NSDictionary *appConfigDictionary;
 	NSString *url;
 	NSString *email;
-	NSString *access_token;
+	NSString *accessToken;
 	
 }
 
 @property (nonatomic, retain) NSDictionary *appConfigDictionary;
 @property (nonatomic, copy) NSString *url;
 @property (nonatomic, copy) NSString *email;
-@property (nonatomic, copy) NSString *access_token;
+@property (nonatomic, copy) NSString *accessToken;
 
 - (BOOL)configFileExists;
 - (void)saveConfig;

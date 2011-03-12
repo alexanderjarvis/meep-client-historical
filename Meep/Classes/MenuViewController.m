@@ -22,20 +22,6 @@
 	// Title
 	self.title = @"Meep";
 	
-	// Request Managers
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	ConfigManager *configManager = [meepAppDelegate configManager];
-	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
-    [userManager setDelegate: self];
-	logoutManager = [[LogoutManager alloc] initWithAccessToken:configManager.access_token];
-	[logoutManager setDelegate:self];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(applicationDidBecomeActive:) 
-                                                 name:UIApplicationDidBecomeActiveNotification 
-                                               object:nil];
-	
-	
 	// Logout Button
 	logoutButton = [[UIBarButtonItem alloc] initWithTitle:@"Logout"
 													style:UIBarButtonSystemItemDone
@@ -81,7 +67,22 @@
 	[launcherView addItem:friendRequestsItem animated:NO];
 	
 	[self.view addSubview:launcherView];
-	
+    
+    // Request Managers
+	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	ConfigManager *configManager = [meepAppDelegate configManager];
+	userManager = [[UserManager alloc] initWithAccessToken:configManager.accessToken];
+    [userManager setDelegate: self];
+	logoutManager = [[LogoutManager alloc] initWithAccessToken:configManager.accessToken];
+	[logoutManager setDelegate:self];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self 
+                                             selector:@selector(applicationDidBecomeActive:) 
+                                                 name:UIApplicationDidBecomeActiveNotification 
+                                               object:nil];
+	// WebSocketManager
+    webSocketManager = [[WebSocketManager alloc] initWithAccessToken:configManager.accessToken];
+    
 	[super viewDidLoad];
 }
 
@@ -145,6 +146,7 @@
 }
 
 - (void)dealloc {
+    [webSocketManager release];
 	[launcherView release];
 	[meetingsItem release];
 	[friendsItem release];
@@ -221,6 +223,8 @@
 	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
 	friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
 	NSLog(@"connectionRequestsFrom count: %u", [[user connectionRequestsFrom] count]);
+    
+    [webSocketManager connect];
 }
 
 - (void)getUserFailedWithError:(NSError *)error {

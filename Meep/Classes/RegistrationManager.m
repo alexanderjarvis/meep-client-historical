@@ -50,7 +50,7 @@
 		
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 		[[meepAppDelegate configManager] setEmail:[jsonDictionary objectForKey:@"email"]];
-		[[meepAppDelegate configManager] setAccess_token: [jsonDictionary objectForKey:@"accessToken"]];
+		[[meepAppDelegate configManager] setAccessToken: [jsonDictionary objectForKey:@"accessToken"]];
 		[[meepAppDelegate configManager] saveConfig];
 		
 		[delegate userRegistrationSuccessful];

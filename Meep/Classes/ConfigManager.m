@@ -13,7 +13,7 @@
 @synthesize appConfigDictionary;
 @synthesize url;
 @synthesize email;
-@synthesize access_token;
+@synthesize accessToken;
 
 /*
  *
@@ -37,7 +37,7 @@
 	NSLog(@"Saving Config");
 	
 	NSArray *keys = [NSArray arrayWithObjects:kEmailKey, kAccessTokenKey, nil];
-	NSArray *values = [NSArray arrayWithObjects:self.email, self.access_token, nil];
+	NSArray *values = [NSArray arrayWithObjects:self.email, self.accessToken, nil];
 	self.appConfigDictionary = [NSDictionary dictionaryWithObjects:values forKeys:keys];
 	
 	[appConfigDictionary writeToFile:[self dataFilePath:kConfigFileName] atomically:YES];
@@ -61,14 +61,14 @@
 		
 		if (appConfigDictionary != nil) {
 			self.email = [appConfigDictionary valueForKey:kEmailKey];
-			self.access_token = [appConfigDictionary valueForKey:kAccessTokenKey];
+			self.accessToken = [appConfigDictionary valueForKey:kAccessTokenKey];
 		}
 		
 		return appConfigDictionary;
 		
 	} else {
 		self.email = @"";
-		self.access_token = @"";
+		self.accessToken = @"";
 		[self saveConfig];
 	}
 	
@@ -89,7 +89,7 @@
 	[appConfigDictionary release];
 	[url release];
 	[email release];
-	[access_token release];
+	[accessToken release];
 	[super dealloc];
 }
 

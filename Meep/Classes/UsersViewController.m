@@ -26,7 +26,7 @@
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
-	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
+	userManager = [[UserManager alloc] initWithAccessToken:configManager.accessToken];
 	[userManager setDelegate:self];
 	
 	// Update table with users that have already been fetched.

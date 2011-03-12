@@ -12,8 +12,12 @@
 
 @interface WebSocketManager : NSObject <SocketIoClientDelegate> {
     
+    SocketIoClient *client;
+    
 }
 
-- (void)example;
+- (id)initWithAccessToken:(NSString *)accessToken;
+- (void)connect;
+- (void)disconnect;
 
 @end

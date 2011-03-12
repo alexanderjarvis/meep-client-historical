@@ -40,11 +40,11 @@
     
     MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
-    acceptMeetingRequestManager = [[AcceptMeetingRequestManager alloc] initWithAccessToken:configManager.access_token];
+    acceptMeetingRequestManager = [[AcceptMeetingRequestManager alloc] initWithAccessToken:configManager.accessToken];
 	[acceptMeetingRequestManager setDelegate:self];
-    declineMeetingRequestManager = [[DeclineMeetingRequestManager alloc] initWithAccessToken:configManager.access_token];
+    declineMeetingRequestManager = [[DeclineMeetingRequestManager alloc] initWithAccessToken:configManager.accessToken];
 	[declineMeetingRequestManager setDelegate:self];
-    deleteMeetingRequestManager = [[DeleteMeetingRequestManager alloc] initWithAccessToken:configManager.access_token];
+    deleteMeetingRequestManager = [[DeleteMeetingRequestManager alloc] initWithAccessToken:configManager.accessToken];
     [deleteMeetingRequestManager setDelegate:self];
     
     // Load the cell into memory before the TableViewDelegate cellForRowAtIndex method because we need to set up

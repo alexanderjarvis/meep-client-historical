@@ -27,13 +27,13 @@
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
-	userManager = [[UserManager alloc] initWithAccessToken:configManager.access_token];
+	userManager = [[UserManager alloc] initWithAccessToken:configManager.accessToken];
 	[userManager setDelegate:self];
 	
-	acceptUserRequestManager = [[AcceptUserRequestManager alloc] initWithAccessToken:configManager.access_token];
+	acceptUserRequestManager = [[AcceptUserRequestManager alloc] initWithAccessToken:configManager.accessToken];
 	[acceptUserRequestManager setDelegate:self];
 	
-	declineUserRequestManager = [[DeclineUserRequestManager alloc] initWithAccessToken:configManager.access_token];
+	declineUserRequestManager = [[DeclineUserRequestManager alloc] initWithAccessToken:configManager.accessToken];
 	[declineUserRequestManager setDelegate:self];
 	
     [super viewDidLoad];

@@ -24,7 +24,7 @@
 	self.title = @"Add Request";
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	NSString *accessToken = [[meepAppDelegate configManager] access_token];
+	NSString *accessToken = [[meepAppDelegate configManager] accessToken];
 	addUserRequestManager = [[AddUserRequestManager alloc] initWithAccessToken:accessToken];
 	[addUserRequestManager setDelegate:self];
 	
