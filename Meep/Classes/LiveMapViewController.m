@@ -23,9 +23,6 @@
 }
 
 - (void)dealloc {
-    if (currentUserAnnotation != nil) {
-        [currentUserAnnotation release];
-    }
     [locationService release];
     [mapView release];
     [super dealloc];
@@ -48,13 +45,12 @@
     locationService = [[LocationService alloc] init];
     [locationService startUpdatingLocation];
     
-    //mapView.showsUserLocation = YES;
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
