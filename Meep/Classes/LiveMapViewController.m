@@ -13,20 +13,21 @@
 @implementation LiveMapViewController
 
 @synthesize mapView;
-@synthesize backButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        firstLocationUpdate = YES;
     }
     return self;
 }
 
 - (void)dealloc {
+    if (currentUserAnnotation != nil) {
+        [currentUserAnnotation release];
+    }
     [locationService release];
     [mapView release];
-    [backButton release];
     [super dealloc];
 }
 
@@ -46,6 +47,8 @@
     
     locationService = [[LocationService alloc] init];
     [locationService startUpdatingLocation];
+    
+    //mapView.showsUserLocation = YES;
 }
 
 - (void)viewDidUnload {
@@ -60,17 +63,73 @@
 }
 
 #pragma mark -
-#pragma mark
+#pragma mark LocationService
 
 - (void)locationUpdated:(NSNotification *)notification {
     CLLocation *currentLocation = [[notification userInfo] objectForKey:kLocationUpdateNotification];
     NSLog(@"latitude: %f", currentLocation.coordinate.latitude);
     NSLog(@"longitude: %f", currentLocation.coordinate.longitude);
     
+    // Update the maps region on the 1st location update.
+    if (firstLocationUpdate) {
+        firstLocationUpdate = NO;
+        [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
     
-    [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
+    } else {
     
+        // Remove the previous annotation
+        for (NSObject<MKAnnotation> *annotation in mapView.annotations) {
+            if ([annotation isKindOfClass:[CurrentUserAnnotation class]]) {
+                [annotation setCoordinate:currentLocation.coordinate];
+                [mapView removeAnnotation:annotation];
+            }
+        }
+    }
     
+    // Add the current users annotation
+    currentUserAnnotation = [[[CurrentUserAnnotation alloc] init] autorelease];
+    currentUserAnnotation.coordinate = currentLocation.coordinate;
+    currentUserAnnotation.title = @"Me";
+    [mapView addAnnotation:currentUserAnnotation];
+    
+    // Set the maps center coordinate to current users location and retain the region span
+    [mapView setRegion:MKCoordinateRegionMake(currentLocation.coordinate, mapView.region.span) animated:YES];
+    
+}
+
+#pragma mark -
+#pragma mark MapViewDelegate
+- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
+	
+	// If the Current User Annotation
+	if ([annotation isKindOfClass:[CurrentUserAnnotation class]]) {
+        static NSString *currentUserLocationIdentifier = @"Current User Location Identifier";
+		MKAnnotationView *annotationView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:currentUserLocationIdentifier];
+		
+		if (annotationView == nil) {
+			annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation 
+															 reuseIdentifier:currentUserLocationIdentifier];
+            annotationView.image = [UIImage imageNamed:@"bluemarble.png"];
+		} else {
+			annotationView.annotation = annotation;
+		}
+		annotationView.enabled = YES;
+		annotationView.canShowCallout = YES;
+		
+		return annotationView;		
+	}
+    
+    return nil;
+}
+
+- (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error loading map"
+													message:[error localizedDescription]
+												   delegate:nil
+										  cancelButtonTitle:@"Okay"
+										  otherButtonTitles:nil];
+	[alert show];
+	[alert release];
 }
 
 @end

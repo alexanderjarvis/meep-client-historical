@@ -20,7 +20,7 @@
 	
 	// Build up the URL
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	NSString *baseURL = [[meepAppDelegate configManager] url];
+	NSString *baseURL = [[meepAppDelegate configManager] serviceUrl];
 	NSString *resource = @"search/users/";
 	
 	NSString *searchParam = @"query";

@@ -23,7 +23,7 @@
 	[[meepAppDelegate configManager] setEmail: user.email];
 	
 	// Build up the URL
-	NSString *baseURL = [[meepAppDelegate configManager] url];
+	NSString *baseURL = [[meepAppDelegate configManager] serviceUrl];
 	NSString *loginURL = @"oauth2";
 	NSString *fullURL = [baseURL stringByAppendingString:loginURL];
 	NSLog(@"URL of request: %@", fullURL);

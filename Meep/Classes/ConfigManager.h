@@ -14,21 +14,37 @@
 #define kAccessTokenKey @"access_token"
 
 // The host for the web service
-
-//#define SERVICE_URL @"http://localhost:9000/"
-#define SERVICE_URL @"https://meep.it/"
+#define DEBUG 0
+#ifdef DEBUG
+#define SERVICE_HOST @"169.254.100.172"
+#define SERVICE_PORT 9000
+#endif
+#ifndef DEBUG
+#define SECURE 1
+#define SERVICE_HOST @"meep.it"
+#define SERVICE_PORT 443
+#endif
+// The schemes, independent of debug status
+#ifdef SECURE
+#define SERVICE_SCHEME @"https://"
+#endif
+#ifndef SECURE
+#define SERVICE_SCHEME @"http://"
+#endif
 
 @interface ConfigManager : NSObject {
 	
 	NSDictionary *appConfigDictionary;
-	NSString *url;
+    
+	NSString *serviceUrl;
+    
 	NSString *email;
 	NSString *accessToken;
 	
 }
 
 @property (nonatomic, retain) NSDictionary *appConfigDictionary;
-@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *serviceUrl;
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic, copy) NSString *accessToken;
 

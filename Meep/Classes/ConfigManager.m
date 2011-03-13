@@ -11,7 +11,7 @@
 @implementation ConfigManager
 
 @synthesize appConfigDictionary;
-@synthesize url;
+@synthesize serviceUrl;
 @synthesize email;
 @synthesize accessToken;
 
@@ -52,7 +52,14 @@
     
 	NSLog(@"Loading Config");
     
-    self.url = SERVICE_URL;
+    NSString *servicePort = nil;
+    if (SERVICE_PORT == 80 || SERVICE_PORT == 443) {
+        servicePort = @"";
+    } else { 
+        servicePort = [NSString stringWithFormat:@":%d", SERVICE_PORT];
+    }
+    
+    self.serviceUrl = [NSString stringWithFormat:@"%@%@%@/", SERVICE_SCHEME, SERVICE_HOST, servicePort];
 	
 	if ([self configFileExists]) {
 		NSString *filePath = [self dataFilePath: kConfigFileName];
@@ -87,7 +94,7 @@
 
 - (void)dealloc {
 	[appConfigDictionary release];
-	[url release];
+	[serviceUrl release];
 	[email release];
 	[accessToken release];
 	[super dealloc];

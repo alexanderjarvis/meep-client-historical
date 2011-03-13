@@ -21,7 +21,7 @@
 	
 	// Build up the URL
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	NSString *baseURL = [[meepAppDelegate configManager] url];
+	NSString *baseURL = [[meepAppDelegate configManager] serviceUrl];
 	NSString *loginURL = @"users";
 	NSString *fullURL = [baseURL stringByAppendingString:loginURL];
 	NSLog(@"URL of request: %@", fullURL);

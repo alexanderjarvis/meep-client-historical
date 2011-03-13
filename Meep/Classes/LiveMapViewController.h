@@ -10,18 +10,20 @@
 #import <MapKit/MapKit.h>
 
 #import "LocationService.h"
+#import "CurrentUserAnnotation.h"
 
-@interface LiveMapViewController : UIViewController {
+@interface LiveMapViewController : UIViewController <MKMapViewDelegate> {
     
     LocationService *locationService;
     
     IBOutlet MKMapView *mapView;
-    IBOutlet UIButton *backButton;
+    
+    BOOL firstLocationUpdate;
+    CurrentUserAnnotation *currentUserAnnotation;
     
 }
 
 @property (nonatomic, retain) MKMapView *mapView;
-@property (nonatomic, retain) UIButton *backButton;
 
 - (void)locationUpdated:(NSNotification *)notification;
 

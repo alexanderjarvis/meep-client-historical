@@ -51,9 +51,9 @@
 	return ret;
 }
 
-- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
-	coordinate = newCoordinate;
-}
+//- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
+//	coordinate = newCoordinate;
+//}
 
 - (void)resetReverseGeocodeAttributes {
 	self.streetAddress = nil;
@@ -81,7 +81,8 @@
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
-	if (self = [super init]) {
+    self = [super init];
+	if (self) {
 		[self setStreetAddress: [decoder decodeObjectForKey:kStreetAddress]];
 		[self setCity: [decoder decodeObjectForKey:kCity]];
 		[self setState: [decoder decodeObjectForKey:kState]];

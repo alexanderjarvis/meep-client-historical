@@ -10,6 +10,7 @@
 #import <YAJL/YAJL.h>
 
 #import "WebSocketManager.h"
+#import "ConfigManager.h"
 #import "MeepNotificationCenter.h"
 #import "UserLocationDTO.h"
 #import "ISO8601DateFormatter.h"
@@ -20,7 +21,7 @@
 - (id)initWithAccessToken:(NSString *)accessToken {
     self = [super init];
     if (self) {
-        client = [[SocketIoClient alloc] initWithHost:@"169.254.135.5" port:9000 resource:@"/websocket/locations/socket/" secure:NO accessToken:accessToken];
+        client = [[SocketIoClient alloc] initWithHost:SERVICE_HOST port:SERVICE_PORT resource:@"/websocket/locations/socket/" secure:NO accessToken:accessToken];
         client.delegate = self;
         [[MeepNotificationCenter sharedNotificationCenter] addObserverForLocationUpdates:self selector:@selector(locationUpdated:)];
         recentLocations = [[NSMutableArray alloc] initWithCapacity:10];
@@ -88,11 +89,12 @@
 
 - (void)startTimer {
     [self invalidateTimer];
-    locationUpdateTimer = [NSTimer timerWithTimeInterval:0.5
-                                                  target:self 
-                                                selector:@selector(sendLocationUpdates) 
-                                                userInfo:nil 
-                                                 repeats:YES];
+    locationUpdateTimer = [[NSTimer timerWithTimeInterval:0.5
+                                                   target:self 
+                                                 selector:@selector(sendLocationUpdates) 
+                                                 userInfo:nil 
+                                                  repeats:YES] retain];
+    
     [[NSRunLoop currentRunLoop] addTimer:locationUpdateTimer forMode:NSRunLoopCommonModes];
 }
 

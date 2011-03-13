@@ -145,6 +145,7 @@
 		}
 	}
 }
+
 - (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	
 	static NSString *placemarkIdentifier = @"Map Location Identifier";
@@ -179,7 +180,6 @@
 										  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
-	
 }
 
 #pragma mark -
