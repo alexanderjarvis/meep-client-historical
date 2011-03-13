@@ -34,6 +34,7 @@
     [trueHeading release];
     [verticalAccuracy release];
     [horizontalAccuracy release];
+    [super dealloc];
 }
 
 @end

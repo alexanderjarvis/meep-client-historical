@@ -234,7 +234,7 @@
 	friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
 	NSLog(@"connectionRequestsFrom count: %u", [[user connectionRequestsFrom] count]);
     
-    //[webSocketManager connect];
+    [webSocketManager connect];
 }
 
 - (void)getUserFailedWithError:(NSError *)error {

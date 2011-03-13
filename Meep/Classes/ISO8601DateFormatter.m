@@ -14,7 +14,7 @@
 + (NSDate *)dateFromString:(NSString *)string {
 	NSDateFormatter* iso8601DateFormatter = [[NSDateFormatter alloc] init];
 	[iso8601DateFormatter setTimeStyle:NSDateFormatterFullStyle];
-	[iso8601DateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+	[iso8601DateFormatter setDateFormat:ISO8601DateFormat];
 	NSDate *date = [iso8601DateFormatter dateFromString:string];
 	[iso8601DateFormatter release];
 	return date;
@@ -23,7 +23,7 @@
 + (NSString *)stringFromDate:(NSDate *)date {
 	NSDateFormatter* iso8601DateFormatter = [[NSDateFormatter alloc] init];
 	[iso8601DateFormatter setTimeStyle:NSDateFormatterFullStyle];
-	[iso8601DateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+	[iso8601DateFormatter setDateFormat:ISO8601DateFormat];
 	NSString *string = [iso8601DateFormatter stringFromDate:date];
 	[iso8601DateFormatter release];
 	return string;
