@@ -66,9 +66,7 @@
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
     
-    if (responseOk) {
-        [delegate loginFailedWithNetworkError:[request error]];
-    }
+    [delegate loginFailedWithNetworkError:[request error]];
 }
 
 
