@@ -31,6 +31,7 @@
     [self stopUpdatingLocation];
     locationManager.delegate = nil;
     [locationManager release];
+    [locations release];
     [currentLocation release];
     [currentHeading release];
     [super dealloc];

@@ -17,6 +17,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.title = @"Live Map";
         firstLocationUpdate = YES;
     }
     return self;
@@ -68,7 +69,6 @@
     
     // Update the maps region on the 1st location update.
     if (firstLocationUpdate) {
-        firstLocationUpdate = NO;
         [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
     
     } else {
@@ -91,6 +91,10 @@
     // Set the maps center coordinate to current users location and retain the region span
     [mapView setRegion:MKCoordinateRegionMake(currentLocation.coordinate, mapView.region.span) animated:YES];
     
+    if (firstLocationUpdate) {
+        firstLocationUpdate = NO;
+        [mapView selectAnnotation:currentUserAnnotation animated:YES];
+    }
 }
 
 #pragma mark -

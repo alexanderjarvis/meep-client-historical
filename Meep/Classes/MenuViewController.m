@@ -234,17 +234,16 @@
 	friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
 	NSLog(@"connectionRequestsFrom count: %u", [[user connectionRequestsFrom] count]);
     
-    //TODO: only on first time..
+    // This will only connect if not already connected
     [webSocketManager connect];
 }
 
 - (void)getUserFailedWithError:(NSError *)error {
 	[self showWelcomeView];
-	
 }
 
 - (void)getUserFailedWithNetworkError:(NSError *)error {
-	//[self showWelcomeView];
+	[AlertView showNetworkAlert:error];
 }
 
 #pragma mark -
