@@ -31,7 +31,7 @@
     self = [super initWithRootViewController:rootViewController];
 	if (self) {
 		if ([rootViewController isKindOfClass:[MenuViewController class]]) {
-			self.menuViewController = (MenuViewController *)rootViewController;
+			menuViewController = [(MenuViewController *)rootViewController retain];
 		}
 	}
 	return self;
@@ -43,56 +43,56 @@
 
 - (void)showMeetings {
 	if (meetingsViewController == nil) {
-		self.meetingsViewController = [[MeetingsViewController alloc] initWithNibName:@"MeetingsViewController" bundle:nil];
+		meetingsViewController = [[MeetingsViewController alloc] initWithNibName:@"MeetingsViewController" bundle:nil];
 	}
 	[self pushViewController:meetingsViewController animated:YES];
 }
 
 - (void)showUsers {
 	if (usersViewController == nil) {
-		self.usersViewController = [[UsersViewController alloc] initWithNibName:@"UsersViewController" bundle:nil];
+		usersViewController = [[UsersViewController alloc] initWithNibName:@"UsersViewController" bundle:nil];
 	}
 	[self pushViewController:usersViewController animated:YES];
 }
 
 - (void)showNewMeetingLocation {
 	if (newMeetingLocationController == nil) {
-		self.newMeetingLocationController = [[NewMeetingLocationController alloc] initWithNibName:@"NewMeetingLocationController" bundle:nil];
+		newMeetingLocationController = [[NewMeetingLocationController alloc] initWithNibName:@"NewMeetingLocationController" bundle:nil];
 	}
 	[self pushViewController:newMeetingLocationController animated:YES];
 }
 
 - (void)showNewMeetingDateAndTime {
 	if (newMeetingDateAndTimeController == nil) {
-		self.newMeetingDateAndTimeController = [[NewMeetingDateAndTimeController alloc] initWithNibName:@"NewMeetingDateAndTimeController" bundle:nil];
+		newMeetingDateAndTimeController = [[NewMeetingDateAndTimeController alloc] initWithNibName:@"NewMeetingDateAndTimeController" bundle:nil];
 	}
 	[self pushViewController:newMeetingDateAndTimeController animated:YES];
 }
 
 - (void)showNewMeetingUsers {
 	if (newMeetingUsersController == nil) {
-		self.newMeetingUsersController = [[NewMeetingUsersController alloc] initWithNibName:@"NewMeetingUsersController" bundle:nil];
+		newMeetingUsersController = [[NewMeetingUsersController alloc] initWithNibName:@"NewMeetingUsersController" bundle:nil];
 	}
 	[self pushViewController:newMeetingUsersController animated:YES];
 }
 
 - (void)showSearchUsers {
 	if (searchUsersViewController == nil) {
-		self.searchUsersViewController = [[SearchUsersViewController alloc] initWithNibName:@"SearchUsersViewController" bundle:nil];
+		searchUsersViewController = [[SearchUsersViewController alloc] initWithNibName:@"SearchUsersViewController" bundle:nil];
 	}
 	[self pushViewController:searchUsersViewController animated:YES];
 }
 
 - (void)showUserRequests {
 	if (userRequestsViewController == nil) {
-		self.userRequestsViewController = [[UserRequestsViewController alloc] initWithNibName:@"UserRequestsViewController" bundle:nil];
+		userRequestsViewController = [[UserRequestsViewController alloc] initWithNibName:@"UserRequestsViewController" bundle:nil];
 	}
 	[self pushViewController:userRequestsViewController animated:YES];
 }
 
 - (void)showLiveMap {
 	if (liveMapViewController == nil) {
-		self.liveMapViewController = [[LiveMapViewController alloc] initWithNibName:@"LiveMapViewController" bundle:nil];
+		liveMapViewController = [[LiveMapViewController alloc] initWithNibName:@"LiveMapViewController" bundle:nil];
 	}
 	[self pushViewController:liveMapViewController animated:YES];
 }
