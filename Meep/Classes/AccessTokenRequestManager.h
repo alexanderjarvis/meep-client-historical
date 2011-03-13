@@ -14,11 +14,13 @@
 
 	NSString *accessToken;
     BOOL responseOk;
+    BOOL filterEnabled;
 
 }
 
 @property (nonatomic, copy) NSString *accessToken;
 @property (nonatomic, assign) BOOL responseOk;
+@property (nonatomic, assign) BOOL filterEnabled;
 
 - (id)initWithAccessToken:(NSString *)token;
 

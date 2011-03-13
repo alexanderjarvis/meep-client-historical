@@ -14,9 +14,14 @@
 
 @synthesize accessToken;
 @synthesize responseOk;
+@synthesize filterEnabled;
 
 - (id)initWithAccessToken:(NSString *)token {
-	self.accessToken = token;
+    self = [super init];
+    if (self) { 
+        self.accessToken = token;
+        filterEnabled = YES;
+    }
 	return self;
 }
 
@@ -28,11 +33,13 @@
 - (void)requestFailed:(ASIHTTPRequest *)request {
     [super requestFailed:request];
     
-    if ([request responseStatusCode] == 401) {
-        responseOk = NO;
-        [[MeepAppDelegate sharedAppDelegate] showWelcomeViewWithUnauthorisedMessage];
-    } else {
-        responseOk = YES;
+    if (filterEnabled) {
+        if ([request responseStatusCode] == 401) {
+            responseOk = NO;
+            [[MeepAppDelegate sharedAppDelegate] showWelcomeViewWithUnauthorisedMessage];
+        } else {
+            responseOk = YES;
+        }
     }
 }
 

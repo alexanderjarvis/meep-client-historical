@@ -17,6 +17,8 @@
 @synthesize delegate;
 
 - (void)logoutUser {
+    
+    super.filterEnabled = NO;
 	
 	// Build up the URL
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
@@ -54,9 +56,13 @@
 - (void)requestFailed:(ASIHTTPRequest *)request {
     [super requestFailed:request];
     
-    if (responseOk) {
+    if ([request responseStatusCode] == 401) {
+        // The user is already unauthorised
+        [delegate logoutUserSuccessful];
+    } else {
         [delegate logoutUserFailedWithNetworkError:[request error]];
     }
+    
 }
 
 @end
