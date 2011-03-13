@@ -66,7 +66,10 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
-	[delegate searchUsersFailedWithNetworkError:[request error]];
+    
+    if (responseOk) {
+        [delegate searchUsersFailedWithNetworkError:[request error]];
+    }
 }
 
 @end

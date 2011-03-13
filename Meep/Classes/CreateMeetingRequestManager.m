@@ -46,9 +46,7 @@
 	[super requestFinished:request];
 	
 	if ([request responseStatusCode] == 201) {
-		
-		//NSDictionary *jsonDictionary = [[request responseString] yajl_JSON];
-		
+				
 		[delegate createMeetingSuccessful];
 		
 	} else {
@@ -60,7 +58,10 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
-	[delegate createMeetingFailedWithNetworkError:[request error]];
+    
+    if (responseOk) {
+        [delegate createMeetingFailedWithNetworkError:[request error]];
+    }
 }
 
 @end

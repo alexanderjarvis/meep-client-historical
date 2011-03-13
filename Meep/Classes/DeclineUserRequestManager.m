@@ -56,7 +56,10 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
-	[delegate declineUserFailedWithNetworkError:[request error]];
+    
+    if (responseOk) {
+        [delegate declineUserFailedWithNetworkError:[request error]];
+    }
 }
 
 @end

@@ -52,15 +52,11 @@
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-	
-	[super requestFailed:request];
-	
-	// If the request to logout was already unauthorized, then logout was successful.
-	if ([request responseStatusCode] == 401) {
-		[delegate logoutUserSuccessful];
-	}
-	
-	[delegate logoutUserFailedWithNetworkError:[request error]];
+    [super requestFailed:request];
+    
+    if (responseOk) {
+        [delegate logoutUserFailedWithNetworkError:[request error]];
+    }
 }
 
 @end

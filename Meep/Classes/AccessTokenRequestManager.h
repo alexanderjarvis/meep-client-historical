@@ -13,11 +13,16 @@
 @interface AccessTokenRequestManager : RequestManager {
 
 	NSString *accessToken;
+    BOOL responseOk;
 
 }
 
 @property (nonatomic, copy) NSString *accessToken;
+@property (nonatomic, assign) BOOL responseOk;
 
 - (id)initWithAccessToken:(NSString *)token;
+
+- (void)requestFinished:(ASIHTTPRequest *)request;
+- (void)requestFailed:(ASIHTTPRequest *)request;
 
 @end

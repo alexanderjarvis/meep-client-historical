@@ -11,6 +11,7 @@
 #import "MeepAppDelegate.h"
 #import "UserManager.h"
 #import "UserDTO.h"
+#import "AlertView.h"
 
 @implementation MeepAppDelegate
 
@@ -62,6 +63,11 @@
 		[menuViewController release];
 		menuViewController = nil;
 	}
+}
+
+- (void)showWelcomeViewWithUnauthorisedMessage {
+    [self showWelcomeView];
+    [AlertView showSimpleAlertMessage:@"You must login again." withTitle:@"Unauthorised"];
 }
 
 - (void)showMenuView {

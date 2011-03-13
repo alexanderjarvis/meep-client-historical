@@ -39,6 +39,8 @@
 + (MeepAppDelegate *)sharedAppDelegate;
 
 - (void)showWelcomeView;
+- (void)showWelcomeViewWithUnauthorisedMessage;
+
 - (void)showMenuView;
 
 @end

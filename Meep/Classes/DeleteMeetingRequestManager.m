@@ -52,7 +52,10 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
-	[delegate deleteMeetingFailedWithNetworkError:[request error]];
+    
+    if (responseOk) {
+        [delegate deleteMeetingFailedWithNetworkError:[request error]];
+    }
 }
 
 

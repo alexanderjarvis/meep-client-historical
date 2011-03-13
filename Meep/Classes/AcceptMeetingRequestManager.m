@@ -54,7 +54,10 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
-	[delegate acceptMeetingFailedWithNetworkError:[request error]];
+    
+    if (responseOk) {
+        [delegate acceptMeetingFailedWithNetworkError:[request error]];
+    }
 }
 
 @end

@@ -64,7 +64,10 @@
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
 	[super requestFailed:request];
-	[delegate userRegistrationFailedWithNetworkError:[request error]];
+    
+    if (responseOk) {
+        [delegate userRegistrationFailedWithNetworkError:[request error]];
+    }
 }
 
 
