@@ -39,9 +39,6 @@
 	NSMutableArray *arrayOfAwaitingReply = [NSMutableArray arrayWithCapacity:1];
 	NSMutableArray *arrayOfAttending = [NSMutableArray arrayWithCapacity:1];
 	NSMutableArray *arrayOfNotAttending = [NSMutableArray arrayWithCapacity:1];
-	
-    //TODO: mark current user in table
-	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 
     for (AttendeeDTO *attendee in meeting.attendees) {
         if (attendee.rsvp == nil) {
