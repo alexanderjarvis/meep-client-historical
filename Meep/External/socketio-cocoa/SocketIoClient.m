@@ -1,4 +1,4 @@
-//  Modified (a lot) by Alex Jarvis on 11/03/2011.
+//  Modified (a lot - full of bugs, memory leaks and crashes..) by Alex Jarvis on 11/03/2011.
 
 //
 //  SocketIoClient.m
@@ -12,10 +12,20 @@
 #import "WebSocket.h"
 
 @interface SocketIoClient (FP_Private) <WebSocketDelegate>
+- (void)checkIfConnected;
 - (void)log:(NSString *)message;
 - (NSString *)encode:(NSArray *)messages;
-- (void)onDisconnect;
+- (NSArray *)decode:(NSString *)data;
 - (void)notifyMessagesSent:(NSArray *)messages;
+- (void)onTimeout;
+- (void)setTimer;
+- (void)invalidateTimer;
+- (void)onHeartbeat:(NSString *)heartbeat;
+- (void)doQueue;
+- (void)onConnect;
+- (void)onDisconnect;
+- (void)onMessage:(NSString *)message;
+- (void)onData:(NSString *)data;
 @end
 
 @implementation SocketIoClient
@@ -47,8 +57,8 @@
 }
 
 - (void)dealloc {
-    [_timeout release];
-    _timeout = nil;
+    [_timer release];
+    _timer = nil;
     _webSocket.delegate = nil;
     [_webSocket release];
     [_queue release];
@@ -85,7 +95,7 @@
 
 - (void)disconnect {
     [self log:@"disconnect"];
-    [_timeout invalidate];
+    [self invalidateTimer];
     [_webSocket close];
 }
 
@@ -196,17 +206,23 @@
 }
 
 - (void)setTimeout {  
-    if (_timeout != nil) {
-        [_timeout invalidate];
-        [_timeout release];
-        _timeout = nil;
-    }
+    [self invalidateTimer];
     
-    _timeout = [[NSTimer scheduledTimerWithTimeInterval:_heartbeatTimeout
-                                                 target:self 
-                                               selector:@selector(onTimeout) 
-                                               userInfo:nil 
-                                                repeats:NO] retain];    
+    _timer = [[NSTimer timerWithTimeInterval:_heartbeatTimeout
+                                        target:self 
+                                      selector:@selector(onTimeout) 
+                                      userInfo:nil 
+                                       repeats:NO] retain];
+    
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)invalidateTimer {
+    if (_timer != nil) {
+        [_timer invalidate];
+        [_timer release];
+        _timer = nil;
+    }
 }
 
 - (void)onHeartbeat:(NSString *)heartbeat {
@@ -268,7 +284,7 @@
 - (void)onData:(NSString *)data {
     [self setTimeout];
     
-    NSLog(@"Data received: %@", data);
+    [self log:[NSString stringWithFormat:@"Data received: %@", data]];
     
     NSArray *messages = [self decode:data];
     

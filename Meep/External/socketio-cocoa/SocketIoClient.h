@@ -1,4 +1,4 @@
-//  Modified by Alex Jarvis on 11/03/2011.
+//  Modified (a lot - full of bugs, memory leaks and crashes..) by Alex Jarvis on 11/03/2011.
 
 //
 //  SocketIoClient.h
@@ -21,7 +21,7 @@
     
     NSTimeInterval _heartbeatTimeout;
     
-    NSTimer *_timeout;
+    NSTimer *_timer;
     
     BOOL _isConnected;
     BOOL _isConnecting;
