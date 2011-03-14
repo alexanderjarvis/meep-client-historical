@@ -15,6 +15,8 @@
 #import "UserLocationDTO.h"
 #import "ISO8601DateFormatter.h"
 #import "DictionaryModelMapper.h"
+#import "RecentUserLocationsDTO.h"
+#import "MeepNotificationCenter.h"
 
 @implementation WebSocketManager
 
@@ -112,6 +114,19 @@
 
 - (void)socketIoClient:(SocketIoClient *)client didReceiveMessage:(NSString *)message isJSON:(BOOL)isJSON {
     NSLog(@"didReceiveMessage: %@", message);
+    
+    if (isJSON) {
+        // Convert Json string to RecentUserLocationsDTO object
+        RecentUserLocationsDTO *emptyRecentUserLocationsDTO = [[RecentUserLocationsDTO alloc] init];
+		RecentUserLocationsDTO *recentUserLocationsDTO = [DictionaryModelMapper createObject:emptyRecentUserLocationsDTO fromDictionary:[message yajl_JSON]];
+		[emptyRecentUserLocationsDTO release];
+        
+        // Post a notification with the object
+        if (recentUserLocationsDTO != nil) {
+            NSDictionary *dictionary = [NSDictionary dictionaryWithObject:recentUserLocationsDTO forKey:kSocketReceivedLocationUpdatesNotification];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kSocketReceivedLocationUpdatesNotification object:self userInfo:dictionary];
+        }
+    }
 }
 
 - (void)socketIoClientDidConnect:(SocketIoClient *)client {

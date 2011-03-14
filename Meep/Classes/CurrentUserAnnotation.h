@@ -7,16 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <MapKit/MapKit.h>
 
-@interface CurrentUserAnnotation : NSObject <MKAnnotation> {
-    
-    CLLocationCoordinate2D coordinate;
-    NSString *title;
+#import "UserAnnotation.h"
+
+@interface CurrentUserAnnotation : UserAnnotation {
     
 }
-
-@property (nonatomic, readwrite) CLLocationCoordinate2D coordinate;
-@property (nonatomic, copy) NSString *title;
 
 @end

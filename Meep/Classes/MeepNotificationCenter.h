@@ -19,6 +19,8 @@
 #define kHeadingUpdateNotification @"HeadingUpdateNotification"
 #define kLocationErrorNotification @"LocationErrorNotification"
 
+#define kSocketReceivedLocationUpdatesNotification @"kSocketReceivedLocationUpdatesNotification"
+
 @interface MeepNotificationCenter : NSObject {
     
     NSNotificationCenter *notificationCenter;
@@ -32,6 +34,9 @@
 - (void)addObserverForHeadingUpdates:(NSObject *)observer selector:(SEL)selector;
 
 - (void)addObserverForLocationErrors:(NSObject *)observer selector:(SEL)selector;
+
+
+- (void)addObserverForSocketLocationUpdates:(NSObject *)observer selector:(SEL)selector;
 
 - (void)removeObserver:(NSObject*)observer;
 

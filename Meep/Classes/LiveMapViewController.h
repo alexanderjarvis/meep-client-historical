@@ -21,6 +21,7 @@
     
     BOOL firstLocationUpdate;
     CurrentUserAnnotation *currentUserAnnotation;
+    NSMutableArray *otherUserAnnotations;
     
     WebSocketManager *webSocketManager;
     
@@ -29,5 +30,7 @@
 @property (nonatomic, retain) MKMapView *mapView;
 
 - (void)locationUpdated:(NSNotification *)notification;
+
+- (void)newLocationsFromSocket:(NSNotification *)notification;
 
 @end

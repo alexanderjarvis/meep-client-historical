@@ -67,6 +67,10 @@ static MeepNotificationCenter *sharedNotificationCenter = nil;
     [notificationCenter addObserver:observer selector:selector name:kLocationErrorNotification object:nil];
 }
 
+- (void)addObserverForSocketLocationUpdates:(NSObject *)observer selector:(SEL)selector {
+    [notificationCenter addObserver:observer selector:selector name:kSocketReceivedLocationUpdatesNotification object:nil];
+}
+
 - (void)removeObserver:(NSObject*)observer {
     [notificationCenter removeObserver:observer];
 }

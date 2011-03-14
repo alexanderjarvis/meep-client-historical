@@ -10,12 +10,4 @@
 
 @implementation CurrentUserAnnotation
 
-@synthesize coordinate;
-@synthesize title;
-
-- (void)dealloc {
-    [title release];
-    [super dealloc];
-}
-
 @end
