@@ -13,13 +13,12 @@
 @interface LocationService : NSObject <CLLocationManagerDelegate> {
     
     CLLocationManager *locationManager;
-    NSMutableArray *locations;
     CLLocation *currentLocation;
     CLHeading *currentHeading;
 }
 
-@property (nonatomic, retain) CLLocation *currentLocation;
-@property (nonatomic, retain) CLHeading *currentHeading;
+@property (nonatomic, assign) CLLocation *currentLocation;
+@property (nonatomic, assign) CLHeading *currentHeading;
 
 - (id)init;
 

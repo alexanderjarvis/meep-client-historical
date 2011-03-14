@@ -9,6 +9,7 @@
 #import "LiveMapViewController.h"
 
 #import "MeepNotificationCenter.h"
+#import "MeepAppDelegate.h"
 
 @implementation LiveMapViewController
 
@@ -24,8 +25,10 @@
 }
 
 - (void)dealloc {
+    [[MeepNotificationCenter sharedNotificationCenter] removeObserver:self];
     [locationService release];
     [mapView release];
+    [webSocketManager release];
     [super dealloc];
 }
 
@@ -41,17 +44,20 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    // WebSocketManager
+    ConfigManager *configManager = [[MeepAppDelegate sharedAppDelegate] configManager];
+    webSocketManager = [[WebSocketManager alloc] initWithAccessToken:configManager.accessToken];
+    [webSocketManager connect];
+    
+    // Location Service
     [[MeepNotificationCenter sharedNotificationCenter] addObserverForLocationUpdates:self selector:@selector(locationUpdated:)];
     
     locationService = [[LocationService alloc] init];
-    [locationService startUpdatingLocation];
-    
+    [locationService startUpdatingLocation];    
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

@@ -11,7 +11,6 @@
 
 #import "UserManager.h"
 #import "LogoutManager.h"
-#import "WebSocketManager.h"
 
 #define MeetingsURL @"mp://meetings"
 #define NewMeetingURL @"mp://newmeeting"
@@ -37,8 +36,6 @@
 	
     LogoutManager *logoutManager;
 	UserManager *userManager;
-    WebSocketManager *webSocketManager;
-
 }
 
 - (void)applicationDidBecomeActive:(id)sender;

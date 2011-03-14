@@ -22,7 +22,6 @@
         locationManager.delegate = self;
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         locationManager.distanceFilter = 5;
-        locations = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -31,7 +30,6 @@
     [self stopUpdatingLocation];
     locationManager.delegate = nil;
     [locationManager release];
-    [locations release];
     [currentLocation release];
     [currentHeading release];
     [super dealloc];
@@ -76,35 +74,45 @@
     if (headingAge > 5.0) {
         return;
     }
+    
+    BOOL postHeading = NO;
+    
     if (currentHeading == nil) {
-        self.currentHeading = newHeading;
+        currentHeading = [newHeading retain];
+        postHeading = YES;
     }
     
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:currentHeading forKey:kHeadingUpdateNotification];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kHeadingUpdateNotification object:self userInfo:dictionary];
+    if (postHeading) {
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObject:currentHeading forKey:kHeadingUpdateNotification];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kHeadingUpdateNotification object:self userInfo:dictionary];
+    }
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    
-    // Add to locations array for tracing
-    [locations addObject:newLocation];
-    
+        
     // Ignore old locations
     NSTimeInterval locationAge = [newLocation.timestamp timeIntervalSinceNow];
     if (locationAge > 5.0) {
         return;
     }
     
+    BOOL postLocation = NO;
+    
     // If bestCurrentLocation has not been set yet, or if the new location has a higher accuracy.
     if (currentLocation == nil) {
-        self.currentLocation = newLocation;
+        currentLocation = [newLocation retain];
+        postLocation = YES;
     } else if (newLocation.horizontalAccuracy < currentLocation.horizontalAccuracy) {
-        self.currentLocation = newLocation;
+        currentLocation = [newLocation retain];
+        postLocation = YES;
     }
     
-    NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[currentLocation copy] forKey:kLocationUpdateNotification];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kLocationUpdateNotification object:self userInfo:dictionary];
-        
+    if (postLocation) {
+        NSDictionary *dictionary = [NSDictionary dictionaryWithObject:currentLocation forKey:kLocationUpdateNotification];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kLocationUpdateNotification object:self userInfo:dictionary];
+    }
+    
 }
 
 - (void)locationManager:(CLLocationManager *)manager monitoringDidFailForRegion:(CLRegion *)region withError:(NSError *)error {

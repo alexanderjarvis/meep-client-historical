@@ -19,6 +19,8 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
 	// Title
 	self.title = @"Meep";
 	
@@ -88,10 +90,7 @@
                                              selector:@selector(applicationDidBecomeActive:) 
                                                  name:UIApplicationDidBecomeActiveNotification 
                                                object:nil];
-	// WebSocketManager
-    webSocketManager = [[WebSocketManager alloc] initWithAccessToken:configManager.accessToken];
-    
-	[super viewDidLoad];
+	
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -154,7 +153,6 @@
 }
 
 - (void)dealloc {
-    [webSocketManager release];
 	[launcherView release];
 	[meetingsItem release];
 	[friendsItem release];
@@ -233,9 +231,6 @@
 	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
 	friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
 	NSLog(@"connectionRequestsFrom count: %u", [[user connectionRequestsFrom] count]);
-    
-    // This will only connect if not already connected
-    [webSocketManager connect];
 }
 
 - (void)getUserFailedWithError:(NSError *)error {

@@ -23,10 +23,10 @@
     if (self) {
         client = [[SocketIoClient alloc] initWithHost:SERVICE_HOST port:SERVICE_PORT resource:@"/websocket/locations/socket/" secure:NO accessToken:accessToken];
         client.delegate = self;
-        [[MeepNotificationCenter sharedNotificationCenter] addObserverForLocationUpdates:self selector:@selector(locationUpdated:)];
         recentLocations = [[NSMutableArray alloc] initWithCapacity:10];
         recentLocationsCount = 0;
         messageSending = NO;
+        [[MeepNotificationCenter sharedNotificationCenter] addObserverForLocationUpdates:self selector:@selector(locationUpdated:)];
     }
     return self;
 }
@@ -41,9 +41,12 @@
 
 - (void)dealloc {
     [self invalidateTimer];
-    [client disconnect];
-    [client release];
+    [[MeepNotificationCenter sharedNotificationCenter] removeObserver:self];
     [recentLocations release];
+    [client disconnect];
+    client.delegate = nil;
+    [client release];
+    
     [super dealloc];
 }
 

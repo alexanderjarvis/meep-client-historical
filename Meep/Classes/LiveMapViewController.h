@@ -11,6 +11,7 @@
 
 #import "LocationService.h"
 #import "CurrentUserAnnotation.h"
+#import "WebSocketManager.h"
 
 @interface LiveMapViewController : UIViewController <MKMapViewDelegate> {
     
@@ -20,6 +21,8 @@
     
     BOOL firstLocationUpdate;
     CurrentUserAnnotation *currentUserAnnotation;
+    
+    WebSocketManager *webSocketManager;
     
 }
 

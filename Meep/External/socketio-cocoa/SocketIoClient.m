@@ -30,7 +30,6 @@
 - (id)initWithHost:(NSString *)host port:(int)port resource:(NSString *)resource secure:(BOOL)secure accessToken:(NSString *)accessToken; {
     self = [super init];
     if (self) {
-        
         _queue = [[NSMutableArray array] retain];
         _connectTimeout = 5.0;
         _tryAgainOnConnectTimeout = YES;
@@ -48,11 +47,8 @@
 }
 
 - (void)dealloc {
-    if (_timeout != nil) {
-        [_timeout invalidate];
-        [_timeout release];
-        _timeout = nil;
-    }
+    [_timeout release];
+    _timeout = nil;
     _webSocket.delegate = nil;
     [_webSocket release];
     [_queue release];
@@ -89,6 +85,7 @@
 
 - (void)disconnect {
     [self log:@"disconnect"];
+    [_timeout invalidate];
     [_webSocket close];
 }
 
@@ -209,8 +206,7 @@
                                                  target:self 
                                                selector:@selector(onTimeout) 
                                                userInfo:nil 
-                                                repeats:NO] retain];
-    
+                                                repeats:NO] retain];    
 }
 
 - (void)onHeartbeat:(NSString *)heartbeat {
