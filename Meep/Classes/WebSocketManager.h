@@ -18,15 +18,12 @@
     NSUInteger recentLocationsCount;
     NSTimer *locationUpdateTimer;
     BOOL messageSending;
+    
+    CLHeading *currentHeading;
 }
 
 - (id)initWithAccessToken:(NSString *)accessToken;
 - (void)connect;
 - (void)disconnect;
-
-- (void)locationUpdated:(NSNotification *)notification;
-- (void)sendLocationUpdates;
-- (void)startTimer;
-- (void)invalidateTimer;
 
 @end

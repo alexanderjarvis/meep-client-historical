@@ -14,6 +14,14 @@
 #import "OtherUserAnnotation.h"
 #import "MapView-AnnotationZoom.h"
 
+@interface LiveMapViewController (private)
+// LocationService
+- (void)headingUpdated:(NSNotification *)notification;
+- (void)locationUpdated:(NSNotification *)notification;
+// WebSocketManager
+- (void)newLocationsFromSocket:(NSNotification *)notification;
+@end
+
 @implementation LiveMapViewController
 
 @synthesize mapView;
@@ -26,8 +34,10 @@
 }
 
 - (void)dealloc {
-    [otherUserAnnotations release];
     [[MeepNotificationCenter sharedNotificationCenter] removeObserver:self];
+    [currentHeading release];
+    [currentLocation release];
+    [otherUserAnnotations release];
     [locationService release];
     [mapView release];
     [webSocketManager release];
@@ -51,6 +61,7 @@
     firstLocationUpdate = YES;
     otherUserAnnotations = [[NSMutableArray alloc] initWithCapacity:1];
     
+    [[MeepNotificationCenter sharedNotificationCenter] addObserverForHeadingUpdates:self selector:@selector(headingUpdated:)];
     [[MeepNotificationCenter sharedNotificationCenter] addObserverForLocationUpdates:self selector:@selector(locationUpdated:)];
     [[MeepNotificationCenter sharedNotificationCenter] addObserverForSocketLocationUpdates:self selector:@selector(newLocationsFromSocket:)];
     
@@ -127,8 +138,12 @@
 #pragma mark -
 #pragma mark LocationService
 
+- (void)headingUpdated:(NSNotification *)notification {
+    currentHeading = [[[notification userInfo] objectForKey:kHeadingUpdateNotification] retain];
+}
+
 - (void)locationUpdated:(NSNotification *)notification {
-    CLLocation *currentLocation = [[notification userInfo] objectForKey:kLocationUpdateNotification];
+    currentLocation = [[[notification userInfo] objectForKey:kLocationUpdateNotification] retain];
     NSLog(@"latitude: %f", currentLocation.coordinate.latitude);
     NSLog(@"longitude: %f", currentLocation.coordinate.longitude);
     

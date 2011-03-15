@@ -18,6 +18,15 @@
 #import "RecentUserLocationsDTO.h"
 #import "MeepNotificationCenter.h"
 
+@interface WebSocketManager (private)
+- (void)sendLocationUpdates;
+- (void)startTimer;
+- (void)invalidateTimer;
+// Location Service
+- (void)headingUpdated:(NSNotification *)notification;
+- (void)locationUpdated:(NSNotification *)notification;
+@end
+
 @implementation WebSocketManager
 
 - (id)initWithAccessToken:(NSString *)accessToken {
@@ -28,22 +37,15 @@
         recentLocations = [[NSMutableArray alloc] initWithCapacity:10];
         recentLocationsCount = 0;
         messageSending = NO;
+        [[MeepNotificationCenter sharedNotificationCenter] addObserverForHeadingUpdates:self selector:@selector(headingUpdated:)];
         [[MeepNotificationCenter sharedNotificationCenter] addObserverForLocationUpdates:self selector:@selector(locationUpdated:)];
     }
     return self;
 }
 
-- (void)connect {
-    [client connect];
-}
-
-- (void)disconnect {
-    [client disconnect];
-}
-
 - (void)dealloc {
-    [self invalidateTimer];
     [[MeepNotificationCenter sharedNotificationCenter] removeObserver:self];
+    [self invalidateTimer];
     [recentLocations release];
     [client disconnect];
     client.delegate = nil;
@@ -52,25 +54,12 @@
     [super dealloc];
 }
 
-- (void)locationUpdated:(NSNotification *)notification {
-    CLLocation *currentLocation = [[notification userInfo] objectForKey:kLocationUpdateNotification];
-    
-    UserLocationDTO *userLocation = [[UserLocationDTO alloc] init];
-    userLocation.time = [ISO8601DateFormatter stringFromDate:currentLocation.timestamp];
-    userLocation.coordinate.latitude = [NSNumber numberWithDouble:currentLocation.coordinate.latitude];
-    userLocation.coordinate.longitude = [NSNumber numberWithDouble:currentLocation.coordinate.longitude];
-    userLocation.speed = [NSNumber numberWithDouble:currentLocation.speed];
-    userLocation.altitude = [NSNumber numberWithDouble:currentLocation.altitude];
-    //userLocation.trueHeading = [NSNumber numberWithDouble:currentLocation.];
-    userLocation.horizonalAccuracy = [NSNumber numberWithDouble:currentLocation.horizontalAccuracy];
-    userLocation.verticalAccuracy = [NSNumber numberWithDouble:currentLocation.verticalAccuracy];
-    
-    [recentLocations addObject:userLocation];
-    recentLocationsCount++;
-    
-    if (locationUpdateTimer == nil || ![locationUpdateTimer isValid]) {
-        [self startTimer];
-    }
+- (void)connect {
+    [client connect];
+}
+
+- (void)disconnect {
+    [client disconnect];
 }
 
 - (void)sendLocationUpdates {
@@ -92,13 +81,16 @@
     }
 }
 
+/*
+ * Waits half a second before sending location updates to group them together.
+ */
 - (void)startTimer {
     [self invalidateTimer];
     locationUpdateTimer = [[NSTimer timerWithTimeInterval:0.5
                                                    target:self 
                                                  selector:@selector(sendLocationUpdates) 
                                                  userInfo:nil 
-                                                  repeats:YES] retain];
+                                                  repeats:NO] retain];
     
     [[NSRunLoop currentRunLoop] addTimer:locationUpdateTimer forMode:NSRunLoopCommonModes];
 }
@@ -106,6 +98,38 @@
 - (void)invalidateTimer {
     if (locationUpdateTimer != nil) {
         [locationUpdateTimer invalidate];
+    }
+}
+
+#pragma mark -
+#pragma mark LocationService
+
+- (void)headingUpdated:(NSNotification *)notification {
+    currentHeading = [[[notification userInfo] objectForKey:kHeadingUpdateNotification] retain];
+}
+
+- (void)locationUpdated:(NSNotification *)notification {
+    CLLocation *currentLocation = [[notification userInfo] objectForKey:kLocationUpdateNotification];
+    
+    UserLocationDTO *userLocation = [[UserLocationDTO alloc] init];
+    userLocation.time = [ISO8601DateFormatter stringFromDate:currentLocation.timestamp];
+    userLocation.coordinate.latitude = [NSNumber numberWithDouble:currentLocation.coordinate.latitude];
+    userLocation.coordinate.longitude = [NSNumber numberWithDouble:currentLocation.coordinate.longitude];
+    userLocation.speed = [NSNumber numberWithDouble:currentLocation.speed];
+    userLocation.altitude = [NSNumber numberWithDouble:currentLocation.altitude];
+    if (currentHeading != nil) {
+        // Round to 2 decimal places.
+        double heading = round(currentHeading.trueHeading * 100) / 100;
+        userLocation.trueHeading = [NSNumber numberWithDouble:heading];
+    }
+    userLocation.horizonalAccuracy = [NSNumber numberWithDouble:currentLocation.horizontalAccuracy];
+    userLocation.verticalAccuracy = [NSNumber numberWithDouble:currentLocation.verticalAccuracy];
+    
+    [recentLocations addObject:userLocation];
+    recentLocationsCount++;
+    
+    if (locationUpdateTimer == nil || ![locationUpdateTimer isValid]) {
+        [self startTimer];
     }
 }
 
@@ -131,10 +155,10 @@
 
 - (void)socketIoClientDidConnect:(SocketIoClient *)client {
     NSLog(@"didConnect");
+    [self sendLocationUpdates];
 }
 - (void)socketIoClientDidDisconnect:(SocketIoClient *)client {
      NSLog(@"didDisconnect");
-    [self invalidateTimer];
 }
 
 // optional

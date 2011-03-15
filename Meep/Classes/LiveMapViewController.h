@@ -25,12 +25,13 @@
     
     WebSocketManager *webSocketManager;
     
+    CLHeading *currentHeading;
+    CLLocation *currentLocation;
+    
 }
 
 @property (nonatomic, retain) MKMapView *mapView;
 
-- (void)locationUpdated:(NSNotification *)notification;
 
-- (void)newLocationsFromSocket:(NSNotification *)notification;
 
 @end

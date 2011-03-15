@@ -75,9 +75,21 @@
         return;
     }
     
+    // A negative value means that the reported heading is invalid
+    if (newHeading.headingAccuracy < 0.0) {
+        return;
+    }
+    
     BOOL postHeading = NO;
     
     if (currentHeading == nil) {
+        currentHeading = [newHeading retain];
+        postHeading = YES;
+    
+    // If the new heading is the same as the previous then don't update it.
+    } else if (newHeading.trueHeading == currentHeading.trueHeading) {
+        return;
+    } else {
         currentHeading = [newHeading retain];
         postHeading = YES;
     }
@@ -97,13 +109,27 @@
         return;
     }
     
+    // "A negative value indicates that the location’s latitude and longitude are invalid."
+    if (newLocation.horizontalAccuracy < 0.0) {
+        return;
+    }
+    
     BOOL postLocation = NO;
     
     // If bestCurrentLocation has not been set yet, or if the new location has a higher accuracy.
     if (currentLocation == nil) {
         currentLocation = [newLocation retain];
         postLocation = YES;
-    } else if (newLocation.horizontalAccuracy < currentLocation.horizontalAccuracy) {
+    
+    // If the new location is the same as the previous, then don't update it.
+    } else if (newLocation.coordinate.latitude == currentLocation.coordinate.latitude && 
+               newLocation.coordinate.longitude == currentLocation.coordinate.longitude) {
+        return;
+    
+    // If the horizontal accuracy is the same or better than previously
+    // or if the horizontal accuracy is the same or better than the desired accuracy of the LocationManager.
+    } else if (newLocation.horizontalAccuracy <= currentLocation.horizontalAccuracy || 
+               newLocation.horizontalAccuracy <= locationManager.desiredAccuracy) {
         currentLocation = [newLocation retain];
         postLocation = YES;
     }
