@@ -127,9 +127,9 @@
         return;
     
     // If the horizontal accuracy is the same or better than previously
-    // or if the horizontal accuracy is the same or better than the desired accuracy of the LocationManager.
+    // or if the horizontal accuracy is the same or better than 10 metres
     } else if (newLocation.horizontalAccuracy <= currentLocation.horizontalAccuracy || 
-               newLocation.horizontalAccuracy <= locationManager.desiredAccuracy) {
+               newLocation.horizontalAccuracy <= kCLLocationAccuracyNearestTenMeters) {
         currentLocation = [newLocation retain];
         postLocation = YES;
     }
