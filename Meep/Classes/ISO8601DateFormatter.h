@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define ISO8601DateFormat @"yyyy-MM-dd'T'HH:mm:ss'Z'"
+#define ISO8601DateFormat @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
 
 @interface ISO8601DateFormatter : NSObject {
 
