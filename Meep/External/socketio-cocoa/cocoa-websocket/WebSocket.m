@@ -109,6 +109,7 @@ enum {
 
 -(void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err {
     if (!connected) {
+        [socket disconnect];
         [self _dispatchFailure:[NSNumber numberWithInt:WebSocketErrorConnectionFailed]];
     } else {
         [self _dispatchClosed];
@@ -150,6 +151,7 @@ enum {
             
             [self _readNextMessage];
         } else {
+            [socket disconnect];
             [self _dispatchFailure:[NSNumber numberWithInt:WebSocketErrorHandshakeFailed]];
         }
     } else if (tag == WebSocketTagMessage) {

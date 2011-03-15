@@ -75,11 +75,7 @@
 }
 
 - (void)connect {
-    if (!_isConnected) {
-        
-        if (_isConnecting) {
-            [self disconnect];
-        }
+    if (!_isConnected && !_isConnecting) {
         
         _isConnecting = YES;
 
@@ -265,6 +261,11 @@
     }
 }
 
+- (void)onFail {
+    _isConnecting = NO;
+    [self connect];
+}
+
 - (void)onMessage:(NSString *)message {
     [self log:[NSString stringWithFormat:@"Message: %@", message]];
     
@@ -297,6 +298,8 @@
 
 - (void)webSocket:(WebSocket *)ws didFailWithError:(NSError *)error {
     [self log:[NSString stringWithFormat:@"Connection failed with error: %@", [error localizedDescription]]];
+    [self onFail];
+    //TODO: show error to user
 }
 
 - (void)webSocketDidClose:(WebSocket*)webSocket {
