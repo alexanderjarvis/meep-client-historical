@@ -13,8 +13,11 @@
 #import "RecentUserLocationsDTO.h"
 #import "OtherUserAnnotation.h"
 #import "MapView-AnnotationZoom.h"
+#import "MeetingPlaceAnnotation.h"
+#import "ISO8601DateFormatter.h"
 
 @interface LiveMapViewController (private)
+- (void)addValidMeetingAnnotations;
 // LocationService
 - (void)headingUpdated:(NSNotification *)notification;
 - (void)locationUpdated:(NSNotification *)notification;
@@ -59,6 +62,7 @@
     self.title = @"Live Map";
     
     firstLocationUpdate = YES;
+    meetingPlaceAnnotations = [[NSMutableArray alloc] initWithCapacity:1];
     otherUserAnnotations = [[NSMutableArray alloc] initWithCapacity:1];
     
     [[MeepNotificationCenter sharedNotificationCenter] addObserverForHeadingUpdates:self selector:@selector(headingUpdated:)];
@@ -75,6 +79,10 @@
     [locationService startUpdatingLocation];    
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self addValidMeetingAnnotations];
+}
+
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
@@ -82,6 +90,92 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)addValidMeetingAnnotations {
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    
+    // Clear up any meeting annotations where the meeting has been deleted
+    for (MeetingPlaceAnnotation *meetingPlaceAnnotation in meetingPlaceAnnotations) {
+        BOOL meetingExists = NO;
+        for (MeetingDTO *meeting in currentUser.meetingsRelated) {
+            if ([meeting._id isEqualToNumber:meetingPlaceAnnotation._id]) {
+                meetingExists = YES;
+                break;
+            }
+        }
+        if (!meetingExists) {
+            [mapView removeAnnotation:meetingPlaceAnnotation];
+            [meetingPlaceAnnotations removeObject:meetingPlaceAnnotation];
+        }
+    }
+    
+    // Obtain valid meeting annotations
+    for (MeetingDTO *meeting in currentUser.meetingsRelated) {
+        for (AttendeeDTO *attendee in meeting.attendees) {
+            if ([attendee._id isEqualToNumber:currentUser._id]) {
+                // If this user is attending.
+                if ([attendee.rsvp isEqualToString:@"YES"]) {
+                    
+                    // TODO check time
+                    
+                    
+                    // Check if the annotation exists already.
+                    MeetingPlaceAnnotation *newMeetingPlaceAnnotation = nil;
+                    for (MeetingPlaceAnnotation *meetingPlaceAnnotation in meetingPlaceAnnotations) {
+                        if ([meetingPlaceAnnotation._id isEqualToNumber:meeting._id]) {
+                            newMeetingPlaceAnnotation = meetingPlaceAnnotation;
+                            break;
+                        }
+                    }
+                    
+                    BOOL newAnnotation = NO;
+                    // If the annotation does not exist add it to the map view and meetingPlaceAnnotations array
+                    if (newMeetingPlaceAnnotation == nil) {
+                        newAnnotation = YES;
+                        newMeetingPlaceAnnotation = [[[MeetingPlaceAnnotation alloc] init] autorelease];
+                        newMeetingPlaceAnnotation._id = meeting._id;
+                        [meetingPlaceAnnotations addObject:newMeetingPlaceAnnotation];
+                    }
+                    
+                    // Update annotation properties
+                    newMeetingPlaceAnnotation.title = meeting.title;
+                    newMeetingPlaceAnnotation.subtitle = [NSDateFormatter localizedStringFromDate:[ISO8601DateFormatter dateFromString:meeting.time] 
+                                                                                     dateStyle:kCFDateFormatterLongStyle
+                                                                                     timeStyle:kCFDateFormatterShortStyle];
+                    
+                    CLLocationCoordinate2D newMeetingPlaceCoordinate = CLLocationCoordinate2DMake([meeting.place.latitude doubleValue], 
+                                                                                                [meeting.place.longitude doubleValue]);
+                    
+                    // Add the annotation to the map view.
+                    if (newAnnotation) {
+                        newMeetingPlaceAnnotation.coordinate = newMeetingPlaceCoordinate;
+                        [mapView addAnnotation:newMeetingPlaceAnnotation];
+                        [mapView zoomToFitAnnotations];
+                    } else {
+                        // Update the annotations coordinate with an animation.
+                        [UIView beginAnimations:@"" context:NULL];
+                        [UIView setAnimationDuration:.5];
+                        newMeetingPlaceAnnotation.coordinate = newMeetingPlaceCoordinate;
+                        [UIView commitAnimations];
+                    }
+                    
+                } else {
+                    // Check if the map contains any meeting place annotations which this user was
+                    // previously attending and remove them.
+                    for (MeetingPlaceAnnotation *meetingPlaceAnnotation in meetingPlaceAnnotations) {
+                        if ([meetingPlaceAnnotation._id isEqualToNumber:meeting._id]) {
+                            [mapView removeAnnotation:meetingPlaceAnnotation];
+                            [meetingPlaceAnnotations removeObject:meetingPlaceAnnotation];
+                        }
+                    }
+                }
+                
+                // Stop iterating attendees for this meeting as the current user has been found.
+                break;
+            }
+        }
+    }
 }
 
 #pragma mark -
@@ -121,6 +215,24 @@
 		
 		return annotationView;		
 	}
+    
+    // If Meeting Place Annotation
+    if ([annotation isKindOfClass:[MeetingPlaceAnnotation class]]) {
+        static NSString *meetingPlaceAnnotationIdentifier = @"Meeting Place Annotation Identifier";
+		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:meetingPlaceAnnotationIdentifier];
+		
+		if (annotationView == nil) {
+			annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation 
+                                                          reuseIdentifier:meetingPlaceAnnotationIdentifier];
+		}
+        annotationView.annotation = annotation;
+		annotationView.enabled = YES;
+		annotationView.canShowCallout = YES;
+		
+		return annotationView;		
+	}
+    
+    
     
     return nil;
 }

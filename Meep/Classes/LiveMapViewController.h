@@ -20,6 +20,7 @@
     IBOutlet MKMapView *mapView;
     
     BOOL firstLocationUpdate;
+    NSMutableArray *meetingPlaceAnnotations;
     NSMutableArray *otherUserAnnotations;
     
     WebSocketManager *webSocketManager;
@@ -31,7 +32,5 @@
 }
 
 @property (nonatomic, retain) MKMapView *mapView;
-
-
 
 @end
