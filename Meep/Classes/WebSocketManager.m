@@ -17,6 +17,7 @@
 #import "DictionaryModelMapper.h"
 #import "RecentUserLocationsDTO.h"
 #import "MeepNotificationCenter.h"
+#import "Math.h"
 
 @interface WebSocketManager (private)
 - (void)sendLocationUpdates;
@@ -117,13 +118,12 @@
     userLocation.coordinate.longitude = [NSNumber numberWithDouble:currentLocation.coordinate.longitude];
     userLocation.speed = [NSNumber numberWithDouble:currentLocation.speed];
     userLocation.altitude = [NSNumber numberWithDouble:currentLocation.altitude];
+    // Heading may not be available
     if (currentHeading != nil) {
-        // Round to 2 decimal places.
-        double heading = round(currentHeading.trueHeading * 100) / 100;
-        userLocation.trueHeading = [NSNumber numberWithDouble:heading];
+        userLocation.trueHeading = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentHeading.trueHeading]];
     }
-    userLocation.horizonalAccuracy = [NSNumber numberWithDouble:currentLocation.horizontalAccuracy];
-    userLocation.verticalAccuracy = [NSNumber numberWithDouble:currentLocation.verticalAccuracy];
+    userLocation.horizonalAccuracy = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentLocation.horizontalAccuracy]];
+    userLocation.verticalAccuracy = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentLocation.verticalAccuracy]];
     
     [recentLocations addObject:userLocation];
     recentLocationsCount++;

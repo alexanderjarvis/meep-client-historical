@@ -147,33 +147,32 @@
     NSLog(@"latitude: %f", currentLocation.coordinate.latitude);
     NSLog(@"longitude: %f", currentLocation.coordinate.longitude);
     
-    // Update the maps region on the 1st location update.
-    if (firstLocationUpdate) {
-        [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
+    CurrentUserAnnotation *currentUserAnnotation = nil;
     
-    } else {
-    
-        // Remove the previous annotation
-        for (NSObject<MKAnnotation> *annotation in mapView.annotations) {
-            if ([annotation isKindOfClass:[CurrentUserAnnotation class]]) {
-                [annotation setCoordinate:currentLocation.coordinate];
-                [mapView removeAnnotation:annotation];
-            }
-        }
-    }
-    
-    // Add the current users annotation
-    currentUserAnnotation = [[[CurrentUserAnnotation alloc] init] autorelease];
-    currentUserAnnotation.coordinate = currentLocation.coordinate;
-    currentUserAnnotation.title = @"Me";
-    [mapView addAnnotation:currentUserAnnotation];
-    
-    // Set the maps center coordinate to current users location and retain the region span
-    [mapView setRegion:MKCoordinateRegionMake(currentLocation.coordinate, mapView.region.span) animated:YES];
-    
+    // If this is the first location update, then create the annotation for the current user.
     if (firstLocationUpdate) {
         firstLocationUpdate = NO;
+        currentUserAnnotation = [[CurrentUserAnnotation alloc] init];
+        currentUserAnnotation.coordinate = currentLocation.coordinate;
+        currentUserAnnotation.title = @"Me";
+        [mapView addAnnotation:currentUserAnnotation];
+        [currentUserAnnotation release];
+        
+        [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
         [mapView selectAnnotation:currentUserAnnotation animated:YES];
+        
+    } else {
+        // Find this users annotation and update its coordinate with an animation.
+        for (NSObject<MKAnnotation> *annotation in mapView.annotations) {
+            if ([annotation isKindOfClass:[CurrentUserAnnotation class]]) {
+                currentUserAnnotation = (CurrentUserAnnotation *)annotation;
+                [UIView beginAnimations:@"" context:NULL];
+                [UIView setAnimationDuration:.5];
+                currentUserAnnotation.coordinate = currentLocation.coordinate;
+                [UIView commitAnimations];
+                break;
+            }
+        }
     }
 }
 
@@ -184,6 +183,7 @@
     RecentUserLocationsDTO *recentUserLocationsDTO = [[notification userInfo] objectForKey:kSocketReceivedLocationUpdatesNotification];
     
     OtherUserAnnotation *otherUserAnnotation = nil;
+    BOOL newAnnotation = NO;
     
     // If the user already has an annotation then get the object for it.
     for (OtherUserAnnotation *otherUser in otherUserAnnotations) {
@@ -192,7 +192,6 @@
         }
     }
     
-    BOOL newAnnotation = NO;
     // If the user does not have an annotation already then create a new annotation.
     if (otherUserAnnotation == nil) {
         newAnnotation = YES;
@@ -202,20 +201,27 @@
         [otherUserAnnotations addObject:otherUserAnnotation];
     }
     
-    // Update location values.
+    // Update location history of annotation.
     [otherUserAnnotation.locationHistory addObjectsFromArray:recentUserLocationsDTO.locationHistory];
+    
+    // Get most recent location
     UserLocationDTO *userLocationDTO = [[recentUserLocationsDTO locationHistory] lastObject];
-    otherUserAnnotation.coordinate = CLLocationCoordinate2DMake([userLocationDTO.coordinate.latitude doubleValue], 
-                                                                [userLocationDTO.coordinate.longitude doubleValue]);
-    [mapView removeAnnotation:otherUserAnnotation];
-    [mapView addAnnotation:otherUserAnnotation];
+    CLLocationCoordinate2D currentAnnotationLocation = CLLocationCoordinate2DMake([userLocationDTO.coordinate.latitude doubleValue], 
+                                                                                  [userLocationDTO.coordinate.longitude doubleValue]);
     
-    // Show callout and only animate if new
-    [mapView selectAnnotation:otherUserAnnotation animated:newAnnotation];
-    
-    // If new annotation, change the mapView region so that it is shown
+    // If a new annotation, add it to the map view and change region so that it is shown.
     if (newAnnotation) {
+        otherUserAnnotation.coordinate = currentAnnotationLocation;
+        [mapView addAnnotation:otherUserAnnotation];
         [mapView zoomToFitAnnotations];
+        [mapView selectAnnotation:otherUserAnnotation animated:YES];
+        
+    } else {
+        // Update the annotation's coordinate with an animation.
+        [UIView beginAnimations:@"" context:NULL];
+        [UIView setAnimationDuration:.5];
+        otherUserAnnotation.coordinate = currentAnnotationLocation;
+        [UIView commitAnimations];
     }
 }
 

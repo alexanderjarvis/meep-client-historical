@@ -20,13 +20,13 @@
     IBOutlet MKMapView *mapView;
     
     BOOL firstLocationUpdate;
-    CurrentUserAnnotation *currentUserAnnotation;
     NSMutableArray *otherUserAnnotations;
     
     WebSocketManager *webSocketManager;
     
     CLHeading *currentHeading;
     CLLocation *currentLocation;
+    CLLocation *previousLocation;
     
 }
 
