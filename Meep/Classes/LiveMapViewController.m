@@ -17,6 +17,7 @@
 #import "ISO8601DateFormatter.h"
 
 @interface LiveMapViewController (private)
+- (void)showMyLocation;
 - (void)addValidMeetingAnnotations;
 // LocationService
 - (void)headingUpdated:(NSNotification *)notification;
@@ -52,6 +53,21 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (IBAction)myLocationButtonPressed {
+    [self showMyLocation];
+}
+
+- (IBAction)showAllAnnotationsButtonPressed {
+    [mapView zoomToFitAnnotations];
+}
+
+- (void)showMyLocation {
+    if (currentLocation != nil && currentUserAnnotation != nil) {
+        [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
+        [mapView selectAnnotation:currentUserAnnotation animated:YES];
+    }
 }
 
 #pragma mark - View lifecycle
@@ -259,32 +275,25 @@
     NSLog(@"latitude: %f", currentLocation.coordinate.latitude);
     NSLog(@"longitude: %f", currentLocation.coordinate.longitude);
     
-    CurrentUserAnnotation *currentUserAnnotation = nil;
     
     // If this is the first location update, then create the annotation for the current user.
     if (firstLocationUpdate) {
         firstLocationUpdate = NO;
-        currentUserAnnotation = [[CurrentUserAnnotation alloc] init];
+        currentUserAnnotation = [[[CurrentUserAnnotation alloc] init] autorelease];
         currentUserAnnotation.coordinate = currentLocation.coordinate;
         currentUserAnnotation.title = @"Me";
         [mapView addAnnotation:currentUserAnnotation];
         [currentUserAnnotation release];
         
-        [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
-        [mapView selectAnnotation:currentUserAnnotation animated:YES];
+        [self showMyLocation];
         
     } else {
-        // Find this users annotation and update its coordinate with an animation.
-        for (NSObject<MKAnnotation> *annotation in mapView.annotations) {
-            if ([annotation isKindOfClass:[CurrentUserAnnotation class]]) {
-                currentUserAnnotation = (CurrentUserAnnotation *)annotation;
-                [UIView beginAnimations:@"" context:NULL];
-                [UIView setAnimationDuration:.5];
-                currentUserAnnotation.coordinate = currentLocation.coordinate;
-                [UIView commitAnimations];
-                break;
-            }
-        }
+        
+        // Update the current users coordinate with an animation.
+        [UIView beginAnimations:@"" context:NULL];
+        [UIView setAnimationDuration:.5];
+        currentUserAnnotation.coordinate = currentLocation.coordinate;
+        [UIView commitAnimations];
     }
 }
 

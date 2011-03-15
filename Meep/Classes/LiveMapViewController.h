@@ -20,6 +20,7 @@
     IBOutlet MKMapView *mapView;
     
     BOOL firstLocationUpdate;
+    CurrentUserAnnotation *currentUserAnnotation;
     NSMutableArray *meetingPlaceAnnotations;
     NSMutableArray *otherUserAnnotations;
     
@@ -32,5 +33,8 @@
 }
 
 @property (nonatomic, retain) MKMapView *mapView;
+
+- (IBAction)myLocationButtonPressed;
+- (IBAction)showAllAnnotationsButtonPressed;
 
 @end
