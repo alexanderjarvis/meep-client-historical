@@ -32,7 +32,6 @@
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
 	[request setDelegate:self];
 	[request setRequestMethod:@"POST"];
-	[request setUserInfo:[NSDictionary dictionaryWithObject:meeting forKey:meetingKey]];
 	[request startAsynchronous];
 }
 
@@ -43,7 +42,7 @@
 	[super requestFinished:request];
 	
 	if ([request responseStatusCode] == 200) {
-		[delegate declineMeetingSuccessful:[[request userInfo] objectForKey:meetingKey]];
+		[delegate declineMeetingSuccessful];
 	} else {
 		[delegate declineMeetingFailedWithError:[NSError errorWithDomain:[request responseString] 
                                                                    code:[request responseStatusCode] 

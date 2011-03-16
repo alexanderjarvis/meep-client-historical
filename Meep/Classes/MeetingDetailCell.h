@@ -24,9 +24,12 @@
 	IBOutlet UILabel *declinedAmountLabel;
     IBOutlet UILabel *awaitingReplyAmountLabel;
     IBOutlet UISegmentedControl *attendingControl;
+    
     IBOutlet UILabel *alertMeLabel;
     IBOutlet UISlider *alertMeSlider;
     
+    NSString *alertMeLabelPreviousValue;
+    float alertMeSliderPreviousValue;
     NSUInteger alertMeMinutes;
     
 }
@@ -47,10 +50,14 @@
 
 - (IBAction)alertMeSliderValueChanged;
 
-- (IBAction)alertMeSliderDidEndEditing;
+- (IBAction)alertMeSliderTouchDown;
 
-- (void)showAlertMeControl;
+- (IBAction)alertMeSliderTouchUpInside;
 
-- (void)hideAlertMeControl;
+- (void)showAlertMeSlider;
+
+- (void)hideAlertMeSlider;
+
+- (void)rollbackAlertMeSlider;
 
 @end

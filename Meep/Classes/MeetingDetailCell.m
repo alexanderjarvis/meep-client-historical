@@ -54,12 +54,12 @@
         case 0:
             // Attending
             [delegate attendingButtonPressed];
-            [self showAlertMeControl];
+            [self showAlertMeSlider];
             break;
         case 1:
             // Not attending
             [delegate notAttendingButtonPressed];
-            [self hideAlertMeControl];
+            [self hideAlertMeSlider];
             break;
             
     }
@@ -93,20 +93,30 @@
     
 }
 
-- (IBAction)alertMeSliderDidEndEditing {
+- (IBAction)alertMeSliderTouchDown {
+    alertMeLabelPreviousValue = [alertMeLabel.text copy];
+    alertMeSliderPreviousValue = [alertMeSlider value];
+}
+
+- (IBAction)alertMeSliderTouchUpInside {
     [delegate alertMeSliderDidEndEditing:[NSNumber numberWithUnsignedInt:alertMeMinutes]];
 }
 
-- (void)showAlertMeControl {
+- (void)showAlertMeSlider {
     alertMeSlider.enabled = YES;
     alertMeSlider.hidden = NO;
     alertMeLabel.hidden = NO;
 }
 
-- (void)hideAlertMeControl {
+- (void)hideAlertMeSlider {
     alertMeSlider.enabled = NO;
     alertMeSlider.hidden = YES;
     alertMeLabel.hidden = YES;
+}
+
+- (void)rollbackAlertMeSlider {
+    alertMeLabel.text = alertMeLabelPreviousValue;
+    [alertMeSlider setValue:alertMeSliderPreviousValue animated:YES];
 }
 
 - (void)dealloc {

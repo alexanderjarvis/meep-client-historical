@@ -15,14 +15,13 @@
 #import "ISO8601DateFormatter.h"
 #import "AlertView.h"
 #import "MeetingAttendeesViewController.h"
-#import "DeleteMeetingRequestManager.h"
 #import "MeepStyleSheet.h"
 
 @interface MeetingDetailViewController (private)
 - (void)updateTableWithMeeting:(MeetingDTO *)newMeeting;
 - (void)rollbackSelectedSegment;
-- (void)showAlertMeControl;
-- (void)hideAlertMeControl;
+- (void)showAlertMeSlider;
+- (void)hideAlertMeSlider;
 - (void)addDeleteButton;
 - (void)deleteMeeting;
 - (void)deleteMeetingButtonPressed;
@@ -34,6 +33,7 @@
 @synthesize acceptMeetingRequestManager;
 @synthesize declineMeetingRequestManager;
 @synthesize deleteMeetingRequestManager;
+@synthesize updateMinutesBeforeRequestManager;
 @synthesize meetingDetailCell;
 @synthesize deleteMeetingButton;
 
@@ -47,7 +47,7 @@
     
     // Default values
     listenToSegmentChanges = YES;
-    showAlertMeControl = NO;
+    showAlertMeSlider = NO;
     
     MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
@@ -57,6 +57,8 @@
 	[declineMeetingRequestManager setDelegate:self];
     deleteMeetingRequestManager = [[DeleteMeetingRequestManager alloc] initWithAccessToken:configManager.accessToken];
     [deleteMeetingRequestManager setDelegate:self];
+    updateMinutesBeforeRequestManager = [[UpdateMinutesBeforeRequestManager alloc] initWithAccessToken:configManager.accessToken];
+    [updateMinutesBeforeRequestManager setDelegate:self];
     
     // Load the cell into memory before the TableViewDelegate cellForRowAtIndex method because we need to set up
     // and calculate its data.
@@ -104,7 +106,7 @@
                 meetingDetailCell.attendingControl.selectedSegmentIndex = 0;
                 oldSegmentValue = 0;
                 listenToSegmentChanges = YES;
-                showAlertMeControl = YES;
+                showAlertMeSlider = YES;
             }
         } else if ([attendee.rsvp isEqualToString:kNotAttendingKey]) {
             notAttending++;
@@ -113,7 +115,7 @@
                 meetingDetailCell.attendingControl.selectedSegmentIndex = 1;
                 oldSegmentValue = 1;
                 listenToSegmentChanges = YES;
-                showAlertMeControl = NO;
+                showAlertMeSlider = NO;
             }
         }
     }
@@ -174,6 +176,7 @@
     [acceptMeetingRequestManager release];
     [declineMeetingRequestManager release];
     [deleteMeetingRequestManager release];
+    [updateMinutesBeforeRequestManager release];
     [deleteMeetingButton release];
     [super dealloc];
 }
@@ -181,15 +184,15 @@
 #pragma mark -
 #pragma mark Private
 
-- (void)showAlertMeControl {
-    [meetingDetailCell hideAlertMeControl];
-    showAlertMeControl = YES;
+- (void)showAlertMeSlider {
+    [meetingDetailCell hideAlertMeSlider];
+    showAlertMeSlider = YES;
     [[super tableView] reloadData];
 }
 
-- (void)hideAlertMeControl {
-    [meetingDetailCell hideAlertMeControl];
-    showAlertMeControl = NO;
+- (void)hideAlertMeSlider {
+    [meetingDetailCell hideAlertMeSlider];
+    showAlertMeSlider = NO;
     [[super tableView] reloadData];
 }
 
@@ -253,10 +256,10 @@
             meetingDetailCell.declinedAmountLabel.text = [NSString stringWithFormat:@"%u", notAttending];
             meetingDetailCell.awaitingReplyAmountLabel.text = [NSString stringWithFormat:@"%u", awaitingReply];
             
-            if (showAlertMeControl) {
-                [meetingDetailCell showAlertMeControl];
+            if (showAlertMeSlider) {
+                [meetingDetailCell showAlertMeSlider];
             } else {
-                [meetingDetailCell hideAlertMeControl];
+                [meetingDetailCell hideAlertMeSlider];
             }
             
             return meetingDetailCell;
@@ -326,7 +329,7 @@
     
     if (section == 0 && row == 0) {
         // Value of height from MeetingDetailCell.xib
-        if (showAlertMeControl) {
+        if (showAlertMeSlider) {
             return MeetingDetailCellHeightExpanded;
         } else {
             return MeetingDetailCellHeightNormal;
@@ -377,54 +380,55 @@
 
 - (void)alertMeSliderDidEndEditing:(NSNumber *)minutes {
     //
-    
+    [updateMinutesBeforeRequestManager updateMinutesBefore:minutes forMeeting:thisMeeting];
 }
 
 #pragma mark -
 #pragma mark AcceptMeetingRequestManagerDelegate
 
-- (void)acceptMeetingSuccessful:(MeetingDTO *)meeting {
+- (void)acceptMeetingSuccessful {
+    listenToSegmentChanges = YES;
     UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-    for (AttendeeDTO *attendee in meeting.attendees) {
+    for (AttendeeDTO *attendee in thisMeeting.attendees) {
         if ([attendee._id isEqualToNumber:currentUser._id]) {
             attendee.rsvp = kAttendingKey;
-            [self updateTableWithMeeting:meeting];
+            [self updateTableWithMeeting:thisMeeting];
         }
     }
 }
 
 - (void)acceptMeetingFailedWithError:(NSError *)error {
     [self rollbackSelectedSegment];
-    [self showAlertMeControl];
+    [self showAlertMeSlider];
 }
 
 - (void)acceptMeetingFailedWithNetworkError:(NSError *)error {
     [self rollbackSelectedSegment];
-    [self showAlertMeControl];
+    [self showAlertMeSlider];
     [AlertView showNetworkAlert:error];
 }
 
 #pragma mark -
 #pragma mark DeclineMeetingRequestManagerDelegate
 
-- (void)declineMeetingSuccessful:(MeetingDTO *)meeting {
+- (void)declineMeetingSuccessful {
     UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-    for (AttendeeDTO *attendee in meeting.attendees) {
+    for (AttendeeDTO *attendee in thisMeeting.attendees) {
         if ([attendee._id isEqualToNumber:currentUser._id]) {
             attendee.rsvp = kNotAttendingKey;
-            [self updateTableWithMeeting:meeting];
+            [self updateTableWithMeeting:thisMeeting];
         }
     }
 }
 
 - (void)declineMeetingFailedWithError:(NSError *)error {
     [self rollbackSelectedSegment];
-    [self hideAlertMeControl];
+    [self hideAlertMeSlider];
 }
 
 - (void)declineMeetingFailedWithNetworkError:(NSError *)error {
     [self rollbackSelectedSegment];
-    [self hideAlertMeControl];
+    [self hideAlertMeSlider];
     [AlertView showNetworkAlert:error];
 }
 
@@ -441,6 +445,22 @@
 }
 
 - (void)deleteMeetingFailedWithNetworkError:(NSError *)error {
+    [AlertView showNetworkAlert:error];
+}
+
+#pragma mark -
+#pragma mark UpdateMinutesBeforeRequestManagerDelegate
+
+- (void)updateMinutesBeforeSuccessful {
+    //
+}
+
+- (void)updateMinutesBeforeFailedWithError:(NSError *)error {
+    [meetingDetailCell rollbackAlertMeSlider];
+}
+
+- (void)updateMinutesBeforeFailedWithNetworkError:(NSError *)error {
+    [meetingDetailCell rollbackAlertMeSlider];
     [AlertView showNetworkAlert:error];
 }
 

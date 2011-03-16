@@ -1,26 +1,27 @@
 //
-//  AcceptMeetingRequestManager.m
+//  UpdateMinutesBeforeRequestManager.m
 //  Meep
 //
-//  Created by Alex Jarvis on 05/03/2011.
+//  Created by Alex Jarvis on 16/03/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "AcceptMeetingRequestManager.h"
+#import "UpdateMinutesBeforeRequestManager.h"
+
 #import "MeepAppDelegate.h"
 #import "ASIHTTPRequest.h"
 
-@implementation AcceptMeetingRequestManager
+@implementation UpdateMinutesBeforeRequestManager
 
 @synthesize delegate;
 
-- (void)acceptMeeting:(MeetingDTO *)meeting {
+- (void)updateMinutesBefore:(NSNumber *)minutes forMeeting:(MeetingDTO *)meeting {
 	
 	// Build up the URL
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	NSString *baseURL = [[meepAppDelegate configManager] serviceUrl];
 	NSString *resource = @"meetings/";
-	NSString *resourceEnd = @"/accept";
+	NSString *resourceEnd = @"/minutes-before/";
 	
 	NSString *queryString = @"?oauth_token=";
 	NSString *fullQueryString = [queryString stringByAppendingString:accessToken];
@@ -31,7 +32,8 @@
 	
 	ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:fullURL]];
 	[request setDelegate:self];
-	[request setRequestMethod:@"POST"];
+	[request setRequestMethod:@"PUT"];
+    [request appendPostData:[[minutes stringValue] dataUsingEncoding:NSUTF8StringEncoding]];
 	[request startAsynchronous];
 }
 
@@ -42,11 +44,11 @@
 	[super requestFinished:request];
 	
 	if ([request responseStatusCode] == 200) {
-		[delegate acceptMeetingSuccessful];
+		[delegate updateMinutesBeforeSuccessful];
 	} else {
-		[delegate acceptMeetingFailedWithError:[NSError errorWithDomain:[request responseString] 
-																code:[request responseStatusCode] 
-															userInfo:nil]];
+		[delegate updateMinutesBeforeFailedWithError:[NSError errorWithDomain:[request responseString] 
+                                                                    code:[request responseStatusCode] 
+                                                                userInfo:nil]];
 	}
 	
 }
@@ -55,7 +57,7 @@
 	[super requestFailed:request];
     
     if (responseOk) {
-        [delegate acceptMeetingFailedWithNetworkError:[request error]];
+        [delegate updateMinutesBeforeFailedWithNetworkError:[request error]];
     }
 }
 

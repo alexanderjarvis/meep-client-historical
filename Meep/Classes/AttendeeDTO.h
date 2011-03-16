@@ -15,6 +15,7 @@
 	NSString *firstName;
 	NSString *lastName;
 	NSString *rsvp;
+    NSNumber *minutesBefore;
     
 }
 
@@ -22,5 +23,6 @@
 @property (nonatomic, copy) NSString *firstName;
 @property (nonatomic, copy) NSString *lastName;
 @property (nonatomic, copy) NSString *rsvp;
+@property (nonatomic, copy) NSNumber *minutesBefore;
 
 @end

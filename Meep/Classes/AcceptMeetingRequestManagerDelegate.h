@@ -14,7 +14,7 @@
 
 @required
 
-- (void)acceptMeetingSuccessful:(MeetingDTO *)meeting;
+- (void)acceptMeetingSuccessful;
 
 - (void)acceptMeetingFailedWithError:(NSError *)error;
 

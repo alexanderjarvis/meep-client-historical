@@ -12,8 +12,6 @@
 #import "AcceptMeetingRequestManagerDelegate.h"
 #import "MeetingDTO.h"
 
-#define meetingKey @"meeting"
-
 @interface AcceptMeetingRequestManager : AccessTokenRequestManager {
 	id <AcceptMeetingRequestManagerDelegate> delegate;
 }

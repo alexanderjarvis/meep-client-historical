@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 #import "MeetingDetailCell.h"
-#import "AcceptMeetingRequestManagerDelegate.h"
-#import "DeclineMeetingRequestManagerDelegate.h"
-#import "DeleteMeetingRequestManagerDelegate.h"
+#import "AcceptMeetingRequestManager.h"
+#import "DeclineMeetingRequestManager.h"
+#import "DeleteMeetingRequestManager.h"
+#import "UpdateMinutesBeforeRequestManager.h"
 #import "MeetingDTO.h"
 #import "MeetingDetailCell.h"
 
@@ -25,6 +26,7 @@
                                                                 AcceptMeetingRequestManagerDelegate, 
                                                                 DeclineMeetingRequestManagerDelegate,
                                                                 DeleteMeetingRequestManagerDelegate,
+                                                                UpdateMinutesBeforeRequestManagerDelegate,
                                                                 UIAlertViewDelegate> {
     NSUInteger awaitingReply;
     NSUInteger attending;
@@ -33,9 +35,10 @@
     AcceptMeetingRequestManager *acceptMeetingRequestManager;
     DeclineMeetingRequestManager *declineMeetingRequestManager;
     DeleteMeetingRequestManager *deleteMeetingRequestManager;
+    UpdateMinutesBeforeRequestManager *updateMinutesBeforeRequestManager;
     MeetingDetailCell *meetingDetailCell;
     BOOL listenToSegmentChanges;
-    BOOL showAlertMeControl;
+    BOOL showAlertMeSlider;
     NSInteger oldSegmentValue;
                                                                     
     IBOutlet UIButton *deleteMeetingButton;
@@ -46,6 +49,7 @@
 @property (nonatomic, retain) AcceptMeetingRequestManager *acceptMeetingRequestManager;
 @property (nonatomic, retain) DeclineMeetingRequestManager *declineMeetingRequestManager;
 @property (nonatomic, retain) DeleteMeetingRequestManager *deleteMeetingRequestManager;
+@property (nonatomic, retain) UpdateMinutesBeforeRequestManager *updateMinutesBeforeRequestManager;
 @property (nonatomic, retain) MeetingDetailCell *meetingDetailCell;
 @property (nonatomic, retain) UIButton *deleteMeetingButton;
 

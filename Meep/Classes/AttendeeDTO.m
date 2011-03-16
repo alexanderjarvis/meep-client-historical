@@ -14,12 +14,14 @@
 @synthesize firstName;
 @synthesize lastName;
 @synthesize rsvp;
+@synthesize minutesBefore;
 
 - (void)dealloc {
 	[_id release];
 	[firstName release];
 	[lastName release];
 	[rsvp release];
+    [minutesBefore release];
 	[super dealloc];
 }
 
