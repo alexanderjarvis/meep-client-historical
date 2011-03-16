@@ -16,4 +16,6 @@
 
 - (void)notAttendingButtonPressed;
 
+- (void)alertMeSliderDidEndEditing:(NSNumber *)minutes;
+
 @end

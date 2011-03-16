@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "MeetingDetailCellDelegate.h"
+#import "MeetingDetailCell.h"
 #import "AcceptMeetingRequestManagerDelegate.h"
 #import "DeclineMeetingRequestManagerDelegate.h"
 #import "DeleteMeetingRequestManagerDelegate.h"
@@ -29,31 +29,24 @@
     NSUInteger awaitingReply;
     NSUInteger attending;
     NSUInteger notAttending;
-	MeetingDTO *meeting;                                                                   
+	MeetingDTO *thisMeeting;                                                                   
     AcceptMeetingRequestManager *acceptMeetingRequestManager;
     DeclineMeetingRequestManager *declineMeetingRequestManager;
     DeleteMeetingRequestManager *deleteMeetingRequestManager;
     MeetingDetailCell *meetingDetailCell;
     BOOL listenToSegmentChanges;
+    BOOL showAlertMeControl;
     NSInteger oldSegmentValue;
                                                                     
     IBOutlet UIButton *deleteMeetingButton;
     UIAlertView *deleteMeetingAlertView;
 }
 
-@property (nonatomic, retain) MeetingDTO *meeting;
+@property (nonatomic, retain) MeetingDTO *thisMeeting;
 @property (nonatomic, retain) AcceptMeetingRequestManager *acceptMeetingRequestManager;
 @property (nonatomic, retain) DeclineMeetingRequestManager *declineMeetingRequestManager;
 @property (nonatomic, retain) DeleteMeetingRequestManager *deleteMeetingRequestManager;
 @property (nonatomic, retain) MeetingDetailCell *meetingDetailCell;
-
 @property (nonatomic, retain) UIButton *deleteMeetingButton;
-@property (nonatomic, retain) UIAlertView *deleteMeetingAlertView;
-
-- (void)updateTableWithMeeting:(MeetingDTO *)newMeeting;
-- (void)rollbackSelectedSegment;
-- (void)addDeleteButton;
-- (void)deleteMeetingButtonPressed;
-- (void)deleteMeeting;
 
 @end

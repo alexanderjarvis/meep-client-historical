@@ -18,9 +18,19 @@
 #import "DeleteMeetingRequestManager.h"
 #import "MeepStyleSheet.h"
 
+@interface MeetingDetailViewController (private)
+- (void)updateTableWithMeeting:(MeetingDTO *)newMeeting;
+- (void)rollbackSelectedSegment;
+- (void)showAlertMeControl;
+- (void)hideAlertMeControl;
+- (void)addDeleteButton;
+- (void)deleteMeeting;
+- (void)deleteMeetingButtonPressed;
+@end
+
 @implementation MeetingDetailViewController
 
-@synthesize meeting;
+@synthesize thisMeeting;
 @synthesize acceptMeetingRequestManager;
 @synthesize declineMeetingRequestManager;
 @synthesize deleteMeetingRequestManager;
@@ -35,8 +45,9 @@
     
     self.title = @"Meeting details";
     
-    // Default value;
+    // Default values
     listenToSegmentChanges = YES;
+    showAlertMeControl = NO;
     
     MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
@@ -60,12 +71,12 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-	if (meeting!= nil) {
-		[self updateTableWithMeeting:meeting];
+	if (thisMeeting!= nil) {
+		[self updateTableWithMeeting:thisMeeting];
         
         // If the current user is the owner of the meeting then add the delete button to the table view footer;
         UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-        if ([currentUser._id isEqualToNumber:meeting.owner._id]) {
+        if ([currentUser._id isEqualToNumber:thisMeeting.owner._id]) {
             [self addDeleteButton];
         }
 	}
@@ -73,7 +84,7 @@
 
 - (void)updateTableWithMeeting:(MeetingDTO *)newMeeting {
     
-    self.meeting = newMeeting;
+    self.thisMeeting = newMeeting;
     
     UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
     
@@ -81,7 +92,7 @@
     awaitingReply = 0;
     attending = 0;
     notAttending = 0;
-    for (AttendeeDTO *attendee in meeting.attendees) {
+    for (AttendeeDTO *attendee in thisMeeting.attendees) {
         
         if (attendee.rsvp == nil) {
             awaitingReply++;
@@ -93,6 +104,7 @@
                 meetingDetailCell.attendingControl.selectedSegmentIndex = 0;
                 oldSegmentValue = 0;
                 listenToSegmentChanges = YES;
+                showAlertMeControl = YES;
             }
         } else if ([attendee.rsvp isEqualToString:kNotAttendingKey]) {
             notAttending++;
@@ -101,6 +113,7 @@
                 meetingDetailCell.attendingControl.selectedSegmentIndex = 1;
                 oldSegmentValue = 1;
                 listenToSegmentChanges = YES;
+                showAlertMeControl = NO;
             }
         }
     }
@@ -137,7 +150,7 @@
 }
 
 - (void)deleteMeeting {
-    [deleteMeetingRequestManager deleteMeeting:meeting];
+    [deleteMeetingRequestManager deleteMeeting:thisMeeting];
 }
 
 #pragma mark -
@@ -157,7 +170,7 @@
 
 
 - (void)dealloc {
-	[meeting release];
+	[thisMeeting release];
     [acceptMeetingRequestManager release];
     [declineMeetingRequestManager release];
     [deleteMeetingRequestManager release];
@@ -166,11 +179,26 @@
 }
 
 #pragma mark -
+#pragma mark Private
+
+- (void)showAlertMeControl {
+    [meetingDetailCell hideAlertMeControl];
+    showAlertMeControl = YES;
+    [[super tableView] reloadData];
+}
+
+- (void)hideAlertMeControl {
+    [meetingDetailCell hideAlertMeControl];
+    showAlertMeControl = NO;
+    [[super tableView] reloadData];
+}
+
+#pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     // Return the number of sections.
-    if (meeting.description) {
+    if (thisMeeting.description) {
         return 3;
     }
     return 2;
@@ -200,7 +228,7 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (meeting != nil) {
+    if (thisMeeting != nil) {
         
         NSUInteger section = [indexPath section];
         NSUInteger row = [indexPath row];
@@ -210,9 +238,9 @@
             // MeetingDetailCell
             
             // Title
-            meetingDetailCell.titleLabel.text = meeting.title;
+            meetingDetailCell.titleLabel.text = thisMeeting.title;
             // Date and time
-            NSDate *date = [ISO8601DateFormatter dateFromString:meeting.time];
+            NSDate *date = [ISO8601DateFormatter dateFromString:thisMeeting.time];
             meetingDetailCell.dateLabel.text = [NSDateFormatter localizedStringFromDate:date 
                                                                               dateStyle:kCFDateFormatterLongStyle 
                                                                               timeStyle:kCFDateFormatterNoStyle];
@@ -224,6 +252,12 @@
             meetingDetailCell.acceptedAmountLabel.text = [NSString stringWithFormat:@"%u", attending];
             meetingDetailCell.declinedAmountLabel.text = [NSString stringWithFormat:@"%u", notAttending];
             meetingDetailCell.awaitingReplyAmountLabel.text = [NSString stringWithFormat:@"%u", awaitingReply];
+            
+            if (showAlertMeControl) {
+                [meetingDetailCell showAlertMeControl];
+            } else {
+                [meetingDetailCell hideAlertMeControl];
+            }
             
             return meetingDetailCell;
         
@@ -240,11 +274,11 @@
             if (row == 0) {
                 cell.textLabel.text = @"View live meeting map";
             } else if (row == 1) {                
-                cell.textLabel.text = [NSString stringWithFormat:@"View attendees (%u)", [meeting.attendees count]];
+                cell.textLabel.text = [NSString stringWithFormat:@"View attendees (%u)", [thisMeeting.attendees count]];
             }
             return cell;
             
-        } else if (meeting.description != nil && section == 2 && row == 0) {
+        } else if (thisMeeting.description != nil && section == 2 && row == 0) {
                 
             // Meeting Description   
             static NSString *CellIdentifier = @"DescriptionCell";
@@ -265,7 +299,7 @@
             }
             
             // Dynamic height based on description text size
-            NSString *text = meeting.description;
+            NSString *text = thisMeeting.description;
             CGSize constraint = CGSizeMake(DESC_CELL_WIDTH - (DESC_CELL_MARGIN * 2), 20000.0f);
             CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
             
@@ -292,12 +326,16 @@
     
     if (section == 0 && row == 0) {
         // Value of height from MeetingDetailCell.xib
-        return 144;
-        
-    } else if (meeting.description != nil && section == 2 && row == 0) {
+        if (showAlertMeControl) {
+            return MeetingDetailCellHeightExpanded;
+        } else {
+            return MeetingDetailCellHeightNormal;
+        }
+    
+    } else if (section == 2 && row == 0 && thisMeeting.description != nil) {
         // Dynamic height based on description text size
         CGSize constraint = CGSizeMake(DESC_CELL_WIDTH - (DESC_CELL_MARGIN * 2), 20000.0f);
-        CGSize size = [meeting.description sizeWithFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
+        CGSize size = [thisMeeting.description sizeWithFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
         CGFloat height = MAX(size.height, 44.0f);
         return height + (DESC_CELL_MARGIN * 2);
     }
@@ -315,7 +353,7 @@
         } else if (row == 1) {
             // View attendees
             MeetingAttendeesViewController *meetingAttendeesViewController = [[MeetingAttendeesViewController alloc] initWithNibName:@"MeetingAttendeesViewController" bundle:nil];
-            [meetingAttendeesViewController setMeeting:meeting];
+            [meetingAttendeesViewController setMeeting:thisMeeting];
             [self.navigationController pushViewController:meetingAttendeesViewController animated:YES];
             [meetingAttendeesViewController release];
         }
@@ -327,14 +365,19 @@
 
 - (void)attendingButtonPressed {
     if (listenToSegmentChanges) {
-        [acceptMeetingRequestManager acceptMeeting:meeting];
+        [acceptMeetingRequestManager acceptMeeting:thisMeeting];
     }
 }
 
 - (void)notAttendingButtonPressed {
     if (listenToSegmentChanges) {
-        [declineMeetingRequestManager declineMeeting:meeting];
+        [declineMeetingRequestManager declineMeeting:thisMeeting];
     }
+}
+
+- (void)alertMeSliderDidEndEditing:(NSNumber *)minutes {
+    //
+    
 }
 
 #pragma mark -
@@ -352,10 +395,12 @@
 
 - (void)acceptMeetingFailedWithError:(NSError *)error {
     [self rollbackSelectedSegment];
+    [self showAlertMeControl];
 }
 
 - (void)acceptMeetingFailedWithNetworkError:(NSError *)error {
     [self rollbackSelectedSegment];
+    [self showAlertMeControl];
     [AlertView showNetworkAlert:error];
 }
 
@@ -374,10 +419,12 @@
 
 - (void)declineMeetingFailedWithError:(NSError *)error {
     [self rollbackSelectedSegment];
+    [self hideAlertMeControl];
 }
 
 - (void)declineMeetingFailedWithNetworkError:(NSError *)error {
     [self rollbackSelectedSegment];
+    [self hideAlertMeControl];
     [AlertView showNetworkAlert:error];
 }
 

@@ -10,6 +10,9 @@
 
 #import "MeetingDetailCellDelegate.h"
 
+#define MeetingDetailCellHeightNormal 160
+#define MeetingDetailCellHeightExpanded 220
+
 @interface MeetingDetailCell : UITableViewCell {
     
     id <MeetingDetailCellDelegate> delegate;
@@ -21,6 +24,10 @@
 	IBOutlet UILabel *declinedAmountLabel;
     IBOutlet UILabel *awaitingReplyAmountLabel;
     IBOutlet UISegmentedControl *attendingControl;
+    IBOutlet UILabel *alertMeLabel;
+    IBOutlet UISlider *alertMeSlider;
+    
+    NSUInteger alertMeMinutes;
     
 }
 
@@ -33,7 +40,17 @@
 @property (nonatomic, retain) UILabel *declinedAmountLabel;
 @property (nonatomic, retain) UILabel *awaitingReplyAmountLabel;
 @property (nonatomic, retain) UISegmentedControl *attendingControl;
+@property (nonatomic, retain) UILabel *alertMeLabel;
+@property (nonatomic, retain) UISlider *alertMeSlider;
 
 - (IBAction)attendingControlAction;
+
+- (IBAction)alertMeSliderValueChanged;
+
+- (IBAction)alertMeSliderDidEndEditing;
+
+- (void)showAlertMeControl;
+
+- (void)hideAlertMeControl;
 
 @end

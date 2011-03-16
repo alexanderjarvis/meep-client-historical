@@ -19,10 +19,16 @@
 @synthesize declinedAmountLabel;
 @synthesize awaitingReplyAmountLabel;
 @synthesize attendingControl;
+@synthesize alertMeLabel;
+@synthesize alertMeSlider;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if ((self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) {
+    [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
         // Initialisation code
+        alertMeSlider.enabled = NO;
+        alertMeSlider.hidden = YES;
+        alertMeLabel.hidden = YES;
     }
     return self;
 }
@@ -48,13 +54,59 @@
         case 0:
             // Attending
             [delegate attendingButtonPressed];
+            [self showAlertMeControl];
             break;
         case 1:
             // Not attending
             [delegate notAttendingButtonPressed];
+            [self hideAlertMeControl];
             break;
             
     }
+}
+
+- (IBAction)alertMeSliderValueChanged {
+    NSUInteger minValue = 1;
+    NSUInteger maxValue = 30;
+    
+    float sliderValue = [alertMeSlider value];
+    
+    if (sliderValue == 0) {
+        alertMeMinutes = minValue;
+    } else {
+        alertMeMinutes = (NSUInteger)ceilf(sliderValue * maxValue);
+    }
+    
+    NSString *prefix = @"Alert me";
+    NSString *suffixSingular = @"minute before";
+    NSString *suffixPlural = @"minutes before";
+    
+    NSString *suffix;
+    
+    if (alertMeMinutes == 1) {
+        suffix = suffixSingular;
+    } else {
+        suffix = suffixPlural;
+    }
+    
+    alertMeLabel.text = [NSString stringWithFormat:@"%@ %i %@", prefix, alertMeMinutes, suffix];
+    
+}
+
+- (IBAction)alertMeSliderDidEndEditing {
+    [delegate alertMeSliderDidEndEditing:[NSNumber numberWithUnsignedInt:alertMeMinutes]];
+}
+
+- (void)showAlertMeControl {
+    alertMeSlider.enabled = YES;
+    alertMeSlider.hidden = NO;
+    alertMeLabel.hidden = NO;
+}
+
+- (void)hideAlertMeControl {
+    alertMeSlider.enabled = NO;
+    alertMeSlider.hidden = YES;
+    alertMeLabel.hidden = YES;
 }
 
 - (void)dealloc {
@@ -65,6 +117,8 @@
 	[declinedAmountLabel release];
     [awaitingReplyAmountLabel release];
     [attendingControl release];
+    [alertMeLabel release];
+    [alertMeSlider release];
     [super dealloc];
 }
 

@@ -195,7 +195,7 @@
 	
 	// Push it to the detail view
 	MeetingDetailViewController *meetingDetailViewController = [[MeetingDetailViewController alloc] initWithNibName:@"MeetingDetailViewController" bundle:nil];
-	[meetingDetailViewController setMeeting:meeting];
+	[meetingDetailViewController setThisMeeting:meeting];
 	[self.navigationController pushViewController:meetingDetailViewController animated:YES];
 	[meetingDetailViewController release];
 }
