@@ -27,8 +27,14 @@
 	self.title = @"Date & Time";
 	
 	datePicker = [[UIDatePicker alloc] init];
-	datePicker.minimumDate = [NSDate date];
 	[datePicker addTarget:self action:@selector(datePickerUpdated) forControlEvents:UIControlEventValueChanged];
+    // Set the date of the date picker so that it does not include information about seconds.
+    NSDate *dateNow = [NSDate date];
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit;
+    NSDateComponents *comps = [[NSCalendar currentCalendar] components:unitFlags fromDate:dateNow];
+    NSDate *datePickerDate = [[NSCalendar currentCalendar] dateFromComponents:comps];
+    datePicker.minimumDate = datePickerDate;
+    datePicker.date = datePickerDate;
 	
 	dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateStyle:NSDateFormatterShortStyle];
@@ -40,7 +46,7 @@
 	button.font = [UIFont boldSystemFontOfSize:13];
 	[button sizeToFit];
 	[button addTarget:self action:@selector(choosePeopleButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-	[choosePeopleButton addSubview: button];
+	[choosePeopleButton addSubview:button];
 	
     [super viewDidLoad];
 }
