@@ -52,22 +52,30 @@
 	NSMutableArray *arrayOfAwaitingReply = [NSMutableArray arrayWithCapacity:1];
 	NSMutableArray *arrayOfAttending = [NSMutableArray arrayWithCapacity:1];
 	NSMutableArray *arrayOfNotAttending = [NSMutableArray arrayWithCapacity:1];
+    NSMutableArray *arrayOfOld = [NSMutableArray arrayWithCapacity:1];
 	
 	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	for (MeetingDTO *meeting in meetings) {
-		for (AttendeeDTO *attendee in meeting.attendees) {
-			if ([attendee._id isEqualToNumber:currentUser._id]) {
-				if (attendee.rsvp == nil) {
-					[arrayOfAwaitingReply addObject:meeting];
-				} else if ([attendee.rsvp isEqualToString:kAttendingKey]) {
-					[arrayOfAttending addObject:meeting];
-				} else if ([attendee.rsvp isEqualToString:kNotAttendingKey]) {
-					[arrayOfNotAttending addObject:meeting];
-				}
-				// Stop iterating attendees when the current user is reached
-				break;
-			}
-		}
+        
+        // If the meeting date is older than a day
+        NSDate *meetingDate = [ISO8601DateFormatter dateFromString:meeting.time];
+        if ([meetingDate timeIntervalSinceNow] < -TwentyFourHoursInSeconds) {
+            [arrayOfOld addObject:meeting];
+        } else {
+            for (AttendeeDTO *attendee in meeting.attendees) {
+                if ([attendee._id isEqualToNumber:currentUser._id]) {
+                    if (attendee.rsvp == nil) {
+                        [arrayOfAwaitingReply addObject:meeting];
+                    } else if ([attendee.rsvp isEqualToString:kAttendingKey]) {
+                        [arrayOfAttending addObject:meeting];
+                    } else if ([attendee.rsvp isEqualToString:kNotAttendingKey]) {
+                        [arrayOfNotAttending addObject:meeting];
+                    }
+                    // Stop iterating attendees when the current user is reached
+                    break;
+                }
+            }
+        }
 	}
 	
 	// Declare SortDescriptor to sort the sections by ascending date
@@ -75,8 +83,8 @@
 	NSArray *sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 	
 	// Only add sections if they are not empty.
-	NSMutableArray *objects = [NSMutableArray arrayWithCapacity:3];
-	NSMutableArray *keys = [NSMutableArray arrayWithCapacity:3];
+	NSMutableArray *objects = [NSMutableArray arrayWithCapacity:4];
+	NSMutableArray *keys = [NSMutableArray arrayWithCapacity:4];
 	if ([arrayOfAwaitingReply count] > 0) {
 		[objects addObject:[arrayOfAwaitingReply sortedArrayUsingDescriptors:sortDescriptors]];
 		[keys addObject:@"Awaiting reply"];
@@ -89,6 +97,10 @@
 		[objects addObject:[arrayOfNotAttending sortedArrayUsingDescriptors:sortDescriptors]];
 		[keys addObject:@"Not Attending"];
 	}
+    if ([arrayOfOld count] > 0) {
+        [objects addObject:[arrayOfOld sortedArrayUsingDescriptors:sortDescriptors]];
+		[keys addObject:@"Old"];
+    }
 	
 	self.tableDictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 	self.tableKeys = keys;
