@@ -394,8 +394,10 @@
         if ([attendee._id isEqualToNumber:currentUser._id]) {
             attendee.rsvp = kAttendingKey;
             [self updateTableWithMeeting:thisMeeting];
+            break;
         }
     }
+    [LocalNotificationManager updateLocalNotificationForMeeting:thisMeeting andUser:currentUser];
 }
 
 - (void)acceptMeetingFailedWithError:(NSError *)error {
@@ -418,8 +420,10 @@
         if ([attendee._id isEqualToNumber:currentUser._id]) {
             attendee.rsvp = kNotAttendingKey;
             [self updateTableWithMeeting:thisMeeting];
+            break;
         }
     }
+    [LocalNotificationManager cancelLocalNotificationForMeeting:thisMeeting];
 }
 
 - (void)declineMeetingFailedWithError:(NSError *)error {
@@ -438,6 +442,7 @@
 
 - (void)deleteMeetingSuccessful {
     NSLog(@"delete meeting successful");
+    [LocalNotificationManager cancelLocalNotificationForMeeting:thisMeeting];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -18,6 +18,7 @@
 
 + (void)checkAndUpdateLocalNotificationsForUser:(UserDTO *)user;
 + (void)updateLocalNotificationForMeeting:(MeetingDTO *)meeting andUser:(UserDTO *)user;
++ (void)cancelLocalNotificationForMeeting:(MeetingDTO *)meeting;
 + (void)cancelAllLocalNotifications;
 
 @end

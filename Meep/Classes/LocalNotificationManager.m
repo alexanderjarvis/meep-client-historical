@@ -89,6 +89,13 @@
     }
 }
 
++ (void)cancelLocalNotificationForMeeting:(MeetingDTO *)meeting {
+    UILocalNotification *notification = [self localNotificationForMeetingWithId:meeting._id];
+    if (notification != nil) {
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+    }
+}
+
 + (void)cancelAllLocalNotifications {
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
 }
