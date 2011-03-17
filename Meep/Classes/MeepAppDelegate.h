@@ -13,8 +13,8 @@
 #import "WelcomeViewController.h"
 #import "MenuNavigationController.h"
 #import "MenuViewController.h"
-
 #import "WebSocketManager.h"
+#import "LocalNotificationManager.h"
 
 @interface MeepAppDelegate : NSObject <UIApplicationDelegate> {
     

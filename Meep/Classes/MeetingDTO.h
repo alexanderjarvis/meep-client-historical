@@ -12,6 +12,9 @@
 #import "AttendeeDTO.h"
 #import "UserSummaryDTO.h"
 
+#define kAttendingKey @"YES"
+#define kNotAttendingKey @"NO"
+
 @interface MeetingDTO : NSObject {
     
 	NSNumber *_id;

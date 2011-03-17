@@ -27,7 +27,15 @@
 	return [[UIApplication sharedApplication] delegate];
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+#pragma mark -
+#pragma mark UIApplicationDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    UILocalNotification *notification = [launchOptions valueForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if (notification != nil) {
+        [AlertView showSimpleAlertMessage:@"Launched with a local notification!" withTitle:[notification.userInfo valueForKey:kMeetingIdKey]];
+    }
     
 	configManager = [[ConfigManager alloc] init];
 	[configManager loadConfig];
@@ -44,9 +52,40 @@
 	}
 	
     [window makeKeyAndVisible];
+    
+    return NO;
 }
 
+- (void)applicationDidEnterBackground:(UIApplication *)application {
+	[configManager saveConfig];
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+    // TODO load current user?
+}
+
+/*
+ * Called when a local notification is received and the application is running.
+ */
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@"application did receive local notification");
+    NSLog(@"notification fire date: %@", notification.fireDate);
+    
+    if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
+        NSLog(@"Fired when active");
+        // TODO show alert
+    } else {
+        NSLog(@"Fired when inactive - coming from background state");
+        // TODO go straight to live map
+    }
+}
+
+#pragma mark -
+#pragma mark MeepAppDelegate
+
 - (void)showWelcomeView {
+    
+    [LocalNotificationManager cancelAllLocalNotifications];
     
 	if (welcomeNavigationController == nil && welcomeViewController == nil) {
         welcomeViewController = [[WelcomeViewController alloc] initWithNibName:@"WelcomeViewController" bundle:nil];
@@ -98,10 +137,6 @@
 	[menuViewController release];
 	[window release];
     [super dealloc];
-}
-
-- (void)applicationDidEnterBackground:(UIApplication *)application {
-	[configManager saveConfig];
 }
 
 @end

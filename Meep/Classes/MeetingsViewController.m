@@ -59,9 +59,9 @@
 			if ([attendee._id isEqualToNumber:currentUser._id]) {
 				if (attendee.rsvp == nil) {
 					[arrayOfAwaitingReply addObject:meeting];
-				} else if ([attendee.rsvp isEqualToString:@"YES"]) {
+				} else if ([attendee.rsvp isEqualToString:kAttendingKey]) {
 					[arrayOfAttending addObject:meeting];
-				} else if ([attendee.rsvp isEqualToString:@"NO"]) {
+				} else if ([attendee.rsvp isEqualToString:kNotAttendingKey]) {
 					[arrayOfNotAttending addObject:meeting];
 				}
 				// Stop iterating attendees when the current user is reached
@@ -167,9 +167,9 @@
 	NSUInteger accepted = 0;
 	NSUInteger declined = 0;
 	for (AttendeeDTO *attendee in meeting.attendees) {
-		if ([attendee.rsvp isEqualToString:@"YES"]) {
+		if ([attendee.rsvp isEqualToString:kAttendingKey]) {
 			accepted++;
-		} else if ([attendee.rsvp isEqualToString:@"NO"]) {
+		} else if ([attendee.rsvp isEqualToString:kNotAttendingKey]) {
 			declined++;
 		}
 	}

@@ -12,6 +12,7 @@
 #import "LogoutManager.h"
 #import "AlertView.h"
 #import "MeepStyleSheet.h"
+#import "LocalNotificationManager.h"
 
 @implementation MenuViewController
 
@@ -230,7 +231,7 @@
 	NSLog(@"Get user successful");
 	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
 	friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
-	NSLog(@"connectionRequestsFrom count: %u", [[user connectionRequestsFrom] count]);
+    [LocalNotificationManager checkAndUpdateLocalNotificationsForUser:user];
 }
 
 - (void)getUserFailedWithError:(NSError *)error {

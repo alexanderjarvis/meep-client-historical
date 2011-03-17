@@ -16,6 +16,7 @@
 #import "AlertView.h"
 #import "MeetingAttendeesViewController.h"
 #import "MeepStyleSheet.h"
+#import "LocalNotificationManager.h"
 
 @interface MeetingDetailViewController (private)
 - (void)updateTableWithMeeting:(MeetingDTO *)newMeeting;
@@ -49,8 +50,7 @@
     listenToSegmentChanges = YES;
     showAlertMeSlider = NO;
     
-    MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
-	ConfigManager *configManager = [meepAppDelegate configManager];
+    ConfigManager *configManager = [[MeepAppDelegate sharedAppDelegate] configManager];
     acceptMeetingRequestManager = [[AcceptMeetingRequestManager alloc] initWithAccessToken:configManager.accessToken];
 	[acceptMeetingRequestManager setDelegate:self];
     declineMeetingRequestManager = [[DeclineMeetingRequestManager alloc] initWithAccessToken:configManager.accessToken];
@@ -380,6 +380,7 @@
 
 - (void)alertMeSliderDidEndEditing:(NSNumber *)minutes {
     //
+    minutesBefore = [minutes retain];
     [updateMinutesBeforeRequestManager updateMinutesBefore:minutes forMeeting:thisMeeting];
 }
 
@@ -452,7 +453,16 @@
 #pragma mark UpdateMinutesBeforeRequestManagerDelegate
 
 - (void)updateMinutesBeforeSuccessful {
-    //
+    // Update Model
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    for (AttendeeDTO *attendee in thisMeeting.attendees) {
+        if ([attendee._id isEqualToNumber:currentUser._id]) {
+            attendee.minutesBefore = minutesBefore;
+            break;
+        }
+    }
+    // Update Local Notifications
+    [LocalNotificationManager updateLocalNotificationForMeeting:thisMeeting andUser:currentUser];
 }
 
 - (void)updateMinutesBeforeFailedWithError:(NSError *)error {

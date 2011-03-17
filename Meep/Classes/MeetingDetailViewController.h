@@ -16,8 +16,6 @@
 #import "MeetingDTO.h"
 #import "MeetingDetailCell.h"
 
-#define kAttendingKey @"YES"
-#define kNotAttendingKey @"NO"
 #define DESC_CELL_FONT_SIZE 13.0f
 #define DESC_CELL_WIDTH 300.0f
 #define DESC_CELL_MARGIN 10.0f
@@ -43,6 +41,7 @@
                                                                     
     IBOutlet UIButton *deleteMeetingButton;
     UIAlertView *deleteMeetingAlertView;
+    NSNumber *minutesBefore;
 }
 
 @property (nonatomic, retain) MeetingDTO *thisMeeting;

@@ -43,9 +43,9 @@
     for (AttendeeDTO *attendee in meeting.attendees) {
         if (attendee.rsvp == nil) {
             [arrayOfAwaitingReply addObject:attendee];
-        } else if ([attendee.rsvp isEqualToString:@"YES"]) {
+        } else if ([attendee.rsvp isEqualToString:kAttendingKey]) {
             [arrayOfAttending addObject:attendee];
-        } else if ([attendee.rsvp isEqualToString:@"NO"]) {
+        } else if ([attendee.rsvp isEqualToString:kNotAttendingKey]) {
             [arrayOfNotAttending addObject:attendee];
         }
     }

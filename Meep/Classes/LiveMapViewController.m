@@ -131,7 +131,7 @@
         for (AttendeeDTO *attendee in meeting.attendees) {
             if ([attendee._id isEqualToNumber:currentUser._id]) {
                 // If this user is attending.
-                if ([attendee.rsvp isEqualToString:@"YES"]) {
+                if ([attendee.rsvp isEqualToString:kAttendingKey]) {
                     
                     // TODO check time
                     
