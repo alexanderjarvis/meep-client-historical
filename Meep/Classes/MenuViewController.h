@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <Three20/Three20.h>
 
-#import "UserManager.h"
-#import "LogoutManager.h"
-
 #define MeetingsURL @"mp://meetings"
 #define NewMeetingURL @"mp://newmeeting"
 #define SearchUsersURL @"mp://searchusers"
@@ -20,7 +17,7 @@
 #define MyDetailsURL @"mp://mydetails"
 #define LiveMapURL @"mp://livemap"
 
-@interface MenuViewController : TTViewController <TTLauncherViewDelegate, UIAlertViewDelegate, UserManagerDelegate, LogoutManagerDelegate> {
+@interface MenuViewController : TTViewController <TTLauncherViewDelegate, UIAlertViewDelegate> {
 	
 	TTLauncherView *launcherView;
 	
@@ -30,24 +27,20 @@
 	TTLauncherItem *myDetailsItem;
 	TTLauncherItem *searchPeopleItem;
 	TTLauncherItem *friendRequestsItem;
+    TTLauncherItem *liveMapItem;
 	
 	UIBarButtonItem *logoutButton;
 	UIAlertView *logoutAlertView;
 	
-    LogoutManager *logoutManager;
-	UserManager *userManager;
 }
 
-- (void)applicationDidBecomeActive:(id)sender;
-- (void)getUser;
+@property (nonatomic, retain) TTLauncherItem *friendRequestsItem;
 
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item;
 - (void)launcherViewDidBeginEditing:(TTLauncherView*)launcher;
 - (void)launcherViewDidEndEditing:(TTLauncherView*)launcher;
 
 - (void)logoutUserButtonPressed:(id)sender;
-- (void)logout;
-- (void)showWelcomeView;
 
 - (void)newMeetingCreated;
 

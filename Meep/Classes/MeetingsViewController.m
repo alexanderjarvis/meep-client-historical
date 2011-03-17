@@ -35,7 +35,6 @@
     
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
@@ -45,6 +44,32 @@
 	// Get the meetings
 	[meetingsRequestManager getMeetings];
 }
+
+#pragma mark -
+#pragma mark Memory management
+
+- (void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+    
+    // Relinquish ownership any cached data, images, etc that aren't in use.
+}
+
+- (void)viewDidUnload {
+    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
+    // For example: self.myOutlet = nil;
+}
+
+
+- (void)dealloc {
+	[meetingsRequestManager release];
+	[tableKeys release];
+	[tableDictionary release];
+    [super dealloc];
+}
+
+#pragma mark -
+#pragma mark MeetingsViewController
 
 - (void)updateTableWithMeetings:(NSArray *)meetings {
 	
@@ -108,28 +133,7 @@
 	[[super tableView] reloadData];
 }
 
-#pragma mark -
-#pragma mark Memory management
 
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Relinquish ownership any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
-    // For example: self.myOutlet = nil;
-}
-
-
-- (void)dealloc {
-	[meetingsRequestManager release];
-	[tableKeys release];
-	[tableDictionary release];
-    [super dealloc];
-}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -206,10 +210,7 @@
 	MeetingDTO *meeting = [arrayOfMeetings objectAtIndex:[indexPath row]];
 	
 	// Push it to the detail view
-	MeetingDetailViewController *meetingDetailViewController = [[MeetingDetailViewController alloc] initWithNibName:@"MeetingDetailViewController" bundle:nil];
-	[meetingDetailViewController setThisMeeting:meeting];
-	[self.navigationController pushViewController:meetingDetailViewController animated:YES];
-	[meetingDetailViewController release];
+	[[[MeepAppDelegate sharedAppDelegate] menuNavigationController] showMeetingDetailView:meeting animated:YES];
 }
 
 

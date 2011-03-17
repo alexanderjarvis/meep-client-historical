@@ -57,8 +57,6 @@
 }
 
 - (void)dealloc {
-    [_timer release];
-    _timer = nil;
     _webSocket.delegate = nil;
     [_webSocket release];
     [_queue release];

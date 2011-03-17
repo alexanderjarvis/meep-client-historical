@@ -19,6 +19,7 @@
 @interface LiveMapViewController (private)
 - (void)showMyLocation;
 - (void)addValidMeetingAnnotations;
+- (void)addMeetingAnnotationFor:(MeetingDTO *)meeting with:(UserDTO *)currentUser;
 // LocationService
 - (void)headingUpdated:(NSNotification *)notification;
 - (void)locationUpdated:(NSNotification *)notification;
@@ -39,6 +40,7 @@
 
 - (void)dealloc {
     [[MeepNotificationCenter sharedNotificationCenter] removeObserver:self];
+    [currentMeeting release];
     [currentHeading release];
     [currentLocation release];
     [otherUserAnnotations release];
@@ -53,21 +55,6 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
-}
-
-- (IBAction)myLocationButtonPressed {
-    [self showMyLocation];
-}
-
-- (IBAction)showAllAnnotationsButtonPressed {
-    [mapView zoomToFitAnnotations];
-}
-
-- (void)showMyLocation {
-    if (currentLocation != nil && currentUserAnnotation != nil) {
-        [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
-        [mapView selectAnnotation:currentUserAnnotation animated:YES];
-    }
 }
 
 #pragma mark - View lifecycle
@@ -95,7 +82,9 @@
     [locationService startUpdatingLocation];    
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"View will appear");
     [self addValidMeetingAnnotations];
 }
 
@@ -106,6 +95,41 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+#pragma mark -
+#pragma mark LiveMapViewController
+
+/*
+ * Sets the current Meeting for the Live Map View. If set then the view will show only the meeting and location
+ * data with the scope of the meeting. If set to nil then the view will show all meetings that the user is
+ * currently attending.
+ */
+- (void)setCurrentMeeting:(MeetingDTO *)meeting {
+    
+    if (currentMeeting != nil) {
+        [currentMeeting release];
+        currentMeeting = nil;
+    }
+        
+    if (meeting != nil) {
+        currentMeeting = [meeting retain];
+    }
+}
+
+- (IBAction)myLocationButtonPressed {
+    [self showMyLocation];
+}
+
+- (IBAction)showAllAnnotationsButtonPressed {
+    [mapView zoomToFitAnnotations];
+}
+
+- (void)showMyLocation {
+    if (currentLocation != nil && currentUserAnnotation != nil) {
+        [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
+        [mapView selectAnnotation:currentUserAnnotation animated:YES];
+    }
 }
 
 - (void)addValidMeetingAnnotations {
@@ -126,15 +150,30 @@
         }
     }
     
-    // Obtain valid meeting annotations
-    for (MeetingDTO *meeting in currentUser.meetingsRelated) {
+    // Obtain valid meeting annotations for current meeting if available, if not, all meetings
+    if (currentMeeting != nil) {
+        [self addMeetingAnnotationFor:currentMeeting with:currentUser];
+    } else {
+        for (MeetingDTO *meeting in currentUser.meetingsRelated) {
+            [self addMeetingAnnotationFor:meeting with:currentUser];
+        }
+    }
+}
+
+- (void)addMeetingAnnotationFor:(MeetingDTO *)meeting with:(UserDTO *)currentUser {
+    
+    // If the meeting date is older than a day
+    NSDate *meetingDate = [ISO8601DateFormatter dateFromString:meeting.time];
+    NSInteger seconds = -TwentyFourHoursInSeconds;
+    NSInteger timeInterval = [meetingDate timeIntervalSinceNow];
+    if (timeInterval < seconds) {
+        // Don't show it
+    } else {
+        
         for (AttendeeDTO *attendee in meeting.attendees) {
             if ([attendee._id isEqualToNumber:currentUser._id]) {
                 // If this user is attending.
                 if ([attendee.rsvp isEqualToString:kAttendingKey]) {
-                    
-                    // TODO check time
-                    
                     
                     // Check if the annotation exists already.
                     MeetingPlaceAnnotation *newMeetingPlaceAnnotation = nil;
@@ -157,11 +196,11 @@
                     // Update annotation properties
                     newMeetingPlaceAnnotation.title = meeting.title;
                     newMeetingPlaceAnnotation.subtitle = [NSDateFormatter localizedStringFromDate:[ISO8601DateFormatter dateFromString:meeting.time] 
-                                                                                     dateStyle:kCFDateFormatterLongStyle
-                                                                                     timeStyle:kCFDateFormatterShortStyle];
+                                                                                        dateStyle:kCFDateFormatterLongStyle
+                                                                                        timeStyle:kCFDateFormatterShortStyle];
                     
                     CLLocationCoordinate2D newMeetingPlaceCoordinate = CLLocationCoordinate2DMake([meeting.place.latitude doubleValue], 
-                                                                                                [meeting.place.longitude doubleValue]);
+                                                                                                  [meeting.place.longitude doubleValue]);
                     
                     // Add the annotation to the map view.
                     if (newAnnotation) {
@@ -192,7 +231,9 @@
             }
         }
     }
+
 }
+
 
 #pragma mark -
 #pragma mark MapViewDelegate
@@ -247,8 +288,6 @@
 		
 		return annotationView;		
 	}
-    
-    
     
     return nil;
 }

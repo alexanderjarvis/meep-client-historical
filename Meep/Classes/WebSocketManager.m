@@ -76,7 +76,6 @@
         [emptyUserLocation release];
         
         NSString *userLocationsString = [arrayOfUserLocationDictionaries yajl_JSONString];
-        NSLog(@"userLocations:\n%@", userLocationsString);
                 
         [client send:userLocationsString isJSON:YES];
     }

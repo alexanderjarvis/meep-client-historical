@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Three20/Three20.h>
 
 #import "MeetingDetailCell.h"
 #import "AcceptMeetingRequestManager.h"
@@ -29,6 +30,8 @@
     NSUInteger awaitingReply;
     NSUInteger attending;
     NSUInteger notAttending;
+                                                                    
+    MeetingDTO *previousMeeting;
 	MeetingDTO *thisMeeting;                                                                   
     AcceptMeetingRequestManager *acceptMeetingRequestManager;
     DeclineMeetingRequestManager *declineMeetingRequestManager;
@@ -44,6 +47,7 @@
     NSNumber *minutesBefore;
 }
 
+@property (nonatomic, retain) MeetingDTO *previousMeeting;
 @property (nonatomic, retain) MeetingDTO *thisMeeting;
 @property (nonatomic, retain) AcceptMeetingRequestManager *acceptMeetingRequestManager;
 @property (nonatomic, retain) DeclineMeetingRequestManager *declineMeetingRequestManager;

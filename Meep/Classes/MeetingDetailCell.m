@@ -8,6 +8,11 @@
 
 #import "MeetingDetailCell.h"
 
+@interface MeetingDetailCell (private)
+
+- (void)setSliderLabelText:(NSUInteger)minutes;
+
+@end
 
 @implementation MeetingDetailCell
 
@@ -34,10 +39,8 @@
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    
     // Override default behaviour
     //[super setSelected:selected animated:animated];
-    
 }
 
 /*
@@ -66,30 +69,16 @@
 }
 
 - (IBAction)alertMeSliderValueChanged {
-    NSUInteger minValue = 1;
-    NSUInteger maxValue = 30;
     
     float sliderValue = [alertMeSlider value];
     
     if (sliderValue == 0) {
-        alertMeMinutes = minValue;
+        alertMeMinutes = alertMeSliderMinValue;
     } else {
-        alertMeMinutes = (NSUInteger)ceilf(sliderValue * maxValue);
+        alertMeMinutes = (NSUInteger)ceilf(sliderValue * alertMeSliderMaxValue);
     }
     
-    NSString *prefix = @"Alert me";
-    NSString *suffixSingular = @"minute before";
-    NSString *suffixPlural = @"minutes before";
-    
-    NSString *suffix;
-    
-    if (alertMeMinutes == 1) {
-        suffix = suffixSingular;
-    } else {
-        suffix = suffixPlural;
-    }
-    
-    alertMeLabel.text = [NSString stringWithFormat:@"%@ %i %@", prefix, alertMeMinutes, suffix];
+    [self setSliderLabelText:alertMeMinutes];
     
 }
 
@@ -99,7 +88,7 @@
 }
 
 - (IBAction)alertMeSliderTouchUpInside {
-    [delegate alertMeSliderDidEndEditing:[NSNumber numberWithUnsignedInt:alertMeMinutes]];
+    [delegate alertMeSliderDidEndEditing:[NSNumber numberWithUnsignedInteger:alertMeMinutes]];
 }
 
 - (void)showAlertMeSlider {
@@ -119,6 +108,19 @@
     [alertMeSlider setValue:alertMeSliderPreviousValue animated:YES];
 }
 
+- (void)setAlertMeSliderValueWithMinutes:(NSUInteger)minutes {
+    float minutesFloat = (float)minutes;
+    
+    float sliderValue = (minutesFloat / (float)alertMeSliderMaxValue);
+    
+    if (minutes == alertMeSliderMinValue) {
+        sliderValue = 0;
+    }
+    
+    [alertMeSlider setValue:sliderValue];
+    [self setSliderLabelText:minutes];
+}
+
 - (void)dealloc {
     [titleLabel release];
 	[dateLabel release];
@@ -130,6 +132,25 @@
     [alertMeLabel release];
     [alertMeSlider release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark private
+
+- (void)setSliderLabelText:(NSUInteger)minutes {
+    NSString *prefix = @"Alert me";
+    NSString *suffixSingular = @"minute before";
+    NSString *suffixPlural = @"minutes before";
+    
+    NSString *suffix;
+    
+    if (minutes == alertMeSliderMinValue) {
+        suffix = suffixSingular;
+    } else {
+        suffix = suffixPlural;
+    }
+    
+    alertMeLabel.text = [NSString stringWithFormat:@"%@ %i %@", prefix, minutes, suffix];
 }
 
 

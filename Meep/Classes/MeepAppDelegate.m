@@ -61,7 +61,6 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-    // TODO load current user?
 }
 
 /*
@@ -74,9 +73,10 @@
     if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
         NSLog(@"Fired when active");
         // TODO show alert
+        [menuNavigationController showLiveMapFromLocalNotification:notification];
     } else {
-        NSLog(@"Fired when inactive - coming from background state");
-        // TODO go straight to live map
+        NSLog(@"Fired when inactive - coming from background (or closed) state");
+        [menuNavigationController showLiveMapFromLocalNotification:notification];
     }
 }
 

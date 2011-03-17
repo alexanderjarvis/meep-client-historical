@@ -71,7 +71,7 @@
 		
 		// Show users view
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-		[meepAppDelegate.menuNavigationController showNewMeetingUsers];
+		[meepAppDelegate.menuNavigationController showNewMeetingUsersAnimated:YES];
 	}
 	
 	

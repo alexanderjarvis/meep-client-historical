@@ -19,17 +19,21 @@
 #import "LocalNotificationManager.h"
 
 @interface MeetingDetailViewController (private)
+
 - (void)updateTableWithMeeting:(MeetingDTO *)newMeeting;
 - (void)rollbackSelectedSegment;
 - (void)showAlertMeSlider;
 - (void)hideAlertMeSlider;
 - (void)addDeleteButton;
+- (void)removeDeleteButton;
 - (void)deleteMeeting;
 - (void)deleteMeetingButtonPressed;
+
 @end
 
 @implementation MeetingDetailViewController
 
+@synthesize previousMeeting;
 @synthesize thisMeeting;
 @synthesize acceptMeetingRequestManager;
 @synthesize declineMeetingRequestManager;
@@ -45,10 +49,6 @@
     [super viewDidLoad];
     
     self.title = @"Meeting details";
-    
-    // Default values
-    listenToSegmentChanges = YES;
-    showAlertMeSlider = NO;
     
     ConfigManager *configManager = [[MeepAppDelegate sharedAppDelegate] configManager];
     acceptMeetingRequestManager = [[AcceptMeetingRequestManager alloc] initWithAccessToken:configManager.accessToken];
@@ -73,86 +73,26 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-	if (thisMeeting!= nil) {
-		[self updateTableWithMeeting:thisMeeting];
+    // Detect if the view actually needs updating
+    if (thisMeeting != nil && thisMeeting != previousMeeting) {
         
+        previousMeeting = thisMeeting;
+        // Default values
+        listenToSegmentChanges = YES;
+        showAlertMeSlider = NO;
+        [self removeDeleteButton];            
+        
+        [self updateTableWithMeeting:thisMeeting];
+        [[super tableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] 
+                                 atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        
+
         // If the current user is the owner of the meeting then add the delete button to the table view footer;
         UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
         if ([currentUser._id isEqualToNumber:thisMeeting.owner._id]) {
             [self addDeleteButton];
         }
-	}
-}
-
-- (void)updateTableWithMeeting:(MeetingDTO *)newMeeting {
-    
-    self.thisMeeting = newMeeting;
-    
-    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-    
-    // Set counters
-    awaitingReply = 0;
-    attending = 0;
-    notAttending = 0;
-    for (AttendeeDTO *attendee in thisMeeting.attendees) {
-        
-        if (attendee.rsvp == nil) {
-            awaitingReply++;
-            oldSegmentValue = -1;
-        } else if ([attendee.rsvp isEqualToString:kAttendingKey]) {
-            attending++;
-            if ([attendee._id isEqualToNumber:currentUser._id]) {
-                listenToSegmentChanges = NO;
-                meetingDetailCell.attendingControl.selectedSegmentIndex = 0;
-                oldSegmentValue = 0;
-                listenToSegmentChanges = YES;
-                showAlertMeSlider = YES;
-            }
-        } else if ([attendee.rsvp isEqualToString:kNotAttendingKey]) {
-            notAttending++;
-            if ([attendee._id isEqualToNumber:currentUser._id]) {
-                listenToSegmentChanges = NO;
-                meetingDetailCell.attendingControl.selectedSegmentIndex = 1;
-                oldSegmentValue = 1;
-                listenToSegmentChanges = YES;
-                showAlertMeSlider = NO;
-            }
-        }
     }
-    
-    [[super tableView] reloadData];
-}
-
-- (void)rollbackSelectedSegment {
-    // Reset segment value, but without the another request being triggered.
-    listenToSegmentChanges = NO;
-    meetingDetailCell.attendingControl.selectedSegmentIndex = oldSegmentValue;
-    listenToSegmentChanges = YES;
-}
-
-- (void)addDeleteButton {
-    // Create meeting button
-	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
-	TTButton *button = [TTButton buttonWithStyle:@"redButton:" title:@"Delete Meeting"];
-	button.font = [UIFont boldSystemFontOfSize:14];
-	[button sizeToFit];
-	[button addTarget:self action:@selector(deleteMeetingButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-	[deleteMeetingButton addSubview:button];
-}
-
-- (void)deleteMeetingButtonPressed {
-    deleteMeetingAlertView = [[UIAlertView alloc]
-						  initWithTitle:@"Delete Meeting" 
-						  message:@"Are you sure?"
-						  delegate:self 
-						  cancelButtonTitle:@"No" 
-						  otherButtonTitles:@"Yes", nil];
-	[deleteMeetingAlertView show];
-	[deleteMeetingAlertView release];
-}
-
-- (void)deleteMeeting {
-    [deleteMeetingRequestManager deleteMeeting:thisMeeting];
 }
 
 #pragma mark -
@@ -194,6 +134,92 @@
     [meetingDetailCell hideAlertMeSlider];
     showAlertMeSlider = NO;
     [[super tableView] reloadData];
+}
+
+
+#pragma mark -
+#pragma mark MeetingDetailViewController
+
+- (void)updateTableWithMeeting:(MeetingDTO *)newMeeting {
+    
+    self.thisMeeting = newMeeting;
+    
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    
+    // Set counters
+    awaitingReply = 0;
+    attending = 0;
+    notAttending = 0;
+    for (AttendeeDTO *attendee in thisMeeting.attendees) {
+        
+        if (attendee.rsvp == nil) {
+            awaitingReply++;
+            meetingDetailCell.attendingControl.selectedSegmentIndex = -1;
+            oldSegmentValue = -1;
+        } else if ([attendee.rsvp isEqualToString:kAttendingKey]) {
+            attending++;
+            if ([attendee._id isEqualToNumber:currentUser._id]) {
+                meetingDetailCell.attendingControl.selectedSegmentIndex = 0;
+                oldSegmentValue = 0;
+                showAlertMeSlider = YES;
+            }
+        } else if ([attendee.rsvp isEqualToString:kNotAttendingKey]) {
+            notAttending++;
+            if ([attendee._id isEqualToNumber:currentUser._id]) {
+                meetingDetailCell.attendingControl.selectedSegmentIndex = 1;
+                oldSegmentValue = 1;
+                showAlertMeSlider = NO;
+                
+            }
+        }
+        if ([attendee._id isEqualToNumber:currentUser._id]) {
+            // default value
+            minutesBefore = [NSNumber numberWithUnsignedInt:15];
+            if (attendee.minutesBefore) {
+                minutesBefore = attendee.minutesBefore;
+            }
+            [meetingDetailCell setAlertMeSliderValueWithMinutes:[minutesBefore unsignedIntegerValue]];
+        }
+    }
+    
+    [[super tableView] reloadData];
+}
+
+- (void)rollbackSelectedSegment {
+    // Reset segment value, but without the another request being triggered.
+    meetingDetailCell.attendingControl.selectedSegmentIndex = oldSegmentValue;
+    listenToSegmentChanges = YES;
+}
+
+- (void)addDeleteButton {
+    // Create meeting button
+	[TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
+	TTButton *button = [TTButton buttonWithStyle:@"redButton:" title:@"Delete Meeting"];
+	button.font = [UIFont boldSystemFontOfSize:14];
+	[button sizeToFit];
+	[button addTarget:self action:@selector(deleteMeetingButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+	[deleteMeetingButton addSubview:button];
+}
+
+- (void)removeDeleteButton {
+    for (UIView *subView in [deleteMeetingButton subviews]) {
+        [subView removeFromSuperview];
+    }
+}
+
+- (void)deleteMeetingButtonPressed {
+    deleteMeetingAlertView = [[UIAlertView alloc]
+						  initWithTitle:@"Delete Meeting" 
+						  message:@"Are you sure?"
+						  delegate:self 
+						  cancelButtonTitle:@"No" 
+						  otherButtonTitles:@"Yes", nil];
+	[deleteMeetingAlertView show];
+	[deleteMeetingAlertView release];
+}
+
+- (void)deleteMeeting {
+    [deleteMeetingRequestManager deleteMeeting:thisMeeting];
 }
 
 #pragma mark -
@@ -368,12 +394,14 @@
 
 - (void)attendingButtonPressed {
     if (listenToSegmentChanges) {
+        listenToSegmentChanges = NO;
         [acceptMeetingRequestManager acceptMeeting:thisMeeting];
     }
 }
 
 - (void)notAttendingButtonPressed {
     if (listenToSegmentChanges) {
+        listenToSegmentChanges = NO;
         [declineMeetingRequestManager declineMeeting:thisMeeting];
     }
 }
@@ -415,6 +443,7 @@
 #pragma mark DeclineMeetingRequestManagerDelegate
 
 - (void)declineMeetingSuccessful {
+    listenToSegmentChanges = YES;
     UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
     for (AttendeeDTO *attendee in thisMeeting.attendees) {
         if ([attendee._id isEqualToNumber:currentUser._id]) {

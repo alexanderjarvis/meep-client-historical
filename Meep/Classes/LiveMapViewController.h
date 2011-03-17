@@ -12,6 +12,7 @@
 #import "LocationService.h"
 #import "CurrentUserAnnotation.h"
 #import "WebSocketManager.h"
+#import "MeetingDTO.h"
 
 @interface LiveMapViewController : UIViewController <MKMapViewDelegate> {
     
@@ -30,9 +31,13 @@
     CLLocation *currentLocation;
     CLLocation *previousLocation;
     
+    MeetingDTO *currentMeeting;
+    
 }
 
 @property (nonatomic, retain) MKMapView *mapView;
+
+- (void)setCurrentMeeting:(MeetingDTO *)currentMeeting;
 
 - (IBAction)myLocationButtonPressed;
 - (IBAction)showAllAnnotationsButtonPressed;

@@ -16,6 +16,8 @@
 
 @implementation MenuViewController
 
+@synthesize friendRequestsItem;
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -69,74 +71,13 @@
 														   URL: UserRequestsURL];
 	[launcherView addItem:friendRequestsItem animated:NO];
     
-    // temp item
-    TTLauncherItem *item = [[TTLauncherItem alloc] initWithTitle: @"Live Map"
+    liveMapItem = [[TTLauncherItem alloc] initWithTitle: @"Live Map"
                                                            image: @"bundle://Icon.png"
                                                             URL: LiveMapURL];
-    [launcherView addItem:item animated:NO];
-    [item release];
-    // temp item
+    [launcherView addItem:liveMapItem animated:NO];
 	
 	[self.view addSubview:launcherView];
-    
-    // Request Managers
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	ConfigManager *configManager = [meepAppDelegate configManager];
-	userManager = [[UserManager alloc] initWithAccessToken:configManager.accessToken];
-    [userManager setDelegate: self];
-	logoutManager = [[LogoutManager alloc] initWithAccessToken:configManager.accessToken];
-	[logoutManager setDelegate:self];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self 
-                                             selector:@selector(applicationDidBecomeActive:) 
-                                                 name:UIApplicationDidBecomeActiveNotification 
-                                               object:nil];
-	
 }
-
-- (void)viewDidAppear:(BOOL)animated {
-	[self getUser];
-}
-
-- (void)applicationDidBecomeActive:(id)sender {
-    [self getUser];
-}
-
-/*
- * Gets the current user
- */
-- (void)getUser {
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	ConfigManager *configManager = [meepAppDelegate configManager];
-	[userManager getUser:configManager.email];
-}
-
-- (void)logoutUserButtonPressed:(id)sender {
-	logoutAlertView = [[UIAlertView alloc]
-						initWithTitle:@"Logout" 
-						message:@"Are you sure that you wish to logout?"
-						delegate:self 
-						cancelButtonTitle:@"No" 
-						otherButtonTitles:@"Yes", nil];
-	[logoutAlertView show];
-	[logoutAlertView release];
-}
-
-- (void)logout {
-	[logoutManager logoutUser];
-}
-
-- (void)showWelcomeView {
-	[[MeepAppDelegate sharedAppDelegate] showWelcomeView];
-}
-
-/*
- * Called after a new meeting is created to enable further actions.
- */
-- (void)newMeetingCreated {
-	meetingsItem.badgeNumber = meetingsItem.badgeNumber + 1;
-}
-
 
 #pragma mark -
 #pragma mark Memory management
@@ -161,10 +102,34 @@
 	[myDetailsItem release];
 	[searchPeopleItem release];
 	[friendRequestsItem release];
+    [liveMapItem release];
 	[logoutButton release];
-	[userManager release];
-    [logoutManager release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark MenuViewController
+
+- (void)setMenuNavigationController:(MenuNavigationController *)navigationController {
+    
+}
+
+- (void)logoutUserButtonPressed:(id)sender {
+	logoutAlertView = [[UIAlertView alloc]
+						initWithTitle:@"Logout" 
+						message:@"Are you sure that you wish to logout?"
+						delegate:self 
+						cancelButtonTitle:@"No" 
+						otherButtonTitles:@"Yes", nil];
+	[logoutAlertView show];
+	[logoutAlertView release];
+}
+
+/*
+ * Called after a new meeting is created to enable further actions.
+ */
+- (void)newMeetingCreated {
+	meetingsItem.badgeNumber = meetingsItem.badgeNumber + 1;
 }
 
 #pragma mark -
@@ -177,22 +142,22 @@
 	
 	if ([item.URL isEqualToString:MeetingsURL]) {
 		meetingsItem.badgeNumber = 0;
-		[meepAppDelegate.menuNavigationController showMeetings];
+		[meepAppDelegate.menuNavigationController showMeetingsViewAnimated:YES];
 	} else if ([item.URL isEqualToString:NewMeetingURL]) {
 		// Check that the current user has connections to make a meeting with.
 		if ([currentUser.connections count] > 0) {
-			[meepAppDelegate.menuNavigationController showNewMeetingLocation];
+			[meepAppDelegate.menuNavigationController showNewMeetingLocationAnimated:YES];
 		} else {
 			[AlertView showNoUsersAlert];
 		}
 	} else if ([item.URL isEqualToString:SearchUsersURL]) {
-		[meepAppDelegate.menuNavigationController showSearchUsers];
+		[meepAppDelegate.menuNavigationController showSearchUsersViewAnimated:YES];
 	} else if ([item.URL isEqualToString:UserRequestsURL]) {
-		[meepAppDelegate.menuNavigationController showUserRequests];
+		[meepAppDelegate.menuNavigationController showUserRequestsViewAnimated:YES];
 	} else if ([item.URL isEqualToString:UsersURL]) {
-		[meepAppDelegate.menuNavigationController showUsers];
+		[meepAppDelegate.menuNavigationController showUsersViewAnimated:YES];
 	} else if ([item.URL isEqualToString:LiveMapURL]) {
-        [meepAppDelegate.menuNavigationController showLiveMap];
+        [meepAppDelegate.menuNavigationController showLiveMapViewAnimated:YES];
     }
 }
 
@@ -216,47 +181,13 @@
 				break;
 			case 1:
 				// Logout
-				[self logout];
+				[[[MeepAppDelegate sharedAppDelegate] menuNavigationController] logout];
 				break;
 			default:
 				break;
 		}
 	}
 }
-
-#pragma mark -
-#pragma mark UserManagerDelegate
-
-- (void)getUserSuccessful:(UserDTO *)user {
-	NSLog(@"Get user successful");
-	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
-	friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
-    [LocalNotificationManager checkAndUpdateLocalNotificationsForUser:user];
-}
-
-- (void)getUserFailedWithError:(NSError *)error {
-	[self showWelcomeView];
-}
-
-- (void)getUserFailedWithNetworkError:(NSError *)error {
-	[AlertView showNetworkAlert:error];
-}
-
-#pragma mark -
-#pragma mark LogoutManagerDelegate
-
-- (void)logoutUserSuccessful {
-	[self showWelcomeView];
-}
-
-- (void)logoutUserFailedWithError:(NSError *)error {
-	[self showWelcomeView];
-}
-
-- (void)logoutUserFailedWithNetworkError:(NSError *)error {
-	[AlertView showNetworkAlert:error];
-}
-
 
 @end
 

@@ -85,7 +85,7 @@
 		
 		// Show date & time view
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-		[meepAppDelegate.menuNavigationController showNewMeetingDateAndTime];
+		[meepAppDelegate.menuNavigationController showNewMeetingDateAndTimeAnimated:YES];
 		
 	} else {
 		[AlertView showValidationAlert:@"You must choose a meeting location first."];

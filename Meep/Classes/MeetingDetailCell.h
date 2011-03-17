@@ -12,6 +12,8 @@
 
 #define MeetingDetailCellHeightNormal 160
 #define MeetingDetailCellHeightExpanded 220
+#define alertMeSliderMinValue 1
+#define alertMeSliderMaxValue 30
 
 @interface MeetingDetailCell : UITableViewCell {
     
@@ -59,5 +61,7 @@
 - (void)hideAlertMeSlider;
 
 - (void)rollbackAlertMeSlider;
+
+- (void)setAlertMeSliderValueWithMinutes:(NSUInteger)minutes;
 
 @end

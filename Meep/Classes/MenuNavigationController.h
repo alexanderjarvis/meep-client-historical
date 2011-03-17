@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+#import "UserManager.h"
+#import "LogoutManager.h"
 #import "MenuViewController.h"
 #import "MeetingsViewController.h"
+#import "MeetingDetailViewController.h"
 #import "UsersViewController.h"
 #import "NewMeetingLocationController.h"
 #import "NewMeetingDateAndTimeController.h"
@@ -18,11 +21,15 @@
 #import "UserRequestsViewController.h"
 #import "LiveMapViewController.h"
 
-@interface MenuNavigationController : UINavigationController {
+@interface MenuNavigationController : UINavigationController <UserManagerDelegate, LogoutManagerDelegate> {
+    
+    UserManager *userManager;
+    LogoutManager *logoutManager;
 	
 	MenuViewController *menuViewController;
 	
 	MeetingsViewController *meetingsViewController;
+    MeetingDetailViewController *meetingDetailViewController;
 	
 	UsersViewController *usersViewController;
 	
@@ -34,32 +41,22 @@
 	UserRequestsViewController *userRequestsViewController;
     
     LiveMapViewController *liveMapViewController;
-
+    UILocalNotification *liveMapNotificationWaitingForCurrentUser;
 }
 
-@property (nonatomic, retain) MeetingsViewController *meetingsViewController;
-@property (nonatomic, retain) MenuViewController *menuViewController;
-@property (nonatomic, retain) UsersViewController *usersViewController;
-@property (nonatomic, retain) NewMeetingLocationController *newMeetingLocationController;
-@property (nonatomic, retain) NewMeetingDateAndTimeController *newMeetingDateAndTimeController;
-@property (nonatomic, retain) NewMeetingUsersController *newMeetingUsersController;
-@property (nonatomic, retain) SearchUsersViewController *searchUsersViewController;
-@property (nonatomic, retain) UserRequestsViewController *userRequestsViewController;
-@property (nonatomic, retain) LiveMapViewController *liveMapViewController;
-
-- (void)showMeetings;
-
-- (void)showUsers;
-
-- (void)showNewMeetingLocation;
-- (void)showNewMeetingDateAndTime;
-- (void)showNewMeetingUsers;
-
-- (void)showSearchUsers;
-- (void)showUserRequests;
-
-- (void)showLiveMap;
-
+- (void)logout;
 - (void)newMeetingCreated;
+
+- (void)showMeetingsViewAnimated:(BOOL)animated;
+- (void)showMeetingDetailView:(MeetingDTO *)meeting animated:(BOOL)animated;
+- (void)showUsersViewAnimated:(BOOL)animated;
+- (void)showNewMeetingLocationAnimated:(BOOL)animated;
+- (void)showNewMeetingDateAndTimeAnimated:(BOOL)animated;
+- (void)showNewMeetingUsersAnimated:(BOOL)animated;
+- (void)showSearchUsersViewAnimated:(BOOL)animated;
+- (void)showUserRequestsViewAnimated:(BOOL)animated;
+- (void)showLiveMapViewAnimated:(BOOL)animated;
+- (void)showLiveMapViewWith:(MeetingDTO *)meeting animated:(BOOL)animated;
+- (void)showLiveMapFromLocalNotification:(UILocalNotification *)localNotification;
 
 @end
