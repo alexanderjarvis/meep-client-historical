@@ -152,6 +152,18 @@
     
     // Obtain valid meeting annotations for current meeting if available, if not, all meetings
     if (currentMeeting != nil) {
+        // Remove all meeting annotations that don't match the current meeting.
+        NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithCapacity:1];
+        for (MeetingPlaceAnnotation *meetingPlaceAnnotation in meetingPlaceAnnotations) {
+            if (![meetingPlaceAnnotation._id isEqualToNumber:currentMeeting._id]) {
+                [mapView removeAnnotation:meetingPlaceAnnotation];
+                [annotationsToRemove addObject:meetingPlaceAnnotation];
+            }
+        }
+        for (MeetingPlaceAnnotation *annotation in annotationsToRemove) {
+            [meetingPlaceAnnotations removeObject:annotation];
+        }
+        // Add / Update the current meeting
         [self addMeetingAnnotationFor:currentMeeting with:currentUser];
     } else {
         for (MeetingDTO *meeting in currentUser.meetingsRelated) {

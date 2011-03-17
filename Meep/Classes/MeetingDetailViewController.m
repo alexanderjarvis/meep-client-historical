@@ -154,8 +154,10 @@
         
         if (attendee.rsvp == nil) {
             awaitingReply++;
-            meetingDetailCell.attendingControl.selectedSegmentIndex = -1;
-            oldSegmentValue = -1;
+            if ([attendee._id isEqualToNumber:currentUser._id]) {
+                meetingDetailCell.attendingControl.selectedSegmentIndex = -1;
+                oldSegmentValue = -1;
+            }
         } else if ([attendee.rsvp isEqualToString:kAttendingKey]) {
             attending++;
             if ([attendee._id isEqualToNumber:currentUser._id]) {
@@ -379,6 +381,7 @@
     if (section == 1) {
         if (row == 0) {
             // View live meeting map
+            [[[MeepAppDelegate sharedAppDelegate] menuNavigationController] showLiveMapViewWith:thisMeeting animated:YES];
         } else if (row == 1) {
             // View attendees
             MeetingAttendeesViewController *meetingAttendeesViewController = [[MeetingAttendeesViewController alloc] initWithNibName:@"MeetingAttendeesViewController" bundle:nil];
