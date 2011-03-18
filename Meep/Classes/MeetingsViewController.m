@@ -38,9 +38,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
-	[self updateTableWithMeetings:[[meepAppDelegate currentUser] meetingsRelated]];
-	
+	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    if (currentUser != nil) {
+        [self updateTableWithMeetings:[currentUser meetingsRelated]];
+	}
 	// Get the meetings
 	[meetingsRequestManager getMeetings];
 }
