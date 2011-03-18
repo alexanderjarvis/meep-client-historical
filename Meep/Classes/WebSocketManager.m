@@ -13,7 +13,7 @@
 #import "ConfigManager.h"
 #import "MeepNotificationCenter.h"
 #import "UserLocationDTO.h"
-#import "ISO8601DateFormatter.h"
+#import "DateFormatter.h"
 #import "DictionaryModelMapper.h"
 #import "RecentUserLocationsDTO.h"
 #import "MeepNotificationCenter.h"
@@ -112,7 +112,7 @@
     CLLocation *currentLocation = [[notification userInfo] objectForKey:kLocationUpdateNotification];
     
     UserLocationDTO *userLocation = [[UserLocationDTO alloc] init];
-    userLocation.time = [ISO8601DateFormatter stringFromDate:currentLocation.timestamp];
+    userLocation.time = [DateFormatter stringFromDate:currentLocation.timestamp];
     userLocation.coordinate.latitude = [NSNumber numberWithDouble:currentLocation.coordinate.latitude];
     userLocation.coordinate.longitude = [NSNumber numberWithDouble:currentLocation.coordinate.longitude];
     userLocation.speed = [NSNumber numberWithDouble:currentLocation.speed];

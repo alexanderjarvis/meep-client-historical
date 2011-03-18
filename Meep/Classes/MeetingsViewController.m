@@ -13,7 +13,7 @@
 #import "MeetingCell.h"
 #import "MeetingDTO.h"
 #import "MeetingDetailViewController.h"
-#import "ISO8601DateFormatter.h"
+#import "DateFormatter.h"
 
 @implementation MeetingsViewController
 
@@ -83,7 +83,7 @@
 	for (MeetingDTO *meeting in meetings) {
         
         // If the meeting date is older than a day
-        NSDate *meetingDate = [ISO8601DateFormatter dateFromString:meeting.time];
+        NSDate *meetingDate = [DateFormatter dateFromString:meeting.time];
         if ([meetingDate timeIntervalSinceNow] < -TwentyFourHoursInSeconds) {
             [arrayOfOld addObject:meeting];
         } else {
@@ -171,7 +171,7 @@
 	// Title
 	cell.titleLabel.text = meeting.title;
 	// Date and time
-	NSDate *date = [ISO8601DateFormatter dateFromString:meeting.time];
+	NSDate *date = [DateFormatter dateFromString:meeting.time];
 	cell.dateLabel.text = [NSDateFormatter localizedStringFromDate:date 
 														 dateStyle:kCFDateFormatterLongStyle 
 														 timeStyle:kCFDateFormatterNoStyle];

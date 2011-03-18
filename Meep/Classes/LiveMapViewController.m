@@ -14,7 +14,7 @@
 #import "OtherUserAnnotation.h"
 #import "MapView-AnnotationZoom.h"
 #import "MeetingPlaceAnnotation.h"
-#import "ISO8601DateFormatter.h"
+#import "DateFormatter.h"
 
 @interface LiveMapViewController (private)
 - (void)showMyLocation;
@@ -175,7 +175,7 @@
 - (void)addMeetingAnnotationFor:(MeetingDTO *)meeting with:(UserDTO *)currentUser {
     
     // If the meeting date is older than a day
-    NSDate *meetingDate = [ISO8601DateFormatter dateFromString:meeting.time];
+    NSDate *meetingDate = [DateFormatter dateFromString:meeting.time];
     NSInteger seconds = -TwentyFourHoursInSeconds;
     NSInteger timeInterval = [meetingDate timeIntervalSinceNow];
     if (timeInterval < seconds) {
@@ -207,7 +207,7 @@
                     
                     // Update annotation properties
                     newMeetingPlaceAnnotation.title = meeting.title;
-                    newMeetingPlaceAnnotation.subtitle = [NSDateFormatter localizedStringFromDate:[ISO8601DateFormatter dateFromString:meeting.time] 
+                    newMeetingPlaceAnnotation.subtitle = [NSDateFormatter localizedStringFromDate:[DateFormatter dateFromString:meeting.time] 
                                                                                         dateStyle:kCFDateFormatterLongStyle
                                                                                         timeStyle:kCFDateFormatterShortStyle];
                     

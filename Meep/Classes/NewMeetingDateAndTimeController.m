@@ -12,7 +12,7 @@
 #import "MeepStyleSheet.h"
 #import "AlertView.h"
 #import "NewMeetingBuilder.h"
-#import "ISO8601DateFormatter.h"
+#import "DateFormatter.h"
 
 @implementation NewMeetingDateAndTimeController
 
@@ -67,7 +67,7 @@
         if ([descriptionCell.customTextField.text length] > 0) {
             meetingDTO.description = descriptionCell.customTextField.text;
         }
-		meetingDTO.time = [ISO8601DateFormatter stringFromDate:[datePicker date]];
+		meetingDTO.time = [DateFormatter stringFromDate:[datePicker date]];
 		
 		// Show users view
 		MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];

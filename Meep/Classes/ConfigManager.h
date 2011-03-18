@@ -16,7 +16,8 @@
 // The host for the web service
 #define DEBUG 0
 #ifdef DEBUG
-#define SERVICE_HOST @"169.254.100.172"
+//#define SERVICE_HOST @"169.254.100.172"
+#define SERVICE_HOST @"meep.it"
 #define SERVICE_PORT 9000
 #endif
 #ifndef DEBUG

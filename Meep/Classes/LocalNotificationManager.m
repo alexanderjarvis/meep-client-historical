@@ -8,7 +8,7 @@
 
 #import "LocalNotificationManager.h"
 
-#import "ISO8601DateFormatter.h"
+#import "DateFormatter.h"
 
 @interface LocalNotificationManager (private)
 
@@ -67,7 +67,7 @@
                     
                 // Update / Set the local notifications properties.
                 } else {
-                    NSDate *meetingDate = [ISO8601DateFormatter dateFromString:meeting.time];
+                    NSDate *meetingDate = [DateFormatter dateFromString:meeting.time];
                     NSDate *fireDate = [NSDate dateWithTimeInterval:-([attendee.minutesBefore doubleValue] * 60) 
                                                           sinceDate:meetingDate];
                     meetingNotification.fireDate = fireDate;

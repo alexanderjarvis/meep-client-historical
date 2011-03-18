@@ -18,6 +18,8 @@
 		320CC833B8AF0ACFD35E6225 /* libThree20Style.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320CC833B8AF0ACFD35E6224 /* libThree20Style.a */; };
 		320D7DCCE32703ACAB9A45E5 /* libThree20.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320D7DCCE32703ACAB9A45E4 /* libThree20.a */; };
 		320F2C48872C2E2C4DF86205 /* libThree20UI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 320F2C48872C2E2C4DF86204 /* libThree20UI.a */; };
+		FA116F8513312A0C00CA3557 /* UpdateMinutesBeforeRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA116F8413312A0C00CA3557 /* UpdateMinutesBeforeRequestManager.m */; };
+		FA116F891331532100CA3557 /* LocalNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA116F881331531400CA3557 /* LocalNotificationManager.m */; };
 		FA182DBB131FA29800E2147F /* FriendRequests.png in Resources */ = {isa = PBXBuildFile; fileRef = FA182DAF131FA29800E2147F /* FriendRequests.png */; };
 		FA182DBC131FA29800E2147F /* FriendRequests@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA182DB0131FA29800E2147F /* FriendRequests@2x.png */; };
 		FA182DBD131FA29800E2147F /* Friends.png in Resources */ = {isa = PBXBuildFile; fileRef = FA182DB1131FA29800E2147F /* Friends.png */; };
@@ -42,6 +44,9 @@
 		FA1AE545131AC78900683B1A /* ObjectWithProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1AE544131AC78900683B1A /* ObjectWithProperties.m */; };
 		FA251D101322B7BF00C614F7 /* AcceptMeetingRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA251D0F1322B7BB00C614F7 /* AcceptMeetingRequestManager.m */; };
 		FA331EFA1309A5B8000763D4 /* AccessTokenRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */; };
+		FA4ABE4513330C630086CF03 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4ABE4313330C630086CF03 /* ISO8601DateFormatter.m */; };
+		FA4ABE4613330C630086CF03 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FA4ABE4413330C630086CF03 /* LICENSE.txt */; };
+		FA4ABE4913330D7B0086CF03 /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4ABE4813330D7B0086CF03 /* DateFormatter.m */; };
 		FA4BE857132BE46B00A80CD7 /* UserLocationDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BE856132BE46B00A80CD7 /* UserLocationDTO.m */; };
 		FA4BE85B132BE7B200A80CD7 /* LiveMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BE859132BE7B200A80CD7 /* LiveMapViewController.m */; };
 		FA4BE85C132BE7B200A80CD7 /* LiveMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4BE85A132BE7B200A80CD7 /* LiveMapViewController.xib */; };
@@ -54,7 +59,6 @@
 		FA5076C51302F3CC00CB96B4 /* LoginManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA50769A1302F3CC00CB96B4 /* LoginManager.m */; };
 		FA5076C61302F3CC00CB96B4 /* RegistrationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA50769D1302F3CC00CB96B4 /* RegistrationManager.m */; };
 		FA5076C81302F3CC00CB96B4 /* MeepAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076A31302F3CC00CB96B4 /* MeepAppDelegate.m */; };
-		FA5076C91302F3CC00CB96B4 /* CLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076A51302F3CC00CB96B4 /* CLViewController.m */; };
 		FA5076CB1302F3CC00CB96B4 /* StringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076AA1302F3CC00CB96B4 /* StringUtils.m */; };
 		FA5076CC1302F3CC00CB96B4 /* MapLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076AE1302F3CC00CB96B4 /* MapLocation.m */; };
 		FA5076CD1302F3CC00CB96B4 /* NewMeetingLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA5076B01302F3CC00CB96B4 /* NewMeetingLocationController.m */; };
@@ -113,7 +117,6 @@
 		FA7FA29B131D7C3800130590 /* CoordinateDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA29A131D7C3800130590 /* CoordinateDTO.m */; };
 		FA7FA2B6131D84F900130590 /* AttendeeDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA2B5131D84F900130590 /* AttendeeDTO.m */; };
 		FA7FA3A3131D941B00130590 /* NewMeetingBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA3A2131D941B00130590 /* NewMeetingBuilder.m */; };
-		FA7FA476131DA70800130590 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA475131DA70800130590 /* ISO8601DateFormatter.m */; };
 		FA8C74101305C20D00FF1A99 /* UserDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* UserDTO.m */; };
 		FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
 		FA8CDC81131F01A700C396A9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8CDC80131F01A700C396A9 /* Icon@2x.png */; };
@@ -121,6 +124,8 @@
 		FACEDB63131ED1380075DC57 /* DeleteUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FACEDB62131ED1380075DC57 /* DeleteUserRequestManager.m */; };
 		FACFE016130D870500F6000A /* UserRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACFE014130D870500F6000A /* UserRequestsViewController.m */; };
 		FACFE017130D870500F6000A /* UserRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACFE015130D870500F6000A /* UserRequestsViewController.xib */; };
+		FAD4ADEA132FAE20003F9BA5 /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD4ADE9132FAE20003F9BA5 /* Math.m */; };
+		FAD4ADED132FB93D003F9BA5 /* MeetingPlaceAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD4ADEC132FB93B003F9BA5 /* MeetingPlaceAnnotation.m */; };
 		FAD78C74132BC0F00074783E /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD78C6D132BC0F00074783E /* AsyncSocket.m */; };
 		FAD78C75132BC0F00074783E /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD78C6F132BC0F00074783E /* WebSocket.m */; };
 		FAD78C76132BC0F00074783E /* ZLIB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FAD78C70132BC0F00074783E /* ZLIB-LICENSE */; };
@@ -128,6 +133,8 @@
 		FAD78C78132BC0F00074783E /* ZLIB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FAD78C73132BC0F00074783E /* ZLIB-LICENSE */; };
 		FADA8DAB132D135500E6F6A0 /* bluemarble.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA8DA9132D135500E6F6A0 /* bluemarble.png */; };
 		FADA8DAC132D135500E6F6A0 /* bluemarble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA8DAA132D135500E6F6A0 /* bluemarble@2x.png */; };
+		FADA8DAF132D25C500E6F6A0 /* greenmarble.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA8DAD132D25C500E6F6A0 /* greenmarble.png */; };
+		FADA8DB0132D25C500E6F6A0 /* greenmarble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA8DAE132D25C500E6F6A0 /* greenmarble@2x.png */; };
 		FADCEC52130DCC9A00EADF31 /* UserSummaryDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */; };
 		FADCEC6A130DCEEE00EADF31 /* UserRequestsCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC69130DCEEE00EADF31 /* UserRequestsCustomCell.m */; };
 		FADCECDB130DD9CE00EADF31 /* AcceptUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCECDA130DD9CE00EADF31 /* AcceptUserRequestManager.m */; };
@@ -136,6 +143,10 @@
 		FAF76FA913104A9F00297E90 /* RequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF76FA813104A9F00297E90 /* RequestManager.m */; };
 		FAF7707A13108E1B00297E90 /* UsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF7707813108E1B00297E90 /* UsersViewController.m */; };
 		FAF7707B13108E1B00297E90 /* UsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAF7707913108E1B00297E90 /* UsersViewController.xib */; };
+		FAF817CA132EBEEF00300C9C /* RecentUserLocationsDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF817C9132EBEEF00300C9C /* RecentUserLocationsDTO.m */; };
+		FAF817CD132EC35100300C9C /* OtherUserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF817CC132EC35000300C9C /* OtherUserAnnotation.m */; };
+		FAF817D0132EC4C000300C9C /* UserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF817CF132EC4BE00300C9C /* UserAnnotation.m */; };
+		FAF817D3132ED86000300C9C /* MapView-AnnotationZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF817D2132ED84D00300C9C /* MapView-AnnotationZoom.m */; };
 		FAF8D4641322BB2300A4B413 /* DeclineMeetingRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAF8D4631322BB2200A4B413 /* DeclineMeetingRequestManager.m */; };
 		FAFCCA721323E5B40059DDA4 /* MeetingAttendeesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAFCCA701323E5AB0059DDA4 /* MeetingAttendeesViewController.m */; };
 		FAFCCA731323E5B40059DDA4 /* MeetingAttendeesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAFCCA711323E5AE0059DDA4 /* MeetingAttendeesViewController.xib */; };
@@ -303,6 +314,11 @@
 		320D7DCCE32703ACAB9A45E0 /* Three20.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20.xcodeproj; path = ../../three20/src/Three20/Three20.xcodeproj; sourceTree = SOURCE_ROOT; };
 		320F2C48872C2E2C4DF86200 /* Three20UI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Three20UI.xcodeproj; path = ../../three20/src/Three20UI/Three20UI.xcodeproj; sourceTree = SOURCE_ROOT; };
 		8D1107310486CEB800E47090 /* Meep-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Meep-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		FA116F8313312A0C00CA3557 /* UpdateMinutesBeforeRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateMinutesBeforeRequestManager.h; sourceTree = "<group>"; };
+		FA116F8413312A0C00CA3557 /* UpdateMinutesBeforeRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateMinutesBeforeRequestManager.m; sourceTree = "<group>"; };
+		FA116F8613312B0B00CA3557 /* UpdateMinutesBeforeRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateMinutesBeforeRequestManagerDelegate.h; sourceTree = "<group>"; };
+		FA116F871331530500CA3557 /* LocalNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalNotificationManager.h; sourceTree = "<group>"; };
+		FA116F881331531400CA3557 /* LocalNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalNotificationManager.m; sourceTree = "<group>"; };
 		FA182DAF131FA29800E2147F /* FriendRequests.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FriendRequests.png; sourceTree = "<group>"; };
 		FA182DB0131FA29800E2147F /* FriendRequests@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "FriendRequests@2x.png"; sourceTree = "<group>"; };
 		FA182DB1131FA29800E2147F /* Friends.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Friends.png; sourceTree = "<group>"; };
@@ -336,6 +352,11 @@
 		FA251D121322B83F00C614F7 /* AcceptMeetingRequestManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceptMeetingRequestManagerDelegate.h; sourceTree = "<group>"; };
 		FA331EF81309A5B8000763D4 /* AccessTokenRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTokenRequestManager.h; sourceTree = "<group>"; };
 		FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTokenRequestManager.m; sourceTree = "<group>"; };
+		FA4ABE4213330C630086CF03 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
+		FA4ABE4313330C630086CF03 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
+		FA4ABE4413330C630086CF03 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		FA4ABE4713330D7B0086CF03 /* DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter.h; sourceTree = "<group>"; };
+		FA4ABE4813330D7B0086CF03 /* DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter.m; sourceTree = "<group>"; };
 		FA4BE855132BE46B00A80CD7 /* UserLocationDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationDTO.h; sourceTree = "<group>"; };
 		FA4BE856132BE46B00A80CD7 /* UserLocationDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationDTO.m; sourceTree = "<group>"; };
 		FA4BE858132BE7B200A80CD7 /* LiveMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LiveMapViewController.h; sourceTree = "<group>"; };
@@ -359,8 +380,6 @@
 		FA50769E1302F3CC00CB96B4 /* RegistrationManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegistrationManagerDelegate.h; path = Classes/RegistrationManagerDelegate.h; sourceTree = SOURCE_ROOT; };
 		FA5076A21302F3CC00CB96B4 /* MeepAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeepAppDelegate.h; path = Classes/MeepAppDelegate.h; sourceTree = SOURCE_ROOT; };
 		FA5076A31302F3CC00CB96B4 /* MeepAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeepAppDelegate.m; path = Classes/MeepAppDelegate.m; sourceTree = SOURCE_ROOT; };
-		FA5076A41302F3CC00CB96B4 /* CLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CLViewController.h; path = Classes/CLViewController.h; sourceTree = SOURCE_ROOT; };
-		FA5076A51302F3CC00CB96B4 /* CLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CLViewController.m; path = Classes/CLViewController.m; sourceTree = SOURCE_ROOT; };
 		FA5076A91302F3CC00CB96B4 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StringUtils.h; path = Classes/StringUtils.h; sourceTree = SOURCE_ROOT; };
 		FA5076AA1302F3CC00CB96B4 /* StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StringUtils.m; path = Classes/StringUtils.m; sourceTree = SOURCE_ROOT; };
 		FA5076AD1302F3CC00CB96B4 /* MapLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MapLocation.h; path = Classes/MapLocation.h; sourceTree = SOURCE_ROOT; };
@@ -467,8 +486,6 @@
 		FA7FA2B5131D84F900130590 /* AttendeeDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeeDTO.m; sourceTree = "<group>"; };
 		FA7FA3A1131D941B00130590 /* NewMeetingBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMeetingBuilder.h; sourceTree = "<group>"; };
 		FA7FA3A2131D941B00130590 /* NewMeetingBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMeetingBuilder.m; sourceTree = "<group>"; };
-		FA7FA474131DA70800130590 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
-		FA7FA475131DA70800130590 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		FA8C740E1305C20D00FF1A99 /* UserDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDTO.h; sourceTree = "<group>"; };
 		FA8C740F1305C20D00FF1A99 /* UserDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDTO.m; sourceTree = "<group>"; };
 		FA8C74381305C7A300FF1A99 /* DictionaryModelMapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = DictionaryModelMapper.h; sourceTree = "<group>"; };
@@ -481,6 +498,10 @@
 		FACFE013130D870500F6000A /* UserRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRequestsViewController.h; sourceTree = "<group>"; };
 		FACFE014130D870500F6000A /* UserRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRequestsViewController.m; sourceTree = "<group>"; };
 		FACFE015130D870500F6000A /* UserRequestsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserRequestsViewController.xib; sourceTree = "<group>"; };
+		FAD4ADE8132FAE20003F9BA5 /* Math.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Math.h; sourceTree = "<group>"; };
+		FAD4ADE9132FAE20003F9BA5 /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
+		FAD4ADEB132FB93A003F9BA5 /* MeetingPlaceAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingPlaceAnnotation.h; sourceTree = "<group>"; };
+		FAD4ADEC132FB93B003F9BA5 /* MeetingPlaceAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingPlaceAnnotation.m; sourceTree = "<group>"; };
 		FAD78C6C132BC0F00074783E /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		FAD78C6D132BC0F00074783E /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		FAD78C6E132BC0F00074783E /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
@@ -491,6 +512,8 @@
 		FAD78C73132BC0F00074783E /* ZLIB-LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "ZLIB-LICENSE"; sourceTree = "<group>"; };
 		FADA8DA9132D135500E6F6A0 /* bluemarble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bluemarble.png; sourceTree = "<group>"; };
 		FADA8DAA132D135500E6F6A0 /* bluemarble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bluemarble@2x.png"; sourceTree = "<group>"; };
+		FADA8DAD132D25C500E6F6A0 /* greenmarble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = greenmarble.png; sourceTree = "<group>"; };
+		FADA8DAE132D25C500E6F6A0 /* greenmarble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "greenmarble@2x.png"; sourceTree = "<group>"; };
 		FADCEC50130DCC9A00EADF31 /* UserSummaryDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSummaryDTO.h; sourceTree = "<group>"; };
 		FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSummaryDTO.m; sourceTree = "<group>"; };
 		FADCEC68130DCEEE00EADF31 /* UserRequestsCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRequestsCustomCell.h; sourceTree = "<group>"; };
@@ -508,6 +531,14 @@
 		FAF7707713108E1B00297E90 /* UsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersViewController.h; sourceTree = "<group>"; };
 		FAF7707813108E1B00297E90 /* UsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersViewController.m; sourceTree = "<group>"; };
 		FAF7707913108E1B00297E90 /* UsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UsersViewController.xib; sourceTree = "<group>"; };
+		FAF817C8132EBEEF00300C9C /* RecentUserLocationsDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecentUserLocationsDTO.h; sourceTree = "<group>"; };
+		FAF817C9132EBEEF00300C9C /* RecentUserLocationsDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecentUserLocationsDTO.m; sourceTree = "<group>"; };
+		FAF817CB132EC35000300C9C /* OtherUserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OtherUserAnnotation.h; sourceTree = "<group>"; };
+		FAF817CC132EC35000300C9C /* OtherUserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OtherUserAnnotation.m; sourceTree = "<group>"; };
+		FAF817CE132EC4BD00300C9C /* UserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAnnotation.h; sourceTree = "<group>"; };
+		FAF817CF132EC4BE00300C9C /* UserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAnnotation.m; sourceTree = "<group>"; };
+		FAF817D1132ED83B00300C9C /* MapView-AnnotationZoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MapView-AnnotationZoom.h"; sourceTree = "<group>"; };
+		FAF817D2132ED84D00300C9C /* MapView-AnnotationZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MapView-AnnotationZoom.m"; sourceTree = "<group>"; };
 		FAF8D4621322BB2200A4B413 /* DeclineMeetingRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclineMeetingRequestManager.h; sourceTree = "<group>"; };
 		FAF8D4631322BB2200A4B413 /* DeclineMeetingRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeclineMeetingRequestManager.m; sourceTree = "<group>"; };
 		FAF8D4651322BB4900A4B413 /* DeclineMeetingRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeclineMeetingRequestManagerDelegate.h; sourceTree = "<group>"; };
@@ -559,6 +590,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FAF817D4132ED99400300C9C /* Extensions */,
 				FA4BE866132BEB4200A80CD7 /* Location */,
 				FA50769F1302F3CC00CB96B4 /* Model */,
 				FA5076981302F3CC00CB96B4 /* Request Managers */,
@@ -567,8 +599,8 @@
 				FA5076AB1302F3CC00CB96B4 /* ViewControllers */,
 				FA5076961302F3CC00CB96B4 /* ConfigManager.h */,
 				FA5076971302F3CC00CB96B4 /* ConfigManager.m */,
-				FA5076A41302F3CC00CB96B4 /* CLViewController.h */,
-				FA5076A51302F3CC00CB96B4 /* CLViewController.m */,
+				FA116F871331530500CA3557 /* LocalNotificationManager.h */,
+				FA116F881331531400CA3557 /* LocalNotificationManager.m */,
 				FA5076A21302F3CC00CB96B4 /* MeepAppDelegate.h */,
 				FA5076A31302F3CC00CB96B4 /* MeepAppDelegate.m */,
 				FA4BE878132C03E300A80CD7 /* MeepNotificationCenter.h */,
@@ -734,6 +766,16 @@
 			name = "Menu Icons";
 			sourceTree = "<group>";
 		};
+		FA4ABE4113330C420086CF03 /* ISO8601DateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				FA4ABE4213330C630086CF03 /* ISO8601DateFormatter.h */,
+				FA4ABE4313330C630086CF03 /* ISO8601DateFormatter.m */,
+				FA4ABE4413330C630086CF03 /* LICENSE.txt */,
+			);
+			name = ISO8601DateFormatter;
+			sourceTree = "<group>";
+		};
 		FA4BE85D132BE7BD00A80CD7 /* Live Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -742,6 +784,12 @@
 				FA4BE858132BE7B200A80CD7 /* LiveMapViewController.h */,
 				FA4BE859132BE7B200A80CD7 /* LiveMapViewController.m */,
 				FA4BE85A132BE7B200A80CD7 /* LiveMapViewController.xib */,
+				FAD4ADEB132FB93A003F9BA5 /* MeetingPlaceAnnotation.h */,
+				FAD4ADEC132FB93B003F9BA5 /* MeetingPlaceAnnotation.m */,
+				FAF817CB132EC35000300C9C /* OtherUserAnnotation.h */,
+				FAF817CC132EC35000300C9C /* OtherUserAnnotation.m */,
+				FAF817CE132EC4BD00300C9C /* UserAnnotation.h */,
+				FAF817CF132EC4BE00300C9C /* UserAnnotation.m */,
 			);
 			name = "Live Map";
 			sourceTree = "<group>";
@@ -781,6 +829,7 @@
 		FA50767A1302F32E00CB96B4 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				FA4ABE4113330C420086CF03 /* ISO8601DateFormatter */,
 				FA5078401302F9F800CB96B4 /* ASIHTTPRequest */,
 				FA5078511302F9F800CB96B4 /* MBProgressHUD */,
 				FA5078541302F9F800CB96B4 /* Reachability */,
@@ -835,6 +884,9 @@
 				FA7E17D413073C7300CFAAF5 /* SearchUsersManager.h */,
 				FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */,
 				FA7E17D713073CC200CFAAF5 /* SearchUsersManagerDelegate.h */,
+				FA116F8313312A0C00CA3557 /* UpdateMinutesBeforeRequestManager.h */,
+				FA116F8413312A0C00CA3557 /* UpdateMinutesBeforeRequestManager.m */,
+				FA116F8613312B0B00CA3557 /* UpdateMinutesBeforeRequestManagerDelegate.h */,
 				FA507B071303EF4000CB96B4 /* UserManager.h */,
 				FA507B081303EF4000CB96B4 /* UserManager.m */,
 				FA507B30130404A900CB96B4 /* UserManagerDelegate.h */,
@@ -854,6 +906,8 @@
 				FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */,
 				FA7FA276131D7B2400130590 /* MeetingDTO.h */,
 				FA7FA277131D7B2400130590 /* MeetingDTO.m */,
+				FAF817C8132EBEEF00300C9C /* RecentUserLocationsDTO.h */,
+				FAF817C9132EBEEF00300C9C /* RecentUserLocationsDTO.m */,
 				FA8C740E1305C20D00FF1A99 /* UserDTO.h */,
 				FA8C740F1305C20D00FF1A99 /* UserDTO.m */,
 				FA4BE855132BE46B00A80CD7 /* UserLocationDTO.h */,
@@ -868,10 +922,14 @@
 		FA5076A81302F3CC00CB96B4 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				FA7FA474131DA70800130590 /* ISO8601DateFormatter.h */,
-				FA7FA475131DA70800130590 /* ISO8601DateFormatter.m */,
+				FAF76F8D1310496B00297E90 /* AlertView.h */,
+				FAF76F8E1310496B00297E90 /* AlertView.m */,
+				FA4ABE4713330D7B0086CF03 /* DateFormatter.h */,
+				FA4ABE4813330D7B0086CF03 /* DateFormatter.m */,
 				FA5076A91302F3CC00CB96B4 /* StringUtils.h */,
 				FA5076AA1302F3CC00CB96B4 /* StringUtils.m */,
+				FAD4ADE8132FAE20003F9BA5 /* Math.h */,
+				FAD4ADE9132FAE20003F9BA5 /* Math.m */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -879,12 +937,6 @@
 		FA5076AB1302F3CC00CB96B4 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FAF76F8D1310496B00297E90 /* AlertView.h */,
-				FAF76F8E1310496B00297E90 /* AlertView.m */,
-				FA5076B51302F3CC00CB96B4 /* MenuNavigationController.h */,
-				FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */,
-				FA5076B71302F3CC00CB96B4 /* MenuViewController.h */,
-				FA5076B81302F3CC00CB96B4 /* MenuViewController.m */,
 				FA4BE85D132BE7BD00A80CD7 /* Live Map */,
 				FA504EB6131EBB65000B94CD /* Meetings */,
 				FA5076AC1302F3CC00CB96B4 /* New Meeting */,
@@ -892,6 +944,10 @@
 				FAF7707613108DDB00297E90 /* Users */,
 				FACFE012130D86CB00F6000A /* User Requests */,
 				FA5076B91302F3CC00CB96B4 /* Welcome */,
+				FA5076B51302F3CC00CB96B4 /* MenuNavigationController.h */,
+				FA5076B61302F3CC00CB96B4 /* MenuNavigationController.m */,
+				FA5076B71302F3CC00CB96B4 /* MenuViewController.h */,
+				FA5076B81302F3CC00CB96B4 /* MenuViewController.m */,
 			);
 			name = ViewControllers;
 			path = Classes;
@@ -1088,6 +1144,8 @@
 			children = (
 				FADA8DA9132D135500E6F6A0 /* bluemarble.png */,
 				FADA8DAA132D135500E6F6A0 /* bluemarble@2x.png */,
+				FADA8DAD132D25C500E6F6A0 /* greenmarble.png */,
+				FADA8DAE132D25C500E6F6A0 /* greenmarble@2x.png */,
 			);
 			name = Marbles;
 			sourceTree = "<group>";
@@ -1100,6 +1158,15 @@
 				FAF7707913108E1B00297E90 /* UsersViewController.xib */,
 			);
 			name = Users;
+			sourceTree = "<group>";
+		};
+		FAF817D4132ED99400300C9C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FAF817D1132ED83B00300C9C /* MapView-AnnotationZoom.h */,
+				FAF817D2132ED84D00300C9C /* MapView-AnnotationZoom.m */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1332,6 +1399,9 @@
 				FA4BE85C132BE7B200A80CD7 /* LiveMapViewController.xib in Resources */,
 				FADA8DAB132D135500E6F6A0 /* bluemarble.png in Resources */,
 				FADA8DAC132D135500E6F6A0 /* bluemarble@2x.png in Resources */,
+				FADA8DAF132D25C500E6F6A0 /* greenmarble.png in Resources */,
+				FADA8DB0132D25C500E6F6A0 /* greenmarble@2x.png in Resources */,
+				FA4ABE4613330C630086CF03 /* LICENSE.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1369,7 +1439,6 @@
 				FA5076C51302F3CC00CB96B4 /* LoginManager.m in Sources */,
 				FA5076C61302F3CC00CB96B4 /* RegistrationManager.m in Sources */,
 				FA5076C81302F3CC00CB96B4 /* MeepAppDelegate.m in Sources */,
-				FA5076C91302F3CC00CB96B4 /* CLViewController.m in Sources */,
 				FA5076CB1302F3CC00CB96B4 /* StringUtils.m in Sources */,
 				FA5076CC1302F3CC00CB96B4 /* MapLocation.m in Sources */,
 				FA5076CD1302F3CC00CB96B4 /* NewMeetingLocationController.m in Sources */,
@@ -1415,7 +1484,6 @@
 				FA7FA29B131D7C3800130590 /* CoordinateDTO.m in Sources */,
 				FA7FA2B6131D84F900130590 /* AttendeeDTO.m in Sources */,
 				FA7FA3A3131D941B00130590 /* NewMeetingBuilder.m in Sources */,
-				FA7FA476131DA70800130590 /* ISO8601DateFormatter.m in Sources */,
 				FA504EBA131EBB86000B94CD /* MeetingsViewController.m in Sources */,
 				FACEDB63131ED1380075DC57 /* DeleteUserRequestManager.m in Sources */,
 				FA182E49131FACF300E2147F /* MeetingsRequestManager.m in Sources */,
@@ -1436,6 +1504,16 @@
 				FA4BE869132BEB6B00A80CD7 /* LocationService.m in Sources */,
 				FA4BE87A132C03F300A80CD7 /* MeepNotificationCenter.m in Sources */,
 				FA7A4855132CFCA8009205D7 /* CurrentUserAnnotation.m in Sources */,
+				FAF817CA132EBEEF00300C9C /* RecentUserLocationsDTO.m in Sources */,
+				FAF817CD132EC35100300C9C /* OtherUserAnnotation.m in Sources */,
+				FAF817D0132EC4C000300C9C /* UserAnnotation.m in Sources */,
+				FAF817D3132ED86000300C9C /* MapView-AnnotationZoom.m in Sources */,
+				FAD4ADEA132FAE20003F9BA5 /* Math.m in Sources */,
+				FAD4ADED132FB93D003F9BA5 /* MeetingPlaceAnnotation.m in Sources */,
+				FA116F8513312A0C00CA3557 /* UpdateMinutesBeforeRequestManager.m in Sources */,
+				FA116F891331532100CA3557 /* LocalNotificationManager.m in Sources */,
+				FA4ABE4513330C630086CF03 /* ISO8601DateFormatter.m in Sources */,
+				FA4ABE4913330D7B0086CF03 /* DateFormatter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

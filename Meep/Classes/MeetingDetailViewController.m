@@ -12,7 +12,7 @@
 #import "MeetingDetailCell.h"
 #import "UserDTO.h"
 #import "AttendeeDTO.h"
-#import "ISO8601DateFormatter.h"
+#import "DateFormatter.h"
 #import "AlertView.h"
 #import "MeetingAttendeesViewController.h"
 #import "MeepStyleSheet.h"
@@ -271,7 +271,7 @@
             // Title
             meetingDetailCell.titleLabel.text = thisMeeting.title;
             // Date and time
-            NSDate *date = [ISO8601DateFormatter dateFromString:thisMeeting.time];
+            NSDate *date = [DateFormatter dateFromString:thisMeeting.time];
             meetingDetailCell.dateLabel.text = [NSDateFormatter localizedStringFromDate:date 
                                                                               dateStyle:kCFDateFormatterLongStyle 
                                                                               timeStyle:kCFDateFormatterNoStyle];
