@@ -12,6 +12,7 @@
 #import "WebSocket.h"
 
 @interface SocketIoClient (FP_Private) <WebSocketDelegate>
+
 - (void)checkIfConnected;
 - (void)log:(NSString *)message;
 - (NSString *)encode:(NSArray *)messages;
@@ -24,8 +25,10 @@
 - (void)doQueue;
 - (void)onConnect;
 - (void)onDisconnect;
+- (void)onFail:(NSError *)error;
 - (void)onMessage:(NSString *)message;
 - (void)onData:(NSString *)data;
+
 @end
 
 @implementation SocketIoClient
@@ -64,21 +67,13 @@
     [super dealloc];
 }
 
-- (void)checkIfConnected {
-    if (!_isConnected) {        
-        if (_tryAgainOnConnectTimeout) {
-            [self connect];
-        }
-    }
-}
-
 - (void)connect {
     if (!_isConnected && !_isConnecting) {
         
         _isConnecting = YES;
-
+        
         [self log:[NSString stringWithFormat:@"Opening %@", _webSocket.url]];
-                
+        
         [_webSocket open];
         
         if (_connectTimeout > 0.0) {
@@ -111,6 +106,15 @@
         [_webSocket send:[self encode:messages]];
         
         [self notifyMessagesSent:messages];
+    }
+}
+
+# pragma mark -
+# pragma mark private
+
+- (void)checkIfConnected {      
+    if (_tryAgainOnConnectTimeout) {
+        [self connect];
     }
 }
 
@@ -259,8 +263,13 @@
     }
 }
 
-- (void)onFail {
+- (void)onFail:(NSError *)error {
+    _isConnected = NO;
     _isConnecting = NO;
+    
+    if (_delegate != nil) {
+        [_delegate socketIoClient:self didFailWithError:error];
+    }
     [self connect];
 }
 
@@ -296,8 +305,7 @@
 
 - (void)webSocket:(WebSocket *)ws didFailWithError:(NSError *)error {
     [self log:[NSString stringWithFormat:@"Connection failed with error: %@", [error localizedDescription]]];
-    [self onFail];
-    //TODO: show error to user
+    [self onFail:error];
 }
 
 - (void)webSocketDidClose:(WebSocket*)webSocket {

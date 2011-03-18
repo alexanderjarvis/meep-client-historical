@@ -33,7 +33,7 @@
 - (id)initWithAccessToken:(NSString *)accessToken {
     self = [super init];
     if (self) {
-        client = [[SocketIoClient alloc] initWithHost:SERVICE_HOST port:SERVICE_PORT resource:@"/websocket/locations/socket/" secure:NO accessToken:accessToken];
+        client = [[SocketIoClient alloc] initWithHost:SERVICE_HOST port:SERVICE_PORT resource:@"/websocket/locations/socket/" secure:SECURE accessToken:accessToken];
         client.delegate = self;
         recentLocations = [[NSMutableArray alloc] initWithCapacity:10];
         recentLocationsCount = 0;
@@ -51,7 +51,6 @@
     [client disconnect];
     client.delegate = nil;
     [client release];
-    
     [super dealloc];
 }
 
@@ -158,6 +157,10 @@
 }
 - (void)socketIoClientDidDisconnect:(SocketIoClient *)client {
      NSLog(@"didDisconnect");
+}
+
+- (void)socketIoClient:(SocketIoClient *)client didFailWithError:(NSError *)error {
+    //
 }
 
 // optional

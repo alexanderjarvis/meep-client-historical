@@ -1,3 +1,5 @@
+// Modified by Alex Jarvis
+
 //
 //  WebSocket.m
 //  Zimt
@@ -9,7 +11,6 @@
 #import "WebSocket.h"
 #import "AsyncSocket.h"
 
-
 NSString* const WebSocketErrorDomain = @"WebSocketErrorDomain";
 NSString* const WebSocketException = @"WebSocketException";
 
@@ -17,6 +18,12 @@ enum {
     WebSocketTagHandshake = 0,
     WebSocketTagMessage = 1
 };
+
+@interface WebSocket (private)
+
+- (void)upgradeToWebSocket;
+
+@end
 
 @implementation WebSocket
 
@@ -28,47 +35,47 @@ enum {
     return [[[WebSocket alloc] initWithURLString:urlString delegate:aDelegate] autorelease];
 }
 
--(id)initWithURLString:(NSString *)urlString delegate:(id<WebSocketDelegate>)aDelegate {
+- (id)initWithURLString:(NSString *)urlString delegate:(id<WebSocketDelegate>)aDelegate {
     self = [super init];
     if (self) {
         self.delegate = aDelegate;
+        self.runLoopModes = [NSArray arrayWithObjects:NSRunLoopCommonModes, nil];
+        socket = [[AsyncSocket alloc] initWithDelegate:self];
         url = [[NSURL URLWithString:urlString] retain];
         if (![url.scheme isEqualToString:@"ws"] && ![url.scheme isEqualToString:@"wss"]) {
             [NSException raise:WebSocketException format:@"Unsupported protocol %@", url.scheme];
-        } 
-        socket = [[AsyncSocket alloc] initWithDelegate:self];
-        self.runLoopModes = [NSArray arrayWithObjects:NSRunLoopCommonModes, nil]; 
+        }
     }
     return self;
 }
 
 #pragma mark Delegate dispatch methods
 
--(void)_dispatchFailure:(NSNumber*)code {
+- (void)_dispatchFailure:(NSNumber*)code {
     if(delegate && [delegate respondsToSelector:@selector(webSocket:didFailWithError:)]) {
         [delegate webSocket:self didFailWithError:[NSError errorWithDomain:WebSocketErrorDomain code:[code intValue] userInfo:nil]];
     }
 }
 
--(void)_dispatchClosed {
+- (void)_dispatchClosed {
     if (delegate && [delegate respondsToSelector:@selector(webSocketDidClose:)]) {
         [delegate webSocketDidClose:self];
     }
 }
 
--(void)_dispatchOpened {
+- (void)_dispatchOpened {
     if (delegate && [delegate respondsToSelector:@selector(webSocketDidOpen:)]) {
         [delegate webSocketDidOpen:self];
     }
 }
 
--(void)_dispatchMessageReceived:(NSString*)message {
+- (void)_dispatchMessageReceived:(NSString*)message {
     if (delegate && [delegate respondsToSelector:@selector(webSocket:didReceiveMessage:)]) {
         [delegate webSocket:self didReceiveMessage:message];
     }
 }
 
--(void)_dispatchMessageSent {
+- (void)_dispatchMessageSent {
     if (delegate && [delegate respondsToSelector:@selector(webSocketDidSendMessage:)]) {
         [delegate webSocketDidSendMessage:self];
     }
@@ -76,24 +83,24 @@ enum {
 
 #pragma mark Private
 
--(void)_readNextMessage {
+- (void)_readNextMessage {
     [socket readDataToData:[NSData dataWithBytes:"\xFF" length:1] withTimeout:-1 tag:WebSocketTagMessage];
 }
 
 #pragma mark Public interface
 
--(void)close {
+- (void)close {
     [socket disconnectAfterReadingAndWriting];
 }
 
--(void)open {
+- (void)open {
     if (!connected) {
         [socket connectToHost:url.host onPort:[url.port intValue] withTimeout:5 error:nil];
         if (runLoopModes) [socket setRunLoopModes:runLoopModes];
     }
 }
 
--(void)send:(NSString*)message {
+- (void)send:(NSString*)message {
     NSMutableData* data = [NSMutableData data];
     [data appendBytes:"\x00" length:1];
     [data appendData:[message dataUsingEncoding:NSUTF8StringEncoding]];
@@ -103,11 +110,11 @@ enum {
 
 #pragma mark AsyncSocket delegate methods
 
--(void)onSocketDidDisconnect:(AsyncSocket *)sock {
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock {
     connected = NO;
 }
 
--(void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err {
+- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err {
     if (!connected) {
         [socket disconnect];
         [self _dispatchFailure:[NSNumber numberWithInt:WebSocketErrorConnectionFailed]];
@@ -117,24 +124,16 @@ enum {
 }
 
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port {
-    NSString* requestOrigin = self.origin;
-    if (!requestOrigin) requestOrigin = [NSString stringWithFormat:@"http://%@",url.host];
-        
-    NSString *requestPath = url.path;
-    if (url.query) {
-      requestPath = [requestPath stringByAppendingFormat:@"?%@", url.query];
+    // If secure start TLS session
+    if ([url.scheme isEqualToString:@"wss"]) {
+        [socket startTLS:[NSDictionary dictionaryWithObject:url.host forKey:(NSString *)kCFStreamSSLPeerName]];
+        return;
+    } else {
+        [self upgradeToWebSocket];
     }
-    NSString* getRequest = [NSString stringWithFormat:@"GET %@ HTTP/1.1\r\n"
-                                                       "Upgrade: WebSocket\r\n"
-                                                       "Connection: Upgrade\r\n"
-                                                       "Host: %@\r\n"
-                                                       "Origin: %@\r\n"
-                                                       "\r\n",
-                                                        requestPath,url.host,requestOrigin];
-    [socket writeData:[getRequest dataUsingEncoding:NSASCIIStringEncoding] withTimeout:-1 tag:WebSocketTagHandshake];
 }
 
--(void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag {
+- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag {
     if (tag == WebSocketTagHandshake) {
         [sock readDataToData:[@"\r\n\r\n" dataUsingEncoding:NSASCIIStringEncoding] withTimeout:-1 tag:WebSocketTagHandshake];
     } else if (tag == WebSocketTagMessage) {
@@ -142,7 +141,7 @@ enum {
     }
 }
 
--(void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag {
     if (tag == WebSocketTagHandshake) {
         NSString* response = [[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease];
         if ([response hasPrefix:@"HTTP/1.1 101 Web Socket Protocol Handshake\r\nUpgrade: WebSocket\r\nConnection: Upgrade\r\n"]) {
@@ -151,6 +150,8 @@ enum {
             
             [self _readNextMessage];
         } else {
+            // TODO: move
+            NSLog(@"Unexpected Handshake response:\n%@", response);
             [socket disconnect];
             [self _dispatchFailure:[NSNumber numberWithInt:WebSocketErrorHandshakeFailed]];
         }
@@ -165,9 +166,35 @@ enum {
     }
 }
 
+- (void)onSocketDidSecure:(AsyncSocket *)sock {
+    NSLog(@"Socket did secure");
+    [self upgradeToWebSocket];
+}
+
+#pragma mark -
+#pragma mark private
+
+- (void)upgradeToWebSocket {
+    NSString* requestOrigin = self.origin;
+    if (!requestOrigin) requestOrigin = [NSString stringWithFormat:@"http://%@",url.host];
+    
+    NSString *requestPath = url.path;
+    if (url.query) {
+        requestPath = [requestPath stringByAppendingFormat:@"?%@", url.query];
+    }
+    NSString* getRequest = [NSString stringWithFormat:@"GET %@ HTTP/1.1\r\n"
+                            "Upgrade: WebSocket\r\n"
+                            "Connection: Upgrade\r\n"
+                            "Host: %@\r\n"
+                            "Origin: %@\r\n"
+                            "\r\n",
+                            requestPath,url.host,requestOrigin];
+    [socket writeData:[getRequest dataUsingEncoding:NSASCIIStringEncoding] withTimeout:-1 tag:WebSocketTagHandshake];
+}
+
 #pragma mark Destructor
 
--(void)dealloc {
+- (void)dealloc {
     socket.delegate = nil;
     [socket disconnect];
     [socket release];

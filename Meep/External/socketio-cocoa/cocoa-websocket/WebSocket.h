@@ -51,4 +51,4 @@ enum {
 };
 
 extern NSString *const WebSocketException;
-extern NSString* const WebSocketErrorDomain;
+extern NSString *const WebSocketErrorDomain;

@@ -64,7 +64,10 @@
 - (void)socketIoClient:(SocketIoClient *)client didReceiveMessage:(NSString *)message isJSON:(BOOL)isJSON;
 
 - (void)socketIoClientDidConnect:(SocketIoClient *)client;
+
 - (void)socketIoClientDidDisconnect:(SocketIoClient *)client;
+
+- (void)socketIoClient:(SocketIoClient *)client didFailWithError:(NSError *)error;
 
 @optional
 
