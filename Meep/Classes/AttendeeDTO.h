@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-
 @interface AttendeeDTO : NSObject {
     
 	NSNumber *_id;
