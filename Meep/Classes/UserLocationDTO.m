@@ -16,7 +16,7 @@
 @synthesize altitude;
 @synthesize trueHeading;
 @synthesize verticalAccuracy;
-@synthesize horizonalAccuracy;
+@synthesize horizontalAccuracy;
 
 - (id)init {
     self = [super init];

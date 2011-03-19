@@ -28,7 +28,7 @@
 @property (nonatomic, copy) NSNumber *altitude;
 @property (nonatomic, copy) NSNumber *trueHeading;
 @property (nonatomic, copy) NSNumber *verticalAccuracy;
-@property (nonatomic, copy) NSNumber *horizonalAccuracy;
+@property (nonatomic, copy) NSNumber *horizontalAccuracy;
 
 - (id)init;
 
