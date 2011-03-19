@@ -257,8 +257,8 @@
 		MKAnnotationView *annotationView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:currentUserAnnotationIdentifier];
 		
 		if (annotationView == nil) {
-			annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation 
-                                                          reuseIdentifier:currentUserAnnotationIdentifier];
+			annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation 
+                                                          reuseIdentifier:currentUserAnnotationIdentifier] autorelease];
             annotationView.image = [UIImage imageNamed:@"bluemarble.png"];
 		}
         annotationView.annotation = annotation;
@@ -274,8 +274,8 @@
 		MKAnnotationView *annotationView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:otherUserAnnotationIdentifier];
 		
 		if (annotationView == nil) {
-			annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation 
-                                                          reuseIdentifier:otherUserAnnotationIdentifier];
+			annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation 
+                                                          reuseIdentifier:otherUserAnnotationIdentifier] autorelease];
             annotationView.image = [UIImage imageNamed:@"greenmarble.png"];
 		}
         annotationView.annotation = annotation;
@@ -291,8 +291,8 @@
 		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:meetingPlaceAnnotationIdentifier];
 		
 		if (annotationView == nil) {
-			annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation 
-                                                          reuseIdentifier:meetingPlaceAnnotationIdentifier];
+			annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation 
+                                                          reuseIdentifier:meetingPlaceAnnotationIdentifier] autorelease];
 		}
         annotationView.annotation = annotation;
 		annotationView.enabled = YES;

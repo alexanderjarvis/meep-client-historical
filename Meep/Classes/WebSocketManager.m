@@ -124,6 +124,7 @@
     userLocation.verticalAccuracy = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentLocation.verticalAccuracy]];
     
     [recentLocations addObject:userLocation];
+    [userLocation release];
     recentLocationsCount++;
     
     if (locationUpdateTimer == nil || ![locationUpdateTimer isValid]) {

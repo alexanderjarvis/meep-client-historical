@@ -52,7 +52,7 @@
             
             // If a notification does not exist for this meeting, then create one.
             if (meetingNotification == nil && [attendee.rsvp isEqualToString:kAttendingKey] && attendee.minutesBefore != nil) {
-                meetingNotification = [[UILocalNotification alloc] init];
+                meetingNotification = [[[UILocalNotification alloc] init] autorelease];
                 meetingNotification.alertAction = @"Live Map!";
                 meetingNotification.hasAction = YES;
                 meetingNotification.userInfo = [NSDictionary dictionaryWithObject:meeting._id forKey:kMeetingIdKey];
@@ -79,7 +79,6 @@
                         if (fireDate == [fireDate laterDate:[NSDate date]]) {
                             [[UIApplication sharedApplication] scheduleLocalNotification:meetingNotification];
                         }
-                        [meetingNotification release];
                     }
                 }
             }

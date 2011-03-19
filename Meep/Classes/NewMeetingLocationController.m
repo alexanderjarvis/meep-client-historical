@@ -108,6 +108,7 @@
 	MKReverseGeocoder *geocoder = [[MKReverseGeocoder alloc] initWithCoordinate:coordinate];
 	geocoder.delegate = self;
 	[geocoder start];
+    [geocoder release];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,8 +138,9 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)annotationView 
 							     didChangeDragState:(MKAnnotationViewDragState)newState 
 									   fromOldState:(MKAnnotationViewDragState)oldState {
-	MapLocation *meetingLocation = annotationView.annotation;
-	if ([meetingLocation isKindOfClass:[MapLocation class]]) {
+	id<MKAnnotation> annotation = annotationView.annotation;
+	if ([annotation isKindOfClass:[MapLocation class]]) {
+        MapLocation *meetingLocation = (MapLocation *)annotation;
 		if (oldState == MKAnnotationViewDragStateDragging && newState == MKAnnotationViewDragStateEnding) {
 			[meetingLocation resetReverseGeocodeAttributes];
 			[self reverseGeocodeCoordinate:annotationView.annotation.coordinate];
@@ -155,16 +157,17 @@
 																	  dequeueReusableAnnotationViewWithIdentifier:placemarkIdentifier];
 		
 		if (annotationView == nil) {
-			annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation 
-															 reuseIdentifier:placemarkIdentifier];
-		} else {
-			annotationView.annotation = annotation;
+			annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation 
+															 reuseIdentifier:placemarkIdentifier] autorelease];
+            annotationView.enabled = YES;
+            annotationView.animatesDrop = YES;
+            annotationView.pinColor = MKPinAnnotationColorRed;
+            annotationView.canShowCallout = YES;
+            annotationView.draggable = YES;
 		}
-		annotationView.enabled = YES;
-		annotationView.animatesDrop = YES;
-		annotationView.pinColor = MKPinAnnotationColorRed;
-		annotationView.canShowCallout = YES;
-		annotationView.draggable = YES;
+		
+        annotationView.annotation = annotation;
+		
 		[self performSelector:@selector(openCallout:) withObject:annotation afterDelay:0.5];
 		
 		return annotationView;		
@@ -225,9 +228,6 @@
 #pragma mark Reverse Geocoder Methods
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFailWithError:(NSError *)error {
 	NSLog(@"Geocoder did not recognize coordinates");
-	
-	geocoder.delegate = nil;
-	[geocoder autorelease];
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder *)geocoder didFindPlacemark:(MKPlacemark *)placemark {
@@ -241,9 +241,7 @@
 			meetingLocation.state = placemark.administrativeArea;
 			meetingLocation.zip = placemark.postalCode;
 		}
-	}	
-	geocoder.delegate = nil;
-	[geocoder autorelease];
+	}
 }
 
 

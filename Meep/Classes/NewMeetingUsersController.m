@@ -73,6 +73,7 @@
 			UserSummaryDTO *userSummaryDTO = [[UserSummaryDTO alloc] init];
 			userSummaryDTO._id = user._id;
 			[attendees addObject:userSummaryDTO];
+            [userSummaryDTO release];
 		}
 		meetingDTO.attendees = attendees;
 		

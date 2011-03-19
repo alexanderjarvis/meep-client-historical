@@ -6,6 +6,8 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
+#import <YAJL/YAJL.h>
+
 #import "UserManager.h"
 #import "MeepAppDelegate.h"
 #import "ASIHTTPRequest.h"

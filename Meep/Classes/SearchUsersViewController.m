@@ -125,8 +125,8 @@
 #pragma mark -
 #pragma mark SearchUsersManagerDelegate methods
 
-- (void)searchUsersSuccessful:(NSArray *)users {
-	self.users = users;
+- (void)searchUsersSuccessful:(NSArray *)usersFound {
+	self.users = usersFound;
 	[[super tableView] reloadData];
 	[[searchDisplayController searchResultsTableView] reloadData];
 }

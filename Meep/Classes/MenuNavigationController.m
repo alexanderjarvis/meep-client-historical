@@ -43,7 +43,7 @@
     // Request Managers
     ConfigManager *configManager = [[MeepAppDelegate sharedAppDelegate] configManager];
     userManager = [[UserManager alloc] initWithAccessToken:configManager.accessToken];
-    [userManager setDelegate: self];
+    [userManager setDelegate:self];
     logoutManager = [[LogoutManager alloc] initWithAccessToken:configManager.accessToken];
     [logoutManager setDelegate:self];
     
@@ -73,6 +73,8 @@
 }
 
 - (void)dealloc {
+    [userManager release];
+    [logoutManager release];
 	[menuViewController release];
 	[meetingsViewController release];
 	[usersViewController release];

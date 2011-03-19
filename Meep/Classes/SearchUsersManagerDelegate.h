@@ -12,7 +12,7 @@
 
 @required
 
-- (void)searchUsersSuccessful:(NSArray *)users;
+- (void)searchUsersSuccessful:(NSArray *)usersFound;
 
 - (void)searchUsersNotFound;
 

@@ -319,7 +319,7 @@
                 cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
-                label = [[UILabel alloc] initWithFrame:CGRectZero];
+                label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
                 [label setLineBreakMode:UILineBreakModeWordWrap];
                 [label setMinimumFontSize:DESC_CELL_FONT_SIZE];
                 [label setNumberOfLines:0];
@@ -335,7 +335,7 @@
             CGSize size = [text sizeWithFont:[UIFont systemFontOfSize:DESC_CELL_FONT_SIZE] constrainedToSize:constraint lineBreakMode:UILineBreakModeWordWrap];
             
             if (label != nil) {
-                label = (UILabel*)[cell viewWithTag:1];
+                label = (UILabel *)[cell viewWithTag:1];
                 [label setText:text];
                 [label setFrame:CGRectMake(DESC_CELL_MARGIN, DESC_CELL_MARGIN, DESC_CELL_WIDTH - (DESC_CELL_MARGIN * 2), MAX(size.height, 44.0f))];
             }

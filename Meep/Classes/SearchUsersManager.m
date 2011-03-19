@@ -5,6 +5,7 @@
 //  Created by Alex Jarvis on 12/02/2011.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
+#import <YAJL/YAJL.h>
 
 #import "SearchUsersManager.h"
 #import "MeepAppDelegate.h"

@@ -113,7 +113,7 @@
 	
 	UserRequestsCustomCell *cell = (UserRequestsCustomCell *)[tableView dequeueReusableCellWithIdentifier:CustomCellIdentifier];
 	if (cell == nil) {
-		cell = [[UserRequestsCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CustomCellIdentifier];
+		cell = [[[UserRequestsCustomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CustomCellIdentifier] autorelease];
 	}
     
     // Configure the cell...
