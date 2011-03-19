@@ -17,7 +17,7 @@
 @implementation RegisterViewController
 
 @synthesize registerButton;
-@synthesize HUD;
+@synthesize hud;
 @synthesize emailCell;
 @synthesize passwordCell;
 @synthesize firstNameCell;
@@ -30,9 +30,9 @@
     
 	self.title = @"Register";
 	
-	HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-	HUD.labelText = @"Registering...";
+	hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:hud];
+	hud.labelText = @"Registering...";
 	
 	registrationManager = [[RegistrationManager alloc] init];
 	[registrationManager setDelegate:self];
@@ -74,7 +74,9 @@
 	}
     
     // Show the HUD
-	[HUD show:YES];
+	[hud show:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Registering...";
 	
 	// Build up the User data and register the user.
 	UserDTO *user = [[UserDTO alloc] init];
@@ -106,7 +108,7 @@
 
 - (void)dealloc {
     [registerButton release];
-	[HUD release];
+	[hud release];
 	[registrationManager release];
 	[emailCell release];
 	[passwordCell release];
@@ -231,19 +233,19 @@
 
 - (void)userRegistrationSuccessful {
     
-	[HUD hide:YES];
+	[hud hide:YES];
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	[meepAppDelegate showMenuView];
 }
 
 - (void)userRegistrationFailedWithError:(NSError *)error {
-	[HUD hide:YES];
+	[hud hide:YES];
 	[AlertView showValidationAlert:[error localizedDescription]];
 }
 
 - (void)userRegistrationFailedWithNetworkError:(NSError *)error {
-	[HUD hide:YES];
+	[hud hide:YES];
 	[AlertView showNetworkAlert:error];
 }
 

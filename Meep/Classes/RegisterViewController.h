@@ -18,7 +18,7 @@
     
     IBOutlet UIButton *registerButton;
 	
-	MBProgressHUD *HUD;
+	MBProgressHUD *hud;
 	
 	RegistrationManager *registrationManager;
 	
@@ -34,7 +34,7 @@
 
 @property (nonatomic, retain) UIButton *registerButton;
 
-@property (nonatomic, retain) MBProgressHUD *HUD;
+@property (nonatomic, retain) MBProgressHUD *hud;
 @property (nonatomic, retain) CustomCellTextField *emailCell;
 @property (nonatomic, retain) CustomCellTextField *passwordCell;
 @property (nonatomic, retain) CustomCellTextField *firstNameCell;

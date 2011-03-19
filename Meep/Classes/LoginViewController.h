@@ -16,7 +16,7 @@
 	
     IBOutlet UIButton *loginButton;
 	
-    MBProgressHUD *HUD;
+    MBProgressHUD *hud;
 	
 	LoginManager *loginManager;
 	
@@ -28,7 +28,7 @@
 }
 
 @property (nonatomic, retain) UIButton *loginButton;
-@property (nonatomic, retain) MBProgressHUD *HUD;
+@property (nonatomic, retain) MBProgressHUD *hud;
 @property (nonatomic, retain) CustomCellTextField *emailCell;
 @property (nonatomic, retain) CustomCellTextField *passwordCell;
 @property (nonatomic, assign) CustomCellTextField *selectedCell;

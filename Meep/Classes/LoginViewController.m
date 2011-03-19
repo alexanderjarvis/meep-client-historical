@@ -16,7 +16,7 @@
 @implementation LoginViewController
 
 @synthesize loginButton;
-@synthesize HUD;
+@synthesize hud;
 @synthesize emailCell;
 @synthesize passwordCell;
 @synthesize selectedCell;
@@ -26,9 +26,9 @@
     
 	self.title = @"Login";
 	
-	HUD = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
-    [self.navigationController.view addSubview:HUD];
-	HUD.labelText = @"Logging in...";
+	hud = [[MBProgressHUD alloc] initWithView:self.navigationController.view];
+    [self.navigationController.view addSubview:hud];
+	hud.labelText = @"Logging in...";
 	
 	loginManager = [[LoginManager alloc] init];
 	[loginManager setDelegate:self];
@@ -70,7 +70,7 @@
 	}
     
     // Show the HUD
-	[HUD show:YES];
+	[hud show:YES];
 	
     // Build up user data and login
 	UserDTO *user = [[UserDTO alloc] init];
@@ -99,7 +99,7 @@
 
 - (void)dealloc {
     [loginButton release];
-	[HUD release];
+	[hud release];
 	[loginManager release];
 	[emailCell release];
 	[passwordCell release];
@@ -188,19 +188,19 @@
 
 - (void)loginSuccessful {
     
-	[HUD hide:YES];
+	[hud hide:YES];
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	[meepAppDelegate showMenuView];
 }
 
 - (void)loginFailedWithError:(NSError *)error {
-	[HUD hide:YES];
+	[hud hide:YES];
 	[AlertView showValidationAlert:[error localizedDescription]];
 }
 
 - (void)loginFailedWithNetworkError:(NSError *)error {
-	[HUD hide:YES];
+	[hud hide:YES];
 	[AlertView showNetworkAlert:error];
 }
 
