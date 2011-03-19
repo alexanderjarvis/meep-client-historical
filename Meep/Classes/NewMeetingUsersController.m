@@ -13,11 +13,9 @@
 #import "NewMeetingBuilder.h"
 #import "AlertView.h"
 
-
 @implementation NewMeetingUsersController
 
 @synthesize createMeetingButton;
-@synthesize userManager;
 @synthesize createMeetingRequestManager;
 @synthesize tableKeys;
 @synthesize tableDictionary;
@@ -31,10 +29,8 @@
 	
     self.title = @"Friends";
 	
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
+	MeepAppDelegate *meepAppDelegate = [MeepAppDelegate sharedAppDelegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
-	userManager = [[UserManager alloc] initWithAccessToken:configManager.accessToken];
-	[userManager setDelegate:self];
 	
 	createMeetingRequestManager = [[CreateMeetingRequestManager alloc] initWithAccessToken:configManager.accessToken];
 	[createMeetingRequestManager setDelegate:self];
@@ -56,11 +52,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	
-	// Get the current user
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	ConfigManager *configManager = [meepAppDelegate configManager];
-	[userManager getUser:configManager.email];
 }
 
 - (void)createMeetingButtonPressed {
@@ -196,30 +187,11 @@
 
 - (void)dealloc {
 	[createMeetingButton release];
-	[userManager release];
 	[createMeetingRequestManager release];
 	[tableKeys release];
 	[tableDictionary release];
 	[selectedUsers release];
     [super dealloc];
-}
-
-#pragma mark -
-#pragma mark UserManagerDelegate
-
-- (void)getUserSuccessful:(UserDTO *)user {
-	
-	// Only update the table if the response is new
-	if ([userManager isResponseNew]) {
-		[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
-		[self updateTableWithUser:user];
-	}
-}
-
-- (void)getUserFailedWithError:(NSError *)error {
-}
-
-- (void)getUserFailedWithNetworkError:(NSError *)error {
 }
 
 #pragma mark -

@@ -15,6 +15,7 @@
 #import "MapView-AnnotationZoom.h"
 #import "MeetingPlaceAnnotation.h"
 #import "DateFormatter.h"
+#import "RelativeDate.h"
 
 @interface LiveMapViewController (private)
 - (void)showMyLocation;
@@ -43,6 +44,7 @@
     [currentMeeting release];
     [currentHeading release];
     [currentLocation release];
+    [currentUserAnnotation release];
     [otherUserAnnotations release];
     [locationService release];
     [mapView release];
@@ -219,6 +221,7 @@
                         newMeetingPlaceAnnotation.coordinate = newMeetingPlaceCoordinate;
                         [mapView addAnnotation:newMeetingPlaceAnnotation];
                         [mapView zoomToFitAnnotations];
+                        
                     } else {
                         // Update the annotations coordinate with an animation.
                         [UIView beginAnimations:@"" context:NULL];
@@ -330,11 +333,10 @@
     // If this is the first location update, then create the annotation for the current user.
     if (firstLocationUpdate) {
         firstLocationUpdate = NO;
-        currentUserAnnotation = [[[CurrentUserAnnotation alloc] init] autorelease];
+        currentUserAnnotation = [[[CurrentUserAnnotation alloc] init] retain];
         currentUserAnnotation.coordinate = currentLocation.coordinate;
         currentUserAnnotation.title = @"Me";
         [mapView addAnnotation:currentUserAnnotation];
-        [currentUserAnnotation release];
         
         [self showMyLocation];
         
@@ -346,6 +348,9 @@
         currentUserAnnotation.coordinate = currentLocation.coordinate;
         [UIView commitAnimations];
     }
+    
+    // Update relative time
+    currentUserAnnotation.subtitle = [RelativeDate stringWithDate:[currentLocation timestamp]];
 }
 
 #pragma mark -
@@ -395,6 +400,10 @@
         otherUserAnnotation.coordinate = currentAnnotationLocation;
         [UIView commitAnimations];
     }
+    
+    // Update relative time
+    NSDate *timestampOfLocation = [DateFormatter dateFromString:[userLocationDTO time]];
+    otherUserAnnotation.subtitle = [RelativeDate stringWithDate:timestampOfLocation];
 }
 
 @end

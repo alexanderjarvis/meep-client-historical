@@ -17,7 +17,6 @@
 	
 	IBOutlet UIButton *createMeetingButton;
 	
-	UserManager *userManager;
 	CreateMeetingRequestManager *createMeetingRequestManager;
 	
 	NSArray *tableKeys;
@@ -28,7 +27,6 @@
 
 @property(nonatomic, retain) UIButton *createMeetingButton;
 
-@property(nonatomic, retain) UserManager *userManager;
 @property(nonatomic, retain) CreateMeetingRequestManager *createMeetingRequestManager;
 
 @property(nonatomic, retain) NSArray *tableKeys;

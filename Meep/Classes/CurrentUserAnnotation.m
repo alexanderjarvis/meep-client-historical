@@ -10,4 +10,8 @@
 
 @implementation CurrentUserAnnotation
 
+- (void)dealloc {
+    [super dealloc];
+}
+
 @end

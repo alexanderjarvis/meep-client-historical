@@ -59,4 +59,6 @@
 	return NO;
 }
 
+//TODO set delegate
+
 @end

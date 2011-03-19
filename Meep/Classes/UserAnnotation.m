@@ -12,9 +12,11 @@
 
 @synthesize coordinate;
 @synthesize title;
+@synthesize subtitle;
 
 - (void)dealloc {
     [title release];
+    [subtitle release];
     [super dealloc];
 }
 
