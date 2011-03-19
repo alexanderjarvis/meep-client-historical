@@ -14,6 +14,7 @@
 
 + (NSDate *)dateFromString:(NSString *)string {
     ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
+    [dateFormatter setIncludeTime:YES];
     NSDate *date = [dateFormatter dateFromString:string];
     [dateFormatter release];
     return date;
@@ -21,6 +22,7 @@
 
 + (NSString *)stringFromDate:(NSDate *)date {
     ISO8601DateFormatter *dateFormatter = [[ISO8601DateFormatter alloc] init];
+    [dateFormatter setIncludeTime:YES];
     NSString *string = [dateFormatter stringFromDate:date];
     [dateFormatter release];
     return string;
