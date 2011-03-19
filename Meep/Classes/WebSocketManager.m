@@ -120,7 +120,7 @@
     if (currentHeading != nil) {
         userLocation.trueHeading = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentHeading.trueHeading]];
     }
-    userLocation.horizonalAccuracy = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentLocation.horizontalAccuracy]];
+    userLocation.horizontalAccuracy = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentLocation.horizontalAccuracy]];
     userLocation.verticalAccuracy = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentLocation.verticalAccuracy]];
     
     [recentLocations addObject:userLocation];
