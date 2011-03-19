@@ -33,10 +33,16 @@
         return;
     }
     NSLog(@"Retrying previous request: %@", [previousRequest url]);
-    BOOL retrying = [previousRequest retryUsingNewConnection];
-    if (!retrying) {
-        [self requestFailed:previousRequest];
+    
+    // Build up new request object with previous data, (simply retrying with the previousRequest object never returns).
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[previousRequest url]];
+    [request setRequestMethod:[previousRequest requestMethod]];
+    if ([[request requestMethod] isEqualToString:@"POST"] || [[request requestMethod] isEqualToString:@"PUT"]) {
+        [request appendPostData:[previousRequest postBody]];
     }
+    [request setUserInfo:[previousRequest userInfo]];
+	[request setDelegate:self];
+	[request startAsynchronous];
 }
 
 #pragma mark -

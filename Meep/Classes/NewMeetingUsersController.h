@@ -11,10 +11,12 @@
 #import "UserManager.h"
 #import "UserDTO.h"
 #import "CreateMeetingRequestManager.h"
-
+#import "MBProgressHUD.h"
 
 @interface NewMeetingUsersController : UITableViewController <CreateMeetingRequestManagerDelegate, UIAlertViewDelegate> {
 	
+    MBProgressHUD *hud;
+    
 	IBOutlet UIButton *createMeetingButton;
 	
 	CreateMeetingRequestManager *createMeetingRequestManager;

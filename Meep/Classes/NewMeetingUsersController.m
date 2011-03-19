@@ -47,6 +47,10 @@
 	
 	// Update table with users that have already been fetched.
 	[self updateTableWithUser:[meepAppDelegate currentUser]];
+    
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:hud];
+    hud.labelText = @"Creating Meeting...";
 }
 
 
@@ -67,8 +71,10 @@
             [userSummaryDTO release];
 		}
 		meetingDTO.attendees = attendees;
-		
+        
 		[createMeetingRequestManager createMeeting:meetingDTO];
+        [hud show:YES];
+        
 	} else {
 		[AlertView showSimpleAlertMessage:@"You must select at least one friend to create a meeting." withTitle:@""];
 	}
@@ -186,6 +192,7 @@
 
 
 - (void)dealloc {
+    [hud release];
 	[createMeetingButton release];
 	[createMeetingRequestManager release];
 	[tableKeys release];
@@ -200,12 +207,16 @@
 	[AlertView showSimpleAlertMessage:@"Meeting created successfully!" 
 							withTitle:@"" 
 						  andDelegate:self];
+    [hud hide:YES];
 }
 
 - (void)createMeetingFailedWithError:(NSError *)error {
+    [hud hide:YES];
 }
 
 - (void)createMeetingFailedWithNetworkError:(NSError *)error {
+    [hud hide:YES];
+    [AlertView showNetworkAlert:error];
 }
 
 #pragma mark -
