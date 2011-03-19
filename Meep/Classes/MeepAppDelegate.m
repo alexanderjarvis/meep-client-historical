@@ -96,6 +96,8 @@
 	
 	// When logging out, it's important to clear all resources of the main applicaton view between users
     [configManager setAccessToken:@""];
+    [currentUser release];
+    currentUser = nil;
 	if (menuNavigationController != nil && menuViewController != nil) {
 		[menuNavigationController release];
 		menuNavigationController = nil;
