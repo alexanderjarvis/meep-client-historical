@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#import "MBProgressHUD.h"
 #import "UserManager.h"
 #import "LogoutManager.h"
 #import "MenuViewController.h"
@@ -21,9 +22,14 @@
 #import "UserRequestsViewController.h"
 #import "LiveMapViewController.h"
 
-@interface MenuNavigationController : UINavigationController <UserManagerDelegate, LogoutManagerDelegate> {
+@interface MenuNavigationController : UINavigationController <UserManagerDelegate, LogoutManagerDelegate, UIAlertViewDelegate> {
     
+    MBProgressHUD *hud;
+    NSDate *timeOfLastUserUpdate;
+    BOOL userManagerRequestLock;
+    UIAlertView *userManagerAlertView;
     UserManager *userManager;
+    UIAlertView *logoutAlertView;
     LogoutManager *logoutManager;
 	
 	MenuViewController *menuViewController;
@@ -44,7 +50,7 @@
     UILocalNotification *liveMapNotificationWaitingForCurrentUser;
 }
 
-- (void)logout;
+- (void)logout:(BOOL)retry;
 - (void)newMeetingCreated;
 
 - (void)showMeetingsViewAnimated:(BOOL)animated;

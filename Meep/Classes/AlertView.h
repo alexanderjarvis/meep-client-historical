@@ -8,14 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface AlertView : NSObject {
+@interface AlertView : NSObject <UIAlertViewDelegate> {
 
 }
 
 + (void)showSimpleAlertMessage:(NSString *)message withTitle:(NSString *)title andDelegate:(id)delegate;
 + (void)showSimpleAlertMessage:(NSString *)message withTitle:(NSString *)title;
 + (void)showValidationAlert:(NSString *)message;
-+ (void)showNetworkAlert:(NSError *)error; 
++ (void)showNetworkAlert:(NSError *)error;
++ (UIAlertView *)showNetworkAlertWithRetry:(NSError *)error delegate:(id)delegate;
++ (UIAlertView *)showNetworkAlertWithForcedRetry:(NSError *)error delegate:(id)delegate;
 + (void)showNoUsersAlert;
 
 @end

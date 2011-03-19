@@ -34,6 +34,7 @@
     [super requestFailed:request];
     
     if (filterEnabled) {
+        // Check if the request is unauthorised
         if ([request responseStatusCode] == 401) {
             responseOk = NO;
             [[MeepAppDelegate sharedAppDelegate] showWelcomeViewWithUnauthorisedMessage];

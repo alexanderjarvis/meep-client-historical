@@ -14,12 +14,16 @@
 	
 	NSString *responseString;
 	NSString *previousResponseString;
+    ASIHTTPRequest *previousRequest;
 }
 
 @property(nonatomic, copy) NSString *responseString;
 @property(nonatomic, copy) NSString *previousResponseString;
 
 - (BOOL)isResponseNew;
+- (void)retryPreviousRequest;
+
+// ASIHTTPRequest
 - (void)requestFinished:(ASIHTTPRequest *)request;
 - (void)requestFailed:(ASIHTTPRequest *)request;
 

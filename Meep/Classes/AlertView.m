@@ -33,11 +33,33 @@
 	UIAlertView *alert = [[UIAlertView alloc]
 						  initWithTitle:@"Network Error" 
 						  message:[error localizedDescription]
-						  delegate:self
+						  delegate:nil
 						  cancelButtonTitle:@"Dismiss" 
 						  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+}
+
++ (UIAlertView *)showNetworkAlertWithRetry:(NSError *)error delegate:(id)delegate {
+	UIAlertView *alert = [[[UIAlertView alloc]
+						  initWithTitle:@"Network Error" 
+						  message:[error localizedDescription]
+						  delegate:delegate
+						  cancelButtonTitle:@"Dismiss" 
+						  otherButtonTitles:@"Retry", nil] autorelease];
+	[alert show];
+	return alert;
+}
+
++ (UIAlertView *)showNetworkAlertWithForcedRetry:(NSError *)error delegate:(id)delegate {
+    UIAlertView *alert = [[[UIAlertView alloc]
+                           initWithTitle:@"Network Error" 
+                           message:[error localizedDescription]
+                           delegate:delegate
+                           cancelButtonTitle:@"Retry" 
+                           otherButtonTitles:nil] autorelease];
+	[alert show];
+	return alert;
 }
 
 + (void)showNoUsersAlert {

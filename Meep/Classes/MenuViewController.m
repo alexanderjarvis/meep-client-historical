@@ -181,7 +181,7 @@
 				break;
 			case 1:
 				// Logout
-				[[[MeepAppDelegate sharedAppDelegate] menuNavigationController] logout];
+				[[[MeepAppDelegate sharedAppDelegate] menuNavigationController] logout:NO];
 				break;
 			default:
 				break;

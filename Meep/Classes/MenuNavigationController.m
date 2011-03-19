@@ -14,7 +14,7 @@
 @interface MenuNavigationController (private)
 
 - (void)applicationDidBecomeActive:(id)sender;
-- (void)getCurrentUser;
+- (void)getCurrentUserAndShowHUD:(BOOL)showHud animated:(BOOL)animated isRetry:(BOOL)retry;
 - (void)showWelcomeView;
 
 @end
@@ -51,10 +51,21 @@
                                              selector:@selector(applicationDidBecomeActive:) 
                                                  name:UIApplicationDidBecomeActiveNotification 
                                                object:nil];
+    
+    // Create HUD
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:hud];
+    
+    // It is necessary to provide a lock for the UserManager requests as we don't want
+    // two requests to fire at the same time. The use case for this is when the view loads into memory
+    // but the application becomes active at the same time and a current user does not exist.
+    userManagerRequestLock = NO;
+    
+    [self getCurrentUserAndShowHUD:YES animated:NO isRetry:NO];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    //[self getCurrentUser];
+    // get current user?
 }
 
 #pragma mark -
@@ -73,6 +84,9 @@
 }
 
 - (void)dealloc {
+    [liveMapNotificationWaitingForCurrentUser release];
+    [timeOfLastUserUpdate release];
+    [hud release];
     [userManager release];
     [logoutManager release];
 	[menuViewController release];
@@ -89,17 +103,41 @@
 
 #pragma mark - 
 #pragma mark private
+
 - (void)applicationDidBecomeActive:(id)sender {
-    [self getCurrentUser];
+    
+    // If the current user has not yet been obtained, get it
+    if ([[MeepAppDelegate sharedAppDelegate] currentUser] == nil) {
+        
+        [self getCurrentUserAndShowHUD:YES animated:NO isRetry:NO];
+    
+    // Or if the time of the last update was more than a minute ago
+    } else if (timeOfLastUserUpdate != nil && [timeOfLastUserUpdate timeIntervalSinceNow] >= 60) {
+        
+        [self getCurrentUserAndShowHUD:YES animated:NO isRetry:NO];
+    }
 }
 
 /*
- * Gets the current user
+ * Gets the current user and optionally shows the hud. The hud is only shown when getting the current
+ * user is absolutely necessary e.g. after logging in or when the application becomes active.
  */
-- (void)getCurrentUser {
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	ConfigManager *configManager = [meepAppDelegate configManager];
-	[userManager getUser:configManager.email];
+- (void)getCurrentUserAndShowHUD:(BOOL)showHud animated:(BOOL)animated isRetry:(BOOL)retry {
+    if (!userManagerRequestLock) {
+        userManagerRequestLock = YES;
+        
+        if (retry) {
+            [userManager retryPreviousRequest];
+        } else {
+            ConfigManager *configManager = [[MeepAppDelegate sharedAppDelegate] configManager];
+            [userManager getUser:configManager.email];
+        }
+        
+        if (showHud) {
+            hud.labelText = @"Loading...";
+            [hud show:animated];
+        }
+    }
 }
 
 - (void)showWelcomeView {
@@ -109,8 +147,17 @@
 #pragma mark -
 #pragma mark MenuNavigationController
 
-- (void)logout {
-    [logoutManager logoutUser];
+/*
+ * Logout the current user. If retry is YES then the request is retried e.g. on connection failure.
+ */
+- (void)logout:(BOOL)retry {
+    if (retry) {
+        [logoutManager retryPreviousRequest];
+    } else {
+        [logoutManager logoutUser];
+    }
+    hud.labelText = @"Logging out...";
+    [hud show:YES];
 }
 
 /*
@@ -200,14 +247,14 @@
 - (void)showLiveMapFromLocalNotification:(UILocalNotification *)localNotification {
        
     liveMapNotificationWaitingForCurrentUser = [localNotification retain];
-    [self popToRootViewControllerAnimated:NO];
     UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    
     if (currentUser != nil) {
         [liveMapNotificationWaitingForCurrentUser release];
         liveMapNotificationWaitingForCurrentUser = nil;
         for (MeetingDTO *meeting in currentUser.meetingsRelated) {
             if ([meeting._id isEqualToNumber:[localNotification.userInfo valueForKey:kMeetingIdKey]]) {
-                
+                [self popToRootViewControllerAnimated:NO];
                 [self showMeetingsViewAnimated:NO];
                 [self showMeetingDetailView:meeting animated:NO];
                 [self showLiveMapViewWith:meeting animated:YES];
@@ -215,8 +262,8 @@
             }
         }
     } else {
-        // show loading hud?
-        // or always show loading hud when app is launched
+        [self popToRootViewControllerAnimated:YES];
+        [self getCurrentUserAndShowHUD:YES animated:YES isRetry:NO];
     }
 }
 
@@ -225,7 +272,10 @@
 
 - (void)getUserSuccessful:(UserDTO *)user {
 	NSLog(@"Get user successful");
+    userManagerRequestLock = NO;
+    [hud hide:YES];
 	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
+    timeOfLastUserUpdate = [[NSDate date] retain];
 	menuViewController.friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
     [LocalNotificationManager checkAndUpdateLocalNotificationsForUser:user];
     
@@ -235,26 +285,55 @@
 }
 
 - (void)getUserFailedWithError:(NSError *)error {
+    // No need to hide the hud and set the request lock as this view is released
 	[self showWelcomeView];
 }
 
 - (void)getUserFailedWithNetworkError:(NSError *)error {
-	[AlertView showNetworkAlert:error];
+    userManagerRequestLock = NO;
+    [hud hide:YES];
+    userManagerAlertView = [AlertView showNetworkAlertWithForcedRetry:error delegate:self];
 }
 
 #pragma mark -
 #pragma mark LogoutManagerDelegate
 
 - (void)logoutUserSuccessful {
+    // No need to hide the hud as this view is released
 	[self showWelcomeView];
 }
 
 - (void)logoutUserFailedWithError:(NSError *)error {
+    // No need to hide the hud as this view is released
 	[self showWelcomeView];
 }
 
 - (void)logoutUserFailedWithNetworkError:(NSError *)error {
-	[AlertView showNetworkAlert:error];
+    [hud hide:YES];
+    logoutAlertView = [AlertView showNetworkAlertWithRetry:error delegate:self];
+}
+
+#pragma mark -
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if ([alertView isEqual:userManagerAlertView]) {
+        
+        [self getCurrentUserAndShowHUD:YES animated:YES isRetry:YES];
+        
+    } else if ([alertView isEqual:logoutAlertView]) {
+        switch (buttonIndex) {
+            case 0:
+                // Dismiss
+                break;
+            case 1:
+                // Retry
+                [self logout:YES];
+                break;
+        }
+    }
+    
 }
 
 @end
