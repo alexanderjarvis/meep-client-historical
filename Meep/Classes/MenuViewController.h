@@ -41,7 +41,6 @@
 - (void)launcherViewDidEndEditing:(TTLauncherView*)launcher;
 
 - (void)logoutUserButtonPressed:(id)sender;
-
-- (void)newMeetingCreated;
+- (void)updateBadgeCounts;
 
 @end

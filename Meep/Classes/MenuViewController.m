@@ -79,6 +79,11 @@
 	[self.view addSubview:launcherView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateBadgeCounts];
+}
+
 #pragma mark -
 #pragma mark Memory management
 
@@ -121,11 +126,9 @@
 	[logoutAlertView release];
 }
 
-/*
- * Called after a new meeting is created to enable further actions.
- */
-- (void)newMeetingCreated {
-	meetingsItem.badgeNumber = meetingsItem.badgeNumber + 1;
+- (void)updateBadgeCounts {
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    friendRequestsItem.badgeNumber = [currentUser.connectionRequestsFrom count];
 }
 
 #pragma mark -

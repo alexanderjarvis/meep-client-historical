@@ -172,7 +172,6 @@
 	newMeetingDateAndTimeController = nil;
 	[newMeetingLocationController release];
 	newMeetingLocationController = nil;
-	[menuViewController newMeetingCreated];
 }
 
 - (void)showMeetingsViewAnimated:(BOOL)animated {

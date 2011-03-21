@@ -17,6 +17,7 @@
 
 - (void)removeRowThatHasUser:(UserSummaryDTO *)user;
 - (void)removeConnectionFromLocalModel:(UserSummaryDTO *)user;
+- (void)popViewIfNoMoreRequests;
  
 @end
 
@@ -180,6 +181,14 @@
     currentUser.connectionRequestsFrom = [mutableConnectionRequestsFrom copy];
 }
 
+- (void)popViewIfNoMoreRequests {
+    // If there is no more connection requests to display
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    if ([currentUser.connectionRequestsFrom count] == 0) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
 #pragma mark -
 #pragma mark UserManagerDelegate
 
@@ -206,6 +215,7 @@
 	[hud hide:YES];
 	[self removeRowThatHasUser:user];
     [self removeConnectionFromLocalModel:user];
+    [self popViewIfNoMoreRequests];
 }
 
 - (void)acceptUserFailedWithError:(NSError *)error {
@@ -224,6 +234,7 @@
 	[hud hide:YES];
 	[self removeRowThatHasUser:user];
     [self removeConnectionFromLocalModel:user];
+    [self popViewIfNoMoreRequests];
 }
 
 - (void)declineUserFailedWithError:(NSError *)error {
