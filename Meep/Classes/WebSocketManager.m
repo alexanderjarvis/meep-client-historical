@@ -111,7 +111,7 @@
     CLLocation *currentLocation = [[notification userInfo] objectForKey:kLocationUpdateNotification];
     
     UserLocationDTO *userLocation = [[UserLocationDTO alloc] init];
-    userLocation.time = [DateFormatter stringFromDate:currentLocation.timestamp];
+    userLocation.time = [DateFormatter stringFromDate:[NSDate date]]; // sets current time instead of timestamp from CLLocation
     userLocation.coordinate.latitude = [NSNumber numberWithDouble:currentLocation.coordinate.latitude];
     userLocation.coordinate.longitude = [NSNumber numberWithDouble:currentLocation.coordinate.longitude];
     userLocation.speed = [NSNumber numberWithDouble:currentLocation.speed];

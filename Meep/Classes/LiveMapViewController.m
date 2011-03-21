@@ -16,6 +16,7 @@
 #import "MeetingPlaceAnnotation.h"
 #import "DateFormatter.h"
 #import "RelativeDate.h"
+#import "AlertView.h"
 
 @interface LiveMapViewController (private)
 
@@ -27,6 +28,7 @@
 // LocationService
 - (void)headingUpdated:(NSNotification *)notification;
 - (void)locationUpdated:(NSNotification *)notification;
+- (void)locationErrors:(NSNotification *)notification;
 // WebSocketManager
 - (void)newLocationsFromSocket:(NSNotification *)notification;
 
@@ -88,6 +90,7 @@
     
     [[MeepNotificationCenter sharedNotificationCenter] addObserverForHeadingUpdates:self selector:@selector(headingUpdated:)];
     [[MeepNotificationCenter sharedNotificationCenter] addObserverForLocationUpdates:self selector:@selector(locationUpdated:)];
+    [[MeepNotificationCenter sharedNotificationCenter] addObserverForLocationErrors:self selector:@selector(locationErrors:)];
     [[MeepNotificationCenter sharedNotificationCenter] addObserverForSocketLocationUpdates:self selector:@selector(newLocationsFromSocket:)];
     
     // WebSocketManager
@@ -364,13 +367,11 @@
         if (buttonIndex == 1) {
             [self.navigationItem setRightBarButtonItem:disableLocationButton animated:YES];
             [locationService startUpdatingLocation];
-            [webSocketManager connect];
         }
     } else if ([alertView isEqual:disableLocationUpdatesAlertView]) {
         if (buttonIndex == 1) {
             [self.navigationItem setRightBarButtonItem:enableLocationButton animated:YES];
             [locationService stopUpdatingLocation];
-            [webSocketManager disconnect];
         }
     }
 }
@@ -409,6 +410,16 @@
     
     // Update relative time
     currentUserAnnotation.subtitle = [RelativeDate stringWithDate:[currentLocation timestamp]];
+}
+
+- (void)locationErrors:(NSNotification *)notification {
+    NSError *error = [[[notification userInfo] objectForKey:kLocationErrorNotification] retain];
+    
+    // If the location is denied by the application, then show an alert.
+    if ([error code] == kCLErrorDenied) {
+        [self.navigationItem setRightBarButtonItem:enableLocationButton animated:NO];
+        [AlertView showSimpleAlertMessage:@"You must enable location updates for Meep in\nSettings -> Location Services" withTitle:@"Location service denied"];
+    }
 }
 
 #pragma mark -

@@ -51,7 +51,9 @@
 #pragma mark CLLocationManagerDelegate
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-    
+    if (status == kCLAuthorizationStatusAuthorized) {
+        [locationManager startUpdatingLocation];
+    }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region {
@@ -63,6 +65,9 @@
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    if ([error code] == kCLErrorDenied) {
+        [self stopUpdatingLocation];
+    }
     NSDictionary *dictionary = [NSDictionary dictionaryWithObject:error forKey:kLocationErrorNotification];
     [[NSNotificationCenter defaultCenter] postNotificationName:kLocationErrorNotification object:self userInfo:dictionary];
 }
