@@ -495,7 +495,12 @@
 
 - (void)deleteMeetingSuccessful {
     [hud hide:YES];
+    // Delete application specific data for this meeting
     [LocalNotificationManager cancelLocalNotificationForMeeting:thisMeeting];
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    NSMutableArray *mutableMeetings = [currentUser.meetingsRelated mutableCopy];
+    [mutableMeetings removeObject:thisMeeting];
+    [currentUser setMeetingsRelated:[mutableMeetings copy]];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
