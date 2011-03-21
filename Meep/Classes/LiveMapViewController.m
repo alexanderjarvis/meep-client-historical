@@ -18,6 +18,9 @@
 #import "RelativeDate.h"
 
 @interface LiveMapViewController (private)
+
+- (void)enableLocationButtonPressed:(id)sender;
+- (void)disableLocationButtonPressed:(id)sender;
 - (void)showMyLocation;
 - (void)addValidMeetingAnnotations;
 - (void)addMeetingAnnotationFor:(MeetingDTO *)meeting with:(UserDTO *)currentUser;
@@ -26,6 +29,7 @@
 - (void)locationUpdated:(NSNotification *)notification;
 // WebSocketManager
 - (void)newLocationsFromSocket:(NSNotification *)notification;
+
 @end
 
 @implementation LiveMapViewController
@@ -66,6 +70,18 @@
     
     self.title = @"Live Map";
     
+    // Right BarButton
+    enableLocationButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"enableLocationButton.png"] 
+                                                        style:UIBarButtonItemStylePlain 
+                                                       target:self 
+                                                       action:@selector(enableLocationButtonPressed:)];
+    disableLocationButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"disableLocationButton.png"] 
+                                                        style:UIBarButtonItemStylePlain 
+                                                       target:self 
+                                                       action:@selector(disableLocationButtonPressed:)];
+    self.navigationItem.rightBarButtonItem = disableLocationButton;
+    
+    // 
     firstLocationUpdate = YES;
     meetingPlaceAnnotations = [[NSMutableArray alloc] initWithCapacity:1];
     otherUserAnnotations = [[NSMutableArray alloc] initWithCapacity:1];
@@ -81,7 +97,8 @@
     
     // Location Service
     locationService = [[LocationService alloc] init];
-    [locationService startUpdatingLocation];    
+    [locationService startUpdatingLocation];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -100,31 +117,26 @@
 }
 
 #pragma mark -
-#pragma mark LiveMapViewController
+#pragma mark private
 
-/*
- * Sets the current Meeting for the Live Map View. If set then the view will show only the meeting and location
- * data with the scope of the meeting. If set to nil then the view will show all meetings that the user is
- * currently attending.
- */
-- (void)setCurrentMeeting:(MeetingDTO *)meeting {
-    
-    if (currentMeeting != nil) {
-        [currentMeeting release];
-        currentMeeting = nil;
-    }
-        
-    if (meeting != nil) {
-        currentMeeting = [meeting retain];
-    }
+- (void)enableLocationButtonPressed:(id)sender {
+    enableLocationUpdatesAlertView = [[UIAlertView alloc] initWithTitle:@"Enable location updates" 
+                                                        message:@"Are you sure?"
+                                                       delegate:self
+                                              cancelButtonTitle:@"No" 
+                                              otherButtonTitles:@"Yes", nil];
+    [enableLocationUpdatesAlertView show];
+    [enableLocationUpdatesAlertView release];
 }
 
-- (IBAction)myLocationButtonPressed {
-    [self showMyLocation];
-}
-
-- (IBAction)showAllAnnotationsButtonPressed {
-    [mapView zoomToFitAnnotations];
+- (void)disableLocationButtonPressed:(id)sender {
+    disableLocationUpdatesAlertView = [[UIAlertView alloc] initWithTitle:@"Disable location updates" 
+                                                                message:@"Are you sure?"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"No" 
+                                                      otherButtonTitles:@"Yes", nil];
+    [disableLocationUpdatesAlertView show];
+    [disableLocationUpdatesAlertView release];
 }
 
 - (void)showMyLocation {
@@ -246,9 +258,36 @@
             }
         }
     }
-
+    
 }
 
+#pragma mark -
+#pragma mark LiveMapViewController
+
+/*
+ * Sets the current Meeting for the Live Map View. If set then the view will show only the meeting and location
+ * data with the scope of the meeting. If set to nil then the view will show all meetings that the user is
+ * currently attending.
+ */
+- (void)setCurrentMeeting:(MeetingDTO *)meeting {
+    
+    if (currentMeeting != nil) {
+        [currentMeeting release];
+        currentMeeting = nil;
+    }
+        
+    if (meeting != nil) {
+        currentMeeting = [meeting retain];
+    }
+}
+
+- (IBAction)myLocationButtonPressed {
+    [self showMyLocation];
+}
+
+- (IBAction)showAllAnnotationsButtonPressed {
+    [mapView zoomToFitAnnotations];
+}
 
 #pragma mark -
 #pragma mark MapViewDelegate
@@ -315,6 +354,25 @@
 										  otherButtonTitles:nil];
 	[alert show];
 	[alert release];
+}
+
+#pragma mark - 
+#pragma mark UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if ([alertView isEqual:enableLocationUpdatesAlertView]) {
+        if (buttonIndex == 1) {
+            [self.navigationItem setRightBarButtonItem:disableLocationButton animated:YES];
+            [locationService startUpdatingLocation];
+            [webSocketManager connect];
+        }
+    } else if ([alertView isEqual:disableLocationUpdatesAlertView]) {
+        if (buttonIndex == 1) {
+            [self.navigationItem setRightBarButtonItem:enableLocationButton animated:YES];
+            [locationService stopUpdatingLocation];
+            [webSocketManager disconnect];
+        }
+    }
 }
 
 #pragma mark -

@@ -68,6 +68,7 @@
 }
 
 - (void)connect {
+    [self log:@"connect"];
     if (!_isConnected && !_isConnecting) {
         
         _isConnecting = YES;
@@ -86,6 +87,8 @@
     [self log:@"disconnect"];
     [self invalidateTimer];
     [_webSocket close];
+    _isConnected = NO;
+    _isConnecting = NO;
 }
 
 - (void)send:(NSString *)data isJSON:(BOOL)isJSON {

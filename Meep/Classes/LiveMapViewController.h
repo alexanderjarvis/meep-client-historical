@@ -14,7 +14,12 @@
 #import "WebSocketManager.h"
 #import "MeetingDTO.h"
 
-@interface LiveMapViewController : UIViewController <MKMapViewDelegate> {
+@interface LiveMapViewController : UIViewController <MKMapViewDelegate, UIAlertViewDelegate> {
+    
+    UIBarButtonItem *enableLocationButton;
+    UIBarButtonItem *disableLocationButton;
+    UIAlertView *enableLocationUpdatesAlertView;
+    UIAlertView *disableLocationUpdatesAlertView;
     
     LocationService *locationService;
     
