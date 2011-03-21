@@ -25,6 +25,9 @@
 - (void)showMyLocation;
 - (void)addValidMeetingAnnotations;
 - (void)addMeetingAnnotationFor:(MeetingDTO *)meeting with:(UserDTO *)currentUser;
+- (void)startAnnotationUpdateTimer:(id<MKAnnotation>)annotation;
+- (void)invalidateAnnotationUpdateTimer;
+- (void)timerTriggeredUpdateAnnotation:(NSTimer *)timer;
 // LocationService
 - (void)headingUpdated:(NSNotification *)notification;
 - (void)locationUpdated:(NSNotification *)notification;
@@ -46,6 +49,7 @@
 }
 
 - (void)dealloc {
+    [self invalidateAnnotationUpdateTimer];
     [[MeepNotificationCenter sharedNotificationCenter] removeObserver:self];
     [currentMeeting release];
     [currentHeading release];
@@ -261,7 +265,38 @@
             }
         }
     }
+}
+
+- (void)startAnnotationUpdateTimer:(id<MKAnnotation>)annotation {
+    [self invalidateAnnotationUpdateTimer];
+    // Only UserAnnotations (for now)
+    if ([annotation isKindOfClass:[UserAnnotation class]]) {
+        annotationUpdateTimer = [[NSTimer timerWithTimeInterval:1
+                                                         target:self 
+                                                       selector:@selector(timerTriggeredUpdateAnnotation:) 
+                                                       userInfo:[NSDictionary dictionaryWithObject:annotation forKey:kAnnotationTimerKey] 
+                                                        repeats:YES] retain];
+        
+        [[NSRunLoop currentRunLoop] addTimer:annotationUpdateTimer forMode:NSRunLoopCommonModes];
+    }
+}
+
+- (void)invalidateAnnotationUpdateTimer {
+    if (annotationUpdateTimer != nil) {
+        [annotationUpdateTimer invalidate];
+        [annotationUpdateTimer release];
+        annotationUpdateTimer = nil;
+    }
+}
+
+- (void)timerTriggeredUpdateAnnotation:(NSTimer *)timer {
+    id<MKAnnotation> annotation = [[timer userInfo] objectForKey:kAnnotationTimerKey];
+    //[self invalidateAnnotationUpdateTimer];
     
+    if ([annotation isKindOfClass:[UserAnnotation class]]) {
+        UserAnnotation *userAnnotation = (UserAnnotation *)annotation;
+        userAnnotation.subtitle = [RelativeDate stringWithDate:userAnnotation.updated];
+    }
 }
 
 #pragma mark -
@@ -349,6 +384,20 @@
     return nil;
 }
 
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    NSLog(@"didSelectAnnotationView");
+    if ([view.annotation isKindOfClass:[UserAnnotation class]]) {
+        UserAnnotation *userAnnotation = (UserAnnotation *)view.annotation;
+        //[self performSelector:@selector(startAnnotationUpdateTimer:) withObject:userAnnotation afterDelay:1.0];
+        [self startAnnotationUpdateTimer:userAnnotation];
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    NSLog(@"didDeselectAnnotationView");
+    [self invalidateAnnotationUpdateTimer];
+}
+
 - (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error loading map"
 													message:[error localizedDescription]
@@ -409,7 +458,8 @@
     }
     
     // Update relative time
-    currentUserAnnotation.subtitle = [RelativeDate stringWithDate:[currentLocation timestamp]];
+    currentUserAnnotation.updated = [NSDate date];
+    currentUserAnnotation.subtitle = [RelativeDate stringWithDate:currentUserAnnotation.updated];
 }
 
 - (void)locationErrors:(NSNotification *)notification {
@@ -471,8 +521,8 @@
     }
     
     // Update relative time
-    NSDate *timestampOfLocation = [DateFormatter dateFromString:[userLocationDTO time]];
-    otherUserAnnotation.subtitle = [RelativeDate stringWithDate:timestampOfLocation];
+    otherUserAnnotation.updated = [DateFormatter dateFromString:[userLocationDTO time]];
+    otherUserAnnotation.subtitle = [RelativeDate stringWithDate:otherUserAnnotation.updated];
 }
 
 @end

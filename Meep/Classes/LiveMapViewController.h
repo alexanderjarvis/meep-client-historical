@@ -14,6 +14,8 @@
 #import "WebSocketManager.h"
 #import "MeetingDTO.h"
 
+#define kAnnotationTimerKey @"AnnotationTimer"
+
 @interface LiveMapViewController : UIViewController <MKMapViewDelegate, UIAlertViewDelegate> {
     
     UIBarButtonItem *enableLocationButton;
@@ -37,6 +39,8 @@
     CLLocation *previousLocation;
     
     MeetingDTO *currentMeeting;
+    
+    NSTimer *annotationUpdateTimer;
     
 }
 
