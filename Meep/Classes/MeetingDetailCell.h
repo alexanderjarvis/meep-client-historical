@@ -48,7 +48,7 @@
 @property (nonatomic, retain) UILabel *alertMeLabel;
 @property (nonatomic, retain) UISlider *alertMeSlider;
 
-- (IBAction)attendingControlAction;
+- (IBAction)attendingControlValueChanged;
 
 - (IBAction)alertMeSliderValueChanged;
 

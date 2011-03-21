@@ -68,6 +68,9 @@
         [meetingDetailCell setDelegate:self];
     }
     
+    // HUD
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:hud];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -77,10 +80,9 @@
     if (thisMeeting != nil && thisMeeting != previousMeeting) {
         
         previousMeeting = thisMeeting;
-        // Default values
         listenToSegmentChanges = YES;
         showAlertMeSlider = NO;
-        [self removeDeleteButton];            
+        [self removeDeleteButton];         
         
         [self updateTableWithMeeting:thisMeeting];
         [[super tableView] scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] 
@@ -150,6 +152,8 @@
     awaitingReply = 0;
     attending = 0;
     notAttending = 0;
+    
+    listenToSegmentChanges = NO;
     for (AttendeeDTO *attendee in thisMeeting.attendees) {
         
         if (attendee.rsvp == nil) {
@@ -183,6 +187,7 @@
             [meetingDetailCell setAlertMeSliderValueWithMinutes:[minutesBefore unsignedIntegerValue]];
         }
     }
+    listenToSegmentChanges = YES;
     
     [[super tableView] reloadData];
 }
@@ -222,6 +227,8 @@
 
 - (void)deleteMeeting {
     [deleteMeetingRequestManager deleteMeeting:thisMeeting];
+    hud.labelText = @"Deleting...";
+    [hud show:YES];
 }
 
 #pragma mark -
@@ -399,6 +406,8 @@
     if (listenToSegmentChanges) {
         listenToSegmentChanges = NO;
         [acceptMeetingRequestManager acceptMeeting:thisMeeting];
+        hud.labelText = @"Updating...";
+        [hud show:YES];
     }
 }
 
@@ -406,6 +415,8 @@
     if (listenToSegmentChanges) {
         listenToSegmentChanges = NO;
         [declineMeetingRequestManager declineMeeting:thisMeeting];
+        hud.labelText = @"Updating...";
+        [hud show:YES];
     }
 }
 
@@ -413,12 +424,16 @@
     //
     minutesBefore = [minutes retain];
     [updateMinutesBeforeRequestManager updateMinutesBefore:minutes forMeeting:thisMeeting];
+    hud.labelText = @"Updating...";
+    [hud show:YES];
 }
 
 #pragma mark -
 #pragma mark AcceptMeetingRequestManagerDelegate
 
 - (void)acceptMeetingSuccessful {
+    [self showAlertMeSlider];
+    [hud hide:NO];
     listenToSegmentChanges = YES;
     UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
     for (AttendeeDTO *attendee in thisMeeting.attendees) {
@@ -432,11 +447,13 @@
 }
 
 - (void)acceptMeetingFailedWithError:(NSError *)error {
+    [hud hide:YES];
     [self rollbackSelectedSegment];
     [self showAlertMeSlider];
 }
 
 - (void)acceptMeetingFailedWithNetworkError:(NSError *)error {
+    [hud hide:YES];
     [self rollbackSelectedSegment];
     [self showAlertMeSlider];
     [AlertView showNetworkAlert:error];
@@ -446,6 +463,8 @@
 #pragma mark DeclineMeetingRequestManagerDelegate
 
 - (void)declineMeetingSuccessful {
+    [self hideAlertMeSlider];
+    [hud hide:NO];
     listenToSegmentChanges = YES;
     UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
     for (AttendeeDTO *attendee in thisMeeting.attendees) {
@@ -459,11 +478,13 @@
 }
 
 - (void)declineMeetingFailedWithError:(NSError *)error {
+    [hud hide:YES];
     [self rollbackSelectedSegment];
     [self hideAlertMeSlider];
 }
 
 - (void)declineMeetingFailedWithNetworkError:(NSError *)error {
+    [hud hide:YES];
     [self rollbackSelectedSegment];
     [self hideAlertMeSlider];
     [AlertView showNetworkAlert:error];
@@ -473,16 +494,18 @@
 #pragma mark DeleteMeetingRequestManagerDelegate
 
 - (void)deleteMeetingSuccessful {
-    NSLog(@"delete meeting successful");
+    [hud hide:YES];
     [LocalNotificationManager cancelLocalNotificationForMeeting:thisMeeting];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)deleteMeetingFailedWithError:(NSError *)error {
-    //
+    [hud hide:YES];
+    // todo show retry to user?
 }
 
 - (void)deleteMeetingFailedWithNetworkError:(NSError *)error {
+    [hud hide:YES];
     [AlertView showNetworkAlert:error];
 }
 
@@ -490,6 +513,7 @@
 #pragma mark UpdateMinutesBeforeRequestManagerDelegate
 
 - (void)updateMinutesBeforeSuccessful {
+    [hud hide:YES];
     // Update Model
     UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
     for (AttendeeDTO *attendee in thisMeeting.attendees) {
@@ -503,10 +527,12 @@
 }
 
 - (void)updateMinutesBeforeFailedWithError:(NSError *)error {
+    [hud hide:YES];
     [meetingDetailCell rollbackAlertMeSlider];
 }
 
 - (void)updateMinutesBeforeFailedWithNetworkError:(NSError *)error {
+    [hud hide:YES];
     [meetingDetailCell rollbackAlertMeSlider];
     [AlertView showNetworkAlert:error];
 }

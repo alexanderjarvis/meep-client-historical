@@ -316,7 +316,6 @@
 								<string key="NSFrame">{{66, 186}, {168, 23}}</string>
 								<reference key="NSSuperview" ref="136532591"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -436,15 +435,6 @@
 					<int key="connectionID">38</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">attendingControlAction</string>
-						<reference key="source" ref="733611780"/>
-						<reference key="destination" ref="534976380"/>
-						<int key="IBEventType">13</int>
-					</object>
-					<int key="connectionID">39</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">alertMeLabel</string>
 						<reference key="source" ref="534976380"/>
@@ -486,6 +476,15 @@
 						<int key="IBEventType">1</int>
 					</object>
 					<int key="connectionID">57</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">attendingControlValueChanged</string>
+						<reference key="source" ref="733611780"/>
+						<reference key="destination" ref="534976380"/>
+						<int key="IBEventType">13</int>
+					</object>
+					<int key="connectionID">60</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -584,6 +583,7 @@
 						<int key="objectID">22</int>
 						<reference key="object" ref="733611780"/>
 						<reference key="parent" ref="534976380"/>
+						<string key="objectName">Segmented Control - Attending, Not Attending</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">41</int>
@@ -690,7 +690,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">57</int>
+			<int key="maxID">60</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -705,7 +705,7 @@
 							<string>alertMeSliderTouchDown</string>
 							<string>alertMeSliderTouchUpInside</string>
 							<string>alertMeSliderValueChanged</string>
-							<string>attendingControlAction</string>
+							<string>attendingControlValueChanged</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -722,7 +722,7 @@
 							<string>alertMeSliderTouchDown</string>
 							<string>alertMeSliderTouchUpInside</string>
 							<string>alertMeSliderValueChanged</string>
-							<string>attendingControlAction</string>
+							<string>attendingControlValueChanged</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -739,7 +739,7 @@
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
-								<string key="name">attendingControlAction</string>
+								<string key="name">attendingControlValueChanged</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>

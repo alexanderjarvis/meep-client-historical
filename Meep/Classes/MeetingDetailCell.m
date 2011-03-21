@@ -46,7 +46,7 @@
 /*
  * Called whenever the value for the segmented control is changed.
  */
-- (IBAction)attendingControlAction {
+- (IBAction)attendingControlValueChanged {
 
     NSInteger selectedIndex = attendingControl.selectedSegmentIndex;
     
@@ -57,12 +57,10 @@
         case 0:
             // Attending
             [delegate attendingButtonPressed];
-            [self showAlertMeSlider];
             break;
         case 1:
             // Not attending
             [delegate notAttendingButtonPressed];
-            [self hideAlertMeSlider];
             break;
             
     }

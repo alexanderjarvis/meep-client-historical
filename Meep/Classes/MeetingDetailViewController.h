@@ -16,6 +16,7 @@
 #import "UpdateMinutesBeforeRequestManager.h"
 #import "MeetingDTO.h"
 #import "MeetingDetailCell.h"
+#import "MBProgressHUD.h"
 
 #define DESC_CELL_FONT_SIZE 13.0f
 #define DESC_CELL_WIDTH 300.0f
@@ -45,6 +46,8 @@
     IBOutlet UIButton *deleteMeetingButton;
     UIAlertView *deleteMeetingAlertView;
     NSNumber *minutesBefore;
+                                                                    
+    MBProgressHUD *hud;
 }
 
 @property (nonatomic, retain) MeetingDTO *previousMeeting;
