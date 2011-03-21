@@ -114,6 +114,7 @@
 
 
 - (void)dealloc {
+    [hud release];
 	[thisMeeting release];
     [acceptMeetingRequestManager release];
     [declineMeetingRequestManager release];

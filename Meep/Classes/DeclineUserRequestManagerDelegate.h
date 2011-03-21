@@ -14,7 +14,7 @@
 
 @required
 
-- (void)declineUserSuccessful:(UserDTO *)user;
+- (void)declineUserSuccessful:(UserSummaryDTO *)user;
 
 - (void)declineUserFailedWithError:(NSError *)error;
 

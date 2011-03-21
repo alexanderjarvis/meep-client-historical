@@ -110,10 +110,6 @@
 #pragma mark -
 #pragma mark MenuViewController
 
-- (void)setMenuNavigationController:(MenuNavigationController *)navigationController {
-    
-}
-
 - (void)logoutUserButtonPressed:(id)sender {
 	logoutAlertView = [[UIAlertView alloc]
 						initWithTitle:@"Logout" 

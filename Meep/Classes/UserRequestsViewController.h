@@ -11,6 +11,7 @@
 #import "UserManager.h"
 #import "AcceptUserRequestManager.h"
 #import "DeclineUserRequestManager.h"
+#import "MBProgressHUD.h"
 
 @interface UserRequestsViewController : UITableViewController 
 											<UserManagerDelegate, 
@@ -20,7 +21,8 @@
 	UserManager *userManager;
 	AcceptUserRequestManager *acceptUserRequestManager;
 	DeclineUserRequestManager *declineUserRequestManager;
-
+    
+    MBProgressHUD *hud;
 }
 
 @property (nonatomic, retain) UserManager *userManager;

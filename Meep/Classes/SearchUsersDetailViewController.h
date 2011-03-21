@@ -11,6 +11,7 @@
 
 #import "AddUserRequestManager.h"
 #import "UserDTO.h"
+#import "MBProgressHUD.h"
 
 @interface SearchUsersDetailViewController : UITableViewController <AddUserRequestManagerDelegate> {
 	
@@ -19,6 +20,8 @@
 	
 	AddUserRequestManager *addUserRequestManager;
 	UserDTO *user;
+    
+    MBProgressHUD *hud;
 
 }
 

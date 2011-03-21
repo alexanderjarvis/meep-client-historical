@@ -20,6 +20,6 @@
 
 @property (assign, nonatomic) id delegate;
 
-- (void)declineUser:(UserDTO *)user;
+- (void)declineUser:(UserSummaryDTO *)user;
 
 @end

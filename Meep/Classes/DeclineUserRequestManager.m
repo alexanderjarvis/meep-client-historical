@@ -16,7 +16,7 @@
 
 @synthesize delegate;
 
-- (void)declineUser:(UserDTO *)user {
+- (void)declineUser:(UserSummaryDTO *)user {
 	
 	// Build up the URL
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];

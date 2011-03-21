@@ -16,7 +16,8 @@
 @synthesize indexPath;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
         
 		// Respond button
 		TTButton *respondButton = [TTButton buttonWithStyle:@"toolbarButton:" title:@"Respond"];

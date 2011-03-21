@@ -14,7 +14,7 @@
 
 @required
 
-- (void)acceptUserSuccessful:(UserDTO *)user;
+- (void)acceptUserSuccessful:(UserSummaryDTO *)user;
 
 - (void)acceptUserFailedWithError:(NSError *)error;
 

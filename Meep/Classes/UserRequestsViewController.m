@@ -10,8 +10,15 @@
 
 #import "MeepAppDelegate.h"
 #import "ConfigManager.h"
-
 #import "UserRequestsCustomCell.h"
+#import "AlertView.h"
+
+@interface UserRequestsViewController (private)
+
+- (void)removeRowThatHasUser:(UserSummaryDTO *)user;
+- (void)removeConnectionFromLocalModel:(UserSummaryDTO *)user;
+ 
+@end
 
 @implementation UserRequestsViewController
 
@@ -23,8 +30,11 @@
 #pragma mark View lifecycle
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
+    
 	self.title = @"Friend Requests";
-	
+    
+	// Request Managers
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
 	userManager = [[UserManager alloc] initWithAccessToken:configManager.accessToken];
@@ -36,7 +46,10 @@
 	declineUserRequestManager = [[DeclineUserRequestManager alloc] initWithAccessToken:configManager.accessToken];
 	[declineUserRequestManager setDelegate:self];
 	
-    [super viewDidLoad];
+    // HUD
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:hud];
+    hud.labelText = @"Updating...";
 }
 
 
@@ -49,40 +62,20 @@
 	[userManager getUser:configManager.email];
 }
 
--(void)acceptUserAtIndexPath:(NSIndexPath *)indexPath {
+- (void)acceptUserAtIndexPath:(NSIndexPath *)indexPath {
 	NSUInteger row = [indexPath row];
 	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-	UserDTO *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
+	UserSummaryDTO *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
 	[acceptUserRequestManager acceptUser:user];
+    [hud show:YES];
 }
 
--(void)declineUserAtIndexPath:(NSIndexPath *)indexPath {
+- (void)declineUserAtIndexPath:(NSIndexPath *)indexPath {
 	NSUInteger row = [indexPath row];
 	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-	UserDTO *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
+	UserSummaryDTO *user = [currentUser.connectionRequestsFrom objectAtIndex:row];
 	[declineUserRequestManager declineUser:user];
-}
-
--(void)removeRowThatHasUser:(UserDTO *)user {
-
-	NSUInteger row = 0;
-	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
-	// Although the IndexPath could be passed to the Request manager, it is not relevant
-	// aside from returning the value back to this table view controller
-	// and so the row is calculated from the user object instead.
-	for (row = 0; row < [[currentUser connectionRequestsFrom] count]; row++) {
-		UserDTO *requestFromUser = [[currentUser connectionRequestsFrom] objectAtIndex:row];
-		
-		if ([requestFromUser._id isEqualToNumber:user._id]) {
-			NSMutableArray *arrayOfUsers = [NSMutableArray arrayWithArray:[currentUser connectionRequestsFrom]];
-			[arrayOfUsers removeObjectAtIndex:row];
-			[currentUser setConnectionRequestsFrom:[NSArray arrayWithArray:arrayOfUsers]];
-			[[super tableView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]] 
-									 withRowAnimation:UITableViewRowAnimationFade];
-			return;
-		}
-	}
-	
+    [hud show:YES];
 }
 
 #pragma mark -
@@ -149,10 +142,42 @@
 
 
 - (void)dealloc {
+    [hud release];
 	[userManager release];
 	[acceptUserRequestManager release];
 	[declineUserRequestManager release];
     [super dealloc];
+}
+
+#pragma mark -
+#pragma mark private
+
+- (void)removeRowThatHasUser:(UserSummaryDTO *)user {
+    
+	NSUInteger row = 0;
+	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+	// Although the IndexPath could be passed to the Request manager, it is not relevant
+	// aside from returning the value back to this table view controller
+	// and so the row is calculated from the user object instead.
+	for (row = 0; row < [[currentUser connectionRequestsFrom] count]; row++) {
+		UserDTO *requestFromUser = [[currentUser connectionRequestsFrom] objectAtIndex:row];
+		
+		if ([requestFromUser._id isEqualToNumber:user._id]) {
+			NSMutableArray *arrayOfUsers = [NSMutableArray arrayWithArray:[currentUser connectionRequestsFrom]];
+			[arrayOfUsers removeObjectAtIndex:row];
+			[currentUser setConnectionRequestsFrom:[NSArray arrayWithArray:arrayOfUsers]];
+			[[super tableView] deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:0]] 
+									 withRowAnimation:UITableViewRowAnimationFade];
+			return;
+		}
+	}	
+}
+
+- (void)removeConnectionFromLocalModel:(UserSummaryDTO *)user {
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    NSMutableArray *mutableConnectionRequestsFrom = [currentUser.connectionRequestsFrom mutableCopy];
+    [mutableConnectionRequestsFrom removeObject:user];
+    currentUser.connectionRequestsFrom = [mutableConnectionRequestsFrom copy];
 }
 
 #pragma mark -
@@ -171,36 +196,43 @@
 }
 
 - (void)getUserFailedWithNetworkError:(NSError *)error {
+    [AlertView showNetworkAlert:error];
 }
 
 #pragma mark -
 #pragma mark AcceptUserRequestManagerDelegate
 
-- (void)acceptUserSuccessful:(UserDTO *)user {
-	NSLog(@"accept user successful");
-	
+- (void)acceptUserSuccessful:(UserSummaryDTO *)user {
+	[hud hide:YES];
 	[self removeRowThatHasUser:user];
+    [self removeConnectionFromLocalModel:user];
 }
 
 - (void)acceptUserFailedWithError:(NSError *)error {
+    [hud hide:YES];
 }
 
 - (void)acceptUserFailedWithNetworkError:(NSError *)error {
+    [hud hide:YES];
+    [AlertView showNetworkAlert:error];
 }
 
 #pragma mark -
 #pragma mark DeclineUserRequestManagerDelegate
 
-- (void)declineUserSuccessful:(UserDTO *)user {
-	NSLog(@"decline user successful");
-	
+- (void)declineUserSuccessful:(UserSummaryDTO *)user {
+	[hud hide:YES];
 	[self removeRowThatHasUser:user];
+    [self removeConnectionFromLocalModel:user];
 }
 
 - (void)declineUserFailedWithError:(NSError *)error {
+    [hud hide:YES];
 }
 
 - (void)declineUserFailedWithNetworkError:(NSError *)error {
+    [hud hide:YES];
+    [AlertView showNetworkAlert:error];
 }
 
 

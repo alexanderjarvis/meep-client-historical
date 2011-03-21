@@ -36,11 +36,16 @@
 	[button addTarget:self action:@selector(requestAddUserButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[requestAddUserButton addSubview: button];
 	tt_requestAddUserButton = button;
+    
+    // HUD
+    hud = [[MBProgressHUD alloc] initWithView:self.view];
+    [self.view addSubview:hud];
+    hud.labelText = @"Sending request...";
 	
     [super viewDidLoad];
 }
 		 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
 	
 	// If the User is the current User, or already a connection, then disable the request to add user button.
 	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
@@ -78,8 +83,8 @@
 }
 
 - (void)requestAddUserButtonPressed {
-	NSLog(@"Request to Add user");
 	[addUserRequestManager addUserRequest:user];
+    [hud show:YES];
 }
 
 #pragma mark -
@@ -144,6 +149,7 @@
 
 
 - (void)dealloc {
+    [hud release];
 	[requestAddUserButton release];
 	[addUserRequestManager release];
 	[user release];
@@ -154,6 +160,7 @@
 #pragma mark AddUserRequestManagerDelegate methods
 
 - (void)addUserRequestSuccessful {
+    [hud hide:NO];
 	UIAlertView *alert = [[UIAlertView alloc]
 						  initWithTitle:@"Success"
 						  message:@"A request to connect has been sent successfully."
@@ -163,12 +170,25 @@
 	[alert show];
 	[alert release];
 	[tt_requestAddUserButton setEnabled:NO];
+    // Update local model
+    UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+    NSMutableArray *mutableConnectionRequestsTo = [currentUser.connectionRequestsTo mutableCopy];
+    UserSummaryDTO *userSummary = [[UserSummaryDTO alloc] init];
+    userSummary._id = user._id;
+    userSummary.firstName = user.firstName;
+    userSummary.lastName = user.lastName;
+    [mutableConnectionRequestsTo addObject:userSummary];
+    [userSummary release];
+    currentUser.connectionRequestsTo = [mutableConnectionRequestsTo copy];
 }
 
 - (void)addUserRequestFailedWithError:(NSError *)error {
+    [hud hide:NO];
+    NSLog(@"error: %@", error);
 }
 
 - (void)addUserRequestFailedWithNetworkError:(NSError *)error {
+    [hud hide:NO];
 	[AlertView showNetworkAlert:error];
 }
 
