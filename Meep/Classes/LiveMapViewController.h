@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import <Three20/Three20.h>
 
 #import "LocationService.h"
 #import "CurrentUserAnnotation.h"
@@ -25,7 +26,7 @@
     
     LocationService *locationService;
     
-    IBOutlet MKMapView *mapView;
+    IBOutlet MKMapView *_mapView;
     
     BOOL firstLocationUpdate;
     CurrentUserAnnotation *currentUserAnnotation;

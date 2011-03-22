@@ -39,7 +39,7 @@
 
 @implementation LiveMapViewController
 
-@synthesize mapView;
+@synthesize mapView = _mapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -57,7 +57,7 @@
     [currentUserAnnotation release];
     [otherUserAnnotations release];
     [locationService release];
-    [mapView release];
+    [_mapView release];
     [webSocketManager release];
     [super dealloc];
 }
@@ -148,8 +148,10 @@
 
 - (void)showMyLocation {
     if (currentLocation != nil && currentUserAnnotation != nil) {
-        [mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, 500, 500) animated:YES];
-        [mapView selectAnnotation:currentUserAnnotation animated:YES];
+        // Show current users location so that the accuracy circle is fully contained inside the map view.
+        CLLocationDistance distance = (currentUserAnnotation.accuracyCircle.radius + 250) * 2;
+        [_mapView setRegion:MKCoordinateRegionMakeWithDistance(currentLocation.coordinate, distance, distance) animated:YES];
+        [_mapView selectAnnotation:currentUserAnnotation animated:YES];
     }
 }
 
@@ -166,7 +168,7 @@
             }
         }
         if (!meetingExists) {
-            [mapView removeAnnotation:meetingPlaceAnnotation];
+            [_mapView removeAnnotation:meetingPlaceAnnotation];
             [meetingPlaceAnnotations removeObject:meetingPlaceAnnotation];
         }
     }
@@ -177,7 +179,7 @@
         NSMutableArray *annotationsToRemove = [NSMutableArray arrayWithCapacity:1];
         for (MeetingPlaceAnnotation *meetingPlaceAnnotation in meetingPlaceAnnotations) {
             if (![meetingPlaceAnnotation._id isEqualToNumber:currentMeeting._id]) {
-                [mapView removeAnnotation:meetingPlaceAnnotation];
+                [_mapView removeAnnotation:meetingPlaceAnnotation];
                 [annotationsToRemove addObject:meetingPlaceAnnotation];
             }
         }
@@ -238,8 +240,8 @@
                     // Add the annotation to the map view.
                     if (newAnnotation) {
                         newMeetingPlaceAnnotation.coordinate = newMeetingPlaceCoordinate;
-                        [mapView addAnnotation:newMeetingPlaceAnnotation];
-                        [mapView zoomToFitAnnotations];
+                        [_mapView addAnnotation:newMeetingPlaceAnnotation];
+                        [_mapView zoomToFitAnnotations];
                         
                     } else {
                         // Update the annotations coordinate with an animation.
@@ -254,7 +256,7 @@
                     // previously attending and remove them.
                     for (MeetingPlaceAnnotation *meetingPlaceAnnotation in meetingPlaceAnnotations) {
                         if ([meetingPlaceAnnotation._id isEqualToNumber:meeting._id]) {
-                            [mapView removeAnnotation:meetingPlaceAnnotation];
+                            [_mapView removeAnnotation:meetingPlaceAnnotation];
                             [meetingPlaceAnnotations removeObject:meetingPlaceAnnotation];
                         }
                     }
@@ -324,17 +326,17 @@
 }
 
 - (IBAction)showAllAnnotationsButtonPressed {
-    [mapView zoomToFitAnnotations];
+    [_mapView zoomToFitAnnotations];
 }
 
 #pragma mark -
 #pragma mark MapViewDelegate
-- (MKAnnotationView *)mapView:(MKMapView *)theMapView viewForAnnotation:(id <MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	
 	// If the Current User Annotation
 	if ([annotation isKindOfClass:[CurrentUserAnnotation class]]) {
         static NSString *currentUserAnnotationIdentifier = @"Current User Annotation Identifier";
-		MKAnnotationView *annotationView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:currentUserAnnotationIdentifier];
+		MKAnnotationView *annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:currentUserAnnotationIdentifier];
 		
 		if (annotationView == nil) {
 			annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation 
@@ -345,13 +347,13 @@
 		annotationView.enabled = YES;
 		annotationView.canShowCallout = YES;
 		
-		return annotationView;		
+		return annotationView;
 	}
     
     // If the Other User Annotation
     if ([annotation isKindOfClass:[OtherUserAnnotation class]]) {
         static NSString *otherUserAnnotationIdentifier = @"Other User Annotation Identifier";
-		MKAnnotationView *annotationView = (MKAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:otherUserAnnotationIdentifier];
+		MKAnnotationView *annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:otherUserAnnotationIdentifier];
 		
 		if (annotationView == nil) {
 			annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation 
@@ -368,7 +370,7 @@
     // If Meeting Place Annotation
     if ([annotation isKindOfClass:[MeetingPlaceAnnotation class]]) {
         static NSString *meetingPlaceAnnotationIdentifier = @"Meeting Place Annotation Identifier";
-		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[theMapView dequeueReusableAnnotationViewWithIdentifier:meetingPlaceAnnotationIdentifier];
+		MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:meetingPlaceAnnotationIdentifier];
 		
 		if (annotationView == nil) {
 			annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation 
@@ -396,6 +398,35 @@
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
     NSLog(@"didDeselectAnnotationView");
     [self invalidateAnnotationUpdateTimer];
+}
+
+- (MKOverlayView *)mapView:(MKMapView *)mapView viewForOverlay:(id <MKOverlay>)overlay {
+    
+    if ([overlay isKindOfClass:[MKCircle class]]) {
+        
+        // Set a different colour for the current users circle
+        UIColor *colour = nil;
+        if ([currentUserAnnotation.accuracyCircle isEqual:overlay]) {
+            // Blue
+            colour = RGBACOLOR(0,155,255,0.20);
+        } else {
+            // Green
+            colour = RGBACOLOR(130,245,0,0.20);
+        }
+        
+        static NSString *circleIdentifier = @"Circle Identifier";
+        MKCircleView *circleView = (MKCircleView *)[mapView dequeueReusableAnnotationViewWithIdentifier:circleIdentifier];
+        
+        if (circleView == nil) {
+            circleView = [[MKCircleView alloc] initWithCircle:overlay];
+            circleView.lineWidth = 1.0;
+        }
+        circleView.fillColor = colour;
+        circleView.strokeColor = colour;
+        return circleView;
+    }
+    
+    return nil;
 }
 
 - (void)mapViewDidFailLoadingMap:(MKMapView *)mapView withError:(NSError *)error {
@@ -444,22 +475,33 @@
         currentUserAnnotation = [[[CurrentUserAnnotation alloc] init] retain];
         currentUserAnnotation.coordinate = currentLocation.coordinate;
         currentUserAnnotation.title = @"Me";
-        [mapView addAnnotation:currentUserAnnotation];
-        
+        [_mapView addAnnotation:currentUserAnnotation];
+        currentUserAnnotation.accuracyCircle = [MKCircle circleWithCenterCoordinate:currentLocation.coordinate 
+                                                                             radius:currentLocation.horizontalAccuracy];
+        [_mapView addOverlay:currentUserAnnotation.accuracyCircle];
         [self showMyLocation];
         
     } else {
         
         // Update the current users coordinate with an animation.
+        // Also Add circle overlay to show accuracy.
         [UIView beginAnimations:@"" context:NULL];
         [UIView setAnimationDuration:.5];
         currentUserAnnotation.coordinate = currentLocation.coordinate;
+        [_mapView removeOverlay:currentUserAnnotation.accuracyCircle];
+        currentUserAnnotation.accuracyCircle = [MKCircle circleWithCenterCoordinate:currentLocation.coordinate 
+                                                                             radius:currentLocation.horizontalAccuracy];
+        [_mapView addOverlay:currentUserAnnotation.accuracyCircle];
         [UIView commitAnimations];
     }
     
     // Update relative time
     currentUserAnnotation.updated = [NSDate date];
-    currentUserAnnotation.subtitle = [RelativeDate stringWithDate:currentUserAnnotation.updated];
+    // Temporarily show accuracy for debugging
+    currentUserAnnotation.subtitle = [NSString stringWithFormat:@"%@\nAccurcay: %f m",
+                                      [RelativeDate stringWithDate:currentUserAnnotation.updated],
+                                      currentLocation.horizontalAccuracy];
+    //currentUserAnnotation.subtitle = [RelativeDate stringWithDate:currentUserAnnotation.updated];
 }
 
 - (void)locationErrors:(NSNotification *)notification {
@@ -508,9 +550,9 @@
     // If a new annotation, add it to the map view and change region so that it is shown.
     if (newAnnotation) {
         otherUserAnnotation.coordinate = currentAnnotationLocation;
-        [mapView addAnnotation:otherUserAnnotation];
-        [mapView zoomToFitAnnotations];
-        [mapView selectAnnotation:otherUserAnnotation animated:YES];
+        [_mapView addAnnotation:otherUserAnnotation];
+        [_mapView zoomToFitAnnotations];
+        [_mapView selectAnnotation:otherUserAnnotation animated:YES];
         
     } else {
         // Update the annotation's coordinate with an animation.
@@ -523,6 +565,16 @@
     // Update relative time
     otherUserAnnotation.updated = [DateFormatter dateFromString:[userLocationDTO time]];
     otherUserAnnotation.subtitle = [RelativeDate stringWithDate:otherUserAnnotation.updated];
+    
+    
+    // Add circle overlay to show accuracy
+    [UIView beginAnimations:@"" context:NULL];
+    [UIView setAnimationDuration:.5];
+    [_mapView removeOverlay:otherUserAnnotation.accuracyCircle];
+    otherUserAnnotation.accuracyCircle = [MKCircle circleWithCenterCoordinate:currentAnnotationLocation 
+                                                                       radius:[userLocationDTO.horizontalAccuracy doubleValue]];
+    [_mapView addOverlay:otherUserAnnotation.accuracyCircle];
+    [UIView commitAnimations];
 }
 
 @end

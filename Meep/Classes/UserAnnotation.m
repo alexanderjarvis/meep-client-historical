@@ -14,11 +14,13 @@
 @synthesize title;
 @synthesize subtitle;
 @synthesize updated;
+@synthesize accuracyCircle;
 
 - (void)dealloc {
     [title release];
     [subtitle release];
     [updated release];
+    [accuracyCircle release];
     [super dealloc];
 }
 

@@ -15,12 +15,14 @@
     NSString *title;
     NSString *subtitle;
     NSDate *updated;
+    MKCircle *accuracyCircle;
     
 }
 
 @property (nonatomic) CLLocationCoordinate2D coordinate;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *subtitle;
-@property (nonatomic, copy) NSDate *updated;
+@property (nonatomic, retain) NSDate *updated;
+@property (nonatomic, retain) MKCircle *accuracyCircle;
 
 @end
