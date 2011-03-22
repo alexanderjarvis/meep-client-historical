@@ -75,8 +75,6 @@
     
     // Show the HUD
 	[hud show:YES];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Registering...";
 	
 	// Build up the User data and register the user.
 	UserDTO *user = [[UserDTO alloc] init];
