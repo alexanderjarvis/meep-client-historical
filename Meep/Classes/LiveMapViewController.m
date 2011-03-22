@@ -390,7 +390,7 @@
     NSLog(@"didSelectAnnotationView");
     if ([view.annotation isKindOfClass:[UserAnnotation class]]) {
         UserAnnotation *userAnnotation = (UserAnnotation *)view.annotation;
-        //[self performSelector:@selector(startAnnotationUpdateTimer:) withObject:userAnnotation afterDelay:1.0];
+        
         [self startAnnotationUpdateTimer:userAnnotation];
     }
 }
@@ -497,11 +497,7 @@
     
     // Update relative time
     currentUserAnnotation.updated = [NSDate date];
-    // Temporarily show accuracy for debugging
-    currentUserAnnotation.subtitle = [NSString stringWithFormat:@"%@\nAccurcay: %f m",
-                                      [RelativeDate stringWithDate:currentUserAnnotation.updated],
-                                      currentLocation.horizontalAccuracy];
-    //currentUserAnnotation.subtitle = [RelativeDate stringWithDate:currentUserAnnotation.updated];
+    currentUserAnnotation.subtitle = [RelativeDate stringWithDate:currentUserAnnotation.updated];
 }
 
 - (void)locationErrors:(NSNotification *)notification {
