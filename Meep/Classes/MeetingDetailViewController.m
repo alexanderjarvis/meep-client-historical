@@ -17,6 +17,7 @@
 #import "MeetingAttendeesViewController.h"
 #import "MeepStyleSheet.h"
 #import "LocalNotificationManager.h"
+#import "MeetingHelper.h"
 
 @interface MeetingDetailViewController (private)
 
@@ -302,7 +303,7 @@
         
         } else if (section == 1) {
             
-            static NSString *CellIdentifier = @"AttendeeCell";
+            static NSString *CellIdentifier = @"ActionCell";
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
             if (cell == nil) {
                 cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
@@ -311,9 +312,13 @@
             }
             
             if (row == 0) {
-                cell.textLabel.text = @"View live meeting map";
+                cell.textLabel.text = @"Live Map";
+                if ([MeetingHelper isMeetingOld:thisMeeting]) {
+                    cell.textLabel.textColor = [UIColor grayColor];
+                    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                }
             } else if (row == 1) {                
-                cell.textLabel.text = [NSString stringWithFormat:@"View attendees (%u)", [thisMeeting.attendees count]];
+                cell.textLabel.text = [NSString stringWithFormat:@"Attendees (%u)", [thisMeeting.attendees count]];
             }
             return cell;
             
@@ -389,7 +394,9 @@
     if (section == 1) {
         if (row == 0) {
             // View live meeting map
-            [[[MeepAppDelegate sharedAppDelegate] menuNavigationController] showLiveMapViewWith:thisMeeting animated:YES];
+            if (![MeetingHelper isMeetingOld:thisMeeting]) {
+                [[[MeepAppDelegate sharedAppDelegate] menuNavigationController] showLiveMapViewWith:thisMeeting animated:YES];
+            }
         } else if (row == 1) {
             // View attendees
             MeetingAttendeesViewController *meetingAttendeesViewController = [[MeetingAttendeesViewController alloc] initWithNibName:@"MeetingAttendeesViewController" bundle:nil];

@@ -12,8 +12,6 @@
 #import "AcceptMeetingRequestManager.h"
 #import "DeclineMeetingRequestManager.h"
 
-#define TwentyFourHoursInSeconds (24 * 60 * 60)
-
 @interface MeetingsViewController : UITableViewController {
     
 	MeetingsRequestManager *meetingsRequestManager;

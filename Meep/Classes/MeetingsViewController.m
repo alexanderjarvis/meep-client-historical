@@ -14,6 +14,7 @@
 #import "MeetingDTO.h"
 #import "MeetingDetailViewController.h"
 #import "DateFormatter.h"
+#import "MeetingHelper.h"
 
 @implementation MeetingsViewController
 
@@ -83,9 +84,8 @@
 	UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
 	for (MeetingDTO *meeting in meetings) {
         
-        // If the meeting date is older than a day
-        NSDate *meetingDate = [DateFormatter dateFromString:meeting.time];
-        if ([meetingDate timeIntervalSinceNow] < -TwentyFourHoursInSeconds) {
+        // If the meeting is old
+        if ([MeetingHelper isMeetingOld:meeting]) {
             [arrayOfOld addObject:meeting];
         } else {
             for (AttendeeDTO *attendee in meeting.attendees) {
