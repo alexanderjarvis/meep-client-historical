@@ -17,6 +17,7 @@
 #import "DateFormatter.h"
 #import "RelativeDate.h"
 #import "AlertView.h"
+#import "MeetingHelper.h"
 
 @interface LiveMapViewController (private)
 
@@ -75,6 +76,7 @@
     [super viewDidLoad];
     
     self.title = @"Live Map";
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
     
     // Right BarButton
     enableLocationButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"enableLocationButton.png"] 
@@ -85,6 +87,7 @@
                                                         style:UIBarButtonItemStylePlain 
                                                        target:self 
                                                        action:@selector(disableLocationButtonPressed:)];
+    disableLocationButton.style = UIBarButtonItemStyleDone;
     self.navigationItem.rightBarButtonItem = disableLocationButton;
     
     // 
@@ -110,7 +113,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    NSLog(@"View will appear");
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque animated:animated];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    self.navigationController.navigationBar.translucent = YES;
     [self addValidMeetingAnnotations];
 }
 
@@ -197,13 +202,7 @@
 
 - (void)addMeetingAnnotationFor:(MeetingDTO *)meeting with:(UserDTO *)currentUser {
     
-    // If the meeting date is older than a day
-    NSDate *meetingDate = [DateFormatter dateFromString:meeting.time];
-    NSInteger seconds = -TwentyFourHoursInSeconds;
-    NSInteger timeInterval = [meetingDate timeIntervalSinceNow];
-    if (timeInterval < seconds) {
-        // Don't show it
-    } else {
+    if (![MeetingHelper isMeetingOld:meeting]) {
         
         for (AttendeeDTO *attendee in meeting.attendees) {
             if ([attendee._id isEqualToNumber:currentUser._id]) {
@@ -329,6 +328,77 @@
     [_mapView zoomToFitAnnotations];
 }
 
+- (IBAction)nextAnnotationButtonPressed {
+    
+    NSArray *sortedArray = [[_mapView annotations] sortedArrayUsingComparator: ^(id<MKAnnotation> obj1, id<MKAnnotation> obj2) {
+        
+        if (obj1.coordinate.longitude > obj2.coordinate.longitude) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        
+        if (obj1.coordinate.longitude < obj2.coordinate.longitude) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
+    for (id<MKAnnotation> annotation in sortedArray) {
+        NSLog(@"%f", annotation.coordinate.longitude);
+    }
+    
+    
+    
+    if ([_mapView.annotations count] > 0) {
+        
+        // If there is no currently selected annotation, then select the object to the left of the map
+        if (selectedAnnotation == nil) {
+            selectedAnnotationIndex = 0;
+            // If within bounds, then increase the selected index by 1
+        } else if (selectedAnnotationIndex + 1 < [sortedArray count]) {
+            selectedAnnotationIndex++;
+        }
+        NSLog(@"selected index: %i", selectedAnnotationIndex);
+        id<MKAnnotation> annotation = [sortedArray objectAtIndex:selectedAnnotationIndex];
+        [_mapView setCenterCoordinate:annotation.coordinate animated:YES];
+        [_mapView selectAnnotation:annotation animated:YES];
+    }
+    
+}
+
+- (IBAction)previousAnnotationButtonPressed {
+    
+    NSArray *sortedArray = [[_mapView annotations] sortedArrayUsingComparator: ^(id<MKAnnotation> obj1, id<MKAnnotation> obj2) {
+        
+        if (obj1.coordinate.longitude > obj2.coordinate.longitude) {
+            return (NSComparisonResult)NSOrderedDescending;
+        }
+        
+        if (obj1.coordinate.longitude < obj2.coordinate.longitude) {
+            return (NSComparisonResult)NSOrderedAscending;
+        }
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+    
+    for (id<MKAnnotation> annotation in sortedArray) {
+        NSLog(@"%f", annotation.coordinate.longitude);
+    }
+    
+    if ([_mapView.annotations count] > 0) {
+        
+        // If there is no currently selected annotation, then select the object to the left of the map
+        if (selectedAnnotation == nil) {
+            selectedAnnotationIndex = [sortedArray count]-1;
+            // If within bounds, then decrease the selected index by 1
+        } else if (selectedAnnotationIndex > 0) {
+            selectedAnnotationIndex--;
+        }
+        NSLog(@"selected index: %i", selectedAnnotationIndex);
+        id<MKAnnotation> annotation = [sortedArray objectAtIndex:selectedAnnotationIndex];
+        [_mapView setCenterCoordinate:annotation.coordinate animated:YES];
+        [_mapView selectAnnotation:annotation animated:YES];
+    }
+    
+}
 #pragma mark -
 #pragma mark MapViewDelegate
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
@@ -387,7 +457,7 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-    NSLog(@"didSelectAnnotationView");
+    selectedAnnotation = [view.annotation retain];
     if ([view.annotation isKindOfClass:[UserAnnotation class]]) {
         UserAnnotation *userAnnotation = (UserAnnotation *)view.annotation;
         
@@ -396,7 +466,6 @@
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    NSLog(@"didDeselectAnnotationView");
     [self invalidateAnnotationUpdateTimer];
 }
 

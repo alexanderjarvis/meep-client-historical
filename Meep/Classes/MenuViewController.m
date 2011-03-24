@@ -72,8 +72,8 @@
 	[launcherView addItem:friendRequestsItem animated:NO];
     
     liveMapItem = [[TTLauncherItem alloc] initWithTitle: @"Live Map"
-                                                           image: @"bundle://Icon.png"
-                                                            URL: LiveMapURL];
+                                                  image: @"bundle://Icon.png"
+                                                    URL: LiveMapURL];
     [launcherView addItem:liveMapItem animated:NO];
 	
 	[self.view addSubview:launcherView];
@@ -81,6 +81,9 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    self.navigationController.navigationBar.translucent = NO;
     [self updateBadgeCounts];
 }
 

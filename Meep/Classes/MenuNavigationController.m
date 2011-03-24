@@ -64,8 +64,10 @@
     [self getCurrentUserAndShowHUD:YES animated:NO isRetry:NO];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     // get current user?
+    [self getCurrentUserAndShowHUD:NO animated:NO isRetry:NO];
 }
 
 #pragma mark -

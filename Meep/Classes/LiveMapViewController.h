@@ -32,6 +32,8 @@
     CurrentUserAnnotation *currentUserAnnotation;
     NSMutableArray *meetingPlaceAnnotations;
     NSMutableArray *otherUserAnnotations;
+    NSUInteger selectedAnnotationIndex;
+    id<MKAnnotation> selectedAnnotation;
     
     WebSocketManager *webSocketManager;
     
@@ -51,5 +53,7 @@
 
 - (IBAction)myLocationButtonPressed;
 - (IBAction)showAllAnnotationsButtonPressed;
+- (IBAction)nextAnnotationButtonPressed;
+- (IBAction)previousAnnotationButtonPressed;
 
 @end
