@@ -32,6 +32,7 @@
 	if (self) {
 		if ([rootViewController isKindOfClass:[MenuViewController class]]) {
 			menuViewController = [(MenuViewController *)rootViewController retain];
+            menuViewController.menuNavigationController = self;
 		}
 	}
 	return self;
@@ -66,8 +67,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    // get current user?
-    [self getCurrentUserAndShowHUD:NO animated:NO isRetry:NO];
 }
 
 #pragma mark -
@@ -174,6 +173,10 @@
 	newMeetingDateAndTimeController = nil;
 	[newMeetingLocationController release];
 	newMeetingLocationController = nil;
+}
+
+- (void)updateCurrentUser {
+    [self getCurrentUserAndShowHUD:NO animated:NO isRetry:NO];
 }
 
 - (void)showMeetingsViewAnimated:(BOOL)animated {

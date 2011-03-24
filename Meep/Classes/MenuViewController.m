@@ -16,6 +16,7 @@
 
 @implementation MenuViewController
 
+@synthesize menuNavigationController;
 @synthesize friendRequestsItem;
 
 #pragma mark -
@@ -81,6 +82,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [menuNavigationController updateCurrentUser];
     [self updateBadgeCounts];
 }
 

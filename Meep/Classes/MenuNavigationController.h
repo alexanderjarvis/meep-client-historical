@@ -52,6 +52,7 @@
 
 - (void)logout:(BOOL)retry;
 - (void)newMeetingCreated;
+- (void)updateCurrentUser;
 
 - (void)showMeetingsViewAnimated:(BOOL)animated;
 - (void)showMeetingDetailView:(MeetingDTO *)meeting animated:(BOOL)animated;

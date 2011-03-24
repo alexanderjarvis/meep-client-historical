@@ -17,7 +17,11 @@
 #define MyDetailsURL @"mp://mydetails"
 #define LiveMapURL @"mp://livemap"
 
+@class MenuNavigationController;
+
 @interface MenuViewController : TTViewController <TTLauncherViewDelegate, UIAlertViewDelegate> {
+    
+    MenuNavigationController *menuNavigationController;
 	
 	TTLauncherView *launcherView;
 	
@@ -34,6 +38,7 @@
 	
 }
 
+@property (nonatomic, assign) MenuNavigationController *menuNavigationController;
 @property (nonatomic, retain) TTLauncherItem *friendRequestsItem;
 
 - (void)launcherView:(TTLauncherView*)launcher didSelectItem:(TTLauncherItem*)item;
