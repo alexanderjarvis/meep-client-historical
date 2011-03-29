@@ -20,7 +20,7 @@ unichar ISO8601DefaultTimeSeparatorCharacter = DEFAULT_TIME_SEPARATOR;
 #define ISO_TIME_WITH_TIMEZONE_FORMAT  ISO_TIME_FORMAT @"Z"
 //printf formats.
 #define ISO_TIMEZONE_UTC_FORMAT @"Z"
-#define ISO_TIMEZONE_OFFSET_FORMAT @"%+02d%02d"
+#define ISO_TIMEZONE_OFFSET_FORMAT @"%+03d%02d"
 
 @interface ISO8601DateFormatter(UnparsingPrivate)
 
@@ -638,7 +638,6 @@ static BOOL is_leap_year(unsigned year);
 	calendar.firstWeekday = 2; //Monday
 
 	NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-	formatter.formatterBehavior = NSDateFormatterBehavior10_4;
 	formatter.dateFormat = dateFormat;
 	formatter.calendar = calendar;
 
