@@ -42,12 +42,14 @@
 		FA18303D1320537100E2147F /* MeetingDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18303C1320537100E2147F /* MeetingDetailCell.xib */; };
 		FA1AE503131AC1F000683B1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		FA1AE50A131AC25500683B1A /* UserSummaryDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */; };
-		FA1AE545131AC78900683B1A /* ObjectWithProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA1AE544131AC78900683B1A /* ObjectWithProperties.m */; };
 		FA251D101322B7BF00C614F7 /* AcceptMeetingRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA251D0F1322B7BB00C614F7 /* AcceptMeetingRequestManager.m */; };
 		FA331EFA1309A5B8000763D4 /* AccessTokenRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */; };
-		FA3F0A4F1342051A00A9D693 /* TestDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F0A4E1342051A00A9D693 /* TestDateFormatter.m */; };
 		FA3F0A501342058F00A9D693 /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4ABE4813330D7B0086CF03 /* DateFormatter.m */; };
 		FA3F0A511342074C00A9D693 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4ABE4313330C630086CF03 /* ISO8601DateFormatter.m */; };
+		FA3F0A5A13422EB100A9D693 /* TestDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F0A5913422EB100A9D693 /* TestDateFormatter.m */; };
+		FA3F0A6813422F7C00A9D693 /* TestDictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F0A6413422F6C00A9D693 /* TestDictionaryModelMapper.m */; };
+		FA3F0A6913422F8200A9D693 /* ObjectWithProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F0A6213422F6C00A9D693 /* ObjectWithProperties.m */; };
+		FA3F0A6A13422F8800A9D693 /* ObjectWithId.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F0A6013422F6C00A9D693 /* ObjectWithId.m */; };
 		FA4ABE4513330C630086CF03 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4ABE4313330C630086CF03 /* ISO8601DateFormatter.m */; };
 		FA4ABE4613330C630086CF03 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FA4ABE4413330C630086CF03 /* LICENSE.txt */; };
 		FA4ABE4913330D7B0086CF03 /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4ABE4813330D7B0086CF03 /* DateFormatter.m */; };
@@ -116,10 +118,8 @@
 		FA7D0B721307F32100AD7E31 /* SearchUsersDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D0B701307F32100AD7E31 /* SearchUsersDetailViewController.m */; };
 		FA7D0B731307F32100AD7E31 /* SearchUsersDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7D0B711307F32100AD7E31 /* SearchUsersDetailViewController.xib */; };
 		FA7D0BA9130834C200AD7E31 /* AddUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D0BA8130834C200AD7E31 /* AddUserRequestManager.m */; };
-		FA7E15B51306A27E00CFAAF5 /* TestDictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E15B41306A27E00CFAAF5 /* TestDictionaryModelMapper.m */; };
 		FA7E16091306A66D00CFAAF5 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
 		FA7E16221306A86A00CFAAF5 /* UserDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* UserDTO.m */; };
-		FA7E16971306B86C00CFAAF5 /* ObjectWithId.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */; };
 		FA7E179613070FDA00CFAAF5 /* SearchUsersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E179413070FDA00CFAAF5 /* SearchUsersViewController.m */; };
 		FA7E179713070FDA00CFAAF5 /* SearchUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */; };
 		FA7E17D613073C7300CFAAF5 /* SearchUsersManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7E17D513073C7300CFAAF5 /* SearchUsersManager.m */; };
@@ -363,16 +363,20 @@
 		FA183033132051EE00E2147F /* MeetingDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingDetailCell.m; sourceTree = "<group>"; };
 		FA18303C1320537100E2147F /* MeetingDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingDetailCell.xib; sourceTree = "<group>"; };
 		FA19700F13285FAC004014BA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		FA1AE543131AC78900683B1A /* ObjectWithProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithProperties.h; sourceTree = "<group>"; };
-		FA1AE544131AC78900683B1A /* ObjectWithProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithProperties.m; sourceTree = "<group>"; };
 		FA251D0D1322A73F00C614F7 /* MeetingDetailCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingDetailCellDelegate.h; sourceTree = "<group>"; };
 		FA251D0E1322B7B700C614F7 /* AcceptMeetingRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptMeetingRequestManager.h; sourceTree = "<group>"; };
 		FA251D0F1322B7BB00C614F7 /* AcceptMeetingRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptMeetingRequestManager.m; sourceTree = "<group>"; };
 		FA251D121322B83F00C614F7 /* AcceptMeetingRequestManagerDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceptMeetingRequestManagerDelegate.h; sourceTree = "<group>"; };
 		FA331EF81309A5B8000763D4 /* AccessTokenRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccessTokenRequestManager.h; sourceTree = "<group>"; };
 		FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccessTokenRequestManager.m; sourceTree = "<group>"; };
-		FA3F0A4D1342051A00A9D693 /* TestDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDateFormatter.h; path = Tests/TestDateFormatter.h; sourceTree = "<group>"; };
-		FA3F0A4E1342051A00A9D693 /* TestDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDateFormatter.m; path = Tests/TestDateFormatter.m; sourceTree = "<group>"; };
+		FA3F0A5813422EB100A9D693 /* TestDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDateFormatter.h; path = Tests/TestDateFormatter.h; sourceTree = "<group>"; };
+		FA3F0A5913422EB100A9D693 /* TestDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDateFormatter.m; path = Tests/TestDateFormatter.m; sourceTree = "<group>"; };
+		FA3F0A5F13422F6C00A9D693 /* ObjectWithId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectWithId.h; path = Tests/ObjectWithId.h; sourceTree = "<group>"; };
+		FA3F0A6013422F6C00A9D693 /* ObjectWithId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObjectWithId.m; path = Tests/ObjectWithId.m; sourceTree = "<group>"; };
+		FA3F0A6113422F6C00A9D693 /* ObjectWithProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectWithProperties.h; path = Tests/ObjectWithProperties.h; sourceTree = "<group>"; };
+		FA3F0A6213422F6C00A9D693 /* ObjectWithProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObjectWithProperties.m; path = Tests/ObjectWithProperties.m; sourceTree = "<group>"; };
+		FA3F0A6313422F6C00A9D693 /* TestDictionaryModelMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestDictionaryModelMapper.h; path = Tests/TestDictionaryModelMapper.h; sourceTree = "<group>"; };
+		FA3F0A6413422F6C00A9D693 /* TestDictionaryModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestDictionaryModelMapper.m; path = Tests/TestDictionaryModelMapper.m; sourceTree = "<group>"; };
 		FA4ABE4213330C630086CF03 /* ISO8601DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ISO8601DateFormatter.h; sourceTree = "<group>"; };
 		FA4ABE4313330C630086CF03 /* ISO8601DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ISO8601DateFormatter.m; sourceTree = "<group>"; };
 		FA4ABE4413330C630086CF03 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
@@ -492,10 +496,6 @@
 		FA7D0BD71308369400AD7E31 /* AddUserRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddUserRequestManagerDelegate.h; sourceTree = "<group>"; };
 		FA7E15A81306A1CE00CFAAF5 /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA7E15A91306A1CE00CFAAF5 /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
-		FA7E15B31306A27E00CFAAF5 /* TestDictionaryModelMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestDictionaryModelMapper.h; sourceTree = "<group>"; };
-		FA7E15B41306A27E00CFAAF5 /* TestDictionaryModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDictionaryModelMapper.m; sourceTree = "<group>"; };
-		FA7E16951306B86C00CFAAF5 /* ObjectWithId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectWithId.h; sourceTree = "<group>"; };
-		FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectWithId.m; sourceTree = "<group>"; };
 		FA7E179313070FDA00CFAAF5 /* SearchUsersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersViewController.h; sourceTree = "<group>"; };
 		FA7E179413070FDA00CFAAF5 /* SearchUsersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchUsersViewController.m; sourceTree = "<group>"; };
 		FA7E179513070FDA00CFAAF5 /* SearchUsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchUsersViewController.xib; sourceTree = "<group>"; };
@@ -1092,14 +1092,14 @@
 		FA7E159F13069F2D00CFAAF5 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				FA7E16951306B86C00CFAAF5 /* ObjectWithId.h */,
-				FA7E16961306B86C00CFAAF5 /* ObjectWithId.m */,
-				FA1AE543131AC78900683B1A /* ObjectWithProperties.h */,
-				FA1AE544131AC78900683B1A /* ObjectWithProperties.m */,
-				FA7E15B31306A27E00CFAAF5 /* TestDictionaryModelMapper.h */,
-				FA7E15B41306A27E00CFAAF5 /* TestDictionaryModelMapper.m */,
-				FA3F0A4D1342051A00A9D693 /* TestDateFormatter.h */,
-				FA3F0A4E1342051A00A9D693 /* TestDateFormatter.m */,
+				FA3F0A5F13422F6C00A9D693 /* ObjectWithId.h */,
+				FA3F0A6013422F6C00A9D693 /* ObjectWithId.m */,
+				FA3F0A6113422F6C00A9D693 /* ObjectWithProperties.h */,
+				FA3F0A6213422F6C00A9D693 /* ObjectWithProperties.m */,
+				FA3F0A6313422F6C00A9D693 /* TestDictionaryModelMapper.h */,
+				FA3F0A6413422F6C00A9D693 /* TestDictionaryModelMapper.m */,
+				FA3F0A5813422EB100A9D693 /* TestDateFormatter.h */,
+				FA3F0A5913422EB100A9D693 /* TestDateFormatter.m */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -1604,18 +1604,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA7E15B51306A27E00CFAAF5 /* TestDictionaryModelMapper.m in Sources */,
 				FA7E16091306A66D00CFAAF5 /* DictionaryModelMapper.m in Sources */,
 				FA7E16221306A86A00CFAAF5 /* UserDTO.m in Sources */,
-				FA7E16971306B86C00CFAAF5 /* ObjectWithId.m in Sources */,
 				FA1AE50A131AC25500683B1A /* UserSummaryDTO.m in Sources */,
-				FA1AE545131AC78900683B1A /* ObjectWithProperties.m in Sources */,
 				FAFCCA8C1324117E0059DDA4 /* MeetingDTO.m in Sources */,
 				FAFCCA8D1324119C0059DDA4 /* AttendeeDTO.m in Sources */,
 				FAFCCA8E132411A00059DDA4 /* CoordinateDTO.m in Sources */,
-				FA3F0A4F1342051A00A9D693 /* TestDateFormatter.m in Sources */,
 				FA3F0A501342058F00A9D693 /* DateFormatter.m in Sources */,
 				FA3F0A511342074C00A9D693 /* ISO8601DateFormatter.m in Sources */,
+				FA3F0A5A13422EB100A9D693 /* TestDateFormatter.m in Sources */,
+				FA3F0A6813422F7C00A9D693 /* TestDictionaryModelMapper.m in Sources */,
+				FA3F0A6913422F8200A9D693 /* ObjectWithProperties.m in Sources */,
+				FA3F0A6A13422F8800A9D693 /* ObjectWithId.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
