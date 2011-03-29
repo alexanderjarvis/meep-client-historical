@@ -114,8 +114,8 @@
     userLocation.time = [DateFormatter stringFromDate:[NSDate date]]; // sets current time instead of timestamp from CLLocation
     userLocation.coordinate.latitude = [NSNumber numberWithDouble:currentLocation.coordinate.latitude];
     userLocation.coordinate.longitude = [NSNumber numberWithDouble:currentLocation.coordinate.longitude];
-    userLocation.speed = [NSNumber numberWithDouble:currentLocation.speed];
-    userLocation.altitude = [NSNumber numberWithDouble:currentLocation.altitude];
+    userLocation.speed = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentLocation.speed]];
+    userLocation.altitude = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentLocation.altitude]];
     // Heading may not be available
     if (currentHeading != nil) {
         userLocation.trueHeading = [NSNumber numberWithDouble:[Math roundToTwoDecimalPlaces:currentHeading.trueHeading]];
