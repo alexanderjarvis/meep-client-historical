@@ -9,8 +9,6 @@
 #import <YAJL/YAJL.h>
 
 #import "MeepAppDelegate.h"
-#import "UserManager.h"
-#import "UserDTO.h"
 #import "AlertView.h"
 
 @implementation MeepAppDelegate
@@ -50,6 +48,9 @@
 		// if no access token
 		[self showWelcomeView];
 	}
+    
+    // Increase default timeout from 10 to 15 seconds
+    [ASIHTTPRequest setDefaultTimeOutSeconds:15];
 	
     [window makeKeyAndVisible];
     
