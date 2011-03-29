@@ -14,24 +14,14 @@
 #define kAccessTokenKey @"access_token"
 
 // The host for the web service
-#define DEBUG 0
-#ifdef DEBUG
-//#define SERVICE_HOST @"169.254.100.172"
-#define SERVICE_HOST @"meep.it"
-#define SERVICE_PORT 9000
-#endif
-#ifndef DEBUG
-#define SECURE 1
 #define SERVICE_HOST @"meep.it"
 #define SERVICE_PORT 443
-#endif
-// The schemes, independent of debug status
-#ifdef SECURE
+#define SECURE 1
 #define SERVICE_SCHEME @"https://"
-#endif
-#ifndef SECURE
-#define SERVICE_SCHEME @"http://"
-#endif
+//#define SERVICE_HOST @"localhost"
+//#define SERVICE_PORT 9000
+//#define SECURE 0
+//#define SERVICE_SCHEME @"http://"
 
 @interface ConfigManager : NSObject {
 	
