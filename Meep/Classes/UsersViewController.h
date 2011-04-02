@@ -8,23 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-#import "UserManager.h"
+#import "UsersRequestManager.h"
 #import "UserDTO.h"
 
-@interface UsersViewController : UITableViewController <UserManagerDelegate> {
+@interface UsersViewController : UITableViewController <UsersRequestManagerDelegate> {
 	
-	UserManager *userManager;
+	UsersRequestManager *usersRequestManager;
 	
 	NSArray *tableKeys;
 	NSDictionary *tableDictionary;
 
 }
 
-@property(nonatomic, retain) UserManager *userManager;
+@property(nonatomic, retain) UsersRequestManager *usersRequestManager;
 
 @property(nonatomic, retain) NSArray *tableKeys;
 @property(nonatomic, retain) NSDictionary *tableDictionary;
 
-- (void)updateTableWithUser:(UserDTO *)user;
+- (void)updateTableWithUsers:(NSArray *)users;
 
 @end

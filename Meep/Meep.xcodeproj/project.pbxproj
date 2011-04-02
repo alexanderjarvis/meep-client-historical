@@ -42,6 +42,7 @@
 		FA18303D1320537100E2147F /* MeetingDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA18303C1320537100E2147F /* MeetingDetailCell.xib */; };
 		FA1AE503131AC1F000683B1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		FA1AE50A131AC25500683B1A /* UserSummaryDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FADCEC51130DCC9A00EADF31 /* UserSummaryDTO.m */; };
+		FA2227041347B871003AB4B8 /* UsersRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA2227031347B871003AB4B8 /* UsersRequestManager.m */; };
 		FA251D101322B7BF00C614F7 /* AcceptMeetingRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA251D0F1322B7BB00C614F7 /* AcceptMeetingRequestManager.m */; };
 		FA331EFA1309A5B8000763D4 /* AccessTokenRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA331EF91309A5B8000763D4 /* AccessTokenRequestManager.m */; };
 		FA3F0A501342058F00A9D693 /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4ABE4813330D7B0086CF03 /* DateFormatter.m */; };
@@ -360,6 +361,9 @@
 		FA183033132051EE00E2147F /* MeetingDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingDetailCell.m; sourceTree = "<group>"; };
 		FA18303C1320537100E2147F /* MeetingDetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeetingDetailCell.xib; sourceTree = "<group>"; };
 		FA19700F13285FAC004014BA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		FA2227021347B871003AB4B8 /* UsersRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersRequestManager.h; sourceTree = "<group>"; };
+		FA2227031347B871003AB4B8 /* UsersRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersRequestManager.m; sourceTree = "<group>"; };
+		FA2227051347B8D2003AB4B8 /* UsersRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersRequestManagerDelegate.h; sourceTree = "<group>"; };
 		FA251D0D1322A73F00C614F7 /* MeetingDetailCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingDetailCellDelegate.h; sourceTree = "<group>"; };
 		FA251D0E1322B7B700C614F7 /* AcceptMeetingRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AcceptMeetingRequestManager.h; sourceTree = "<group>"; };
 		FA251D0F1322B7BB00C614F7 /* AcceptMeetingRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AcceptMeetingRequestManager.m; sourceTree = "<group>"; };
@@ -923,6 +927,9 @@
 				FA507B071303EF4000CB96B4 /* UserManager.h */,
 				FA507B081303EF4000CB96B4 /* UserManager.m */,
 				FA507B30130404A900CB96B4 /* UserManagerDelegate.h */,
+				FA2227021347B871003AB4B8 /* UsersRequestManager.h */,
+				FA2227031347B871003AB4B8 /* UsersRequestManager.m */,
+				FA2227051347B8D2003AB4B8 /* UsersRequestManagerDelegate.h */,
 			);
 			name = "Request Managers";
 			path = Classes;
@@ -1591,6 +1598,7 @@
 				FA4ABE4913330D7B0086CF03 /* DateFormatter.m in Sources */,
 				FA1773571334367D00D4B312 /* RelativeDate.m in Sources */,
 				FAFCAEA9133A74630061CB65 /* MeetingHelper.m in Sources */,
+				FA2227041347B871003AB4B8 /* UsersRequestManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

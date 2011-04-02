@@ -9,10 +9,11 @@
 #import "UsersViewController.h"
 #import "MeepAppDelegate.h"
 #import "ConfigManager.h"
+#import "AlertView.h"
 
 @implementation UsersViewController
 
-@synthesize userManager;
+@synthesize usersRequestManager;
 @synthesize tableKeys;
 @synthesize tableDictionary;
 
@@ -26,28 +27,25 @@
 	
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	ConfigManager *configManager = [meepAppDelegate configManager];
-	userManager = [[UserManager alloc] initWithAccessToken:configManager.accessToken];
-	[userManager setDelegate:self];
+	usersRequestManager = [[UsersRequestManager alloc] initWithAccessToken:configManager.accessToken];
+	[usersRequestManager setDelegate:self];
 	
 	// Update table with users that have already been fetched.
-	[self updateTableWithUser:[meepAppDelegate currentUser]];
+	[self updateTableWithUsers:[[meepAppDelegate currentUser] connections]];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 	
-	// Get the current user
-	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
-	ConfigManager *configManager = [meepAppDelegate configManager];
-	[userManager getUser:configManager.email];
+	// Get the users
+	[usersRequestManager getUsers];
 }
 
-- (void)updateTableWithUser:(UserDTO *)user {
-	NSArray *connectedUsers = [user connections];
+- (void)updateTableWithUsers:(NSArray *)users {
 	
-	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[connectedUsers count]];
-	for (UserSummaryDTO *connectedUser in connectedUsers) {
+	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[users count]];
+	for (UserSummaryDTO *connectedUser in users) {
 		if ([connectedUser.firstName length] > 0) {
 			NSString *key = [[connectedUser.firstName substringToIndex:1] uppercaseString];
 			NSArray *usersInSection = [connectedUsersDictionary objectForKey:key];
@@ -141,7 +139,7 @@
 
 
 - (void)dealloc {
-	[userManager release];
+	[usersRequestManager release];
 	[tableKeys release];
 	[tableDictionary release];
     [super dealloc];
@@ -150,19 +148,20 @@
 #pragma mark -
 #pragma mark UserManagerDelegate
 
-- (void)getUserSuccessful:(UserDTO *)user {
+- (void)getUsersSuccessful:(NSArray *)users {
 	
 	// Only update the table if the response is new
-	if ([userManager isResponseNew]) {
-		[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
-		[self updateTableWithUser:user];
+	if ([usersRequestManager isResponseNew]) {
+        [[[MeepAppDelegate sharedAppDelegate] currentUser] setConnections:users];
+		[self updateTableWithUsers:users];
 	}
 }
 
-- (void)getUserFailedWithError:(NSError *)error {
+- (void)getUsersFailedWithError:(NSError *)error {
 }
 
-- (void)getUserFailedWithNetworkError:(NSError *)error {
+- (void)getUsersFailedWithNetworkError:(NSError *)error {
+    [AlertView showNetworkAlert:error];
 }
 
 
