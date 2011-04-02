@@ -104,7 +104,7 @@
 #pragma mark LocationService
 
 - (void)headingUpdated:(NSNotification *)notification {
-    currentHeading = [[[notification userInfo] objectForKey:kHeadingUpdateNotification] retain];
+    currentHeading = [[notification userInfo] objectForKey:kHeadingUpdateNotification];
 }
 
 - (void)locationUpdated:(NSNotification *)notification {

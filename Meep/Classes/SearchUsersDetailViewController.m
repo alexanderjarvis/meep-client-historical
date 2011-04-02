@@ -180,6 +180,7 @@
     [mutableConnectionRequestsTo addObject:userSummary];
     [userSummary release];
     currentUser.connectionRequestsTo = [mutableConnectionRequestsTo copy];
+    [mutableConnectionRequestsTo release];
 }
 
 - (void)addUserRequestFailedWithError:(NSError *)error {

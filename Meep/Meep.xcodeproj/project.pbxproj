@@ -51,7 +51,6 @@
 		FA3F0A6913422F8200A9D693 /* ObjectWithProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F0A6213422F6C00A9D693 /* ObjectWithProperties.m */; };
 		FA3F0A6A13422F8800A9D693 /* ObjectWithId.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F0A6013422F6C00A9D693 /* ObjectWithId.m */; };
 		FA4ABE4513330C630086CF03 /* ISO8601DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4ABE4313330C630086CF03 /* ISO8601DateFormatter.m */; };
-		FA4ABE4613330C630086CF03 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = FA4ABE4413330C630086CF03 /* LICENSE.txt */; };
 		FA4ABE4913330D7B0086CF03 /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4ABE4813330D7B0086CF03 /* DateFormatter.m */; };
 		FA4BE857132BE46B00A80CD7 /* UserLocationDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BE856132BE46B00A80CD7 /* UserLocationDTO.m */; };
 		FA4BE85B132BE7B200A80CD7 /* LiveMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4BE859132BE7B200A80CD7 /* LiveMapViewController.m */; };
@@ -144,9 +143,7 @@
 		FAD4ADED132FB93D003F9BA5 /* MeetingPlaceAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD4ADEC132FB93B003F9BA5 /* MeetingPlaceAnnotation.m */; };
 		FAD78C74132BC0F00074783E /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD78C6D132BC0F00074783E /* AsyncSocket.m */; };
 		FAD78C75132BC0F00074783E /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD78C6F132BC0F00074783E /* WebSocket.m */; };
-		FAD78C76132BC0F00074783E /* ZLIB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FAD78C70132BC0F00074783E /* ZLIB-LICENSE */; };
 		FAD78C77132BC0F00074783E /* SocketIoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD78C72132BC0F00074783E /* SocketIoClient.m */; };
-		FAD78C78132BC0F00074783E /* ZLIB-LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FAD78C73132BC0F00074783E /* ZLIB-LICENSE */; };
 		FADA8DAB132D135500E6F6A0 /* bluemarble.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA8DA9132D135500E6F6A0 /* bluemarble.png */; };
 		FADA8DAC132D135500E6F6A0 /* bluemarble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA8DAA132D135500E6F6A0 /* bluemarble@2x.png */; };
 		FADA8DAF132D25C500E6F6A0 /* greenmarble.png in Resources */ = {isa = PBXBuildFile; fileRef = FADA8DAD132D25C500E6F6A0 /* greenmarble.png */; };
@@ -1463,14 +1460,11 @@
 				FA182FBE132034E400E2147F /* MeetingDetailViewController.xib in Resources */,
 				FA18303D1320537100E2147F /* MeetingDetailCell.xib in Resources */,
 				FAFCCA731323E5B40059DDA4 /* MeetingAttendeesViewController.xib in Resources */,
-				FAD78C76132BC0F00074783E /* ZLIB-LICENSE in Resources */,
-				FAD78C78132BC0F00074783E /* ZLIB-LICENSE in Resources */,
 				FA4BE85C132BE7B200A80CD7 /* LiveMapViewController.xib in Resources */,
 				FADA8DAB132D135500E6F6A0 /* bluemarble.png in Resources */,
 				FADA8DAC132D135500E6F6A0 /* bluemarble@2x.png in Resources */,
 				FADA8DAF132D25C500E6F6A0 /* greenmarble.png in Resources */,
 				FADA8DB0132D25C500E6F6A0 /* greenmarble@2x.png in Resources */,
-				FA4ABE4613330C630086CF03 /* LICENSE.txt in Resources */,
 				FAD26FE31337C08A006D4128 /* disableLocationButton.png in Resources */,
 				FAD26FE41337C08A006D4128 /* disableLocationButton@2x.png in Resources */,
 				FAD26FE51337C08A006D4128 /* enableLocationButton.png in Resources */,

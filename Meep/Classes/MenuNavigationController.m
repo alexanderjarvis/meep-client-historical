@@ -279,7 +279,7 @@
     userManagerRequestLock = NO;
     [hud hide:YES];
 	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
-    timeOfLastUserUpdate = [[NSDate date] retain];
+    timeOfLastUserUpdate = [NSDate date];
 	menuViewController.friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
     [LocalNotificationManager checkAndUpdateLocalNotificationsForUser:user];
     

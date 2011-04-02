@@ -68,8 +68,6 @@
  * Called when a local notification is received and the application is running.
  */
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
-    NSLog(@"application did receive local notification");
-    NSLog(@"notification fire date: %@", notification.fireDate);
     
     if ([[UIApplication sharedApplication] applicationState] == UIApplicationStateActive) {
         NSLog(@"Fired when active");

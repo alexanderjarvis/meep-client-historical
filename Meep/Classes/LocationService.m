@@ -88,18 +88,18 @@
     BOOL postHeading = NO;
     
     if (currentHeading == nil) {
-        currentHeading = [newHeading retain];
         postHeading = YES;
     
     // If the new heading is the same as the previous then don't update it.
     } else if (newHeading.trueHeading == currentHeading.trueHeading) {
         return;
     } else {
-        currentHeading = [newHeading retain];
         postHeading = YES;
     }
     
     if (postHeading) {
+        [currentHeading release];
+        currentHeading = [newHeading retain];
         NSDictionary *dictionary = [NSDictionary dictionaryWithObject:currentHeading forKey:kHeadingUpdateNotification];
         [[NSNotificationCenter defaultCenter] postNotificationName:kHeadingUpdateNotification object:self userInfo:dictionary];
     }
@@ -127,7 +127,6 @@
     
     // If bestCurrentLocation has not been set yet, or if the new location has a higher accuracy.
     if (currentLocation == nil) {
-        currentLocation = [newLocation retain];
         postLocation = YES;
     
     // If the new location is the same as the previous (and with worse, or same accuracy)
@@ -141,18 +140,19 @@
     // or if the horizontal accuracy is the same or better than 20 metres
     } else if (newLocation.horizontalAccuracy <= currentLocation.horizontalAccuracy || 
                newLocation.horizontalAccuracy <= 20) {
-        currentLocation = [newLocation retain];
         postLocation = YES;
     
     // If the currently held location is more than a half a minute old - obtain any value for the location,
     // regardless of its accuracy.
     } else if (oldLocationAge > 30) {
-        currentLocation = [newLocation retain];
         postLocation = YES;
     }
     
     if (postLocation) {
         NSLog(@"posting location with accuracy: %f", currentLocation.horizontalAccuracy);
+        
+        [currentLocation release];
+        currentLocation = [newLocation retain];
         NSDictionary *dictionary = [NSDictionary dictionaryWithObject:currentLocation forKey:kLocationUpdateNotification];
         [[NSNotificationCenter defaultCenter] postNotificationName:kLocationUpdateNotification object:self userInfo:dictionary];
     }

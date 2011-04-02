@@ -497,7 +497,7 @@
         MKCircleView *circleView = (MKCircleView *)[mapView dequeueReusableAnnotationViewWithIdentifier:circleIdentifier];
         
         if (circleView == nil) {
-            circleView = [[MKCircleView alloc] initWithCircle:overlay];
+            circleView = [[[MKCircleView alloc] initWithCircle:overlay] autorelease];
             circleView.lineWidth = 1.0;
         }
         circleView.fillColor = colour;
@@ -580,7 +580,7 @@
 }
 
 - (void)locationErrors:(NSNotification *)notification {
-    NSError *error = [[[notification userInfo] objectForKey:kLocationErrorNotification] retain];
+    NSError *error = [[notification userInfo] objectForKey:kLocationErrorNotification];
     
     // If the location is denied by the application, then show an alert.
     if ([error code] == kCLErrorDenied) {

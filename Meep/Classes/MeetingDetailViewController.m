@@ -509,6 +509,7 @@
     NSMutableArray *mutableMeetings = [currentUser.meetingsRelated mutableCopy];
     [mutableMeetings removeObject:thisMeeting];
     [currentUser setMeetingsRelated:[mutableMeetings copy]];
+    [mutableMeetings release];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

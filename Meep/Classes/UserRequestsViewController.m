@@ -179,6 +179,7 @@
     NSMutableArray *mutableConnectionRequestsFrom = [currentUser.connectionRequestsFrom mutableCopy];
     [mutableConnectionRequestsFrom removeObject:user];
     currentUser.connectionRequestsFrom = [mutableConnectionRequestsFrom copy];
+    [mutableConnectionRequestsFrom release];
 }
 
 - (void)popViewIfNoMoreRequests {
