@@ -11,7 +11,7 @@
 #import "AlertView.h"
 #import "SearchUsersManager.h"
 #import "UserDTO.h"
-#import "SearchUsersDetailViewController.h"
+#import "UserDetailViewController.h"
 
 @implementation SearchUsersViewController
 
@@ -80,10 +80,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	SearchUsersDetailViewController *searchUsersDetailViewController = [[SearchUsersDetailViewController alloc] initWithNibName:@"SearchUsersDetailViewController" bundle:nil];
-	[searchUsersDetailViewController setUser:[users objectAtIndex:[indexPath row]]];
-	[self.navigationController pushViewController:searchUsersDetailViewController animated:YES];
-	[searchUsersDetailViewController release];
+	UserDetailViewController *userDetailViewController = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
+	[userDetailViewController setUser:[users objectAtIndex:[indexPath row]]];
+	[self.navigationController pushViewController:userDetailViewController animated:YES];
+	[userDetailViewController release];
 }
 
 

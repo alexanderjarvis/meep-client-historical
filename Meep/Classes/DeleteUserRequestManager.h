@@ -8,8 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DeleteUserRequestManager : NSObject {
+#import "AccessTokenRequestManager.h"
+#import "DeleteUserRequestManagerDelegate.h"
+#import "UserDTO.h"
 
+@interface DeleteUserRequestManager : AccessTokenRequestManager {
+    
+	id <DeleteUserRequestManagerDelegate> delegate;
+    
 }
+
+@property (assign, nonatomic) id delegate;
+
+- (void)deleteUser:(UserDTO *)user;
 
 @end

@@ -19,7 +19,7 @@
 	// Build up the URL
 	MeepAppDelegate *meepAppDelegate = [[UIApplication sharedApplication] delegate];
 	NSString *baseURL = [[meepAppDelegate configManager] serviceUrl];
-	NSString *resource = @"meetings/";;
+	NSString *resource = @"meetings/";
 	
 	NSString *queryString = @"?oauth_token=";
 	NSString *fullQueryString = [queryString stringByAppendingString:accessToken];

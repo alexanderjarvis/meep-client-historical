@@ -10,6 +10,7 @@
 #import "MeepAppDelegate.h"
 #import "ConfigManager.h"
 #import "AlertView.h"
+#import "UserDetailViewController.h"
 
 @implementation UsersViewController
 
@@ -66,6 +67,16 @@
 }
 
 #pragma mark -
+#pragma mark private
+
+- (UserDTO *)userForIndexPath:(NSIndexPath *)indexPath {
+    NSString *key = [tableKeys objectAtIndex:[indexPath section]];
+	NSArray *arrayOfUsers = [tableDictionary objectForKey:key];
+	UserDTO *user = [arrayOfUsers objectAtIndex:[indexPath row]];
+    return user;
+}
+
+#pragma mark -
 #pragma mark Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -85,24 +96,19 @@
 	return [tableKeys objectAtIndex:section];
 }
 
-
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	NSUInteger section = [indexPath section];
-	NSUInteger row = [indexPath row];
     
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     // Configure the cell...
-	NSString *key = [tableKeys objectAtIndex:section];
-	NSArray *arrayOfUsers = [tableDictionary objectForKey:key];
-	UserDTO *user = [arrayOfUsers objectAtIndex:row];
+	UserDTO *user = [self userForIndexPath:indexPath];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ %@", user.firstName, user.lastName];
     
     return cell;
@@ -112,14 +118,10 @@
 #pragma mark Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Navigation logic may go here. Create and push another view controller.
-	/*
-	 DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"Nib name" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-	 [self.navigationController pushViewController:detailViewController animated:YES];
-	 [detailViewController release];
-	 */
+    UserDetailViewController *userDetailViewController = [[UserDetailViewController alloc] initWithNibName:@"UserDetailViewController" bundle:nil];
+	[userDetailViewController setUser:[self userForIndexPath:indexPath]];
+	[self.navigationController pushViewController:userDetailViewController animated:YES];
+	[userDetailViewController release];
 }
 
 #pragma mark -
