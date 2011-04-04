@@ -27,6 +27,7 @@
 @synthesize cellsToValidate;
 
 - (void)viewDidLoad {
+    [super viewDidLoad];
     
 	self.title = @"Register";
 	
@@ -46,8 +47,6 @@
 	[registerButton addSubview:button];
     
     self.cellsToValidate = [NSMutableArray arrayWithCapacity:4];
-	
-	[super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,7 +122,6 @@
     return 1;
 }
 
-// Customize the number of rows in the table view.
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 5;
 }

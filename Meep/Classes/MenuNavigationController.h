@@ -21,6 +21,7 @@
 #import "SearchUsersViewController.h"
 #import "UserRequestsViewController.h"
 #import "LiveMapViewController.h"
+#import "MyDetailsViewController.h"
 
 @interface MenuNavigationController : UINavigationController <UserManagerDelegate, LogoutManagerDelegate, UIAlertViewDelegate> {
     
@@ -48,6 +49,8 @@
     
     LiveMapViewController *liveMapViewController;
     UILocalNotification *liveMapNotificationWaitingForCurrentUser;
+    
+    MyDetailsViewController *myDetailsViewController;
 }
 
 - (void)logout:(BOOL)retry;
@@ -65,5 +68,6 @@
 - (void)showLiveMapViewAnimated:(BOOL)animated;
 - (void)showLiveMapViewWith:(MeetingDTO *)meeting animated:(BOOL)animated;
 - (void)showLiveMapFromLocalNotification:(UILocalNotification *)localNotification;
+- (void)showMyDetailsViewAnimated:(BOOL)animated;
 
 @end

@@ -114,6 +114,8 @@
 		FA540BD0133A895C0010ACF0 /* showAllButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FA540BCA133A895C0010ACF0 /* showAllButton.png */; };
 		FA540BD1133A895C0010ACF0 /* showAllButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA540BCB133A895C0010ACF0 /* showAllButton@2x.png */; };
 		FA613337132AB242003FAD06 /* WebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA613336132AB242003FAD06 /* WebSocketManager.m */; };
+		FA771A651348913B004CD684 /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA771A631348913B004CD684 /* UserDetailViewController.m */; };
+		FA771A661348913B004CD684 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA771A641348913B004CD684 /* UserDetailViewController.xib */; };
 		FA7A4855132CFCA8009205D7 /* CurrentUserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7A4854132CFCA7009205D7 /* CurrentUserAnnotation.m */; };
 		FA7D0B721307F32100AD7E31 /* SearchUsersDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7D0B701307F32100AD7E31 /* SearchUsersDetailViewController.m */; };
 		FA7D0B731307F32100AD7E31 /* SearchUsersDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA7D0B711307F32100AD7E31 /* SearchUsersDetailViewController.xib */; };
@@ -133,6 +135,8 @@
 		FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
 		FA8CDC81131F01A700C396A9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8CDC80131F01A700C396A9 /* Icon@2x.png */; };
 		FA8D31091325173D00C653BD /* TTFixedWidthButton.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8D31081325173A00C653BD /* TTFixedWidthButton.m */; };
+		FAA5DBE7134A042D0049FD0D /* MyDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA5DBE5134A042D0049FD0D /* MyDetailsViewController.m */; };
+		FAA5DBE8134A042D0049FD0D /* MyDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAA5DBE6134A042D0049FD0D /* MyDetailsViewController.xib */; };
 		FACEDB63131ED1380075DC57 /* DeleteUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FACEDB62131ED1380075DC57 /* DeleteUserRequestManager.m */; };
 		FACFE016130D870500F6000A /* UserRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FACFE014130D870500F6000A /* UserRequestsViewController.m */; };
 		FACFE017130D870500F6000A /* UserRequestsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FACFE015130D870500F6000A /* UserRequestsViewController.xib */; };
@@ -142,6 +146,7 @@
 		FAD26FE61337C08A006D4128 /* enableLocationButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FAD26FE21337C08A006D4128 /* enableLocationButton@2x.png */; };
 		FAD4ADEA132FAE20003F9BA5 /* Math.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD4ADE9132FAE20003F9BA5 /* Math.m */; };
 		FAD4ADED132FB93D003F9BA5 /* MeetingPlaceAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD4ADEC132FB93B003F9BA5 /* MeetingPlaceAnnotation.m */; };
+		FAD6086C134A22D000AB68EE /* UpdateUserRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD6086B134A22D000AB68EE /* UpdateUserRequestManager.m */; };
 		FAD78C74132BC0F00074783E /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD78C6D132BC0F00074783E /* AsyncSocket.m */; };
 		FAD78C75132BC0F00074783E /* WebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD78C6F132BC0F00074783E /* WebSocket.m */; };
 		FAD78C77132BC0F00074783E /* SocketIoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD78C72132BC0F00074783E /* SocketIoClient.m */; };
@@ -487,6 +492,10 @@
 		FA613335132AB242003FAD06 /* WebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocketManager.h; sourceTree = "<group>"; };
 		FA613336132AB242003FAD06 /* WebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketManager.m; sourceTree = "<group>"; };
 		FA6134E4132AC112003FAD06 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		FA771A621348913B004CD684 /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
+		FA771A631348913B004CD684 /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
+		FA771A641348913B004CD684 /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
+		FA771A6E13490A8A004CD684 /* DeleteUserRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteUserRequestManagerDelegate.h; sourceTree = "<group>"; };
 		FA7A4853132CFCA7009205D7 /* CurrentUserAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentUserAnnotation.h; sourceTree = "<group>"; };
 		FA7A4854132CFCA7009205D7 /* CurrentUserAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentUserAnnotation.m; sourceTree = "<group>"; };
 		FA7D0B6F1307F32100AD7E31 /* SearchUsersDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchUsersDetailViewController.h; sourceTree = "<group>"; };
@@ -523,6 +532,9 @@
 		FA8CDC80131F01A700C396A9 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		FA8D31071325173900C653BD /* TTFixedWidthButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTFixedWidthButton.h; sourceTree = "<group>"; };
 		FA8D31081325173A00C653BD /* TTFixedWidthButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTFixedWidthButton.m; sourceTree = "<group>"; };
+		FAA5DBE4134A042D0049FD0D /* MyDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDetailsViewController.h; sourceTree = "<group>"; };
+		FAA5DBE5134A042D0049FD0D /* MyDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDetailsViewController.m; sourceTree = "<group>"; };
+		FAA5DBE6134A042D0049FD0D /* MyDetailsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDetailsViewController.xib; sourceTree = "<group>"; };
 		FACEDB61131ED1380075DC57 /* DeleteUserRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteUserRequestManager.h; sourceTree = "<group>"; };
 		FACEDB62131ED1380075DC57 /* DeleteUserRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteUserRequestManager.m; sourceTree = "<group>"; };
 		FACFE013130D870500F6000A /* UserRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRequestsViewController.h; sourceTree = "<group>"; };
@@ -536,6 +548,9 @@
 		FAD4ADE9132FAE20003F9BA5 /* Math.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Math.m; sourceTree = "<group>"; };
 		FAD4ADEB132FB93A003F9BA5 /* MeetingPlaceAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeetingPlaceAnnotation.h; sourceTree = "<group>"; };
 		FAD4ADEC132FB93B003F9BA5 /* MeetingPlaceAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MeetingPlaceAnnotation.m; sourceTree = "<group>"; };
+		FAD6086A134A22D000AB68EE /* UpdateUserRequestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateUserRequestManager.h; sourceTree = "<group>"; };
+		FAD6086B134A22D000AB68EE /* UpdateUserRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpdateUserRequestManager.m; sourceTree = "<group>"; };
+		FAD6086D134A230100AB68EE /* UpdateUserRequestManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpdateUserRequestManagerDelegate.h; sourceTree = "<group>"; };
 		FAD78C6C132BC0F00074783E /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
 		FAD78C6D132BC0F00074783E /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
 		FAD78C6E132BC0F00074783E /* WebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocket.h; sourceTree = "<group>"; };
@@ -904,6 +919,7 @@
 				FAFCCA771323FE680059DDA4 /* DeleteMeetingRequestManagerDelegate.h */,
 				FACEDB61131ED1380075DC57 /* DeleteUserRequestManager.h */,
 				FACEDB62131ED1380075DC57 /* DeleteUserRequestManager.m */,
+				FA771A6E13490A8A004CD684 /* DeleteUserRequestManagerDelegate.h */,
 				FA5076991302F3CC00CB96B4 /* LoginManager.h */,
 				FA50769A1302F3CC00CB96B4 /* LoginManager.m */,
 				FA50769B1302F3CC00CB96B4 /* LoginManagerDelegate.h */,
@@ -924,6 +940,9 @@
 				FA116F8313312A0C00CA3557 /* UpdateMinutesBeforeRequestManager.h */,
 				FA116F8413312A0C00CA3557 /* UpdateMinutesBeforeRequestManager.m */,
 				FA116F8613312B0B00CA3557 /* UpdateMinutesBeforeRequestManagerDelegate.h */,
+				FAD6086A134A22D000AB68EE /* UpdateUserRequestManager.h */,
+				FAD6086B134A22D000AB68EE /* UpdateUserRequestManager.m */,
+				FAD6086D134A230100AB68EE /* UpdateUserRequestManagerDelegate.h */,
 				FA507B071303EF4000CB96B4 /* UserManager.h */,
 				FA507B081303EF4000CB96B4 /* UserManager.m */,
 				FA507B30130404A900CB96B4 /* UserManagerDelegate.h */,
@@ -980,9 +999,11 @@
 			isa = PBXGroup;
 			children = (
 				FA4BE85D132BE7BD00A80CD7 /* Live Map */,
+				FAA5DBE3134A03EE0049FD0D /* My Details */,
 				FA504EB6131EBB65000B94CD /* Meetings */,
 				FA5076AC1302F3CC00CB96B4 /* New Meeting */,
 				FA7E16DD1306E58A00CFAAF5 /* Search Users */,
+				FA771A61134890EE004CD684 /* User */,
 				FAF7707613108DDB00297E90 /* Users */,
 				FACFE012130D86CB00F6000A /* User Requests */,
 				FA5076B91302F3CC00CB96B4 /* Welcome */,
@@ -1093,6 +1114,16 @@
 			path = External/RegexKitLite;
 			sourceTree = SOURCE_ROOT;
 		};
+		FA771A61134890EE004CD684 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				FA771A621348913B004CD684 /* UserDetailViewController.h */,
+				FA771A631348913B004CD684 /* UserDetailViewController.m */,
+				FA771A641348913B004CD684 /* UserDetailViewController.xib */,
+			);
+			name = User;
+			sourceTree = "<group>";
+		};
 		FA7E159F13069F2D00CFAAF5 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -1128,6 +1159,16 @@
 				FA8D31081325173A00C653BD /* TTFixedWidthButton.m */,
 			);
 			name = "Three20 Additions";
+			sourceTree = "<group>";
+		};
+		FAA5DBE3134A03EE0049FD0D /* My Details */ = {
+			isa = PBXGroup;
+			children = (
+				FAA5DBE4134A042D0049FD0D /* MyDetailsViewController.h */,
+				FAA5DBE5134A042D0049FD0D /* MyDetailsViewController.m */,
+				FAA5DBE6134A042D0049FD0D /* MyDetailsViewController.xib */,
+			);
+			name = "My Details";
 			sourceTree = "<group>";
 		};
 		FACFE012130D86CB00F6000A /* User Requests */ = {
@@ -1484,6 +1525,8 @@
 				FA540BCF133A895C0010ACF0 /* previousButton@2x.png in Resources */,
 				FA540BD0133A895C0010ACF0 /* showAllButton.png in Resources */,
 				FA540BD1133A895C0010ACF0 /* showAllButton@2x.png in Resources */,
+				FA771A661348913B004CD684 /* UserDetailViewController.xib in Resources */,
+				FAA5DBE8134A042D0049FD0D /* MyDetailsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1599,6 +1642,9 @@
 				FA1773571334367D00D4B312 /* RelativeDate.m in Sources */,
 				FAFCAEA9133A74630061CB65 /* MeetingHelper.m in Sources */,
 				FA2227041347B871003AB4B8 /* UsersRequestManager.m in Sources */,
+				FA771A651348913B004CD684 /* UserDetailViewController.m in Sources */,
+				FAA5DBE7134A042D0049FD0D /* MyDetailsViewController.m in Sources */,
+				FAD6086C134A22D000AB68EE /* UpdateUserRequestManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

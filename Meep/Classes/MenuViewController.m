@@ -159,6 +159,8 @@
 		[meepAppDelegate.menuNavigationController showUsersViewAnimated:YES];
 	} else if ([item.URL isEqualToString:LiveMapURL]) {
         [meepAppDelegate.menuNavigationController showLiveMapViewAnimated:YES];
+    } else if ([item.URL isEqualToString:MyDetailsURL]) {
+        [meepAppDelegate.menuNavigationController showMyDetailsViewAnimated:YES];
     }
 }
 

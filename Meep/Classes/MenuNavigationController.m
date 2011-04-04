@@ -98,6 +98,7 @@
 	[searchUsersViewController release];
 	[userRequestsViewController release];
     [liveMapViewController release];
+    [myDetailsViewController release];
     [super dealloc];
 }
 
@@ -268,6 +269,13 @@
         [self popToRootViewControllerAnimated:YES];
         [self getCurrentUserAndShowHUD:YES animated:YES isRetry:NO];
     }
+}
+
+- (void)showMyDetailsViewAnimated:(BOOL)animated {
+    if (myDetailsViewController == nil) {
+		myDetailsViewController = [[MyDetailsViewController alloc] initWithNibName:@"MyDetailsViewController" bundle:nil];
+	}
+	[self pushViewController:myDetailsViewController animated:animated];
 }
 
 #pragma mark -
