@@ -86,7 +86,6 @@
 
 - (void)dealloc {
     [liveMapNotificationWaitingForCurrentUser release];
-    [timeOfLastUserUpdate release];
     [hud release];
     [userManager release];
     [logoutManager release];
