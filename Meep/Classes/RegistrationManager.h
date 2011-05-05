@@ -3,7 +3,7 @@
 //  meep
 //
 //  Created by Alex Jarvis on 30/12/2010.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
+//  Copyright 2010 Alex Jarvis. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

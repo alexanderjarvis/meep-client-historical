@@ -10,7 +10,7 @@
 //  used for the entire application instead and not just for location updates.
 //
 //  Created by Alex Jarvis on 12/03/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Alex Jarvis. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

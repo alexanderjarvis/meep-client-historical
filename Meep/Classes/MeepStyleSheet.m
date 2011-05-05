@@ -5,7 +5,7 @@
 //  These style sheets are partially attributed to the Three20 library and the TTCatalog example.
 //
 //  Created by Alex Jarvis on 01/03/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Alex Jarvis. All rights reserved.
 //
 
 #import "MeepStyleSheet.h"

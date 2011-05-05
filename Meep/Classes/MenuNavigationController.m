@@ -3,7 +3,7 @@
 //  meep
 //
 //  Created by Alex Jarvis on 31/01/2011.
-//  Copyright 2011 __MyCompanyName__. All rights reserved.
+//  Copyright 2011 Alex Jarvis. All rights reserved.
 //
 
 #import "MenuNavigationController.h"
