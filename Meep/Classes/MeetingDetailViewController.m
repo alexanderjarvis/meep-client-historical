@@ -515,7 +515,6 @@
 
 - (void)deleteMeetingFailedWithError:(NSError *)error {
     [hud hide:YES];
-    // todo show retry to user?
 }
 
 - (void)deleteMeetingFailedWithNetworkError:(NSError *)error {

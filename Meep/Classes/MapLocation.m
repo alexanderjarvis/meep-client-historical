@@ -51,10 +51,6 @@
 	return ret;
 }
 
-//- (void)setCoordinate:(CLLocationCoordinate2D)newCoordinate {
-//	coordinate = newCoordinate;
-//}
-
 - (void)resetReverseGeocodeAttributes {
 	self.streetAddress = nil;
 	self.city = nil;
