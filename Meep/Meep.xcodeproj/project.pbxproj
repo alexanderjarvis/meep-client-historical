@@ -133,6 +133,8 @@
 		FA7FA29B131D7C3800130590 /* CoordinateDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA29A131D7C3800130590 /* CoordinateDTO.m */; };
 		FA7FA2B6131D84F900130590 /* AttendeeDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA2B5131D84F900130590 /* AttendeeDTO.m */; };
 		FA7FA3A3131D941B00130590 /* NewMeetingBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7FA3A2131D941B00130590 /* NewMeetingBuilder.m */; };
+		FA8B45EA13730AEE0065FD95 /* WelcomeScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8B45E813730AEE0065FD95 /* WelcomeScreen.png */; };
+		FA8B45EB13730AEE0065FD95 /* WelcomeScreen@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8B45E913730AEE0065FD95 /* WelcomeScreen@2x.png */; };
 		FA8C74101305C20D00FF1A99 /* UserDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C740F1305C20D00FF1A99 /* UserDTO.m */; };
 		FA8C743A1305C7A300FF1A99 /* DictionaryModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = FA8C74391305C7A300FF1A99 /* DictionaryModelMapper.m */; };
 		FA8CDC81131F01A700C396A9 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA8CDC80131F01A700C396A9 /* Icon@2x.png */; };
@@ -529,6 +531,8 @@
 		FA7FA2B5131D84F900130590 /* AttendeeDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttendeeDTO.m; sourceTree = "<group>"; };
 		FA7FA3A1131D941B00130590 /* NewMeetingBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewMeetingBuilder.h; sourceTree = "<group>"; };
 		FA7FA3A2131D941B00130590 /* NewMeetingBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewMeetingBuilder.m; sourceTree = "<group>"; };
+		FA8B45E813730AEE0065FD95 /* WelcomeScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WelcomeScreen.png; sourceTree = "<group>"; };
+		FA8B45E913730AEE0065FD95 /* WelcomeScreen@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "WelcomeScreen@2x.png"; sourceTree = "<group>"; };
 		FA8C740E1305C20D00FF1A99 /* UserDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDTO.h; sourceTree = "<group>"; };
 		FA8C740F1305C20D00FF1A99 /* UserDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDTO.m; sourceTree = "<group>"; };
 		FA8C74381305C7A300FF1A99 /* DictionaryModelMapper.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = DictionaryModelMapper.h; sourceTree = "<group>"; };
@@ -1243,6 +1247,8 @@
 		FADA8DA7132D132200E6F6A0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				FA8B45E813730AEE0065FD95 /* WelcomeScreen.png */,
+				FA8B45E913730AEE0065FD95 /* WelcomeScreen@2x.png */,
 				FAD26FD21337B49F006D4128 /* Bar Buttons */,
 				FADA8DA8132D133800E6F6A0 /* Marbles */,
 				FA182DC7131FA29C00E2147F /* Menu Icons */,
@@ -1535,6 +1541,8 @@
 				FAA5DBE8134A042D0049FD0D /* MyDetailsViewController.xib in Resources */,
 				FA650619134B24790063D20C /* LiveMap.png in Resources */,
 				FA65061A134B24790063D20C /* LiveMap@2x.png in Resources */,
+				FA8B45EA13730AEE0065FD95 /* WelcomeScreen.png in Resources */,
+				FA8B45EB13730AEE0065FD95 /* WelcomeScreen@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
