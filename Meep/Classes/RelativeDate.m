@@ -108,7 +108,7 @@
     // In the Future
     } else {
         
-        resultString = [NSString stringWithFormat:@"in %@", unitOfTime];
+        resultString = [NSString stringWithFormat:@"%@", unitOfTime];
         
     }
     

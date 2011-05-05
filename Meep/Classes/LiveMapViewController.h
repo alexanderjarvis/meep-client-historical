@@ -17,6 +17,10 @@
 
 #define kAnnotationTimerKey @"AnnotationTimer"
 
+// Walking speed in m/s constant, to calculate ETA from meeting.
+// based on 5km/hour as the average walking speed.
+static const double walkingSpeed = (5000 / 60 / 60);
+
 @interface LiveMapViewController : UIViewController <MKMapViewDelegate, UIAlertViewDelegate> {
     
     UIBarButtonItem *enableLocationButton;

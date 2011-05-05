@@ -18,6 +18,7 @@
 #import "RelativeDate.h"
 #import "AlertView.h"
 #import "MeetingHelper.h"
+#import "Math.h"
 
 @interface LiveMapViewController (private)
 
@@ -29,6 +30,7 @@
 - (void)startAnnotationUpdateTimer:(id<MKAnnotation>)annotation;
 - (void)invalidateAnnotationUpdateTimer;
 - (void)timerTriggeredUpdateAnnotation:(NSTimer *)timer;
+- (NSString *)meetingPlaceAnnotationSubtitleWithDate:(NSDate *)date annotation:(NSObject<MKAnnotation> *)annotation;
 // LocationService
 - (void)headingUpdated:(NSNotification *)notification;
 - (void)locationUpdated:(NSNotification *)notification;
@@ -239,9 +241,8 @@
                     
                     // Update annotation properties
                     newMeetingPlaceAnnotation.title = meeting.title;
-                    newMeetingPlaceAnnotation.subtitle = [NSDateFormatter localizedStringFromDate:[DateFormatter dateFromString:meeting.time] 
-                                                                                        dateStyle:kCFDateFormatterLongStyle
-                                                                                        timeStyle:kCFDateFormatterShortStyle];
+                    newMeetingPlaceAnnotation.subtitle = [self meetingPlaceAnnotationSubtitleWithDate:[DateFormatter dateFromString:meeting.time] 
+                                                                                           annotation:newMeetingPlaceAnnotation];
                     
                     CLLocationCoordinate2D newMeetingPlaceCoordinate = CLLocationCoordinate2DMake([meeting.place.latitude doubleValue], 
                                                                                                   [meeting.place.longitude doubleValue]);
@@ -308,6 +309,29 @@
         UserAnnotation *userAnnotation = (UserAnnotation *)annotation;
         userAnnotation.subtitle = [RelativeDate stringWithDate:userAnnotation.updated];
     }
+}
+
+- (NSString *)meetingPlaceAnnotationSubtitleWithDate:(NSDate *)date annotation:(NSObject<MKAnnotation> *)annotation {
+    NSString *dateString = [NSDateFormatter localizedStringFromDate:date 
+                                                          dateStyle:kCFDateFormatterLongStyle
+                                                          timeStyle:kCFDateFormatterShortStyle];
+    
+    // Calculate distance from user
+    CLLocation *meetingLocation = [[CLLocation alloc] initWithLatitude:annotation.coordinate.latitude 
+                                                             longitude:annotation.coordinate.longitude];
+    CLLocationDistance distance = [currentLocation distanceFromLocation:meetingLocation];
+    [meetingLocation release];
+    
+    // Calculate the ETA for user (average walking speed is 5km/h - )
+    double secondsToArrive = distance * walkingSpeed;
+    NSDate *arrivalDate = [NSDate dateWithTimeIntervalSinceNow:secondsToArrive];
+    NSString *relativeArrivalDateString = [RelativeDate stringWithDate:arrivalDate];
+    
+    NSString *subtitle = [NSString stringWithFormat:@"%@ (%0dm, %@ away)",
+                                        dateString, 
+                                        (int)distance,
+                                        relativeArrivalDateString];
+    return subtitle;
 }
 
 #pragma mark -
@@ -577,6 +601,28 @@
     // Update relative time
     currentUserAnnotation.updated = [NSDate date];
     currentUserAnnotation.subtitle = [RelativeDate stringWithDate:currentUserAnnotation.updated];
+    
+    // Update the relative distance for the meeting annotations
+    for (NSObject<MKAnnotation> *annotation in meetingPlaceAnnotations) {
+        if ([annotation isKindOfClass:[MeetingPlaceAnnotation class]]) {
+            MeetingPlaceAnnotation *meetingPlaceAnnotation = (MeetingPlaceAnnotation *)annotation;
+            
+            // Obtain meeting date
+            NSDate *meetingDate = nil;
+            UserDTO *currentUser = [[MeepAppDelegate sharedAppDelegate] currentUser];
+            for (MeetingDTO *meetingDTO in currentUser.meetingsRelated) {
+                if ([meetingDTO._id isEqualToNumber:meetingPlaceAnnotation._id]) {
+                    meetingDate = [DateFormatter dateFromString:meetingDTO.time];
+                    break;
+                }
+            }
+            
+            if (meetingDate != nil) {
+                meetingPlaceAnnotation.subtitle = [self meetingPlaceAnnotationSubtitleWithDate:meetingDate 
+                                                                                    annotation:meetingPlaceAnnotation];
+            }
+        }
+    }
 }
 
 - (void)locationErrors:(NSNotification *)notification {
