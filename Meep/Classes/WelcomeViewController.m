@@ -25,14 +25,14 @@
     [TTStyleSheet setGlobalStyleSheet:[[[MeepStyleSheet alloc] init] autorelease]];
 	TTFixedWidthButton *button = [TTFixedWidthButton buttonWithStyle:@"embossedButton:" title:@"Login"];
 	button.font = [UIFont boldSystemFontOfSize:14];
-    button.width = 100;
+    button.width = 200;
 	[button sizeToFit];
 	[button addTarget:self action:@selector(loginButtonPressed) forControlEvents:UIControlEventTouchUpInside];
 	[loginButton addSubview:button];
     
     button = [TTFixedWidthButton buttonWithStyle:@"embossedButton:" title:@"Register"];
 	button.font = [UIFont boldSystemFontOfSize:14];
-    button.width = 100;
+    button.width = 200;
 	[button sizeToFit];
 	[button sizeThatFits:CGSizeMake(100.0f, button.frame.size.height)];
 	[button addTarget:self action:@selector(registerButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -42,6 +42,18 @@
 	loginViewController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
     
 	[super viewDidLoad];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
+    [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [super viewWillAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:NO];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)registerButtonPressed {
