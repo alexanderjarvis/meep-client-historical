@@ -84,9 +84,11 @@
 	NSArray *connectedUsers = [user connections];
 	
 	NSMutableDictionary *connectedUsersDictionary = [NSMutableDictionary dictionaryWithCapacity:[connectedUsers count]];
+    NSMutableArray *keys = [NSMutableArray arrayWithCapacity:1];
 	for (UserSummaryDTO *connectedUser in connectedUsers) {
 		if ([connectedUser.firstName length] > 0) {
 			NSString *key = [[connectedUser.firstName substringToIndex:1] uppercaseString];
+            [keys addObject:key];
 			NSArray *usersInSection = [connectedUsersDictionary objectForKey:key];
 			if (usersInSection == nil) {
 				[connectedUsersDictionary setObject:[NSArray arrayWithObject:connectedUser] forKey:key];
@@ -99,7 +101,7 @@
 	}
 	
 	self.tableDictionary = [NSDictionary dictionaryWithDictionary:connectedUsersDictionary];
-	self.tableKeys = [tableDictionary allKeys];
+	self.tableKeys = [keys copy];
 	
 	[selectedUsers removeAllObjects];
 	
