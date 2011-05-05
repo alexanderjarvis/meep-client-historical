@@ -717,12 +717,6 @@
 			isa = PBXGroup;
 			children = (
 				FADA8DA7132D132200E6F6A0 /* Images */,
-				FA504E22131EAC14000B94CD /* Icon.png */,
-				FA8CDC80131F01A700C396A9 /* Icon@2x.png */,
-				FA7FEDAF1373555F00F2D946 /* Icon-72.png */,
-				FA7FEDB11373555F00F2D946 /* Icon-Small.png */,
-				FA7FEDB21373555F00F2D946 /* Icon-Small@2x.png */,
-				FA7FEDB01373555F00F2D946 /* Icon-Small-50.png */,
 				FA5079C01303011600CB96B4 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Meep-Info.plist */,
 				FA7E15A91306A1CE00CFAAF5 /* LogicTests-Info.plist */,
@@ -1259,11 +1253,17 @@
 		FADA8DA7132D132200E6F6A0 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				FA8B45E813730AEE0065FD95 /* WelcomeScreen.png */,
-				FA8B45E913730AEE0065FD95 /* WelcomeScreen@2x.png */,
 				FAD26FD21337B49F006D4128 /* Bar Buttons */,
 				FADA8DA8132D133800E6F6A0 /* Marbles */,
 				FA182DC7131FA29C00E2147F /* Menu Icons */,
+				FA504E22131EAC14000B94CD /* Icon.png */,
+				FA8CDC80131F01A700C396A9 /* Icon@2x.png */,
+				FA7FEDAF1373555F00F2D946 /* Icon-72.png */,
+				FA7FEDB11373555F00F2D946 /* Icon-Small.png */,
+				FA7FEDB21373555F00F2D946 /* Icon-Small@2x.png */,
+				FA7FEDB01373555F00F2D946 /* Icon-Small-50.png */,
+				FA8B45E813730AEE0065FD95 /* WelcomeScreen.png */,
+				FA8B45E913730AEE0065FD95 /* WelcomeScreen@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
