@@ -626,6 +626,9 @@
     if (newAnnotation) {
         otherUserAnnotation.coordinate = currentAnnotationLocation;
         [_mapView addAnnotation:otherUserAnnotation];
+        otherUserAnnotation.accuracyCircle = [MKCircle circleWithCenterCoordinate:currentAnnotationLocation 
+                                                                           radius:[userLocationDTO.horizontalAccuracy doubleValue]];
+        [_mapView addOverlay:otherUserAnnotation.accuracyCircle];
         [_mapView zoomToFitAnnotations];
         [_mapView selectAnnotation:otherUserAnnotation animated:YES];
         
@@ -634,22 +637,16 @@
         [UIView beginAnimations:@"" context:NULL];
         [UIView setAnimationDuration:.5];
         otherUserAnnotation.coordinate = currentAnnotationLocation;
+        [_mapView removeOverlay:otherUserAnnotation.accuracyCircle];
+        otherUserAnnotation.accuracyCircle = [MKCircle circleWithCenterCoordinate:currentAnnotationLocation 
+                                                                           radius:[userLocationDTO.horizontalAccuracy doubleValue]];
+        [_mapView addOverlay:otherUserAnnotation.accuracyCircle];
         [UIView commitAnimations];
     }
     
     // Update relative time
     otherUserAnnotation.updated = [DateFormatter dateFromString:[userLocationDTO time]];
     otherUserAnnotation.subtitle = [RelativeDate stringWithDate:otherUserAnnotation.updated];
-    
-    
-    // Add circle overlay to show accuracy
-    [UIView beginAnimations:@"" context:NULL];
-    [UIView setAnimationDuration:.5];
-    [_mapView removeOverlay:otherUserAnnotation.accuracyCircle];
-    otherUserAnnotation.accuracyCircle = [MKCircle circleWithCenterCoordinate:currentAnnotationLocation 
-                                                                       radius:[userLocationDTO.horizontalAccuracy doubleValue]];
-    [_mapView addOverlay:otherUserAnnotation.accuracyCircle];
-    [UIView commitAnimations];
 }
 
 @end

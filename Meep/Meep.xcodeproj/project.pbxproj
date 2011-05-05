@@ -114,6 +114,8 @@
 		FA540BD0133A895C0010ACF0 /* showAllButton.png in Resources */ = {isa = PBXBuildFile; fileRef = FA540BCA133A895C0010ACF0 /* showAllButton.png */; };
 		FA540BD1133A895C0010ACF0 /* showAllButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA540BCB133A895C0010ACF0 /* showAllButton@2x.png */; };
 		FA613337132AB242003FAD06 /* WebSocketManager.m in Sources */ = {isa = PBXBuildFile; fileRef = FA613336132AB242003FAD06 /* WebSocketManager.m */; };
+		FA650619134B24790063D20C /* LiveMap.png in Resources */ = {isa = PBXBuildFile; fileRef = FA650617134B24790063D20C /* LiveMap.png */; };
+		FA65061A134B24790063D20C /* LiveMap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = FA650618134B24790063D20C /* LiveMap@2x.png */; };
 		FA771A651348913B004CD684 /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA771A631348913B004CD684 /* UserDetailViewController.m */; };
 		FA771A661348913B004CD684 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA771A641348913B004CD684 /* UserDetailViewController.xib */; };
 		FA7A4855132CFCA8009205D7 /* CurrentUserAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = FA7A4854132CFCA7009205D7 /* CurrentUserAnnotation.m */; };
@@ -492,6 +494,8 @@
 		FA613335132AB242003FAD06 /* WebSocketManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebSocketManager.h; sourceTree = "<group>"; };
 		FA613336132AB242003FAD06 /* WebSocketManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebSocketManager.m; sourceTree = "<group>"; };
 		FA6134E4132AC112003FAD06 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		FA650617134B24790063D20C /* LiveMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LiveMap.png; sourceTree = "<group>"; };
+		FA650618134B24790063D20C /* LiveMap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LiveMap@2x.png"; sourceTree = "<group>"; };
 		FA771A621348913B004CD684 /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
 		FA771A631348913B004CD684 /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
 		FA771A641348913B004CD684 /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
@@ -806,6 +810,8 @@
 				FA182DB0131FA29800E2147F /* FriendRequests@2x.png */,
 				FA182DB1131FA29800E2147F /* Friends.png */,
 				FA182DB2131FA29800E2147F /* Friends@2x.png */,
+				FA650617134B24790063D20C /* LiveMap.png */,
+				FA650618134B24790063D20C /* LiveMap@2x.png */,
 				FA182DB3131FA29800E2147F /* Meetings.png */,
 				FA182DB4131FA29800E2147F /* Meetings@2x.png */,
 				FA182DB5131FA29800E2147F /* MyDetails.png */,
@@ -1527,6 +1533,8 @@
 				FA540BD1133A895C0010ACF0 /* showAllButton@2x.png in Resources */,
 				FA771A661348913B004CD684 /* UserDetailViewController.xib in Resources */,
 				FAA5DBE8134A042D0049FD0D /* MyDetailsViewController.xib in Resources */,
+				FA650619134B24790063D20C /* LiveMap.png in Resources */,
+				FA65061A134B24790063D20C /* LiveMap@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

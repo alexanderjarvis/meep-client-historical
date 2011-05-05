@@ -85,6 +85,7 @@
 }
 
 - (void)dealloc {
+    [timeOfLastUserUpdate release];
     [liveMapNotificationWaitingForCurrentUser release];
     [hud release];
     [userManager release];
@@ -286,7 +287,7 @@
     userManagerRequestLock = NO;
     [hud hide:YES];
 	[[MeepAppDelegate sharedAppDelegate] setCurrentUser:user];
-    timeOfLastUserUpdate = [NSDate date];
+    timeOfLastUserUpdate = [[NSDate alloc] init];
 	menuViewController.friendRequestsItem.badgeNumber = [[user connectionRequestsFrom] count];
     [LocalNotificationManager checkAndUpdateLocalNotificationsForUser:user];
     

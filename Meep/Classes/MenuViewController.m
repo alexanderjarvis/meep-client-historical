@@ -73,7 +73,7 @@
 	[launcherView addItem:friendRequestsItem animated:NO];
     
     liveMapItem = [[TTLauncherItem alloc] initWithTitle: @"Live Map"
-                                                  image: @"bundle://Icon.png"
+                                                  image: @"bundle://LiveMap.png"
                                                     URL: LiveMapURL];
     [launcherView addItem:liveMapItem animated:NO];
 	
